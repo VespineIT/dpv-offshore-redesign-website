@@ -2,8 +2,7 @@
 const nextConfig = {
   output: 'export',
   
-  // IMPORTANT: Replace 'dpv-offshore' with your exact GitHub repository name.
-  // If your repo URL is github.com/user/my-site, then this should be '/my-site'
+  // This is the MAGIC LINE that fixes the 404 errors:
   basePath: '/dpv-offshore-redesign-website', 
 
   images: {
