@@ -1,13 +1,30 @@
 import Link from 'next/link';
+import Image from 'next/image'; // 1. Import the Image component
 
 export default function Navbar() {
   return (
     <nav className="w-full py-4 px-8 flex justify-between items-center bg-white sticky top-0 z-50 shadow-sm">
-      {/* Left side - empty for spacing */}
-      <div className="w-48"></div>
+      
+      {/* Left side - Logo */}
+      {/* We keep w-48 to balance the right side and keep links centered */}
+      <div className="w-48"> 
+        <Link href="/" className="block">
+          <Image 
+            src="/dpv-offshore-redesign-website/images/dpv_logo.jpg" // Ensure this file is in your 'public' folder
+            alt="DPV Offshore & Marine Services"
+            width={180} // Adjusted to fit within the w-48 container
+            height={85} // Calculated based on aspect ratio
+            className="object-contain h-auto"
+            priority // Loads image immediately for better performance
+          />
+        </Link>
+      </div>
       
       {/* Center - Navigation Links */}
       <div className="flex gap-12 font-semibold text-gray-800 text-sm tracking-wide">
+        <Link href="/" className="hover:text-brand-orange transition-colors uppercase">
+          Home
+        </Link>
         <Link href="/industries" className="hover:text-brand-orange transition-colors uppercase">
           Industries
         </Link>
@@ -17,10 +34,14 @@ export default function Navbar() {
         <Link href="/services" className="hover:text-brand-orange transition-colors uppercase">
           Services
         </Link>
+        <Link href="/career" className="hover:text-brand-orange transition-colors uppercase">
+          Career
+        </Link>
       </div>
       
       {/* Right side - Search, Language, Menu */}
       <div className="flex items-center gap-4">
+        
         {/* Search Button */}
         <button className="w-48 px-4 py-2 border-2 border-brand-orange rounded-full flex items-center justify-between hover:bg-orange-50 transition-all">
           <span className="text-transparent">Search</span>

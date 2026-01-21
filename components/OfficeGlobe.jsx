@@ -1,84 +1,50 @@
 'use client';
-import { useEffect, useRef } from 'react';
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import 'leaflet/dist/leaflet.css';
+import L from 'leaflet';
+import { useEffect } from 'react';
+
+// Fix for default Leaflet markers in Next.js/Webpack
+const icon = L.icon({
+  iconUrl: "https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png",
+  iconRetinaUrl: "https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon-2x.png",
+  shadowUrl: "https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png",
+  iconSize: [25, 41], 
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+});
 
 export default function OfficeGlobe() {
-  const canvasRef = useRef(null);
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    const ctx = canvas.getContext('2d');
-    let width = canvas.width = canvas.parentElement.offsetWidth;
-    let height = canvas.height = 600;
-    
-    // Globe properties
-    const globeRadius = 200;
-    const dotRadius = 2;
-    const dots = [];
-    const DOT_COUNT = 400;
-
-    // Initialize dots on a sphere
-    for(let i=0; i<DOT_COUNT; i++) {
-        const phi = Math.acos(-1 + (2 * i) / DOT_COUNT);
-        const theta = Math.sqrt(DOT_COUNT * Math.PI) * phi;
-        dots.push({
-            x: globeRadius * Math.cos(theta) * Math.sin(phi),
-            y: globeRadius * Math.sin(theta) * Math.sin(phi),
-            z: globeRadius * Math.cos(phi)
-        });
-    }
-
-    let angle = 0;
-
-    const animate = () => {
-        ctx.clearRect(0, 0, width, height);
-        ctx.save();
-        ctx.translate(width/2, height/2);
-        
-        // Auto rotate
-        angle += 0.005;
-
-        dots.forEach(dot => {
-            // Rotate Y axis
-            let x = dot.x * Math.cos(angle) - dot.z * Math.sin(angle);
-            let z = dot.z * Math.cos(angle) + dot.x * Math.sin(angle);
-            let y = dot.y;
-
-            // Simple 3D projection
-            let scale = 300 / (300 + z); // Perspective
-            let alpha = (z + globeRadius) / (2 * globeRadius); // Fade back dots
-            
-            ctx.beginPath();
-            ctx.arc(x * scale, y * scale, dotRadius * scale, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(93, 69, 219, ${alpha})`; // Brand Purple
-            ctx.fill();
-        });
-
-        ctx.restore();
-        requestAnimationFrame(animate);
-    };
-
-    animate();
-
-    // Handle resize
-    const handleResize = () => {
-        if(canvasRef.current) {
-            canvas.width = canvas.parentElement.offsetWidth;
-        }
-    };
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
+  const locations = [
+    { id: 1, name: "Headquarters (Colombo)", position: [6.9271, 79.8612] },
+    { id: 2, name: "UK Office", position: [51.5074, -0.1278] },
+    { id: 3, name: "Singapore Hub", position: [1.3521, 103.8198] },
+  ];
 
   return (
     <div className="w-full flex flex-col items-center justify-center bg-white py-20">
-      <h2 className="text-brand-orange font-bold text-2xl mb-4">OUR OFFICE</h2>
+      <h2 className="text-brand-orange font-bold text-2xl mb-4">OUR LOCATIONS</h2>
       <p className="text-gray-500 mb-8">Global Reach, Local Presence.</p>
-      <div className="w-full relative">
-         <canvas ref={canvasRef} className="w-full h-[600px]" />
-         {/* Optional Overlay Text */}
-         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center pointer-events-none">
-            <h3 className="text-4xl font-bold text-brand-dark/10">GLOBAL</h3>
-         </div>
+      
+      <div className="w-full h-[600px] px-4 md:px-10 z-0">
+        <MapContainer 
+            center={[20, 0]} 
+            zoom={2} 
+            scrollWheelZoom={false} 
+            className="w-full h-full rounded-xl shadow-lg z-0"
+        >
+          {/* Use standard OpenStreetMap tiles (Free) */}
+          <TileLayer
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+          
+          {locations.map((loc) => (
+            <Marker key={loc.id} position={loc.position} icon={icon}>
+              <Popup>{loc.name}</Popup>
+            </Marker>
+          ))}
+        </MapContainer>
       </div>
     </div>
   );
