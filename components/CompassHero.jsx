@@ -35,7 +35,7 @@ const imgSmallNeedls = "http://localhost:3845/assets/8c4c20e474ecc92db801b1d1b5d
 
 export default function CompassHero() {
   return (
-    <div className="relative w- h-screen bg-gradient-to-br from-[#f5f5f7] via-[#fbfbfd] to-[#f0f0f3] overflow-clip rounded-[32px] shadow-2xl mx-[10px] px-[10px]" style={{
+    <div className="relative w-auto h-screen bg-gradient-to-br from-[#f5f5f7] via-[#fbfbfd] to-[#f0f0f3] overflow-clip rounded-[32px] shadow-2xl mx-[10px] px-[10px]" style={{
       border: '2px solid rgba(236, 74, 10, 1)',
       boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.08), inset 0 1px 2px rgba(255, 255, 255, 0.8), inset 0 0 20px rgba(0, 180, 216, 0.1)',
       backdropFilter: 'blur(20px)'
@@ -204,12 +204,13 @@ export default function CompassHero() {
         </div>
       </div>
 
-      {/* Component 2128:3712 - Right Gradient Circles */}
+      {/* Component 2128:3712 - Right Gradient Circles - Blurred for Premium Look */}
       <div className="absolute contents h-[876.629px] left-[calc(41.67%+45.16px)] top-[159.6px] w-[863.757px]" data-node-id="2128:3712">
+        {/* Top Right Gradient Circle */}
         <div className="absolute contents h-[611.776px] left-[calc(58.33%+39.85px)] top-[213.48px] w-[635.829px]" data-name="Mask Group" data-node-id="2128:3713">
             <div className="absolute flex h-[462.671px] items-center justify-center left-[calc(58.33%+94.06px)] top-[273.22px] w-[482.217px]" style={{ "--transform-inner-width": "0", "--transform-inner-height": "0" }}>
             <div className="flex-none rotate-[125.4deg]">
-              <div className="h-[380.257px] mask-alpha mask-intersect mask-no-clip mask-no-repeat mask-position-[-54.212px_-59.747px] mask-size-[635.828px_611.776px] relative w-[297.365px]" data-node-id="2128:3715" style={{ maskImage: `url('${imgGroup995_3712}')` }}>
+              <div className="h-[380.257px] mask-alpha mask-intersect mask-no-clip mask-no-repeat mask-position-[-54.212px_-59.747px] mask-size-[635.828px_611.776px] relative w-[297.365px]" data-node-id="2128:3715" style={{ maskImage: `url('${imgGroup995_3712}')`, filter: 'blur(32px)' }}>
                 <div className="absolute inset-[-34.19%_-36.64%_0_-33.45%]">
                   <img alt="" className="block max-w-none size-full" src={imgGroup996_3712} />
                 </div>
@@ -217,10 +218,11 @@ export default function CompassHero() {
             </div>
           </div>
         </div>
+        {/* Bottom Right Gradient Circle */}
         <div className="absolute contents h-[526.757px] left-[calc(58.33%+26.08px)] top-[342.65px] w-[432.714px]" data-name="Mask Group" data-node-id="2128:3722">
             <div className="absolute flex h-[412.074px] items-center justify-center left-[calc(58.33%+80.89px)] top-[374.28px] w-[321.554px]" style={{ "--transform-inner-width": "0", "--transform-inner-height": "0" }}>
             <div className="flex-none rotate-[-175.69deg]">
-              <div className="h-[391.148px] mask-alpha mask-intersect mask-no-clip mask-no-repeat mask-position-[-54.807px_-31.627px] mask-size-[432.714px_526.757px] relative w-[292.965px]" data-node-id="2128:3724" style={{ maskImage: `url('${imgGroup995_3712}')` }}>
+              <div className="h-[391.148px] mask-alpha mask-intersect mask-no-clip mask-no-repeat mask-position-[-54.807px_-31.627px] mask-size-[432.714px_526.757px] relative w-[292.965px]" data-node-id="2128:3724" style={{ maskImage: `url('${imgGroup995_3712}')`, filter: 'blur(28px)' }}>
                 <div className="absolute inset-[-33.24%_-37.44%_0_-35.2%]">
                   <img alt="" className="block max-w-none size-full" src={imgGroup997_3712} />
                 </div>
@@ -246,22 +248,18 @@ export default function CompassHero() {
         }} />
       </div>
 
-      {/* Directional Text (N, S, E, W) - Animated Premium Style */}
-      <div className="absolute contents font-['SF Pro Display','-apple-system','BlinkMacSystemFont','Segoe UI',sans-serif] font-light tracking-wider leading-[normal] left-[calc(41.67%+35.23px)] not-italic text-[#1d1d1f] text-[52px] top-[-9px]" data-name="text" data-node-id="2134:3428" style={{
-        letterSpacing: '1.2px',
-        fontWeight: '300',
-        textShadow: '0 2px 4px rgba(0, 0, 0, 0.05)'
-      }}>
-        <p className="absolute css-4hzbpn h-[81.794px] left-[calc(66.67%+49.78px)] top-[-9px] w-[47.303px] opacity-60 hover:opacity-100 hover:scale-110 hover:text-[#00B4D8] transition-all duration-300 animate-fade-in-up" style={{animationDelay: '0.1s'}} data-node-id="2134:3424">
+      {/* Directional Text (N, S, E, W) - Figma Design */}
+      <div className="absolute contents leading-[normal] left-[calc(41.67%+35.23px)] not-italic text-[#251a66] text-[50px] top-[-9px]" data-name="text" data-node-id="2134:3428" style={{ fontFamily: 'Poppins, sans-serif', fontWeight: '600' }}>
+        <p className="absolute css-4hzbpn h-[81.794px] left-[calc(66.67%+49.78px)] top-[-1px] w-[47.303px]" data-node-id="2134:3424">
           N
         </p>
-        <p className="absolute css-4hzbpn h-[81.794px] left-[calc(66.67%+49.78px)] top-[704.61px] w-[47.303px] opacity-60 hover:opacity-100 hover:scale-110 hover:text-[#00B4D8] transition-all duration-300 animate-fade-in-down" style={{animationDelay: '0.2s'}} data-node-id="2134:3425">
+        <p className="absolute css-4hzbpn h-[81.794px] left-[calc(66.67%+49.78px)] top-[720.61px] w-[47.303px]" data-node-id="2134:3425">
           S
         </p>
-        <p className="absolute css-4hzbpn h-[81.794px] left-[calc(91.67%+62.58px)] top-[350.78px] w-[40.404px] opacity-60 hover:opacity-100 hover:scale-110 hover:text-[#00B4D8] transition-all duration-300 animate-fade-in-right" style={{animationDelay: '0.3s'}} data-node-id="2134:3426">
+        <p className="absolute css-4hzbpn h-[81.794px] left-[calc(91.67%+62.58px)] top-[350.78px] w-[40.404px]" data-node-id="2134:3426">
           E
         </p>
-        <p className="absolute css-4hzbpn h-[81.794px] left-[calc(41.67%+35.23px)] top-[361.62px] w-[60.114px] opacity-60 hover:opacity-100 hover:scale-110 hover:text-[#ec4a0a] transition-all duration-300 animate-fade-in-left" style={{animationDelay: '0.4s'}} data-node-id="2134:3427">
+        <p className="absolute css-4hzbpn h-[81.794px] left-[calc(41.67%+35.23px)] top-[361.62px] w-[60.114px]" data-node-id="2134:3427">
           W
         </p>
       </div>
