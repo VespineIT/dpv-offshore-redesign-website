@@ -1,0 +1,9 @@
+.hero1Icon {
+  	width: 100%;
+  	position: relative;
+  	border-radius: 58px;
+  	max-width: 100%;
+  	overflow: hidden;
+  	max-height: 100%;
+  	object-fit: cover;
+}
