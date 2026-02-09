@@ -7,6 +7,13 @@ const nextConfig = {
 
   images: {
     unoptimized: true,
+    // Whitelist the domain used in the OfficeGlobe component
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+      },
+    ],
   }
 };
 

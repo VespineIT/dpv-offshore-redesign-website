@@ -1,113 +1,123 @@
 'use client';
 
-import { useState, useRef, useCallback } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
+import { Globe, ChevronDown } from 'lucide-react'; 
 import MobileMenu from './MobileMenu';
-import PortalPopup from './PortalPopup';
-
-const globeIcon = "http://localhost:3845/assets/7a17fe5483fcf5eeb97d867b173a720742e44df1.svg";
-const chevronDownIcon = "http://localhost:3845/assets/68d8e5e08da6db4d63af25127e994a8bae1e6202.svg";
 
 export default function Navbar() {
-  const leadingIconContainerRef = useRef(null);
-  const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const pathname = usePathname();
 
-  const openMobileMenu = useCallback(() => {
-    setMobileMenuOpen(true);
-  }, []);
+  const isActive = (path) => pathname === path;
 
-  const closeMobileMenu = useCallback(() => {
-    setMobileMenuOpen(false);
-  }, []);
+  /* ================= ACTIVE TAB STYLES =================
+     - No changes needed for dark mode here (Orange bg + White text works everywhere)
+  ===================================================== */
+  const activeStyles =
+    "bg-[#ec4a0a] text-white px-10 h-[52px] flex items-center justify-center " +
+    "font-bold tracking-wider " +
+    "[clip-path:polygon(20%_0%,80%_0%,100%_100%,50%_135%,0%_100%)]";
+
+  /* ================= INACTIVE TAB STYLES =================
+     - Added: dark:text-gray-200 (Makes text readable on dark bg)
+     - Added: dark:hover:text-[#ec4a0a] (Ensures hover state works)
+  ===================================================== */
+  const inactiveStyles =
+    "text-[#1a1a54] dark:text-gray-200 hover:text-[#ec4a0a] dark:hover:text-[#ec4a0a] " +
+    "px-8 h-[52px] flex items-center font-bold tracking-wider transition-colors duration-300";
+
+  const navLinks = [
+    { name: 'INDUSTRIES', path: '/industries' },
+    { name: 'PRODUCTS', path: '/products' },
+    { name: 'SERVICES', path: '/services' },
+  ];
 
   return (
     <>
-      <nav className="w-full h-16 relative bg-white sticky top-0 z-50 shadow-sm">
-        {/* Logo */}
-        <div className="absolute left-0 top-0 h-16 w-[138px]">
-          <Link href="/">
-            <Image
-              src="/images/dpv_logo.jpg"
-              alt="DPV Offshore & Marine Services"
-              width={138}
-              height={64}
-              className="object-cover h-16"
-              priority
-            />
-          </Link>
-        </div>
+      {/* Backdrop */}
+      {isMenuOpen && (
+        <div
+          className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40"
+          onClick={() => setIsMenuOpen(false)}
+        />
+      )}
 
-        {/* Center Navigation Links */}
-        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center gap-[45px] text-[#251a66] text-[17px] font-bold">
-          <Link href="/industries" className="hover:text-[#ec4a0a] transition-colors whitespace-nowrap">
-            INDUSTRIES
-          </Link>
-          <Link href="/products" className="hover:text-[#ec4a0a] transition-colors whitespace-nowrap">
-            PRODUCTS
-          </Link>
-          <Link href="/services" className="hover:text-[#ec4a0a] transition-colors whitespace-nowrap">
-            SERVICES
-          </Link>
-        </div>
+      {/* NAVBAR CONTAINER
+         - Added dark:bg-[#0f172a] 
+         - Added transition-colors for smooth theme switching
+      */}
+      <nav className="w-full h-20 bg-white dark:bg-[#0f172a] sticky top-0 z-50 shadow-sm border-b-2 border-[#ec4a0a] transition-colors duration-300">
 
-        {/* Search Bar */}
-        <div className="absolute top-[14px] left-[925px] w-[292px] h-[40px] relative rounded-[25px] bg-[rgba(252,250,239,0.08)] border-2 border-[#ec4a0a] box-border overflow-hidden flex items-center p-1">
-          <input
-            type="text"
-            placeholder="Search..."
-            className="flex-1 bg-transparent outline-none border-none text-[#251a66] text-sm placeholder:text-gray-400 px-3"
-          />
-          <button className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-[rgba(236,74,10,0.1)] transition-all flex-shrink-0">
-            <svg className="w-5 h-5 text-[#ec4a0a]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-            </svg>
-          </button>
-        </div>
+        {/* WHITE TOP SPACER - matches navbar bg */}
+        <div className="h-4 bg-white dark:bg-[#0f172a] transition-colors duration-300" />
 
-        {/* Language Selector */}
-        <div className="absolute top-[17px] right-[69px] w-[87px] h-[30px] rounded-[10px] bg-[#ec4a0a] flex items-center justify-center gap-2 cursor-pointer hover:bg-[#d43f00] transition-colors" data-node-id="2429:3444">
-          <img 
-            alt="globe" 
-            className="w-3.5 h-3.5" 
-            src={globeIcon}
-            data-node-id="2608:3441"
-          />
-          <p className="text-white text-[11px] font-semibold" data-node-id="2429:3454">English</p>
-          <img 
-            alt="chevron" 
-            className="w-2 h-2" 
-            src={chevronDownIcon}
-            data-node-id="2429:3455"
-          />
-        </div>
-        
-        {/* Hamburger Menu Icon */}
-        <div 
-          className="absolute top-[4px] right-0 w-14 h-14 flex items-center justify-center cursor-pointer"
-          ref={leadingIconContainerRef}
-          onClick={openMobileMenu}
-        >
-          <div className="w-10 h-10 rounded-full flex flex-col items-center justify-center gap-1.5">
-            <div className="w-6 h-0.5 bg-[#ec4a0a]"></div>
-            <div className="w-6 h-0.5 bg-[#ec4a0a]"></div>
-            <div className="w-6 h-0.5 bg-[#ec4a0a]"></div>
+        {/* MAIN NAV CONTENT */}
+        <div className="px-6 md:px-12 h-[calc(100%-16px)] flex items-center justify-between">
+
+          {/* LOGO - kept untouched as requested */}
+          <div className="flex-shrink-0 -mt-4">
+            <Link href="/">
+              <Image
+                src="/dpv-offshore-redesign-website/images/dpv_logo.png"
+                alt="DPV Offshore Logo"
+                width={160}
+                height={60}
+                className="object-contain"
+                priority
+              />
+            </Link>
+          </div>
+
+          {/* CENTER NAV LINKS */}
+          <div className="hidden lg:flex items-end h-full text-[14px]">
+            {navLinks.map((link) => (
+              <Link
+                key={link.path}
+                href={link.path}
+                className={isActive(link.path) ? activeStyles : inactiveStyles}
+              >
+                {link.name}
+              </Link>
+            ))}
+          </div>
+
+          {/* RIGHT SECTION */}
+          <div className="flex items-center gap-4 relative">
+
+            {/* LANGUAGE SELECTOR - Orange bg works on both modes, no change needed */}
+            <div className="flex items-center gap-2 bg-[#ec4a0a] hover:bg-[#d44309] text-white px-4 py-2 rounded-lg cursor-pointer transition-colors">
+              <Globe size={18} strokeWidth={2.5} /> 
+              <span className="text-[13px] font-bold">English</span>
+              <ChevronDown size={16} strokeWidth={3} />
+            </div>
+
+            {/* HAMBURGER 
+                - Added dark:hover:bg-gray-800 so the hover effect isn't bright white in dark mode
+            */}
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="flex flex-col gap-1.5 p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors z-50 ml-2"
+              aria-label="Toggle Menu"
+            >
+              {/* Lines - The orange color (#ec4a0a) pops well against dark backgrounds, so no change needed */}
+              <span className={`w-7 h-[3px] bg-[#ec4a0a] rounded-full transition-all duration-300 ${isMenuOpen ? 'rotate-45 translate-y-[9px]' : ''}`} />
+              <span className={`w-7 h-[3px] bg-[#ec4a0a] rounded-full transition-all duration-300 ${isMenuOpen ? 'opacity-0' : ''}`} />
+              <span className={`w-7 h-[3px] bg-[#ec4a0a] rounded-full transition-all duration-300 ${isMenuOpen ? '-rotate-45 -translate-y-[9px]' : ''}`} />
+            </button>
+
+            {/* MOBILE MENU */}
+            {isMenuOpen && (
+              <div className="absolute top-16 right-0 z-50 min-w-[200px] animate-in slide-in-from-top-2 fade-in duration-200">
+                {/* Note: Ensure MobileMenu component also has dark mode classes inside it! */}
+                <MobileMenu onClose={() => setIsMenuOpen(false)} />
+              </div>
+            )}
           </div>
         </div>
       </nav>
-
-      {isMobileMenuOpen && (
-        <PortalPopup
-          overlayColor="rgba(113, 113, 113, 0.3)"
-          placement="Bottom left"
-          left={-72}
-          bottom={-7}
-          relativeLayerRef={leadingIconContainerRef}
-          onOutsideClick={closeMobileMenu}
-        >
-          <MobileMenu onClose={closeMobileMenu} />
-        </PortalPopup>
-      )}
     </>
   );
 }

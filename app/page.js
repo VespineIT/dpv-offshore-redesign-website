@@ -14,8 +14,8 @@ export default function Page() {
       {/* About Us */}
       <AboutUsSection />
       <HowWeWork />
-      {/* 3D Office Globe */}
-      <OfficeGlobe />
+      {/* Office Globe */}
+      <OfficeGlobe/>
 
       {/* Raining Customers */}
       <RainingCustomers />

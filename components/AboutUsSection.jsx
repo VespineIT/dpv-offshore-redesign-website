@@ -14,10 +14,25 @@ const AboutUsSection = () => {
       (entries) => {
         if (entries[0].isIntersecting && !hasAnimated) {
           setHasAnimated(true);
-          // Updated targets to match the image: 2, 120, 456
-          animateCount(setExperience, 2, 1000); 
-          animateCount(setEmployee, 120, 2000);
-          animateCount(setVessels, 456, 2500);
+          // Helper to wrap the animation logic
+          const animate = (setter, target, duration) => {
+             const start = 0;
+             const increment = target / (duration / 16);
+             let current = start;
+             const timer = setInterval(() => {
+               current += increment;
+               if (current >= target) {
+                 setter(target);
+                 clearInterval(timer);
+               } else {
+                 setter(Math.ceil(current));
+               }
+             }, 16);
+          };
+
+          animate(setExperience, 2, 1000);
+          animate(setEmployee, 120, 2000);
+          animate(setVessels, 456, 2500);
         }
       },
       { threshold: 0.3 }
@@ -30,82 +45,73 @@ const AboutUsSection = () => {
     return () => observer.disconnect();
   }, [hasAnimated]);
 
-  const animateCount = (setter, target, duration) => {
-    const start = 0;
-    const increment = target / (duration / 16);
-    let current = start;
-
-    const timer = setInterval(() => {
-      current += increment;
-      if (current >= target) {
-        setter(target);
-        clearInterval(timer);
-      } else {
-        setter(Math.ceil(current));
-      }
-    }, 16);
-  };
-
   return (
-    // Added gradient background to match the design
-    <section 
-      ref={sectionRef} 
-      className="py-16 px-4 bg-gradient-to-br from-white via-purple-50 to-purple-100 overflow-hidden"
-    >
-      <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-12">
-        
-        {/* Left Column: Image */}
-        {/* Using the wireframe/rig image here. Ensure your PNG has a transparent background for best effect */}
-        <div className="w-full lg:w-1/2 relative flex justify-center lg:justify-start">
-           <img 
-            src="/dpv-offshore-redesign-website/images/about-us.png" 
-            alt="Offshore Rig Structure" 
-            className="w-full max-w-lg object-contain transform scale-110 lg:scale-125"
-          />
-        </div>
+    // Section Background: bg-white -> dark:bg-[#0f172a]
+    <section className="w-full py-12 px-4 bg-white dark:bg-[#0f172a] flex flex-col items-center transition-colors duration-300">
+      
+      {/* "ABOUT US" Header 
+          The orange color (#FF4500) works well on both white and dark backgrounds.
+      */}
+      <h2 className="text-[#FF4500] text-2xl font-bold tracking-widest uppercase mb-8">
+        About Us
+      </h2>
 
-        {/* Right Column: Content */}
-        <div className="w-full lg:w-1/2 flex flex-col space-y-8 text-center lg:text-left">
-          
-          <div className="space-y-6">
-            <h2 className="text-orange-500 text-2xl font-bold tracking-wider uppercase">
-              About Us
-            </h2>
+      {/* Main Container with Video and Stats 
+          Added a subtle dark mode shadow/border effect to make the video pop
+      */}
+      <div 
+        ref={sectionRef}
+        className="relative w-full max-w-6xl h-[500px] md:h-[600px] rounded-[30px] overflow-hidden shadow-xl dark:shadow-[0_10px_30px_rgba(0,0,0,0.5)] transition-all duration-300"
+      >
+        {/* Background Video */}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+        >
+          {/* Note: Corrected the backslash in path to forward slash for better compatibility */}
+          <source src="/dpv-offshore-redesign-website/Videos/jackup_barge .mp4" type="video/mp4" />
+          {/* Fallback image if video fails */}
+          <img src="/fallback-image.jpg" alt="Offshore background" className="w-full h-full object-cover" />
+        </video>
 
-            <p className="text-gray-800 leading-relaxed text-sm lg:text-base text-justify">
-              Dvp offshore specializes in the engineering procurement and construction (EPC) services for the offshore industry, encompassing onshore, offshore and subsea operation. Our comprehensive from design engineering to manufacturing installation, maintenance, repair, and component supply enable us to deliver seamless project execution with uncompromising safety and quality standard.
-            </p>
+        {/* Overlay to ensure text readability */}
+        <div className="absolute inset-0 bg-black/10 dark:bg-black/30"></div>
 
-            <p className="text-gray-800 leading-relaxed text-sm lg:text-base text-justify">
-              Built on long term client relationships and proven performance, we continue to earn the trust of our partners through our consistent commitment to excellence, reliability, and value-driven delivery.
-            </p>
-          </div>
-
-          {/* Statistics Row */}
-          <div className="flex flex-row justify-between items-start pt-4 lg:pr-12">
+        {/* Statistics Overlay at the Bottom */}
+        <div className="absolute bottom-10 left-0 w-full px-6">
+          <div className="grid grid-cols-3 text-center max-w-4xl mx-auto">
             
             {/* Experience */}
-            <div className="flex flex-col items-center lg:items-start">
-              <div className="text-4xl lg:text-5xl font-bold text-orange-500">
+            <div className="flex flex-col items-center">
+              <div className="text-4xl md:text-6xl font-black text-[#FF4500] drop-shadow-lg">
                 {experience}Y+
               </div>
-              <div className="text-indigo-900 font-semibold mt-2">Experience</div>
+              <div className="text-white text-sm md:text-lg font-bold mt-2 drop-shadow-md">
+                Experience
+              </div>
             </div>
-            
-            {/* Employees */}
-            <div className="flex flex-col items-center lg:items-start">
-              <div className="text-4xl lg:text-5xl font-bold text-orange-500">
+
+            {/* Employee */}
+            <div className="flex flex-col items-center">
+              <div className="text-4xl md:text-6xl font-black text-[#FF4500] drop-shadow-lg">
                 {employee}+
               </div>
-              <div className="text-indigo-900 font-semibold mt-2">Employee</div>
+              <div className="text-white text-sm md:text-lg font-bold mt-2 drop-shadow-md">
+                Employee
+              </div>
             </div>
-            
-            {/* Vessels */}
-            <div className="flex flex-col items-center lg:items-start">
-              <div className="text-4xl lg:text-5xl font-bold text-orange-500">
+
+            {/* Complete Vessels */}
+            <div className="flex flex-col items-center">
+              <div className="text-4xl md:text-6xl font-black text-[#FF4500] drop-shadow-lg">
                 {vessels}
               </div>
-              <div className="text-indigo-900 font-semibold mt-2">Complete Vessels</div>
+              <div className="text-white text-sm md:text-lg font-bold mt-2 drop-shadow-md">
+                Complete Vessels
+              </div>
             </div>
 
           </div>

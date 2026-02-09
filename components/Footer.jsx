@@ -15,14 +15,14 @@ export default function Footer() {
 
           {/* 2. ISO Certification Section (Center-Left) */}
           <div className="lg:col-span-4 flex flex-col items-center text-center lg:items-center lg:text-center mt-4 lg:mt-0">
-             {/* Badge Icon */}
-             <div className="mb-6 relative">
-                {/* Simple Rosette/Badge SVG */}
-                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M12 2l2.4 7.2h7.6l-6 4.8 2.4 7.2-6-4.8-6 4.8 2.4-7.2-6-4.8h7.6z" className="text-white fill-transparent opacity-20 absolute scale-125" />
-                  <path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.78 4.78 4 4 0 0 1-6.74 0 4 4 0 0 1-4.78-4.78z" />
-                  <path d="M12 8l1 3h3l-2.5 2 1 3-2.5-2-2.5 2 1-3-2.5-2h3z" fill="white" stroke="none"/>
-                </svg>
+             
+             {/* Badge Icon / Footer Logo */}
+             <div className="mb-6">
+                <img 
+                  src="/dpv-offshore-redesign-website/images/footer-logo.svg" 
+                  alt="Footer Logo" 
+                  className="w-16 h-16 object-contain" 
+                />
              </div>
              
              {/* Certification Text */}

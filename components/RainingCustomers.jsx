@@ -1,51 +1,104 @@
 'use client';
-import { useState, useEffect } from 'react';
+import React from 'react';
+import Image from 'next/image';
+
+const customerLogos = [
+  '/dpv-offshore-redesign-website/images/customer-logo/logo.png',
+  '/dpv-offshore-redesign-website/images/customer-logo/555-5-.jpg',
+  '/dpv-offshore-redesign-website/images/customer-logo/oldendorff.png',
+  '/dpv-offshore-redesign-website/images/customer-logo/ADSB.png.webp',
+  '/dpv-offshore-redesign-website/images/customer-logo/premier-marine.jpg',
+  '/dpv-offshore-redesign-website/images/customer-logo/channels4_profile.jpg',
+  '/dpv-offshore-redesign-website/images/customer-logo/hapag-lloyd-2-logo-png-transparent.png',
+  '/dpv-offshore-redesign-website/images/customer-logo/images (1).jpg',
+  '/dpv-offshore-redesign-website/images/customer-logo/images (1).png',
+  '/dpv-offshore-redesign-website/images/customer-logo/images (2).jpg',
+  '/dpv-offshore-redesign-website/images/customer-logo/images (2).png',
+  '/dpv-offshore-redesign-website/images/customer-logo/images (3).jpg',
+  '/dpv-offshore-redesign-website/images/customer-logo/images.jpg',
+  '/dpv-offshore-redesign-website/images/customer-logo/images.png',
+  '/dpv-offshore-redesign-website/images/customer-logo/logo 2.png',
+  '/dpv-offshore-redesign-website/images/customer-logo/logo_jobson-4.png',
+  '/dpv-offshore-redesign-website/images/customer-logo/logo1.png',
+  '/dpv-offshore-redesign-website/images/customer-logo/logo-2-e1717411946482.png',
+  '/dpv-offshore-redesign-website/images/customer-logo/MSC-Cruise-Logo.png',
+  '/dpv-offshore-redesign-website/images/customer-logo/NMDC Group.png',
+  '/dpv-offshore-redesign-website/images/customer-logo/nr-Y7qmv_400x400.jpg',
+  '/dpv-offshore-redesign-website/images/customer-logo/saipem.png',
+  '/dpv-offshore-redesign-website/images/customer-logo/Saudi-Aramco-logo.png',
+  '/dpv-offshore-redesign-website/images/customer-logo/Thome-logo.png',
+  '/dpv-offshore-redesign-website/images/customer-logo/unnamed.png',
+  '/dpv-offshore-redesign-website/images/customer-logo/zmi-holding.webp',
+];
 
 export default function RainingCustomers() {
-  const [drops, setDrops] = useState([]);
-
-  // Generate random drops only on client side to avoid hydration mismatch
-  useEffect(() => {
-    const newDrops = Array.from({ length: 15 }).map((_, i) => ({
-      id: i,
-      left: Math.random() * 90 + 5, // Random position 5% to 95%
-      delay: Math.random() * 5,     // Random delay 0s to 5s
-      duration: Math.random() * 3 + 5, // Random duration 5s to 8s
-      size: Math.random() * 20 + 60, // Size variation
-    }));
-    setDrops(newDrops);
-  }, []);
+  // Triple the array to ensure no gaps on very wide screens
+  const tripledLogos = [...customerLogos, ...customerLogos, ...customerLogos];
 
   return (
-    <div className="relative w-full h-[600px] bg-gradient-to-b from-gray-100 to-white overflow-hidden">
-      <h3 className="text-center pt-10 text-brand-orange font-bold text-xl uppercase tracking-widest z-10 relative">Our Customers</h3>
-      
-      {drops.map((drop) => (
-        <button
-          key={drop.id}
-          className="absolute top-0 rounded-xl shadow-lg bg-brand-purple hover:bg-brand-orange transition-colors cursor-pointer flex items-center justify-center text-white font-bold text-xs animate-rain hover:pause"
-          style={{
-            left: `${drop.left}%`,
-            width: `${drop.size}px`,
-            height: `${drop.size}px`,
-            animationDelay: `-${drop.delay}s`,
-            animationDuration: `${drop.duration}s`,
-            // Add 'animation-play-state: paused' on hover via CSS class if needed
-          }}
-          onClick={() => alert(`Clicked Customer ${drop.id + 1}`)}
-        >
-          {/* Placeholder for Logo */}
-          Logo {drop.id + 1}
-        </button>
-      ))}
-      
-      {/* "Pause on hover" trick: Add this style globally or in CSS module if you want them to stop moving when hovered */}
-      <style jsx>{`
-        button:hover {
-          animation-play-state: paused;
-          z-index: 50;
+    // UPDATED: Added dark:bg-[#0f172a] and transition
+    <section className="py-16 bg-[#F8FAFC] dark:bg-[#0f172a] overflow-hidden transition-colors duration-300">
+      <div className="container mx-auto px-4 mb-10">
+        {/* UPDATED: Added dark:text-gray-100 for the heading */}
+        <h3 className="text-center text-gray-800 dark:text-gray-100 font-extrabold text-lg uppercase tracking-widest transition-colors duration-300">
+          Our Valued Customers
+          <div className="h-1 w-20 bg-orange-500 mx-auto mt-2 rounded-full"></div>
+        </h3>
+      </div>
+
+      <div className="relative flex flex-col gap-8">
+        {/* Row 1: Smooth Left Scroll */}
+        <div className="flex overflow-hidden select-none">
+          <div className="flex animate-marquee whitespace-nowrap py-2">
+            {tripledLogos.map((logo, idx) => (
+              <LogoBox key={`row1-${idx}`} src={logo} />
+            ))}
+          </div>
+        </div>
+
+        {/* Row 2: Smooth Right Scroll */}
+        <div className="flex overflow-hidden select-none">
+          <div className="flex animate-marquee-reverse whitespace-nowrap py-2">
+            {tripledLogos.map((logo, idx) => (
+              <LogoBox key={`row2-${idx}`} src={logo} />
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <style jsx global>{`
+        @keyframes marquee {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-33.33%); }
+        }
+        @keyframes marquee-reverse {
+          0% { transform: translateX(-33.33%); }
+          100% { transform: translateX(0); }
+        }
+        .animate-marquee {
+          animation: marquee 50s linear infinite;
+        }
+        .animate-marquee-reverse {
+          animation: marquee-reverse 60s linear infinite;
         }
       `}</style>
-    </div>
+    </section>
   );
 }
+
+const LogoBox = ({ src }) => (
+  // KEPT: bg-white allows logos to be seen clearly (as requested).
+  // No dark mode classes added to the box background itself.
+  <div className="mx-4 w-48 h-28 bg-white rounded-lg border border-gray-200 shadow-sm flex items-center justify-center p-3">
+    <div className="relative w-full h-full">
+      <Image
+        src={src}
+        alt="Customer Logo"
+        fill
+        sizes="(max-width: 768px) 150px, 200px"
+        className="object-contain"
+        priority={false}
+      />
+    </div>
+  </div>
+);
