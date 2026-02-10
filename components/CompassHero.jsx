@@ -16,13 +16,13 @@ export default function CompassHero() {
     <section className="relative w-full min-h-[700px] md:min-h-[900px] flex items-center overflow-hidden bg-white">
       
       {/* 1. Background Pattern */}
-      <div className="absolute inset-0 z-0">
-        <img 
-          src="/dpv-offshore-redesign-website/images/background.svg" 
-          alt="" 
-          className="w-full h-full object-cover opacity-100" 
-        />
-      </div>
+      <div className="absolute inset-0 z-0 flex items-center justify-center">
+  <img 
+    src="/dpv-offshore-redesign-website/images/background.png" 
+    alt="" 
+    className="w-full h-full object-cover opacity-100 scale-70" 
+  />
+</div>
 
       {/* 2. Text Content */}
       <div className="container mx-auto relative z-20 px-6 pointer-events-none"> 

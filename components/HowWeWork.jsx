@@ -8,9 +8,9 @@ const HowWeWork = () => {
     <section className="py-12 md:py-20 bg-white dark:bg-[#0f172a] overflow-hidden transition-colors duration-300">
       <div className="container mx-auto px-4">
         {/* Title - Orange color kept as is (looks good on dark too) */}
-        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#F0592A] text-center mb-8 md:mb-16 tracking-widest uppercase">
-          How We Work
-        </h2>
+        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#FF4500] text-center mb-8 md:mb-16 tracking-widest uppercase">
+  How We Work
+</h2>
 
         {/* Desktop Layout (unchanged structure) */}
         <div className="hidden xl:block relative max-w-[1400px] mx-auto h-[600px]">
@@ -73,15 +73,15 @@ const HowWeWork = () => {
 
             {/* Curved line path - MODIFIED: Added className for dark mode stroke */}
             <g filter="url(#filter0_d_2284_3462)">
-              <path
-                d="M62.9628 312.145C113.764 340.942 245.549 370.89 300.349 370.89C403.375 370.89 503.557 290.492 554.353 191.776C600.881 101.355 626.519 86.5728 655.48 65.6474C673.679 57.0085 748.535 41.4584 792.215 62.1918C835.894 82.9253 865.013 129.959 880.997 153.764C922.777 237.274 965.025 279.317 1004.91 279.317C1058.56 279.317 1067.58 263.191 1092.75 237.274C1119.21 210.022 1160.45 133.327 1163.01 128.488C1191.02 75.503 1227.33 62.1918 1323.03 115.764"
-                className="stroke-[#5A45D3] dark:stroke-[#818cf8] transition-colors duration-300"
-                strokeOpacity="0.8"
-                strokeWidth="8"
-                strokeLinecap="round"
-                fill="none"
-              />
-            </g>
+  <path
+    d="M62.9628 312.145C113.764 340.942 245.549 370.89 300.349 370.89C403.375 370.89 503.557 290.492 554.353 191.776C600.881 101.355 626.519 86.5728 655.48 65.6474C673.679 57.0085 748.535 41.4584 792.215 62.1918C835.894 82.9253 865.013 129.959 880.997 153.764C922.777 237.274 965.025 279.317 1004.91 279.317C1058.56 279.317 1067.58 263.191 1092.75 237.274C1119.21 210.022 1160.45 133.327 1163.01 128.488C1191.02 75.503 1227.33 62.1918 1323.03 115.764"
+    stroke="#5A45D3"
+    strokeWidth="8"
+    strokeLinecap="round"
+    fill="none"
+    className="transition-colors duration-300"
+  />
+</g>
 
             {/* --- ICONS (Desktop Only) --- */}
             {/* Note: Icons use white stroke, which looks great on dark mode automatically */}
@@ -125,7 +125,16 @@ const HowWeWork = () => {
           {/* Text overlays (Desktop) */}
           <div className="absolute left-0 bottom-[14%] flex items-end">
             {/* UPDATED: dark:text-[#E0E7FF] (Light Indigo for better contrast) */}
-            <span className="text-8xl font-bold text-[#251A66] dark:text-[#E0E7FF] leading-none select-none transition-colors duration-300">1</span>
+            <span 
+  className="text-8xl font-bold leading-none select-none transition-colors duration-300 text-transparent bg-clip-text"
+  style={{
+    background: "linear-gradient(180deg, #251a66 0%, rgba(94,83,139,0.5) 45.67%, rgba(255,242,242,0.5) 85.1%)",
+    WebkitBackgroundClip: "text",
+    WebkitTextFillColor: "transparent", // Ensures cross-browser compatibility
+  }}
+>
+  1
+</span>
             <div className="ml-2 mb-8">
               {/* UPDATED: dark:text-gray-100 */}
               <h3 className="text-2xl font-bold text-gray-700 dark:text-gray-100 transition-colors duration-300">Send Inquiry</h3>
@@ -135,7 +144,17 @@ const HowWeWork = () => {
           <div className="absolute left-[6%] top-[5%] w-[300px] text-right">
               <div className="flex justify-end items-center">
                   <h3 className="text-2xl font-bold text-gray-700 dark:text-gray-100 italic mr-2 transition-colors duration-300">Site inspection</h3>
-                  <span className="text-[120px] font-bold text-[#251A66] dark:text-[#E0E7FF] leading-none select-none block -mb-6 transition-colors duration-300">2</span>
+                  <span 
+  className="text-[120px] font-bold leading-none select-none block -mb-6 transition-colors duration-300 text-transparent bg-clip-text"
+  style={{
+    background: "linear-gradient(180deg, #251a66 0%, rgba(94,83,139,0.5) 45.67%, rgba(255,242,242,0.5) 85.1%)",
+    WebkitBackgroundClip: "text",
+    WebkitTextFillColor: "transparent",
+    backgroundClip: "text"
+  }}
+>
+  2
+</span>
               </div>
             {/* UPDATED: dark:text-gray-400 */}
             <p className="text-gray-600 dark:text-gray-400 text-[13px] mt-4 leading-relaxed pl-8 transition-colors duration-300">
@@ -145,9 +164,17 @@ const HowWeWork = () => {
 
           <div className="absolute left-[52%] -translate-x-1/2 top-[22%] flex flex-col items-center text-center">
             {/* The Number */}
-            <span className="text-[120px] font-bold text-[#251A66] dark:text-[#E0E7FF] leading-none select-none block transition-colors duration-300">
-              3
-            </span>
+            <span 
+  className="text-[120px] font-bold leading-none select-none block transition-colors duration-300 text-transparent bg-clip-text"
+  style={{
+    background: "linear-gradient(180deg, #251a66 0%, rgba(94,83,139,0.5) 45.67%, rgba(255,242,242,0.5) 85.1%)",
+    WebkitBackgroundClip: "text",
+    WebkitTextFillColor: "transparent",
+    backgroundClip: "text"
+  }}
+>
+  3
+</span>
 
             {/* Title */}
             <h3 className="text-2xl font-bold text-gray-700 dark:text-gray-100 -mt-4 transition-colors duration-300">
@@ -162,7 +189,17 @@ const HowWeWork = () => {
 
           <div className="absolute right-[12%] top-[-10%] w-[300px]">
             <div className="flex items-center">
-                <span className="text-[120px] font-bold text-[#251A66] dark:text-[#E0E7FF] leading-none select-none block -mb-6 transition-colors duration-300">4</span>
+            <span 
+  className="text-[120px] font-bold leading-none select-none block -mb-6 transition-colors duration-300 text-transparent bg-clip-text"
+  style={{
+    background: "linear-gradient(180deg, #251a66 0%, rgba(94,83,139,0.5) 45.67%, rgba(255,242,242,0.5) 85.1%)",
+    WebkitBackgroundClip: "text",
+    WebkitTextFillColor: "transparent",
+    backgroundClip: "text"
+  }}
+>
+  4
+</span>
                 <h3 className="text-2xl font-bold text-gray-700 dark:text-gray-100 ml-2 transition-colors duration-300">Project execution</h3>
             </div>
             <p className="text-gray-600 dark:text-gray-400 text-[13px] mt-4 leading-relaxed pr-8 transition-colors duration-300">
@@ -172,7 +209,17 @@ const HowWeWork = () => {
 
           <div className="absolute right-[-5%] bottom-[27%] w-[280px] text-left">
               <div className="relative">
-                <span className="text-[120px] font-bold text-[#251A66] dark:text-[#E0E7FF] leading-none select-none block pl-4 transition-colors duration-300">5</span>
+              <span 
+  className="text-[120px] font-bold leading-none select-none block pl-4 transition-colors duration-300 text-transparent bg-clip-text"
+  style={{
+    background: "linear-gradient(180deg, #251a66 0%, rgba(94,83,139,0.5) 45.67%, rgba(255,242,242,0.5) 85.1%)",
+    WebkitBackgroundClip: "text",
+    WebkitTextFillColor: "transparent",
+    backgroundClip: "text"
+  }}
+>
+  5
+</span>
                 <h3 className="text-2xl font-bold text-gray-700 dark:text-gray-100 -mt-4 transition-colors duration-300">Testing & handover</h3>
               </div>
             <p className="text-gray-600 dark:text-gray-400 text-[13px] mt-3 leading-relaxed transition-colors duration-300">
