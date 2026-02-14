@@ -38,7 +38,7 @@ export default function RainingCustomers() {
     /* UPDATED: dark:bg-[#030712] */
     <section className="py-16 bg-[#F8FAFC] dark:bg-[#030712] overflow-hidden transition-colors duration-300">
       <div className="container mx-auto px-4 mb-10">
-      <h2 className="font-['Poppins'] text-3xl md:text-4xl font-bold text-[#FF4500] text-center tracking-widest uppercase mb-8 transition-colors duration-300">
+      <h2 className="font-['Poppins'] text-3xl md:text-3xl font-bold text-[#FF4500] text-center tracking-widest uppercase mb-8 transition-colors duration-300">
           Our Valued Customers
         </h2>
       </div>

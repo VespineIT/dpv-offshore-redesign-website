@@ -55,7 +55,7 @@ const HowWeWork = () => {
     <section className="py-12 md:py-20 bg-white dark:bg-[#030712] overflow-hidden transition-colors duration-300">
       <div className="container mx-auto px-4">
         {/* Title */}
-        <h2 className="font-['Poppins'] text-3xl md:text-4xl font-bold text-[#FF4500] text-center tracking-widest uppercase mb-8 md:mb-16">
+        <h2 className="font-['Poppins'] text-3xl md:text-3xl font-bold text-[#FF4500] text-center tracking-widest uppercase mb-8 md:mb-16">
           How We Work
         </h2>
 
@@ -205,81 +205,99 @@ const HowWeWork = () => {
           {/* Text overlays (Desktop) - Animated */}
           
           <motion.div 
-            className="absolute left-0 bottom-[14%] flex items-end"
-            variants={popVariant(timings.step1)}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-          >
-            <span
-              className="text-8xl font-bold leading-none select-none transition-colors duration-300 text-transparent bg-clip-text"
-              style={{
-                background: "linear-gradient(180deg, #251a66 0%, rgba(94,83,139,0.5) 45.67%, rgba(255,242,242,0.5) 85.1%)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-              }}
-            >
-              1
-            </span>
-            <div className="ml-2 mb-8">
-              <h3 className="text-2xl font-bold text-gray-700 dark:text-gray-100 transition-colors duration-300">Send Inquiry</h3>
-            </div>
-          </motion.div>
+  className="absolute left-0 bottom-[8%] w-[350px]" /* Slightly widened to accommodate side-by-side layout */
+  variants={popVariant(timings.step1)}
+  initial="hidden"
+  whileInView="visible"
+  viewport={{ once: true, amount: 0.3 }}
+>
+  {/* Main Flex Container: Left column for Number, Right column for Text */}
+  <div className="flex items-start gap-4"> 
+    
+    {/* Left Side: Number */}
+    <span
+      className="text-[120px] font-bold leading-none select-none block transition-colors duration-300 text-transparent bg-clip-text"
+      style={{
+        background: "linear-gradient(180deg, #251a66 0%, rgba(94,83,139,0.5) 45.67%, rgba(255,242,242,0.5) 85.1%)",
+        WebkitBackgroundClip: "text",
+        WebkitTextFillColor: "transparent",
+        backgroundClip: "text"
+      }}
+    >
+      1
+    </span>
+    
+    {/* Right Side: Title & Description Column */}
+    <div className="flex flex-col mt-4"> {/* mt-4 visually aligns the title with the top of the number */}
+      <h3 className="text-2xl font-bold text-gray-700 dark:text-gray-100 transition-colors duration-300">
+        Send Inquiry
+      </h3>
+      <p className="text-gray-600 dark:text-gray-400 text-[13px] mt-2 leading-relaxed transition-colors duration-300">
+        Clients share their requirements, project details, or questions through our inquiry channels. This helps us understand your needs and respond with the right solutions promptly.
+      </p>
+    </div>
+
+  </div>
+</motion.div>
+
+<motion.div 
+  className="absolute left-[14%] top-[7%] w-[300px]"
+  variants={popVariant(timings.step2)}
+  initial="hidden"
+  whileInView="visible"
+  viewport={{ once: true, amount: 0.3 }}
+>
+  <div className="flex items-center">
+    <span
+      className="text-[120px] font-bold leading-none select-none block -mb-6 transition-colors duration-300 text-transparent bg-clip-text"
+      style={{
+        background: "linear-gradient(180deg, #251a66 0%, rgba(94,83,139,0.5) 45.67%, rgba(255,242,242,0.5) 85.1%)",
+        WebkitBackgroundClip: "text",
+        WebkitTextFillColor: "transparent",
+        backgroundClip: "text"
+      }}
+    >
+      2
+    </span>
+    <h3 className="text-2xl font-bold text-gray-700 dark:text-gray-100 ml-2 transition-colors duration-300">
+      Site inspection
+    </h3>
+  </div>
+  <p className="text-gray-600 dark:text-gray-400 text-[13px] mt-4 leading-relaxed pr-8 transition-colors duration-300">
+    Our team visits the site to assess conditions, take measurements, and identify technical requirements, ensuring accurate planning and smooth project execution.
+  </p>
+</motion.div>
 
           <motion.div 
-            className="absolute left-[6%] top-[5%] w-[300px] text-right"
-            variants={popVariant(timings.step2)}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-          >
-            <div className="flex justify-end items-center">
-              <h3 className="text-2xl font-bold text-gray-700 dark:text-gray-100 italic mr-2 transition-colors duration-300">Site inspection</h3>
-              <span
-                className="text-[120px] font-bold leading-none select-none block -mb-6 transition-colors duration-300 text-transparent bg-clip-text"
-                style={{
-                  background: "linear-gradient(180deg, #251a66 0%, rgba(94,83,139,0.5) 45.67%, rgba(255,242,242,0.5) 85.1%)",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  backgroundClip: "text"
-                }}
-              >
-                2
-              </span>
-            </div>
-            <p className="text-gray-600 dark:text-gray-400 text-[13px] mt-4 leading-relaxed pl-8 transition-colors duration-300">
-              Our team is ready to assist you anytime. Simply share your requirement with us. Vessel details, location, and the type of service you need. Once we receive your inquiry, we carefully review the information and connect with you to understand the situation clearly.
-            </p>
-          </motion.div>
+  className="absolute left-[45%] -translate-x-1/2 top-[22%] w-[320px]"
+  variants={popVariant(timings.step3)}
+  initial="hidden"
+  whileInView="visible"
+  viewport={{ once: true, amount: 0.3 }}
+>
+  <div className="flex items-center">
+    <span
+      className="text-[120px] font-bold leading-none select-none block -mb-6 transition-colors duration-300 text-transparent bg-clip-text"
+      style={{
+        background: "linear-gradient(180deg, #251a66 0%, rgba(94,83,139,0.5) 45.67%, rgba(255,242,242,0.5) 85.1%)",
+        WebkitBackgroundClip: "text",
+        WebkitTextFillColor: "transparent",
+        backgroundClip: "text"
+      }}
+    >
+      3
+    </span>
+    <h3 className="text-2xl font-bold text-gray-700 dark:text-gray-100 ml-2 transition-colors duration-300">
+      Proposal & Quotation
+    </h3>
+  </div>
+  <p className="text-gray-600 dark:text-gray-400 text-[13px] mt-4 leading-relaxed pr-8 transition-colors duration-300">
+    We prepare a detailed proposal and cost estimate based on site findings and client requirements, clearly outlining scope, timelines, and pricing.
+  </p>
+</motion.div>
 
           <motion.div 
-            className="absolute left-[40%] -translate-x-1/2 top-[22%] flex flex-col items-center text-center"
-            variants={popVariant(timings.step3)}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-          >
-            <span
-              className="text-[120px] font-bold leading-none select-none block transition-colors duration-300 text-transparent bg-clip-text"
-              style={{
-                background: "linear-gradient(180deg, #251a66 0%, rgba(94,83,139,0.5) 45.67%, rgba(255,242,242,0.5) 85.1%)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text"
-              }}
-            >
-              3
-            </span>
-            <h3 className="text-2xl font-bold text-gray-700 dark:text-gray-100 -mt-4 transition-colors duration-300">
-              Proposal & Quotation
-            </h3>
-            <p className="text-gray-600 dark:text-gray-400 text-[13px] mt-1 leading-relaxed max-w-[320px] transition-colors duration-300">
-              After your request, our experienced engineers carry out a detailed inspection — either on-site or remotely, depending on the project. During this stage, we assess the condition, identify potential issues, and plan the safest and most effective solution.
-            </p>
-          </motion.div>
-
-          <motion.div 
-            className="absolute right-[12%] top-[-10%] w-[300px]"
+            className="absolute right-[13%] top-[-6%] w-[300px]"
             variants={popVariant(timings.step4)}
             initial="hidden"
             whileInView="visible"
@@ -300,47 +318,72 @@ const HowWeWork = () => {
               <h3 className="text-2xl font-bold text-gray-700 dark:text-gray-100 ml-2 transition-colors duration-300">Project execution</h3>
             </div>
             <p className="text-gray-600 dark:text-gray-400 text-[13px] mt-4 leading-relaxed pr-8 transition-colors duration-300">
-              Based on the inspection findings, we prepare a transparent quotation. The proposal clearly explains the scope of work, estimated time, materials, and costs — so you know exactly what to expect before we begin.
+            Once approved, our skilled team executes the project efficiently, following approved plans, quality standards, and safety practices.
             </p>
           </motion.div>
 
           <motion.div 
-            className="absolute right-[-5%] bottom-[27%] w-[280px] text-left"
-            variants={popVariant(timings.step5)}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-          >
-            <div className="relative">
-              <span
-                className="text-[120px] font-bold leading-none select-none block pl-4 transition-colors duration-300 text-transparent bg-clip-text"
-                style={{
-                  background: "linear-gradient(180deg, #251a66 0%, rgba(94,83,139,0.5) 45.67%, rgba(255,242,242,0.5) 85.1%)",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  backgroundClip: "text"
-                }}
-              >
-                5
-              </span>
-              <h3 className="text-2xl font-bold text-gray-700 dark:text-gray-100 -mt-4 transition-colors duration-300">Testing & handover</h3>
-            </div>
-            <p className="text-gray-600 dark:text-gray-400 text-[13px] mt-3 leading-relaxed transition-colors duration-300">
-              Once approved, our certified marine technicians begin the job using professional tools, safety standards, and proven procedures. We focus on quality, efficiency, and minimizing downtime, ensuring every task is completed to industry standards.
-            </p>
-          </motion.div>
+  className="absolute right-[-4%] bottom-[32%] w-[280px] text-left"
+  variants={popVariant(timings.step5)}
+  initial="hidden"
+  whileInView="visible"
+  viewport={{ once: true, amount: 0.3 }}
+>
+  <div className="flex items-center">
+    <span
+      className="text-[120px] font-bold leading-none select-none block -mb-6 transition-colors duration-300 text-transparent bg-clip-text"
+      style={{
+        background: "linear-gradient(180deg, #251a66 0%, rgba(94,83,139,0.5) 45.67%, rgba(255,242,242,0.5) 85.1%)",
+        WebkitBackgroundClip: "text",
+        WebkitTextFillColor: "transparent",
+        backgroundClip: "text"
+      }}
+    >
+      5
+    </span>
+    <h3 className="text-2xl font-bold text-gray-700 dark:text-gray-100 ml-2 transition-colors duration-300">Testing & handover</h3>
+  </div>
+  <p className="text-gray-600 dark:text-gray-400 text-[13px] mt-4 leading-relaxed pr-8 transition-colors duration-300">
+  After completion, we thoroughly test the work to ensure performance and quality, then formally hand over the project with all necessary documentation.
+  </p>
+</motion.div>
         </div>
 
         {/* --- Tablet Layout --- */}
         <div className="hidden lg:block xl:hidden relative max-w-4xl mx-auto">
           <div className="grid grid-cols-2 gap-8">
             {[
-              { id: 1, title: "Send Inquiry", desc: "", colSpan: "" },
-              { id: 2, title: "Site inspection", desc: "Our team is ready to assist you anytime. Simply share your requirement with us.", italic: true, colSpan: "" },
-              { id: 3, title: "Proposal & Quotation", desc: "After your request, our experienced engineers carry out a detailed inspection.", colSpan: "" },
-              { id: 4, title: "Project execution", desc: "Based on the inspection findings, we prepare a transparent quotation.", colSpan: "" },
-              { id: 5, title: "Testing & handover", desc: "Once approved, our certified marina technicians begin the job using professional tools.", colSpan: "col-span-2 justify-center" }
-            ].map((item, index) => (
+  { 
+    id: 1, 
+    title: "Send Inquiry", 
+    desc: "Clients share their requirements, project details, or questions through our inquiry channels to get prompt solutions.", 
+    colSpan: "" 
+  },
+  { 
+    id: 2, 
+    title: "Site Inspection", 
+    desc: "Our team visits the site to assess conditions, take measurements, and identify technical requirements for accurate planning.", 
+    colSpan: "" 
+  },
+  { 
+    id: 3, 
+    title: "Proposal & Quotation", 
+    desc: "We prepare a detailed proposal and cost estimate based on site findings, outlining scope, timelines, and pricing.", 
+    colSpan: "" 
+  },
+  { 
+    id: 4, 
+    title: "Project Execution", 
+    desc: "Our skilled team executes the project efficiently, following approved plans, quality standards, and safety practices.", 
+    colSpan: "" 
+  },
+  { 
+    id: 5, 
+    title: "Testing & Handover", 
+    desc: "We thoroughly test the work to ensure performance and quality before formally handing over all necessary documentation.", 
+    colSpan: "md:col-span-2 justify-center" 
+  }
+].map((item, index) => (
               <motion.div 
                 key={item.id} 
                 className={`flex items-start gap-4 ${item.colSpan}`}
@@ -365,12 +408,32 @@ const HowWeWork = () => {
         {/* --- Mobile Layout --- */}
         <div className="lg:hidden space-y-8">
           {[
-            { id: 1, title: "Send Inquiry", desc: "" },
-            { id: 2, title: "Site inspection", desc: "Our team is ready to assist you anytime. Simply share your requirement with us." },
-            { id: 3, title: "Proposal & Quotation", desc: "After your request, our experienced engineers carry out a detailed inspection." },
-            { id: 4, title: "Project execution", desc: "Based on the inspection findings, we prepare a transparent quotation." },
-            { id: 5, title: "Testing & handover", desc: "Once approved, our certified marina technicians begin the job." }
-          ].map((item, index) => (
+  { 
+    id: 1, 
+    title: "Send Inquiry", 
+    desc: "Our team is ready to assist you anytime. Simply share your requirement with us." 
+  },
+  { 
+    id: 2, 
+    title: "Site Inspection", 
+    desc: "After your request, our experienced engineers carry out a detailed inspection." 
+  },
+  { 
+    id: 3, 
+    title: "Proposal & Quotation", 
+    desc: "Based on the inspection findings, we prepare a transparent quotation." 
+  },
+  { 
+    id: 4, 
+    title: "Project Execution", 
+    desc: "Once approved, our certified marina technicians begin the job using professional tools." 
+  },
+  { 
+    id: 5, 
+    title: "Testing & Handover", 
+    desc: "After completion, we thoroughly test performance and quality before formal handover." 
+  }
+].map((item, index) => (
             <motion.div 
               key={item.id} 
               className="flex gap-4"

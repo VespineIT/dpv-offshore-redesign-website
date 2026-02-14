@@ -67,7 +67,7 @@ const AboutUsSection = () => {
         <div className="relative z-20 flex flex-col justify-between h-full pt-12 pb-8 md:pb-16 px-4">
           
           {/* Header */}
-          <h2 className="font-['Poppins'] text-3xl md:text-5xl font-bold text-[#FF4500] text-center tracking-widest uppercase drop-shadow-lg mt-4 md:mt-8">
+          <h2 className="font-['Poppins'] text-3xl md:text-3xl font-bold text-[#FF4500] text-center tracking-widest uppercase drop-shadow-lg mt-4 md:mt-8">
             About Us
           </h2>
 

@@ -13,7 +13,7 @@ const locations = [
     servicedPorts: 'Mina Zayed, Khalifa Port',
     timezone: 'Asia/Dubai',
     // High-quality offshore/port vessel image
-    image: 'https://images.unsplash.com/photo-1605281317010-55c2f88b43bd?q=80&w=2000&auto=format&fit=crop',
+    image: 'https://media.assettype.com/outlooktraveller%2F2024-08-20%2F0nbfvji7%2Fshutterstock_2473580625.jpg',
     coordinates: { lat: 24.4539, lng: 54.3773 }
   },
   {
@@ -37,7 +37,7 @@ const locations = [
     servicedPorts: 'Colombo, Hambantota, Trincomalee',
     timezone: 'Asia/Colombo',
     // Active commercial port imagery
-    image: 'https://images.unsplash.com/photo-1586528116311-ad8ed745d433?q=80&w=2000&auto=format&fit=crop',
+    image: 'https://www.andbeyond.com/wp-content/uploads/sites/5/colombo-sri-lanka.jpg',
     coordinates: { lat: 6.9271, lng: 79.8612 }
   },
   {
@@ -49,7 +49,7 @@ const locations = [
     servicedPorts: 'Jurong Port, Pasir Panjang Terminal',
     timezone: 'Asia/Singapore',
     // Singapore night port/terminals 
-    image: 'https://images.unsplash.com/photo-1542314959-1e3df8e79e6f?q=80&w=2000&auto=format&fit=crop',
+    image: 'https://images.trvl-media.com/place/6047873/15d3ae30-ef33-406e-971f-9520c03f1089.jpg',
     coordinates: { lat: 1.3521, lng: 103.8198 }
   }
 ];
@@ -98,7 +98,7 @@ export default function OfficeGlobe() {
       `}} />
 
       <div className="container mx-auto px-4 mb-16">
-      <h2 className="font-['Poppins'] text-3xl md:text-4xl font-bold text-[#FF4500] text-center tracking-widest uppercase mb-4 transition-colors duration-300">
+      <h2 className="font-['Poppins'] text-3xl md:text-3xl font-bold text-[#FF4500] text-center tracking-widest uppercase mb-4 transition-colors duration-300">
           Our Global Offices
         </h2>
         <p className="text-center text-gray-600 dark:text-gray-400 mb-12 max-w-2xl mx-auto transition-colors duration-300">
@@ -133,68 +133,73 @@ export default function OfficeGlobe() {
           <div className="relative z-20 w-full h-full flex flex-col md:flex-row max-w-7xl mx-auto p-6 md:p-12 gap-8">
             
             {/* Left: Info Card */}
-            <div className="flex-1 flex flex-col justify-center items-start">
-              <div className="backdrop-blur-xl bg-white/80 dark:bg-white/5 border border-gray-200 dark:border-white/10 p-6 md:p-10 rounded-2xl shadow-xl text-gray-900 dark:text-white w-full md:max-w-xl transition-all duration-300">
-                
-                {/* Badge + Time */}
-                <div className="flex flex-wrap items-center gap-4 mb-6">
-                  <span className="px-4 py-1 bg-[#E95623]/90 text-white text-sm font-bold uppercase tracking-widest rounded-full shadow-sm">
-                    {activeLocation.id === 'colombo' ? 'Headquarters' :
-                     activeLocation.id === 'singapore' ? 'Representative Office' : 'Regional Hub'}
-                  </span>
-                  <span className="text-base font-medium text-gray-700 dark:text-white/90 flex items-center gap-2 transition-colors duration-300">
-                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                    {currentTime} Local Time
-                  </span>
-                </div>
+<div className="flex-1 flex flex-col justify-center items-start">
+  {/* APPLE GLASS CONTAINER */}
+  <div className="backdrop-blur-2xl backdrop-saturate-150 bg-white/60 dark:bg-black/40 border border-white/50 dark:border-white/10 p-6 md:p-10 rounded-[2rem] shadow-2xl shadow-black/5 dark:shadow-black/40 text-gray-900 dark:text-white w-full md:max-w-xl transition-all duration-500">
+    
+    {/* Badge + Time */}
+    <div className="flex flex-wrap items-center gap-4 mb-6">
+      <span className="px-4 py-1.5 bg-[#E95623]/90 backdrop-blur-md text-white text-xs font-bold uppercase tracking-widest rounded-full shadow-sm border border-white/20">
+        {activeLocation.id === 'colombo' ? 'Headquarters' :
+         activeLocation.id === 'singapore' ? 'Representative Office' : 'Regional Hub'}
+      </span>
+      <span className="text-sm font-medium text-gray-600 dark:text-white/70 flex items-center gap-2 transition-colors duration-300">
+        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        {currentTime} Local Time
+      </span>
+    </div>
 
-                <h2 className="text-4xl md:text-6xl font-extrabold mb-4 tracking-tight transition-colors duration-300">
-                  {activeLocation.city}
-                </h2>
-                
-                <p className="text-lg md:text-xl text-gray-700 dark:text-gray-200 mb-6 font-light leading-relaxed transition-colors duration-300">
-                  {activeLocation.description}
-                </p>
+    {/* Title */}
+    <h2 className="text-4xl md:text-6xl font-extrabold mb-4 tracking-tight transition-colors duration-300">
+      {activeLocation.city}
+    </h2>
+    
+    {/* Description */}
+    <p className="text-lg md:text-xl text-gray-700/90 dark:text-gray-300/90 mb-6 font-light leading-relaxed transition-colors duration-300">
+      {activeLocation.description}
+    </p>
 
-                {/* Serviced Ports Highlighting */}
-                <div className="mb-8 inline-block bg-gray-900/5 dark:bg-white/5 border border-gray-900/10 dark:border-white/10 rounded-lg px-4 py-3">
-                  <p className="text-sm uppercase tracking-widest text-[#E95623] font-bold mb-1">
-                    Key Serviced Ports
-                  </p>
-                  <p className="text-gray-800 dark:text-gray-200 font-medium">
-                    {activeLocation.servicedPorts}
-                  </p>
-                </div>
+    {/* Serviced Ports Highlighting (Inner Glass Box) */}
+    <div className="mb-8 inline-block bg-white/40 dark:bg-white/5 backdrop-blur-lg border border-white/60 dark:border-white/10 rounded-2xl px-5 py-4 shadow-sm transition-colors duration-300">
+      <p className="text-xs uppercase tracking-widest text-[#E95623] font-bold mb-1.5">
+        Key Serviced Ports
+      </p>
+      <p className="text-gray-900 dark:text-gray-100 font-medium">
+        {activeLocation.servicedPorts}
+      </p>
+    </div>
 
-                <div className="space-y-6 border-t border-gray-200 dark:border-white/10 pt-6 transition-colors duration-300">
-                  <div className="flex items-start gap-4">
-                    <svg className="w-7 h-7 text-[#E95623] mt-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                    </svg>
-                    <p className="text-base text-gray-700 dark:text-gray-300 whitespace-pre-line leading-relaxed transition-colors duration-300">
-                      {activeLocation.address}
-                    </p>
-                  </div>
-                </div>
+    {/* Address */}
+    <div className="space-y-6 border-t border-gray-900/10 dark:border-white/10 pt-6 transition-colors duration-300">
+      <div className="flex items-start gap-4">
+        <svg className="w-6 h-6 text-[#E95623] mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+        </svg>
+        <p className="text-base text-gray-700/90 dark:text-gray-300/90 whitespace-pre-line leading-relaxed transition-colors duration-300">
+          {activeLocation.address}
+        </p>
+      </div>
+    </div>
 
-                <div className="mt-10">
-                  <a
-                    href={`https://www.google.com/maps/search/?api=1&query=${activeLocation.coordinates.lat},${activeLocation.coordinates.lng}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center px-8 py-4 bg-gray-900 dark:bg-white text-white dark:text-gray-900 font-bold rounded-xl hover:bg-gray-800 dark:hover:bg-gray-100 transition shadow-lg gap-3 text-lg"
-                  >
-                    View on Google Maps
-                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                    </svg>
-                  </a>
-                </div>
-              </div>
-            </div>
+    {/* Button */}
+    <div className="mt-10">
+      <a
+        href={`https://maps.google.com/?q=${activeLocation.coordinates.lat},${activeLocation.coordinates.lng}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="inline-flex items-center px-8 py-4 bg-black/90 dark:bg-white/90 backdrop-blur-xl text-white dark:text-black font-semibold rounded-2xl hover:bg-black dark:hover:bg-white hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 shadow-xl shadow-black/10 dark:shadow-white/10 gap-3 text-lg border border-white/10 dark:border-black/10"
+      >
+        View on Google Maps
+        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</div>
 
             {/* Right: Navigation Tabs */}
             <div className="flex-1 flex flex-col justify-end items-end">
