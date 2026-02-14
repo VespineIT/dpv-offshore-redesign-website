@@ -14,16 +14,22 @@ const menuItems = [
 
 const MobileMenu = ({ onClose }) => {
   return (
-    <div className="w-[240px] bg-white dark:bg-[#0f172a] border border-gray-100 dark:border-gray-800 shadow-[0_20px_50px_rgba(0,0,0,0.15)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.5)] rounded-2xl p-2 overflow-hidden transition-colors duration-300">
+    <div className="w-[240px] rounded-2xl p-2 overflow-hidden transition-all duration-300
+      /* Light Mode Glass */
+      bg-white/70 border border-white/50 shadow-[0_20px_50px_rgba(0,0,0,0.15)]
+      /* Dark Mode Glass */
+      dark:bg-[#030712]/80 dark:border-white/10 dark:shadow-[0_20px_50px_rgba(0,0,0,0.5)]
+      /* Core Glassmorphism effect */
+      backdrop-blur-lg
+    ">
       {menuItems.map((item) => (
         <Link 
           key={item.name}
           href={item.href} 
           onClick={onClose}
-          // Changed hover:bg-orange-50 to dark:hover:bg-white/5 for better dark mode contrast
-          className="flex items-center justify-between px-4 py-3 rounded-xl hover:bg-orange-50 dark:hover:bg-white/5 group transition-all"
+          /* Added opacity to the hover states to maintain the glass illusion */
+          className="flex items-center justify-between px-4 py-3 rounded-xl hover:bg-orange-50/70 dark:hover:bg-white/10 group transition-all"
         >
-          {/* Text color changes from Navy to Light Gray */}
           <span className="text-[16px] font-bold text-[#1a1a54] dark:text-gray-100 group-hover:text-[#ec4a0a] dark:group-hover:text-[#ec4a0a] transition-colors">
             {item.name}
           </span>

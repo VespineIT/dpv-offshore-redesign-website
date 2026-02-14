@@ -1,3 +1,4 @@
+// components/Navbar.jsx
 'use client';
 
 import { useState } from 'react';
@@ -9,25 +10,18 @@ import MobileMenu from './MobileMenu';
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isLangMenuOpen, setIsLangMenuOpen] = useState(false); // New state for language dropdown
+  const [currentLang, setCurrentLang] = useState('English');   // New state for current language
   const pathname = usePathname();
 
   const isActive = (path) => pathname === path;
 
-  /* ================= ACTIVE TAB STYLES =================
-     - No changes needed for dark mode here (Orange bg + White text works everywhere)
-  ===================================================== */
+  /* ================= CYLINDER (PILL) STYLES ================= */
   const activeStyles =
-    "bg-[#ec4a0a] text-white px-10 h-[52px] flex items-center justify-center " +
-    "font-bold tracking-wider " +
-    "[clip-path:polygon(20%_0%,80%_0%,100%_100%,50%_135%,0%_100%)]";
+    "bg-[#ec4a0a] text-white px-6 py-2.5 rounded-full flex items-center justify-center font-bold tracking-wider shadow-md transition-all duration-300 ease-in-out transform scale-105";
 
-  /* ================= INACTIVE TAB STYLES =================
-     - Added: dark:text-gray-200 (Makes text readable on dark bg)
-     - Added: dark:hover:text-[#ec4a0a] (Ensures hover state works)
-  ===================================================== */
   const inactiveStyles =
-    "text-[#1a1a54] dark:text-gray-200 hover:text-[#ec4a0a] dark:hover:text-[#ec4a0a] " +
-    "px-8 h-[52px] flex items-center font-bold tracking-wider transition-colors duration-300";
+    "text-[#1a1a54] dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 px-6 py-2.5 rounded-full flex items-center font-bold tracking-wider transition-all duration-300 ease-in-out";
 
   const navLinks = [
     { name: 'INDUSTRIES', path: '/industries' },
@@ -35,30 +29,43 @@ export default function Navbar() {
     { name: 'SERVICES', path: '/services' },
   ];
 
+  // Map out the languages you want in your dropdown
+  // Note: 'code' must match Google Translate's official language codes
+  const languages = [
+    { code: 'en', name: 'English' },
+    { code: 'es', name: 'Spanish' },
+    { code: 'fr', name: 'French' },
+    { code: 'de', name: 'German' },
+  ];
+
+  // Function to trigger Google Translate via JavaScript
+  const handleLanguageChange = (langCode, langName) => {
+    setCurrentLang(langName);
+    setIsLangMenuOpen(false);
+    
+    // Find the hidden Google select element and change its value
+    const gtSelect = document.querySelector('.goog-te-combo');
+    if (gtSelect) {
+      gtSelect.value = langCode;
+      gtSelect.dispatchEvent(new Event('change'));
+    }
+  };
+
   return (
     <>
       {/* Backdrop */}
       {isMenuOpen && (
         <div
-          className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40"
+          className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40"
           onClick={() => setIsMenuOpen(false)}
         />
       )}
 
-      {/* NAVBAR CONTAINER
-         - Added dark:bg-[#0f172a] 
-         - Added transition-colors for smooth theme switching
-      */}
-      <nav className="w-full h-20 bg-white dark:bg-[#0f172a] sticky top-0 z-50 shadow-sm border-b-2 border-[#ec4a0a] transition-colors duration-300">
+      <nav className="w-full h-20 bg-white dark:bg-[#030712] sticky top-0 z-50 shadow-md transition-colors duration-300">
+        <div className="px-6 md:px-12 h-full flex items-center justify-between">
 
-        {/* WHITE TOP SPACER - matches navbar bg */}
-        <div className="h-4 bg-white dark:bg-[#0f172a] transition-colors duration-300" />
-
-        {/* MAIN NAV CONTENT */}
-        <div className="px-6 md:px-12 h-[calc(100%-16px)] flex items-center justify-between">
-
-          {/* LOGO - kept untouched as requested */}
-          <div className="flex-shrink-0 -mt-4">
+          {/* LOGO */}
+          <div className="flex-shrink-0">
             <Link href="/">
               <Image
                 src="/dpv-offshore-redesign-website/images/dpv_logo.png"
@@ -72,7 +79,7 @@ export default function Navbar() {
           </div>
 
           {/* CENTER NAV LINKS */}
-          <div className="hidden lg:flex items-end h-full text-[14px]">
+          <div className="hidden lg:flex items-center gap-2 h-full text-[14px]">
             {navLinks.map((link) => (
               <Link
                 key={link.path}
@@ -87,22 +94,44 @@ export default function Navbar() {
           {/* RIGHT SECTION */}
           <div className="flex items-center gap-4 relative">
 
-            {/* LANGUAGE SELECTOR - Orange bg works on both modes, no change needed */}
-            <div className="flex items-center gap-2 bg-[#ec4a0a] hover:bg-[#d44309] text-white px-4 py-2 rounded-lg cursor-pointer transition-colors">
-              <Globe size={18} strokeWidth={2.5} /> 
-              <span className="text-[13px] font-bold">English</span>
-              <ChevronDown size={16} strokeWidth={3} />
+            {/* CUSTOM LANGUAGE SELECTOR */}
+            <div className="relative">
+              <div 
+                onClick={() => setIsLangMenuOpen(!isLangMenuOpen)}
+                className="flex items-center gap-2 bg-[#ec4a0a] hover:bg-[#d44309] text-white px-4 py-2 rounded-lg cursor-pointer transition-colors"
+              >
+                <Globe size={18} strokeWidth={2.5} /> 
+                <span className="text-[13px] font-bold">{currentLang}</span>
+                <ChevronDown 
+                  size={16} 
+                  strokeWidth={3} 
+                  className={`transition-transform duration-200 ${isLangMenuOpen ? 'rotate-180' : ''}`} 
+                />
+              </div>
+
+              {/* DROPDOWN MENU */}
+              {isLangMenuOpen && (
+                <div className="absolute top-full mt-2 right-0 w-36 bg-white dark:bg-[#1a1a54] shadow-xl rounded-lg overflow-hidden z-50 border border-gray-100 dark:border-gray-800">
+                  {languages.map((lang) => (
+                    <button
+                      key={lang.code}
+                      onClick={() => handleLanguageChange(lang.code, lang.name)}
+                      className="w-full text-left px-4 py-3 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-[#ec4a0a] hover:text-white transition-colors"
+                    >
+                      {lang.name}
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
 
-            {/* HAMBURGER 
-                - Added dark:hover:bg-gray-800 so the hover effect isn't bright white in dark mode
-            */}
+            {/* HAMBURGER */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="flex flex-col gap-1.5 p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors z-50 ml-2"
+              /* Removed lg:hidden from the end of this line below */
+              className="flex flex-col gap-1.5 p-2 hover:bg-gray-100 dark:hover:bg-gray-800/50 rounded-lg transition-colors z-50 ml-2"
               aria-label="Toggle Menu"
             >
-              {/* Lines - The orange color (#ec4a0a) pops well against dark backgrounds, so no change needed */}
               <span className={`w-7 h-[3px] bg-[#ec4a0a] rounded-full transition-all duration-300 ${isMenuOpen ? 'rotate-45 translate-y-[9px]' : ''}`} />
               <span className={`w-7 h-[3px] bg-[#ec4a0a] rounded-full transition-all duration-300 ${isMenuOpen ? 'opacity-0' : ''}`} />
               <span className={`w-7 h-[3px] bg-[#ec4a0a] rounded-full transition-all duration-300 ${isMenuOpen ? '-rotate-45 -translate-y-[9px]' : ''}`} />
@@ -111,7 +140,6 @@ export default function Navbar() {
             {/* MOBILE MENU */}
             {isMenuOpen && (
               <div className="absolute top-16 right-0 z-50 min-w-[200px] animate-in slide-in-from-top-2 fade-in duration-200">
-                {/* Note: Ensure MobileMenu component also has dark mode classes inside it! */}
                 <MobileMenu onClose={() => setIsMenuOpen(false)} />
               </div>
             )}

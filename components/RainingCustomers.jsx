@@ -32,18 +32,15 @@ const customerLogos = [
 ];
 
 export default function RainingCustomers() {
-  // Triple the array to ensure no gaps on very wide screens
   const tripledLogos = [...customerLogos, ...customerLogos, ...customerLogos];
 
   return (
-    // UPDATED: Added dark:bg-[#0f172a] and transition
-    <section className="py-16 bg-[#F8FAFC] dark:bg-[#0f172a] overflow-hidden transition-colors duration-300">
+    /* UPDATED: dark:bg-[#030712] */
+    <section className="py-16 bg-[#F8FAFC] dark:bg-[#030712] overflow-hidden transition-colors duration-300">
       <div className="container mx-auto px-4 mb-10">
-        {/* UPDATED: Added dark:text-gray-100 for the heading */}
-        <h3 className="text-center text-gray-800 dark:text-gray-100 font-extrabold text-lg uppercase tracking-widest transition-colors duration-300">
+      <h2 className="font-['Poppins'] text-3xl md:text-4xl font-bold text-[#FF4500] text-center tracking-widest uppercase mb-8 transition-colors duration-300">
           Our Valued Customers
-          <div className="h-1 w-20 bg-orange-500 mx-auto mt-2 rounded-full"></div>
-        </h3>
+        </h2>
       </div>
 
       <div className="relative flex flex-col gap-8">
@@ -87,9 +84,10 @@ export default function RainingCustomers() {
 }
 
 const LogoBox = ({ src }) => (
-  // KEPT: bg-white allows logos to be seen clearly (as requested).
-  // No dark mode classes added to the box background itself.
-  <div className="mx-4 w-48 h-28 bg-white rounded-lg border border-gray-200 shadow-sm flex items-center justify-center p-3">
+  /* KEPT: bg-white for visibility. 
+     ADDED: dark:border-gray-800 to soften the edge against the dark background. 
+  */
+  <div className="mx-4 w-48 h-28 bg-white rounded-lg border border-gray-200 dark:border-gray-800 shadow-sm flex items-center justify-center p-3">
     <div className="relative w-full h-full">
       <Image
         src={src}

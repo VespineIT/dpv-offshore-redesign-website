@@ -41,66 +41,79 @@ const AboutUsSection = () => {
   }, [hasAnimated]);
 
   return (
-    <section className="w-full py-12 px-4 bg-white dark:bg-[#0f172a] flex flex-col items-center transition-colors duration-300">
+    <section className="relative w-full h-screen flex items-center justify-center overflow-hidden bg-white dark:bg-[#030712] p-[15px] transition-colors duration-300">
       
-      <h2 className="text-[#FF4500] text-xl md:text-2xl font-bold tracking-widest uppercase mb-8">
-        About Us
-      </h2>
-
-      {/* Container optimized: 
-          - aspect-video (16/9) on large screens
-          - h-[400px] or aspect-square on small screens to ensure content fits
-      */}
+      {/* Removed the orange border classes, but kept rounded corners and shadow */}
       <div 
         ref={sectionRef}
-        className="relative w-full max-w-7xl aspect-video min-h-[400px] md:min-h-[500px] lg:min-h-[600px] rounded-[20px] overflow-hidden shadow-2xl"
+        className="relative w-full h-full rounded-[24px] overflow-hidden shadow-2xl"
       >
+        {/* Video Background */}
         <video
           autoPlay
           loop
           muted
           playsInline
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full object-cover z-0"
         >
           <source src="/dpv-offshore-redesign-website/Videos/jackup_barge .mp4" type="video/mp4" />
           <img src="/fallback-image.jpg" alt="Offshore background" className="w-full h-full object-cover" />
         </video>
 
-        {/* Overlay for readability */}
-        <div className="absolute inset-0 bg-black/30 dark:bg-black/50 z-10"></div>
+        {/* Dark Overlay */}
+        <div className="absolute inset-0 bg-black/40 dark:bg-black/60 z-10 pointer-events-none"></div>
 
-        {/* Statistics Overlay - Responsive Grid and Padding */}
-        <div className="absolute inset-0 flex flex-col justify-end pb-8 md:pb-16 z-20">
-          <div className="grid grid-cols-3 gap-2 px-4 max-w-5xl mx-auto w-full">
-            
+        {/* Content Wrapper */}
+        <div className="relative z-20 flex flex-col justify-between h-full pt-12 pb-8 md:pb-16 px-4">
+          
+          {/* Header */}
+          <h2 className="font-['Poppins'] text-3xl md:text-5xl font-bold text-[#FF4500] text-center tracking-widest uppercase drop-shadow-lg mt-4 md:mt-8">
+            About Us
+          </h2>
+
+          {/* ADDED TEXT SECTION */}
+          <div className="max-w-4xl mx-auto text-center px-4 flex-grow flex flex-col justify-center my-6">
+            <p className="text-white text-sm sm:text-base md:text-xl leading-relaxed drop-shadow-md mb-4 md:mb-6">
+              <span className="text-[#FF4500] font-bold">DPV Offshore</span> specializes in engineering, procurement, and construction (EPC) services for the offshore industry, encompassing onshore, offshore, and subsea operations.
+            </p>
+            <p className="text-white text-sm sm:text-base md:text-xl leading-relaxed drop-shadow-md mb-4 md:mb-6">
+              Our comprehensive capabilities — from design engineering to manufacturing, installation, maintenance, repair, and component supply — enable us to deliver seamless project execution with uncompromising safety and quality standards.
+            </p>
+            <p className="text-white text-sm sm:text-base md:text-xl leading-relaxed drop-shadow-md">
+              Built on long-term client relationships and proven performance, we continue to earn the trust of our partners through our consistent commitment to excellence, reliability, and value-driven delivery.
+            </p>
+          </div>
+
+          {/* Stats Section */}
+          <div className="grid grid-cols-3 gap-2 max-w-5xl mx-auto w-full mb-4 md:mb-8">
             <div className="flex flex-col items-center">
-              <div className="text-3xl sm:text-4xl md:text-6xl font-black text-[#FF4500] drop-shadow-lg">
+              <div className="text-4xl sm:text-5xl md:text-7xl font-black text-[#FF4500] drop-shadow-[0_4px_8px_rgba(0,0,0,0.5)]">
                 {experience}Y+
               </div>
-              <div className="text-white text-[10px] sm:text-xs md:text-lg font-bold mt-1 md:mt-2 uppercase tracking-tight drop-shadow-md">
+              <div className="text-white text-[12px] sm:text-sm md:text-xl font-bold mt-1 md:mt-2 uppercase tracking-tight drop-shadow-md">
                 Experience
               </div>
             </div>
 
             <div className="flex flex-col items-center">
-              <div className="text-3xl sm:text-4xl md:text-6xl font-black text-[#FF4500] drop-shadow-lg">
+              <div className="text-4xl sm:text-5xl md:text-7xl font-black text-[#FF4500] drop-shadow-[0_4px_8px_rgba(0,0,0,0.5)]">
                 {employee}+
               </div>
-              <div className="text-white text-[10px] sm:text-xs md:text-lg font-bold mt-1 md:mt-2 uppercase tracking-tight drop-shadow-md">
+              <div className="text-white text-[12px] sm:text-sm md:text-xl font-bold mt-1 md:mt-2 uppercase tracking-tight drop-shadow-md">
                 Employees
               </div>
             </div>
 
             <div className="flex flex-col items-center">
-              <div className="text-3xl sm:text-4xl md:text-6xl font-black text-[#FF4500] drop-shadow-lg">
+              <div className="text-4xl sm:text-5xl md:text-7xl font-black text-[#FF4500] drop-shadow-[0_4px_8px_rgba(0,0,0,0.5)]">
                 {vessels}
               </div>
-              <div className="text-white text-[10px] sm:text-xs md:text-lg font-bold mt-1 md:mt-2 uppercase tracking-tight drop-shadow-md">
+              <div className="text-white text-[12px] sm:text-sm md:text-xl font-bold mt-1 md:mt-2 uppercase tracking-tight drop-shadow-md">
                 Vessels
               </div>
             </div>
-
           </div>
+          
         </div>
       </div>
     </section>

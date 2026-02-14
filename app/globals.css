@@ -1,3 +1,5 @@
+/* globals.css */
+
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap');
 
 @tailwind base;
@@ -20,4 +22,30 @@
 body {
   color: #1A1A1A;
   background: #FFFFFF;
+  /* Force body to stay at the top (Google Translate tries to push it down) */
+  top: 0px !important; 
+}
+
+/* =========================================
+   GOOGLE TRANSLATE UI OVERRIDES 
+   ========================================= */
+
+/* Hide the Google Translate Top Banner */
+.goog-te-banner-frame.skiptranslate, 
+.goog-te-gadget-icon {
+    display: none !important;
+}
+
+/* Hide Google Translate hover tooltips */
+.goog-tooltip,
+.goog-tooltip:hover {
+    display: none !important;
+    box-shadow: none !important;
+}
+
+/* Remove weird background highlights from translated text */
+.goog-text-highlight {
+    background-color: transparent !important;
+    border: none !important; 
+    box-shadow: none !important;
 }
