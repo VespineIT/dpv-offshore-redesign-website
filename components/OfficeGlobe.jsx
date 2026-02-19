@@ -8,7 +8,7 @@ const locations = [
     id: 'abu-dhabi',
     city: 'Abu Dhabi',
     country: 'UAE',
-    address: 'DPV OFFSHORE & MARINE SERVICES LLC\nOffice no: 879\n8th floor, Al Ghaith Tower, Mohammed Bin Hamdan Street,\nAbu Dhabi, UAE',
+    address: 'DPV Offshore & Marine Services LLC\nOffice No. 879, 8th Floor, Al Ghaith Tower\nMohammed Bin Hamdan Street\nAbu Dhabi, UAE',
     description: 'Strategic hub for Middle East offshore operations.',
     servicedPorts: 'Mina Zayed, Khalifa Port',
     timezone: 'Asia/Dubai',
@@ -19,18 +19,29 @@ const locations = [
     id: 'dubai',
     city: 'Dubai',
     country: 'UAE',
-    address: 'DPV OFFSHORE & MARINE SERVICES LLC\nPO Box 75287, workshop 05, W306,\nDubai Maritime City,\nDubai, UAE',
+    address: 'DPV Offshore & Marine Services LLC\nP.O. Box 75287\nWorkshop 05, W306\nDubai Maritime City\nDubai, UAE',
     description: 'Core workshop and marine services facility in Dubai Maritime City.',
-    servicedPorts: 'Sharjah, Hamriya, Fujairah',
+    servicedPorts: 'Jebel Ali, Port Rashid, Hamriya Port',
     timezone: 'Asia/Dubai',
     image: 'https://images.unsplash.com/photo-1542281286-9e0a16bb7366?q=80&w=2000&auto=format&fit=crop',
     coordinates: { lat: 25.2048, lng: 55.2708 }
   },
   {
+    id: 'fujairah',
+    city: 'Fujairah',
+    country: 'UAE',
+    address: 'DPV Offshore & Marine Services L.L.C - Fujairah Branch\nAl Theeb Building (Opposite Civil Defense Building)\nMohammed Bin Zayed City\nShop 1, Fujairah, UAE',
+    description: 'Branch office providing dedicated support for eastern seaboard maritime operations.',
+    servicedPorts: 'Fujairah Port',
+    timezone: 'Asia/Dubai',
+    image: 'https://images.unsplash.com/photo-1582650517303-b51f08e8203f?q=80&w=2000&auto=format&fit=crop',
+    coordinates: { lat: 25.1288, lng: 56.3265 }
+  },
+  {
     id: 'colombo',
     city: 'Colombo',
     country: 'Sri Lanka',
-    address: 'DPV OFFSHORE & MARINE SERVICES LLC\nNo. 736, Dr. Danister De Silva Mawatha,\nColombo 00900,\nSri Lanka',
+    address: 'DPV Offshore & Marine Services LLC\nNo. 736, Dr. Danister De Silva Mawatha\nColombo 00900\nSri Lanka',
     description: 'Headquarters - Regional office and main coordination center.',
     servicedPorts: 'Colombo, Hambantota, Trincomalee',
     timezone: 'Asia/Colombo',
@@ -41,8 +52,8 @@ const locations = [
     id: 'singapore',
     city: 'Singapore',
     country: 'Singapore',
-    address: 'Representative office Singapore\nSynergy Offshore And Marine Consultant PTE LTD\n9 Tampines Grande, Asia Green, #02-00\nTampines Singapore, 528735\n(IMO No: 6493815)\nJonathan.balagtas@dpvoffshore.com',
-    description: 'Synergy Offshore and Marine Consultant Pte Ltd. Contact: Jonathan Balagtas (Technical Director).',
+    address: 'Synergy Offshore and Marine Consultant PTE LTD\n9 Tampines Grande, Asia Green, #02-00\nTampines, Singapore 528735\nIMO No: 6493815\nEmail: Jonathan.balagtas@dpvoffshore.com',
+    description: 'Representative Office. Synergy Offshore and Marine Consultant Pte Ltd. Contact: Jonathan Balagtas.',
     servicedPorts: 'Jurong Port, Pasir Panjang Terminal',
     timezone: 'Asia/Singapore',
     image: 'https://images.trvl-media.com/place/6047873/15d3ae30-ef33-406e-971f-9520c03f1089.jpg',
@@ -50,8 +61,29 @@ const locations = [
   }
 ];
 
+// Using reliable FlagCDN URLs for high-quality, perfectly sized flag images
 const tickerRegions = [
-  'UAE', 'Qatar', 'Saudi Arabia', 'Oman', 'Bahrain', 'Kuwait', 'Gaza', 'Iraq', 'Yemen', 'Egypt'
+  { name: 'Abu Dhabi', flagUrl: 'https://flagcdn.com/w40/ae.png' }, 
+  { name: 'Dubai', flagUrl: 'https://flagcdn.com/w40/ae.png' }, 
+  { name: 'Fujairah', flagUrl: 'https://flagcdn.com/w40/ae.png' }, 
+  { name: 'Colombo', flagUrl: 'https://flagcdn.com/w40/lk.png' }, 
+  { name: 'Singapore', flagUrl: 'https://flagcdn.com/w40/sg.png' }, 
+  { name: 'UAE', flagUrl: 'https://flagcdn.com/w40/ae.png' }, 
+  { name: 'Qatar', flagUrl: 'https://flagcdn.com/w40/qa.png' }, 
+  { name: 'Saudi Arabia', flagUrl: 'https://flagcdn.com/w40/sa.png' }, 
+  { name: 'Oman', flagUrl: 'https://flagcdn.com/w40/om.png' }, 
+  { name: 'Bahrain', flagUrl: 'https://flagcdn.com/w40/bh.png' }, 
+  { name: 'Kuwait', flagUrl: 'https://flagcdn.com/w40/kw.png' }, 
+  { name: 'India', flagUrl: 'https://flagcdn.com/w40/in.png' }, 
+  { name: 'Egypt', flagUrl: 'https://flagcdn.com/w40/eg.png' }, 
+  { name: 'Ghana', flagUrl: 'https://flagcdn.com/w40/gh.png' }, 
+  { name: 'Congo', flagUrl: 'https://flagcdn.com/w40/cg.png' }, 
+  { name: 'Kenya', flagUrl: 'https://flagcdn.com/w40/ke.png' }, 
+  { name: 'Tanzania', flagUrl: 'https://flagcdn.com/w40/tz.png' }, 
+  { name: 'Bulgaria', flagUrl: 'https://flagcdn.com/w40/bg.png' }, 
+  { name: 'Kazakhstan', flagUrl: 'https://flagcdn.com/w40/kz.png' }, 
+  { name: 'Azerbaijan', flagUrl: 'https://flagcdn.com/w40/az.png' }, 
+  { name: 'Sri Lanka', flagUrl: 'https://flagcdn.com/w40/lk.png' }
 ];
 
 export default function OfficeGlobe() {
@@ -85,7 +117,7 @@ export default function OfficeGlobe() {
           100% { transform: translateX(-50%); }
         }
         .animate-ticker {
-          animation: ticker 35s linear infinite;
+          animation: ticker 50s linear infinite; 
         }
         .animate-ticker:hover {
           animation-play-state: paused;
@@ -111,7 +143,6 @@ export default function OfficeGlobe() {
                 activeId === loc.id ? 'opacity-100 z-10' : 'opacity-0 z-0'
               }`}
             >
-              {/* Dark overlay for better text contrast */}
               <div className="absolute inset-0 bg-black/50 dark:bg-black/70 z-10" />
               
               <Image
@@ -128,11 +159,10 @@ export default function OfficeGlobe() {
           {/* Content Overlay */}
           <div className="relative z-20 w-full h-full flex flex-col md:flex-row max-w-7xl mx-auto p-6 md:p-12 gap-8 items-center">
             
-            {/* Left: Main Info Card (Apple Style Glass) */}
+            {/* Left: Main Info Card */}
             <div className="flex-1 w-full">
               <div className="backdrop-blur-3xl backdrop-saturate-200 bg-white/30 dark:bg-black/40 border-[1.5px] border-white/40 dark:border-white/10 p-8 md:p-10 rounded-[2.5rem] shadow-2xl shadow-black/20 dark:shadow-black/50 text-gray-900 dark:text-white transition-all duration-500 relative overflow-hidden">
                 
-                {/* Subtle top-left sheen for glass effect */}
                 <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-white/20 to-transparent opacity-50 pointer-events-none rounded-[2.5rem]"></div>
 
                 <div className="relative z-10">
@@ -140,7 +170,8 @@ export default function OfficeGlobe() {
                     <div className="flex flex-wrap items-center gap-4 mb-8">
                     <span className="px-4 py-1.5 bg-[#E95623]/80 backdrop-blur-md text-white text-xs font-bold uppercase tracking-widest rounded-full shadow-sm border border-white/20">
                         {activeLocation.id === 'colombo' ? 'Headquarters' :
-                        activeLocation.id === 'singapore' ? 'Representative Office' : 'Regional Hub'}
+                        activeLocation.id === 'singapore' ? 'Representative Office' :
+                        activeLocation.id === 'fujairah' ? 'Branch Office' : 'Regional Hub'}
                     </span>
                     <span className="text-sm font-medium text-gray-800 dark:text-white/80 flex items-center gap-2">
                         <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -160,7 +191,7 @@ export default function OfficeGlobe() {
                     {activeLocation.description}
                     </p>
 
-                    {/* Serviced Ports Highlighting (Etched Glass Look) */}
+                    {/* Serviced Ports */}
                     <div className="mb-8 inline-block bg-white/20 dark:bg-white/5 backdrop-blur-xl border border-white/30 dark:border-white/10 rounded-2xl px-6 py-4 shadow-sm">
                     <p className="text-xs uppercase tracking-widest text-[#E95623] font-bold mb-2">
                         Key Serviced Ports
@@ -181,10 +212,10 @@ export default function OfficeGlobe() {
                         </p>
                     </div>
 
-                    {/* Button (Frosted Glass) */}
+                    {/* Button */}
                     <div className="mt-10">
                     <a
-                        href={`https://www.google.com/maps/search/?api=1&query=${activeLocation.coordinates.lat},${activeLocation.coordinates.lng}`}
+                        href={`http://googleusercontent.com/maps.google.com/?q=${activeLocation.coordinates.lat},${activeLocation.coordinates.lng}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline-flex items-center px-8 py-4 bg-white/20 dark:bg-white/10 backdrop-blur-2xl text-gray-900 dark:text-white font-semibold rounded-2xl hover:bg-white/40 dark:hover:bg-white/20 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 shadow-lg border border-white/30 dark:border-white/10 gap-3 text-lg group/btn"
@@ -199,7 +230,7 @@ export default function OfficeGlobe() {
               </div>
             </div>
 
-            {/* Right: Navigation Tabs (Floating Glass Tiles) */}
+            {/* Right: Navigation Tabs */}
             <div className="flex-1 flex flex-col justify-center items-end w-full md:w-auto">
               <div className="flex flex-col gap-4 w-full md:w-80">
                 {locations.map((loc) => (
@@ -231,31 +262,27 @@ export default function OfficeGlobe() {
         </div>
       </div>
 
-      {/* Full-width Infinite Scrolling Ticker (Glass overlay style) */}
-      <div className="w-full overflow-hidden bg-white/10 dark:bg-black/20 backdrop-blur-lg border-y border-white/20 dark:border-white/5 py-4 mt-8 flex relative z-10">
-        <div className="flex w-[200%] animate-ticker">
-          {/* First set of items */}
-          <div className="flex w-1/2 justify-around items-center">
-            {tickerRegions.map((region, idx) => (
-              <div key={`ticker-1-${idx}`} className="flex items-center gap-8">
-                <span className="text-gray-800 dark:text-gray-100 font-bold uppercase tracking-[0.2em] text-sm md:text-base whitespace-nowrap">
-                  {region}
-                </span>
-                <span className="text-[#E95623] text-xl leading-none mx-4">•</span>
+      {/* Full-width Infinite Scrolling Ticker (Now with Images) */}
+      <div className="w-full overflow-hidden bg-white/10 dark:bg-black/20 backdrop-blur-lg border-y border-white/20 dark:border-white/5 py-4 mt-8 flex relative z-10 group">
+        <div className="flex w-max animate-ticker group-hover:[animation-play-state:paused]">
+          {[...tickerRegions, ...tickerRegions].map((region, idx) => (
+            <div key={`ticker-${idx}`} className="flex items-center flex-shrink-0 gap-3">
+              {/* Image Container for the flag */}
+              <div className="relative w-7 h-5 rounded-sm overflow-hidden shadow-sm ring-1 ring-black/10 dark:ring-white/10">
+                <Image 
+                  src={region.flagUrl} 
+                  alt={`${region.name} flag`} 
+                  fill
+                  className="object-cover"
+                  unoptimized
+                />
               </div>
-            ))}
-          </div>
-          {/* Duplicated set for seamless infinite scrolling */}
-          <div className="flex w-1/2 justify-around items-center">
-            {tickerRegions.map((region, idx) => (
-              <div key={`ticker-2-${idx}`} className="flex items-center gap-8">
-                <span className="text-gray-800 dark:text-gray-100 font-bold uppercase tracking-[0.2em] text-sm md:text-base whitespace-nowrap">
-                  {region}
-                </span>
-                <span className="text-[#E95623] text-xl leading-none mx-4">•</span>
-              </div>
-            ))}
-          </div>
+              <span className="text-gray-800 dark:text-gray-100 font-bold uppercase tracking-[0.2em] text-sm md:text-base whitespace-nowrap">
+                {region.name}
+              </span>
+              <span className="text-[#E95623] text-xl leading-none mx-8">•</span>
+            </div>
+          ))}
         </div>
       </div>
     </section>

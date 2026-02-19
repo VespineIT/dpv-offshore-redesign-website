@@ -1,14 +1,22 @@
 'use client'; // Required for Next.js if you are using app router with useState
 
 import React, { useState } from 'react';
+import Link from 'next/link';
+import PrivacyPolicyModal from './PrivacyPolicyModal';
+import TermsAndConditionsModal from './TermsAndConditionsModal';
+import FAQModal from './FAQModal';
+import ContactUsModal from './ContactUsModal'; // 1. Imported the new Contact Us Modal
 
 export default function Footer() {
-  // State to control the popup visibility
+  // States to control the popup visibility
   const [isPrivacyOpen, setIsPrivacyOpen] = useState(false);
+  const [isTermsOpen, setIsTermsOpen] = useState(false);
+  const [isFaqOpen, setIsFaqOpen] = useState(false);
+  const [isContactOpen, setIsContactOpen] = useState(false); // 2. Added state for Contact Us
 
   return (
     <>
-      <footer className="bg-[#1C1C1C] text-white pt-20 pb-8 font-sans">
+      <footer className="bg-[#1C1C1C] text-white pt-20 pb-8 font-sans border-t border-gray-800">
         <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
           
           {/* Main Grid Layout */}
@@ -16,7 +24,9 @@ export default function Footer() {
             
             {/* 1. Logo Section (Left) */}
             <div className="lg:col-span-2 flex flex-col items-start">
-               <h2 className="text-[#FF5722] text-3xl font-bold tracking-tight">DPV Offshore</h2>
+               <h2 className="text-[#FF5722] text-3xl font-bold tracking-tight whitespace-nowrap">
+                 DPV Offshore
+               </h2>
             </div>
 
             {/* 2. ISO Certification Section (Center-Left) */}
@@ -33,9 +43,9 @@ export default function Footer() {
                
                {/* Certification Text */}
                <div className="space-y-3 text-sm tracking-wide text-gray-200">
-                  <p>ISO 9001: 2015 Quality – <span className="font-semibold">ALREADY HAVE</span></p>
-                  <p>ISO 14001: 2015 Environment – <span className="font-semibold">PENDING</span></p>
-                  <p>ISO 45001: 2018 Health & Safety – <span className="font-semibold">PENDING</span></p>
+                  <p>ISO 9001: 2015 Quality – <span className="font-semibold text-green-500">ALREADY HAVE</span></p>
+                  <p>ISO 14001: 2015 Environment – <span className="font-semibold text-yellow-500">PENDING</span></p>
+                  <p>ISO 45001: 2018 Health & Safety – <span className="font-semibold text-yellow-500">PENDING</span></p>
                </div>
             </div>
 
@@ -43,11 +53,11 @@ export default function Footer() {
             <div className="lg:col-span-2 lg:pl-8">
               <h4 className="font-bold text-xl mb-6 text-white">Quick Links</h4>
               <ul className="space-y-4 text-gray-400">
-                <li><a href="#" className="hover:text-[#FF5722] transition-colors">Home</a></li>
-                <li><a href="#" className="hover:text-[#FF5722] transition-colors">About Us</a></li>
-                <li><a href="#" className="hover:text-[#FF5722] transition-colors">Services</a></li>
-                <li><a href="#" className="hover:text-[#FF5722] transition-colors">Blogs</a></li>
-                <li><a href="#" className="hover:text-[#FF5722] transition-colors">Career</a></li>
+                <li><Link href="/" className="hover:text-[#FF5722] transition-colors">Home</Link></li>
+                <li><Link href="/industries" className="hover:text-[#FF5722] transition-colors">Industries</Link></li>
+                <li><Link href="/products" className="hover:text-[#FF5722] transition-colors">Products</Link></li>
+                <li><Link href="/services" className="hover:text-[#FF5722] transition-colors">Services</Link></li>
+                <li><Link href="/about" className="hover:text-[#FF5722] transition-colors">About Us</Link></li>
               </ul>
             </div>
 
@@ -55,7 +65,8 @@ export default function Footer() {
             <div className="lg:col-span-2">
               <h4 className="font-bold text-xl mb-6 text-white">Resources</h4>
               <ul className="space-y-4 text-gray-400">
-                {/* Changed this to a button to trigger the popup */}
+                
+                {/* Privacy Policy Trigger */}
                 <li>
                   <button 
                     onClick={() => setIsPrivacyOpen(true)} 
@@ -64,9 +75,37 @@ export default function Footer() {
                     Privacy Policy
                   </button>
                 </li>
-                <li><a href="#" className="hover:text-[#FF5722] transition-colors">Terms & Conditions</a></li>
-                <li><a href="#" className="hover:text-[#FF5722] transition-colors">Contact Us</a></li>
-                <li><a href="#" className="hover:text-[#FF5722] transition-colors">FAQs</a></li>
+                
+                {/* Terms & Conditions Trigger */}
+                <li>
+                  <button 
+                    onClick={() => setIsTermsOpen(true)} 
+                    className="hover:text-[#FF5722] transition-colors text-left"
+                  >
+                    Terms & Conditions
+                  </button>
+                </li>
+
+                {/* Contact Us Trigger (3. Changed to a button) */}
+                <li>
+                  <button 
+                    onClick={() => setIsContactOpen(true)} 
+                    className="hover:text-[#FF5722] transition-colors text-left"
+                  >
+                    Contact Us
+                  </button>
+                </li>
+
+                {/* FAQs Trigger */}
+                <li>
+                  <button 
+                    onClick={() => setIsFaqOpen(true)} 
+                    className="hover:text-[#FF5722] transition-colors text-left"
+                  >
+                    FAQs
+                  </button>
+                </li>
+
               </ul>
             </div>
 
@@ -75,7 +114,7 @@ export default function Footer() {
               <h4 className="font-bold text-xl mb-6 text-white">Follow Us</h4>
               <div className="flex gap-3">
                  {/* LinkedIn */}
-                 <a href="https://www.linkedin.com/company/102757900/admin/dashboard/" className="w-10 h-10 bg-white rounded flex items-center justify-center text-black hover:bg-[#FF5722] hover:text-white transition-all">
+                 <a href="https://www.linkedin.com/company/102757900/admin/dashboard/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-white rounded flex items-center justify-center text-black hover:bg-[#FF5722] hover:text-white transition-all">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h5v-8.321c0-4.608 5.472-4.474 5.472 0v8.321h5v-9.643c0-6.18-7.093-6.007-10.504-2.88v-1.798z"/></svg>
                  </a>
                  {/* Instagram */}
@@ -97,79 +136,17 @@ export default function Footer() {
 
           {/* Copyright Section */}
           <div className="border-t border-gray-800 mt-16 pt-8 text-center text-gray-500 text-sm">
-            © 2026 DPV Offshore. All rights reserved.
+            © {new Date().getFullYear()} DPV Offshore. All rights reserved.
           </div>
         </div>
       </footer>
 
-      {/* ========================================== */}
-      {/* PRIVACY POLICY & ISO MODAL POPUP           */}
-      {/* ========================================== */}
-      {isPrivacyOpen && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/70 backdrop-blur-sm p-4 transition-opacity">
-          
-          {/* Modal Container */}
-          <div className="bg-white text-gray-800 w-full max-w-3xl rounded-xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh] animate-in fade-in zoom-in-95 duration-200">
-            
-            {/* Modal Header */}
-            <div className="flex justify-between items-center p-6 border-b border-gray-200 bg-gray-50">
-              <h3 className="text-2xl font-bold text-[#1C1C1C]">Policies & Certifications</h3>
-              <button 
-                onClick={() => setIsPrivacyOpen(false)}
-                className="p-2 rounded-full hover:bg-gray-200 transition-colors text-gray-500 hover:text-red-500"
-                aria-label="Close modal"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-              </button>
-            </div>
-
-            {/* Modal Body (Scrollable) */}
-            <div className="p-6 md:p-8 overflow-y-auto space-y-8 text-base leading-relaxed">
-              
-              {/* Quality Policy */}
-              <section>
-                <h4 className="text-xl font-bold text-[#FF5722] mb-3">ISO Quality Policy</h4>
-                <p className="text-gray-700">
-                  Our policy to Quality assurance is in line with policy and procedures adapting to the Statutory requirements and international legislation.
-                </p>
-              </section>
-
-              {/* Environmental Protection & Social Responsibility */}
-              <section>
-                <h4 className="text-xl font-bold text-[#FF5722] mb-3">Environmental Protection & Social Responsibility Policy</h4>
-                <div className="space-y-4 text-gray-700">
-                  <p>
-                    We are committed to having zero spills to sea, green energy initiatives and low carbon footprints to reduce our impact on the environment.
-                  </p>
-                  <p>
-                    We are committed to zero incidents at the workplace and care for the well-being of our staff, customers, visitors and the community. Our policies comply with the legal requirements of the local / International regulating Bodies and is relevant to the standards and guidelines.
-                  </p>
-                </div>
-              </section>
-
-              {/* ISO Certifications */}
-              <section className="bg-gray-50 p-6 rounded-lg border border-gray-100">
-                <h4 className="text-lg font-bold text-[#1C1C1C] mb-4">Current Certifications Status</h4>
-                <ul className="space-y-3 font-medium text-gray-800">
-                  <li className="flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-green-500"></span>
-                    ISO 9001: 2015 Quality – <span className="text-green-600 font-bold ml-1">ALREADY HAVE</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-yellow-500"></span>
-                    ISO 14001: 2015 Environment - <span className="text-yellow-600 font-bold ml-1">PENDING</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-yellow-500"></span>
-                    ISO 45001: 2018 Health & Safety - <span className="text-yellow-600 font-bold ml-1">PENDING</span>
-                  </li>
-                </ul>
-              </section>
-
-            </div>
-          </div>
-        </div>
-      )}
+      {/* Renders the Modals */}
+      <PrivacyPolicyModal isOpen={isPrivacyOpen} onClose={() => setIsPrivacyOpen(false)} />
+      <TermsAndConditionsModal isOpen={isTermsOpen} onClose={() => setIsTermsOpen(false)} />
+      <FAQModal isOpen={isFaqOpen} onClose={() => setIsFaqOpen(false)} />
+      {/* 4. Added the Contact Us Modal to the bottom */}
+      <ContactUsModal isOpen={isContactOpen} onClose={() => setIsContactOpen(false)} /> 
     </>
   );
 }
