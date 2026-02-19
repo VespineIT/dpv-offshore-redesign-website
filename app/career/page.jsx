@@ -8,11 +8,86 @@ import { MapPin, ArrowRight, Briefcase } from "lucide-react";
 export default function Careers() {
   // Job Listing Data
   const jobOpenings = [
-    { title: "Marine Electrician / ETO", location: "Colombo" },
-    { title: "Naval Architect", location: "Colombo" },
-    { title: "Marine Surveyor", location: "Colombo" },
-    { title: "Ship Repair Technician", location: "Colombo" },
-    { title: "Automation & Instrumentation Engineer", location: "Colombo" },
+    { 
+      title: "Automation Engineer", 
+      location: "Colombo",
+      description: "Design, implement, and maintain automated control systems for complex offshore and subsea EPC projects."
+    },
+    { 
+      title: "Mechatronics Engineer", 
+      location: "Colombo",
+      description: "Integrate mechanical and electronic systems to optimize operations across our offshore and onshore facilities."
+    },
+    { 
+      title: "Ship Electrician", 
+      location: "Colombo",
+      description: "Maintain, troubleshoot, and repair critical electrical systems on offshore vessels and marine platforms."
+    },
+    { 
+      title: "Ship Mechanic", 
+      location: "Colombo",
+      description: "Perform comprehensive mechanical repairs and preventative maintenance on marine vessels and heavy offshore equipment."
+    },
+    { 
+      title: "Mechanical Foreman", 
+      location: "Colombo",
+      description: "Supervise mechanical teams and oversee daily execution of mechanical operations on offshore and onshore sites."
+    },
+    { 
+      title: "Mechanical Technician", 
+      location: "Colombo",
+      description: "Execute routine maintenance and precision mechanical repairs for advanced subsea and offshore machinery."
+    },
+    { 
+      title: "Fabrication Technician", 
+      location: "Colombo",
+      description: "Fabricate, assemble, and install structural components for offshore platforms and marine EPC projects."
+    },
+    { 
+      title: "Certified Welder", 
+      location: "Colombo",
+      description: "Perform specialized, high-grade welding for critical structural and piping systems in marine and subsea environments."
+    },
+    { 
+      title: "Machinist", 
+      location: "Colombo",
+      description: "Operate precision machining equipment to manufacture and repair components for offshore machinery and vessels."
+    },
+    { 
+      title: "Rigger", 
+      location: "Colombo",
+      description: "Ensure the safe and efficient lifting, moving, and positioning of heavy equipment during offshore construction."
+    },
+    { 
+      title: "Driver", 
+      location: "Colombo",
+      description: "Provide reliable transportation of specialized materials, personnel, and equipment across onshore facilities and ports."
+    },
+    { 
+      title: "Sales Engineer (Marine Division)", 
+      location: "Colombo",
+      description: "Drive technical sales, foster client relationships, and expand our marine and offshore EPC service portfolio."
+    },
+    { 
+      title: "Estimation / Costing Engineer", 
+      location: "Colombo",
+      description: "Prepare accurate cost estimates, project budgets, and financial forecasts for complex offshore and subsea operations."
+    },
+    { 
+      title: "Procurement Engineer", 
+      location: "Colombo",
+      description: "Source, evaluate, and procure specialized materials and technical equipment essential for offshore EPC operations."
+    },
+    { 
+      title: "Accountant", 
+      location: "Colombo",
+      description: "Manage daily financial operations, project-specific accounting, and reporting for our diverse offshore projects."
+    },
+    { 
+      title: "Human Resources & Administration Officer", 
+      location: "Colombo",
+      description: "Oversee recruitment, employee relations, and administrative support tailored to our specialized marine workforce."
+    },
   ];
 
   // --- Framer Motion Variants ---
@@ -33,7 +108,6 @@ export default function Careers() {
     <main className="min-h-screen bg-gray-50 dark:bg-[#030712] pb-24 font-['Poppins'] transition-colors duration-300">
       
       {/* ================= HERO SECTION ================= */}
-      {/* Adjusted height to be more balanced (min 400px, max 500px on desktop) */}
       <section className="relative w-full h-[50vh] min-h-[400px] md:h-[500px] rounded-b-[40px] md:rounded-b-[60px] overflow-hidden shadow-2xl">
         
         {/* Background Image */}
@@ -73,45 +147,51 @@ export default function Careers() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-gray-200 text-base md:text-xl max-w-2xl mx-auto drop-shadow-md"
+            className="text-gray-200 text-base md:text-xl max-w-3xl mx-auto drop-shadow-md"
           >
-            Take your maritime career to the next level with industry-leading offshore engineering, repair, and subsea projects.
+            Take your maritime career to the next level with industry-leading engineering, procurement, and construction (EPC) projects across onshore, offshore, and subsea operations.
           </motion.p>
         </div>
       </section>
 
       {/* ================= JOB LISTINGS SECTION ================= */}
-      {/* Negative top margin pulls this section up to overlap the hero nicely */}
       <section className="max-w-5xl mx-auto px-4 -mt-16 md:-mt-24 relative z-30 space-y-6">
         
         <motion.div
           variants={staggerContainer}
           initial="hidden"
-          animate="visible" // Auto-animates when it mounts since it's right under the hero
+          animate="visible"
           className="space-y-4 md:space-y-6"
         >
           {jobOpenings.map((job, index) => (
             <motion.div 
               key={index}
               variants={fadeUpVariant}
-              className="group w-full bg-white dark:bg-[#1e293b] rounded-[24px] p-6 md:px-10 md:py-8 flex flex-col md:flex-row items-center justify-between shadow-lg hover:shadow-2xl border border-transparent dark:border-gray-800 hover:border-[#FF4500]/30 transition-all duration-300 transform hover:-translate-y-1"
+              className="group w-full bg-white dark:bg-[#1e293b] rounded-[24px] p-6 md:px-10 md:py-8 flex flex-col md:flex-row items-start md:items-center justify-between shadow-lg hover:shadow-2xl border border-transparent dark:border-gray-800 hover:border-[#FF4500]/30 transition-all duration-300 transform hover:-translate-y-1"
             >
-              {/* Job Title */}
-              <h3 className="text-gray-900 dark:text-gray-100 text-xl md:text-2xl font-bold mb-4 md:mb-0 w-full md:w-5/12 text-center md:text-left transition-colors group-hover:text-[#FF4500]">
-                {job.title}
-              </h3>
-
-              {/* Location */}
-              <div className="flex items-center justify-center md:justify-start space-x-2 mb-6 md:mb-0 w-full md:w-3/12">
-                <MapPin className="w-5 h-5 text-[#5A45D3]" />
-                <span className="text-gray-600 dark:text-gray-400 font-medium text-lg">
-                  {job.location}
-                </span>
+              {/* Job Title & Description */}
+              <div className="w-full md:w-7/12 mb-6 md:mb-0 pr-0 md:pr-6 text-left">
+                <h3 className="text-gray-900 dark:text-gray-100 text-xl md:text-2xl font-bold transition-colors group-hover:text-[#FF4500]">
+                  {job.title}
+                </h3>
+                <p className="text-gray-600 dark:text-gray-400 mt-2 text-sm md:text-base leading-relaxed">
+                  {job.description}
+                </p>
               </div>
 
-              {/* Apply Button */}
-              <div className="w-full md:w-4/12 flex justify-center md:justify-end">
-                <button className="bg-[#FF4500] hover:bg-[#E63E00] text-white font-bold py-3 px-8 rounded-full shadow-md hover:shadow-[0_0_20px_rgba(255,69,0,0.4)] transition-all duration-300 flex items-center space-x-2 group/btn">
+              {/* Location & Apply Button Container */}
+              <div className="w-full md:w-5/12 flex flex-col sm:flex-row items-start sm:items-center justify-between sm:justify-end space-y-4 sm:space-y-0 sm:space-x-6">
+                
+                {/* Location */}
+                <div className="flex items-center space-x-2">
+                  <MapPin className="w-5 h-5 text-[#5A45D3]" />
+                  <span className="text-gray-600 dark:text-gray-400 font-medium text-lg">
+                    {job.location}
+                  </span>
+                </div>
+
+                {/* Apply Button */}
+                <button className="w-full sm:w-auto bg-[#FF4500] hover:bg-[#E63E00] text-white font-bold py-3 px-8 rounded-full shadow-md hover:shadow-[0_0_20px_rgba(255,69,0,0.4)] transition-all duration-300 flex items-center justify-center space-x-2 group/btn">
                   <span>Apply Now</span>
                   <ArrowRight className="w-5 h-5 group-hover/btn:translate-x-1 transition-transform" />
                 </button>
