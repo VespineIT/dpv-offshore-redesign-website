@@ -5,14 +5,14 @@ import Link from 'next/link';
 import PrivacyPolicyModal from './PrivacyPolicyModal';
 import TermsAndConditionsModal from './TermsAndConditionsModal';
 import FAQModal from './FAQModal';
-import ContactUsModal from './ContactUsModal'; // 1. Imported the new Contact Us Modal
+import ContactUsModal from './ContactUsModal';
 
 export default function Footer() {
   // States to control the popup visibility
   const [isPrivacyOpen, setIsPrivacyOpen] = useState(false);
   const [isTermsOpen, setIsTermsOpen] = useState(false);
   const [isFaqOpen, setIsFaqOpen] = useState(false);
-  const [isContactOpen, setIsContactOpen] = useState(false); // 2. Added state for Contact Us
+  const [isContactOpen, setIsContactOpen] = useState(false);
 
   return (
     <>
@@ -29,7 +29,7 @@ export default function Footer() {
                </h2>
             </div>
 
-            {/* 2. ISO Certification Section (Center-Left) */}
+            {/* 2. ISO Certification & Memberships Section (Center-Left) */}
             <div className="lg:col-span-4 flex flex-col items-center text-center lg:items-center lg:text-center mt-4 lg:mt-0">
                
                {/* Badge Icon / Footer Logo */}
@@ -42,10 +42,24 @@ export default function Footer() {
                </div>
                
                {/* Certification Text */}
-               <div className="space-y-3 text-sm tracking-wide text-gray-200">
-                  <p>ISO 9001: 2015 Quality – <span className="font-semibold text-green-500">ALREADY HAVE</span></p>
-                  <p>ISO 14001: 2015 Environment – <span className="font-semibold text-yellow-500">PENDING</span></p>
-                  <p>ISO 45001: 2018 Health & Safety – <span className="font-semibold text-yellow-500">PENDING</span></p>
+               <div className="space-y-3 text-sm tracking-wide text-gray-200 mb-6">
+                  <p>ISO 9001: 2015 Quality </p>
+                  <p>ISO 14001: 2015 Environment </p>
+                  <p>ISO 45001: 2018 Health & Safety </p>
+               </div>
+
+               {/* NEW: ShipServ & Bureau Veritas Logos */}
+               <div className="flex flex-row items-center justify-center gap-4 mt-2">
+                 <img 
+                   src="/dpv-offshore-redesign-website/images/ship_serv.jpg" 
+                   alt="ShipServ TradeNet" 
+                   className="h-10 w-auto object-contain rounded-md"
+                 />
+                 <img 
+                   src="/dpv-offshore-redesign-website/images/iso_logo.jpg" 
+                   alt="Bureau Veritas ISO Certification" 
+                   className="h-14 w-auto object-contain rounded-md"
+                 />
                </div>
             </div>
 
@@ -65,8 +79,6 @@ export default function Footer() {
             <div className="lg:col-span-2">
               <h4 className="font-bold text-xl mb-6 text-white">Resources</h4>
               <ul className="space-y-4 text-gray-400">
-                
-                {/* Privacy Policy Trigger */}
                 <li>
                   <button 
                     onClick={() => setIsPrivacyOpen(true)} 
@@ -75,8 +87,6 @@ export default function Footer() {
                     Privacy Policy
                   </button>
                 </li>
-                
-                {/* Terms & Conditions Trigger */}
                 <li>
                   <button 
                     onClick={() => setIsTermsOpen(true)} 
@@ -85,8 +95,6 @@ export default function Footer() {
                     Terms & Conditions
                   </button>
                 </li>
-
-                {/* Contact Us Trigger (3. Changed to a button) */}
                 <li>
                   <button 
                     onClick={() => setIsContactOpen(true)} 
@@ -95,8 +103,6 @@ export default function Footer() {
                     Contact Us
                   </button>
                 </li>
-
-                {/* FAQs Trigger */}
                 <li>
                   <button 
                     onClick={() => setIsFaqOpen(true)} 
@@ -105,7 +111,6 @@ export default function Footer() {
                     FAQs
                   </button>
                 </li>
-
               </ul>
             </div>
 
@@ -145,7 +150,6 @@ export default function Footer() {
       <PrivacyPolicyModal isOpen={isPrivacyOpen} onClose={() => setIsPrivacyOpen(false)} />
       <TermsAndConditionsModal isOpen={isTermsOpen} onClose={() => setIsTermsOpen(false)} />
       <FAQModal isOpen={isFaqOpen} onClose={() => setIsFaqOpen(false)} />
-      {/* 4. Added the Contact Us Modal to the bottom */}
       <ContactUsModal isOpen={isContactOpen} onClose={() => setIsContactOpen(false)} /> 
     </>
   );

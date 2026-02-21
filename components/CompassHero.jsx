@@ -3,53 +3,39 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 
 /* ============================================================
-   ICON COMPONENTS
-   ============================================================ */
-const SunIcon = ({ style }) => (
-  <svg viewBox="0 0 24 24" style={style} fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-    <circle cx="12" cy="12" r="5" fill="currentColor" fillOpacity="0.35" />
-    <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
-  </svg>
-);
-
-const MoonIcon = ({ style }) => (
-  <svg viewBox="0 0 24 24" style={style} fill="currentColor" aria-hidden="true">
-    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
-  </svg>
-);
-
-const StarIcon = ({ style }) => (
-  <svg viewBox="0 0 24 24" style={style} fill="currentColor" aria-hidden="true">
-    <path d="M12 2L14.8 9.2L22 12L14.8 14.8L12 22L9.2 14.8L2 12L9.2 9.2L12 2Z" />
-  </svg>
-);
-
-/* ============================================================
    PARTICLE HELPERS
    ============================================================ */
 const rnd = (min, max) => Math.random() * (max - min) + min;
 
-const WATER_SYMBOLS = [
-  { char: "○", weight: 5 }, { char: "◌", weight: 4 },
-  { char: "•", weight: 5 }, { char: "·", weight: 6 },
-  { char: "◦", weight: 4 }, { char: "◉", weight: 3 },
-  { char: "∘", weight: 3 }, { char: "⊙", weight: 2 },
-  { char: "◎", weight: 2 }, { char: "+", weight: 2 },
-  { char: "×", weight: 1 },
+const SYMBOLS = [
+  { char: "+", weight: 3 },
+  { char: "×", weight: 3 },
+  { char: "○", weight: 2 },
+  { char: "□", weight: 2 },
+  { char: "◇", weight: 2 },
+  { char: "△", weight: 1 },
+  { char: "▽", weight: 1 },
+  { char: "⬟", weight: 1 },
+  { char: "★", weight: 1 },
+  { char: "✦", weight: 1 },
+  { char: "◆", weight: 1 },
+  { char: "⬡", weight: 1 },
 ];
 
 const getSymbol = () => {
-  const total = WATER_SYMBOLS.reduce((s, p) => s + p.weight, 0);
+  const total = SYMBOLS.reduce((s, p) => s + p.weight, 0);
   let r = Math.random() * total;
-  for (const s of WATER_SYMBOLS) { r -= s.weight; if (r <= 0) return s.char; }
-  return "○";
+  for (const s of SYMBOLS) { r -= s.weight; if (r <= 0) return s.char; }
+  return "+";
 };
 
 const LIGHT_PALETTE = [
-  { r: 0,   g: 150, b: 200 }, { r: 0,   g: 180, b: 216 },
-  { r: 72,  g: 191, b: 227 }, { r: 30,  g: 120, b: 180 },
-  { r: 74,  g: 52,  b: 204 }, { r: 0,   g: 200, b: 200 },
-  { r: 100, g: 160, b: 220 }, { r: 20,  g: 100, b: 160 },
+  { r: 37,  g: 26,  b: 102 },
+  { r: 55,  g: 40,  b: 140 },
+  { r: 0,   g: 80,  b: 160 },
+  { r: 236, g: 74,  b: 10 }, 
+  { r: 255, g: 107, b: 53 }, 
+  { r: 10,  g: 90,  b: 180 },
 ];
 
 const DARK_PALETTE = [
@@ -64,24 +50,23 @@ const getColor = (isDark) => {
   return { ...p[Math.floor(Math.random() * p.length)] };
 };
 
-// Cap particle count for performance across all screen sizes
-const getParticleCount = (area) => Math.min(Math.max(Math.floor(area / 4200), 30), 120);
+const FIXED_PARTICLE_COUNT = 800;
 
 const makeParticle = (width, height, isDark) => {
-  const yBias = Math.pow(Math.random(), 0.42);
+  const yBias = Math.pow(Math.random(), 0.6);
   return {
-    baseX:         rnd(-120, width + 120),
-    baseY:         height * 0.36 + yBias * height * 0.66,
+    baseX:         rnd(-100, width + 100),
+    baseY:         height * 0.40 + yBias * height * 0.60, 
     symbol:        getSymbol(),
-    size:          rnd(6, 20),
-    opacity:       rnd(0.18, isDark ? 0.68 : 0.55),
+    size:          rnd(12, 28), // Increased size
+    opacity:       rnd(0.2, isDark ? 0.6 : 0.85),
     phase:         rnd(0, Math.PI * 2),
-    speed:         rnd(0.22, 0.9),
-    amplitude:     rnd(8, 38),
+    speed:         rnd(0.5, 1.5), // Slightly increased wave speed for fluidity
+    amplitude:     rnd(8, 35),
     rotation:      rnd(0, 360),
-    rotationSpeed: rnd(-0.6, 0.6),
+    rotationSpeed: rnd(-2.0, 2.0), // Slightly faster rotation for geometric shapes
     drift:         rnd(-0.3, 0.3),
-    flowSpeed:     rnd(0.3, 1.5),
+    crossTime:     rnd(8000, 25000), // Decreased crossTime to make them move faster
     depth:         Math.random(),
     color:         getColor(isDark),
   };
@@ -113,50 +98,11 @@ export default function CompassHero() {
 
   useEffect(() => {
     isDarkRef.current = isDark;
-    // Update existing particle colors on theme change
     particlesRef.current.forEach((p) => {
       p.color   = getColor(isDark);
-      p.opacity = rnd(0.18, isDark ? 0.68 : 0.55);
+      p.opacity = rnd(0.2, isDark ? 0.6 : 0.85);
     });
   }, [isDark]);
-
-  /* ── Typing animation ────────────────────────────────────── */
-  const LINES = ["Your Assets Are", "In Safe Hands"];
-  const [displayText, setDisplayText] = useState("");
-  const [currentLine, setCurrentLine] = useState(0);
-  const [typingDone, setTypingDone]   = useState(false);
-
-  useEffect(() => {
-    if (currentLine >= LINES.length) { setTypingDone(true); return; }
-    const line = LINES[currentLine];
-    if (displayText.length < line.length) {
-      const t = setTimeout(
-        () => setDisplayText(line.slice(0, displayText.length + 1)),
-        75
-      );
-      return () => clearTimeout(t);
-    } else if (currentLine < LINES.length - 1) {
-      const t = setTimeout(() => {
-        setCurrentLine((c) => c + 1);
-        setDisplayText("");
-      }, 450);
-      return () => clearTimeout(t);
-    } else {
-      setTypingDone(true);
-    }
-  }, [displayText, currentLine]); // LINES is stable — no need in deps
-
-  /* ── Stars config ────────────────────────────────────────── */
-  const STARS = [
-    { top: "7%",  left: "12%", sz: 16, delay: "0s",   dur: "3.2s" },
-    { top: "16%", left: "28%", sz: 20, delay: "1.1s", dur: "4.1s" },
-    { top: "10%", left: "68%", sz: 12, delay: "0.4s", dur: "2.8s" },
-    { top: "29%", left: "18%", sz: 24, delay: "2.3s", dur: "5s"   },
-    { top: "5%",  left: "85%", sz: 16, delay: "0.8s", dur: "3.7s" },
-    { top: "41%", left: "76%", sz: 18, delay: "1.8s", dur: "4.5s" },
-    { top: "20%", left: "48%", sz: 14, delay: "3s",   dur: "3.9s" },
-    { top: "34%", left: "6%",  sz: 20, delay: "0.6s", dur: "4.8s" },
-  ];
 
   /* ── Canvas animation loop ───────────────────────────────── */
   useEffect(() => {
@@ -168,7 +114,7 @@ export default function CompassHero() {
 
     const buildParticles = (w, h) => {
       particlesRef.current = Array.from(
-        { length: getParticleCount(w * h) },
+        { length: FIXED_PARTICLE_COUNT },
         () => makeParticle(w, h, isDarkRef.current)
       );
     };
@@ -179,11 +125,14 @@ export default function CompassHero() {
       const h = parent ? parent.offsetHeight : window.innerHeight;
       if (!w || !h) return;
       dimsRef.current = { w, h };
-      const dpr = Math.min(window.devicePixelRatio || 1, 2); // cap at 2× for perf
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
       canvas.width  = w * dpr;
       canvas.height = h * dpr;
       ctx.scale(dpr, dpr);
-      buildParticles(w, h);
+      
+      if (particlesRef.current.length === 0) {
+        buildParticles(w, h);
+      }
     };
 
     const ro = new ResizeObserver(() => applySize());
@@ -195,7 +144,6 @@ export default function CompassHero() {
     };
     const onLeave = () => { mouseRef.current = { x: -9999, y: -9999 }; };
 
-    // Touch support for mobile mouse-parallax
     const onTouch = (e) => {
       if (!e.touches.length) return;
       const rect = canvas.getBoundingClientRect();
@@ -212,40 +160,51 @@ export default function CompassHero() {
       if (!w || !h) { rafRef.current = requestAnimationFrame(draw); return; }
 
       ctx.clearRect(0, 0, w, h);
-      time += 0.010;
+      time += 0.015;
 
       particlesRef.current.forEach((p) => {
-        p.baseX += p.flowSpeed;
+        const frameSpeed = w / (p.crossTime / 16); 
+        p.baseX += frameSpeed;
+        
         if (p.baseX > w + 100) {
           p.baseX   = -100;
-          p.baseY   = h * 0.36 + Math.pow(Math.random(), 0.42) * h * 0.66;
+          p.baseY   = h * 0.40 + Math.pow(Math.random(), 0.6) * h * 0.60;
           p.symbol  = getSymbol();
-          p.opacity = rnd(0.18, isDarkRef.current ? 0.68 : 0.55);
-          p.size    = rnd(6, 20);
+          p.opacity = rnd(0.2, isDarkRef.current ? 0.6 : 0.85);
+          p.size    = rnd(12, 28); // Increased size on respawn
           p.color   = getColor(isDarkRef.current);
         }
 
-        const xF = p.baseX * 0.005;
-        const w1  = Math.sin(time * p.speed         + p.phase         + xF      ) * p.amplitude;
-        const w2  = Math.sin(time * p.speed * 0.55  + p.phase * 1.45 + xF * 0.5) * p.amplitude * 0.38;
-        const w3  = Math.cos(time * p.speed * 0.85  + xF * 0.8       )            * p.amplitude * 0.20;
-        const w4  = Math.sin(time * 0.28            + p.phase * 0.6  )            * 12;
-        const dy  = Math.sin(time * 0.38 + p.phase) * p.drift * 10;
+        const xPercent = p.baseX / w;
+        
+        const wave1 = Math.sin(time * p.speed + p.phase + p.baseX * 0.008) * p.amplitude;
+        const wave2 = Math.sin(time * p.speed * 0.5 + p.phase * 1.3) * p.amplitude * 0.3;
+        const wave3 = Math.cos(time * p.speed * 0.8 + p.baseX * 0.01) * p.amplitude * 0.2;
+        const waveY = wave1 + wave2 + wave3;
+        const driftY = Math.sin(time * 0.5 + p.phase) * p.drift * 8;
+        
+        let dip = 0;
+        if (w >= 768 && xPercent > 0.30) {
+          const dipFactor = Math.min(1, (xPercent - 0.30) / 0.4); 
+          const ease = dipFactor * dipFactor * (3 - 2 * dipFactor); 
+          dip = ease * 380; 
+        }
 
         const dx   = mouseRef.current.x - p.baseX;
-        const dmy  = mouseRef.current.y - p.baseY;
-        const dist = Math.hypot(dx, dmy);
+        const dy   = mouseRef.current.y - p.baseY;
+        const dist = Math.hypot(dx, dy);
         let mx = 0, my = 0;
-        if (dist < 120 && dist > 0) {
-          const f = (1 - dist / 120) * 18;
-          mx = (dx / dist) * f * 0.3;
-          my = (dmy / dist) * f * 0.3;
+        
+        if (dist < 150 && dist > 0) {
+          const force = (1 - dist / 150) * 30;
+          mx = -(dx / dist) * force; 
+          my = -(dy / dist) * force; 
         }
 
         p.rotation += p.rotationSpeed;
         const dScale = 0.45 + p.depth * 0.55;
         const finalX = p.baseX + mx;
-        const finalY = p.baseY + w1 + w2 + w3 + w4 + dy + my;
+        const finalY = p.baseY + waveY + driftY + dip + my;
         const { r, g, b } = p.color;
 
         ctx.save();
@@ -262,7 +221,6 @@ export default function CompassHero() {
       rafRef.current = requestAnimationFrame(draw);
     };
 
-    // Small delay for layout stabilization
     const init = setTimeout(() => { applySize(); draw(); }, 60);
 
     window.addEventListener("mousemove",  onMove);
@@ -282,128 +240,127 @@ export default function CompassHero() {
     };
   }, []);
 
+  /* ── Dynamic Text Spotlight Tracker ──────────────────────── */
+  const titleWrapperRef = useRef(null);
+
+  const handleTitleMouseMove = useCallback((e) => {
+    if (!titleWrapperRef.current) return;
+    const rect = titleWrapperRef.current.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    titleWrapperRef.current.style.setProperty("--mouse-x", `${x}px`);
+    titleWrapperRef.current.style.setProperty("--mouse-y", `${y}px`);
+  }, []);
+
+  const handleTitleMouseLeave = useCallback(() => {
+    if (!titleWrapperRef.current) return;
+    titleWrapperRef.current.style.setProperty("--mouse-x", `-9999px`);
+    titleWrapperRef.current.style.setProperty("--mouse-y", `-9999px`);
+  }, []);
+
   /* ── Theme tokens ────────────────────────────────────────── */
   const T = {
     bg:          isDark
       ? "linear-gradient(180deg,#030712 0%,#060d1f 55%,#0c1525 100%)"
-      : "linear-gradient(180deg,#f8f9ff 0%,#f0f2ff 50%,#e8ecf8 100%)",
+      : "linear-gradient(180deg,#ffffff 0%,#fafafa 50%,#f5f5f5 100%)",
     overlay:     isDark
       ? "radial-gradient(ellipse 100% 60% at 50% 100%,rgba(56,189,248,0.06) 0%,transparent 70%)"
-      : "radial-gradient(ellipse 100% 60% at 50% 100%,rgba(74,52,204,0.05) 0%,transparent 70%)",
+      : "radial-gradient(ellipse 100% 60% at 50% 100%,rgba(37,26,102,0.04) 0%,transparent 70%)",
     bottomFade:  isDark
       ? "linear-gradient(to top,rgba(56,189,248,0.08) 0%,transparent 100%)"
-      : "linear-gradient(to top,rgba(74,52,204,0.06) 0%,transparent 100%)",
-    titleGrad:   isDark
-      ? "linear-gradient(135deg,#818cf8 0%,#22d3ee 55%,#fb923c 100%)"
-      : "linear-gradient(135deg,#4A34CC 0%,#0096C7 55%,#EC4A0A 100%)",
-    subtitleClr: isDark ? "#fb923c" : "#EC4A0A",
-    plusClr:     isDark ? "rgba(129,140,248,0.55)" : "rgba(74,52,204,0.45)",
-    typeClr1:    isDark ? "#818cf8" : "#251A66",
-    typeClr2:    isDark ? "#22d3ee" : "#EC4A0A",
+      : "linear-gradient(to top,rgba(37,26,102,0.06) 0%,transparent 100%)",
+    titleBase:   isDark ? "#ffffff" : "#251A66",
+    hoverGrad:   isDark 
+      ? "linear-gradient(135deg, #e879f9 0%, #c084fc 25%, #22d3ee 50%, #8b5cf6 75%, #e879f9 100%)" 
+      : "linear-gradient(135deg, #251A66 0%, #5a3d9e 25%, #EC4A0A 50%, #ff6b35 75%, #251A66 100%)",
+    plusClr:     isDark ? "rgba(129,140,248,0.55)" : "rgba(37,26,102,0.4)",
     compassFx:   isDark
       ? "drop-shadow(0 20px 60px rgba(56,189,248,0.32))"
       : "drop-shadow(0 20px 60px rgba(74,52,204,0.22))",
-    starClr:     isDark ? "#c7d2fe" : "#a5b4fc",
-    starFx:      isDark
-      ? "drop-shadow(0 0 7px rgba(199,210,254,1))"
-      : "drop-shadow(0 0 3px rgba(165,180,252,0.5))",
-    starAnim:    isDark ? "twinkleDark" : "twinkle",
-    sunOp:       isDark ? 0 : 0.65,
-    moonOp:      isDark ? 0.9 : 0,
     textColor:   isDark ? "rgba(255,255,255,0.9)" : "rgba(15,15,35,0.85)",
-    cardBg:      isDark ? "rgba(255,255,255,0.04)" : "rgba(255,255,255,0.7)",
-    cardBorder:  isDark ? "rgba(255,255,255,0.08)" : "rgba(74,52,204,0.12)",
   };
+
+  const lines = ["Let's work", "together!"];
 
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;1,300;1,400&family=DM+Sans:wght@400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Sans:wght@400;600;700&display=swap');
+
+        :root {
+          --title-hover-grad: ${T.hoverGrad};
+        }
 
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-        @keyframes fadeInUp    { from{opacity:0;transform:translateY(28px)} to{opacity:1;transform:translateY(0)} }
-        @keyframes floatPlus   { 0%,100%{transform:translateY(0) rotate(0deg);opacity:.38} 50%{transform:translateY(-12px) rotate(90deg);opacity:.7} }
-        @keyframes gradShift   { 0%,100%{background-position:0% 50%} 50%{background-position:100% 50%} }
-        @keyframes bounceArr   { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(5px)} }
-        @keyframes spinSlow    { to{transform:rotate(360deg)} }
-        @keyframes moonFloat   { 0%,100%{transform:translateY(0) rotate(-5deg)} 50%{transform:translateY(-14px) rotate(5deg)} }
+        @keyframes fadeInUp    { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
+        @keyframes floatPlus   { 0%,100%{transform:translateY(0) rotate(0deg);opacity:0.4} 50%{transform:translateY(-12px) rotate(90deg);opacity:0.7} }
+        @keyframes gradShift   { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
         @keyframes pulseSlow   { 0%,100%{opacity:.28;transform:scale(1)} 50%{opacity:.55;transform:scale(1.12)} }
-        @keyframes rayRot      { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
-        @keyframes twinkle     { 0%,100%{opacity:.1;transform:scale(.82)} 50%{opacity:.4;transform:scale(1.15)} }
-        @keyframes twinkleDark { 0%,100%{opacity:.35;transform:scale(.82)} 50%{opacity:1;transform:scale(1.18)} }
-        @keyframes blink       { 0%,49%{opacity:1} 50%,100%{opacity:0} }
         @keyframes rotateCW    { to{transform:rotate(360deg)} }
         @keyframes rotateCCW   { to{transform:rotate(-360deg)} }
-        @keyframes heroReveal  { from{opacity:0;transform:translateY(20px) scale(0.98)} to{opacity:1;transform:translateY(0) scale(1)} }
-        @keyframes badgePop    { from{opacity:0;transform:scale(0.8) translateY(8px)} to{opacity:1;transform:scale(1) translateY(0)} }
-        @keyframes shimmer     { 0%{background-position:-200% center} 100%{background-position:200% center} }
 
-        /* Base utility animations */
-        .ch-fadeInUp  { opacity:0; animation:fadeInUp 0.9s cubic-bezier(0.22,1,0.36,1) forwards; }
-        .ch-floatPlus { animation:floatPlus 4.2s ease-in-out infinite; }
-        .ch-bounceArr { animation:bounceArr 2.2s ease-in-out infinite; }
-        .ch-moonFloat { animation:moonFloat 6s ease-in-out infinite; }
+        .ch-fadeInUp  { opacity:0; animation:fadeInUp 1s ease-out forwards; }
+        .ch-floatPlus { animation:floatPlus 4s ease-in-out infinite; }
         .ch-pulseSlow { animation:pulseSlow 10s ease-in-out infinite; }
-        .ch-rayRot    { animation:rayRot 60s linear infinite; }
         .ch-rotateCW  { animation:rotateCW  20s linear infinite; }
         .ch-rotateCCW { animation:rotateCCW 15s linear infinite; }
-        .ch-blink     { animation:blink 0.85s infinite; display:inline-block; }
 
-        .d200  { animation-delay:.2s; }
         .d400  { animation-delay:.4s; }
-        .d600  { animation-delay:.6s; }
-        .d800  { animation-delay:.8s; }
-        .d1000 { animation-delay:1.0s; }
-        .d1200 { animation-delay:1.2s; }
-        .d1400 { animation-delay:1.4s; }
+        .d500  { animation-delay:.5s; }
+        .d700  { animation-delay:.7s; }
+        .d1000 { animation-delay:1s; }
 
-        /* Subtitle */
-        .ch-subtitle {
-          font-family:'DM Sans',sans-serif;
-          font-size:clamp(10px,1.1vw,13px);
-          letter-spacing:3.5px;
-          text-transform:uppercase;
-          font-weight:700;
-          background-size:200% 200%;
-          background-clip:text;
-          -webkit-background-clip:text;
-          -webkit-text-fill-color:transparent;
-          transition:all 0.4s cubic-bezier(0.4,0,0.2,1);
-          cursor:default;
+        .ch-title-wrapper {
+          position: relative;
+          display: inline-block; 
+          --mouse-x: -9999px;
+          --mouse-y: -9999px;
         }
-        .ch-subtitle:hover { animation:gradShift 3s ease infinite; }
 
-        /* Title lines */
         .ch-title-line {
           display:block;
-          font-family:'Bebas Neue',cursive;
-          font-size:clamp(48px,9.5vw,140px);
-          font-weight:400;
-          line-height:0.93;
-          letter-spacing:0.01em;
-          background-size:200% 200%;
-          background-clip:text;
-          -webkit-background-clip:text;
-          -webkit-text-fill-color:transparent;
+          font-family:'Inter', sans-serif;
+          font-size: clamp(42px, 11vw, 160px);
+          font-weight: 500; 
+          line-height: 1.05; 
+          letter-spacing: -0.03em;
+          color: ${T.titleBase};
           cursor:default;
-          transition:background .7s;
-          will-change:transform;
+          will-change: transform;
+          white-space: nowrap;
         }
-        .ch-title-line:hover { animation:gradShift 3s ease infinite; }
 
-        /* CTA Button */
+        .ch-hover-overlay {
+          position: absolute;
+          inset: 0;
+          pointer-events: none; 
+          -webkit-mask-image: radial-gradient(180px circle at var(--mouse-x) var(--mouse-y), black 10%, transparent 100%);
+          mask-image: radial-gradient(180px circle at var(--mouse-x) var(--mouse-y), black 10%, transparent 100%);
+        }
+
+        .ch-title-line.hover-glow {
+          background-image: var(--title-hover-grad) !important;
+          background-size: 200% 200%;
+          background-clip: text;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          color: transparent;
+          animation: gradShift 3s ease infinite; 
+          text-shadow: none;
+        }
+
         .ch-btn {
           display:inline-flex;
           align-items:center;
           gap:12px;
-          padding:15px 30px;
-          background:linear-gradient(135deg,#EC4A0A 0%,#ff6935 100%);
+          padding:16px 36px;
+          background:linear-gradient(135deg,#EC4A0A 0%,#ff6b35 100%);
           border:none;
           border-radius:100px;
           color:#fff;
           font-family:'DM Sans',sans-serif;
-          font-size:11px;
+          font-size:12px;
           font-weight:700;
           letter-spacing:1.8px;
           cursor:pointer;
@@ -428,44 +385,7 @@ export default function CompassHero() {
         }
         .ch-btn:hover::before { opacity:1; }
         .ch-btn:active { transform:translateY(-1px) scale(1.01); }
-        .ch-btn:focus-visible {
-          outline:3px solid #EC4A0A;
-          outline-offset:4px;
-        }
 
-        /* Stat badges */
-        .ch-badge {
-          display:flex;
-          flex-direction:column;
-          align-items:center;
-          gap:3px;
-          padding:14px 20px;
-          border-radius:16px;
-          border:1px solid;
-          backdrop-filter:blur(12px);
-          -webkit-backdrop-filter:blur(12px);
-          transition:all 0.3s ease;
-          cursor:default;
-          animation:badgePop 0.7s cubic-bezier(0.34,1.56,0.64,1) both;
-        }
-        .ch-badge:hover {
-          transform:translateY(-3px);
-        }
-        .ch-badge-num {
-          font-family:'Bebas Neue',cursive;
-          font-size:clamp(22px,2.5vw,32px);
-          line-height:1;
-        }
-        .ch-badge-lbl {
-          font-family:'DM Sans',sans-serif;
-          font-size:clamp(9px,0.75vw,11px);
-          letter-spacing:2px;
-          text-transform:uppercase;
-          font-weight:600;
-          opacity:0.7;
-        }
-
-        /* Decorative plus sign */
         .ch-decor {
           font-size:24px;
           font-weight:300;
@@ -474,68 +394,31 @@ export default function CompassHero() {
           line-height:1;
         }
 
-        /* Scroll indicator */
-        .ch-scroll {
-          position:absolute;
-          bottom:32px;
-          left:50%;
-          transform:translateX(-50%);
-          display:flex;
-          flex-direction:column;
-          align-items:center;
-          gap:8px;
-          opacity:0;
-          animation:fadeInUp 1s 2s ease forwards;
-          z-index:20;
-          cursor:pointer;
-          text-decoration:none;
-        }
-        .ch-scroll-label {
-          font-family:'DM Sans',sans-serif;
-          font-size:9px;
-          letter-spacing:3px;
-          text-transform:uppercase;
-          font-weight:600;
-          opacity:0.45;
-        }
-
         /* ── RESPONSIVE ── */
         @media (max-width:1024px) {
-          .ch-grid { grid-template-columns:1fr !important; gap:0 !important; }
-          .ch-compass-wrap { display:flex !important; max-width:340px !important; margin:0 auto; }
-          .ch-left { align-items:center !important; text-align:center !important; padding-top:60px; }
-          .ch-left .ch-btn { align-self:center !important; }
-          .ch-left .ch-decor { align-self:center !important; }
-          .ch-badges { justify-content:center !important; }
+          .ch-grid { grid-template-columns:1fr 1fr !important; gap:20px !important; }
+          .ch-compass-wrap { max-width:400px !important; margin:0 auto; }
         }
         @media (max-width:768px) {
-          .ch-grid { padding:0 20px !important; }
-          .ch-compass-wrap { max-width:260px !important; }
-          .ch-badges { gap:10px !important; }
-        }
-        @media (max-width:480px) {
-          .ch-grid { padding:0 16px !important; }
-          .ch-compass-wrap { max-width:200px !important; }
-          .ch-badge { padding:10px 14px !important; }
+          .ch-grid { grid-template-columns:1fr !important; padding:0 20px !important; text-align:center; }
+          .ch-left { align-items:center !important; padding-top:40px; }
+          .ch-compass-wrap { display:none !important; } 
+          .ch-title-line { font-size: clamp(36px, 14vw, 72px); }
         }
         @media (min-width:1600px) {
           .ch-grid { max-width:1440px !important; }
         }
-        @media (min-width:2000px) {
-          .ch-grid { max-width:1800px !important; }
-        }
 
         @media (prefers-reduced-motion:reduce) {
-          .ch-fadeInUp,.ch-floatPlus,.ch-bounceArr,.ch-moonFloat,
-          .ch-pulseSlow,.ch-rayRot,.ch-rotateCW,.ch-rotateCCW,
-          .ch-badge,.ch-scroll { animation:none !important; opacity:1 !important; transform:none !important; }
+          .ch-fadeInUp,.ch-floatPlus,
+          .ch-pulseSlow,.ch-rotateCW,.ch-rotateCCW { animation:none !important; opacity:1 !important; transform:none !important; }
         }
       `}</style>
 
       {/* ── SECTION ──────────────────────────────────────────── */}
       <section
         role="banner"
-        aria-label="DPV Offshore - EPC Services for the Offshore Industry"
+        aria-label="DPV Offshore - Let's Work Together"
         style={{
           position:"relative",
           width:"100%",
@@ -550,55 +433,13 @@ export default function CompassHero() {
           transition:"background 0.7s ease",
         }}
       >
-        {/* Overlay glow */}
         <div aria-hidden="true" style={{position:"absolute",inset:0,background:T.overlay,pointerEvents:"none",zIndex:1,transition:"background .7s"}}/>
-
-        {/* ── SKY LAYER ──────────────────────────────────────── */}
-        <div aria-hidden="true" style={{position:"absolute",top:0,left:0,width:"100%",height:"66%",zIndex:2,pointerEvents:"none",overflow:"hidden"}}>
-
-          {/* SUN */}
-          <div style={{position:"absolute",top:"8%",left:"10%",opacity:T.sunOp,transition:"opacity .85s ease"}}>
-            <div style={{position:"relative",width:88,height:88}}>
-              <SunIcon style={{width:88,height:88,color:"#EC4A0A",animation:"spinSlow 32s linear infinite"}} />
-              <div className="ch-pulseSlow" style={{position:"absolute",top:"50%",left:"50%",transform:"translate(-50%,-50%)",width:140,height:140,borderRadius:"50%",background:"radial-gradient(circle,rgba(236,74,10,.4) 0%,transparent 68%)",pointerEvents:"none"}}/>
-              <div className="ch-rayRot" style={{position:"absolute",top:"-42%",left:"-42%",width:"184%",height:"184%",borderRadius:"50%",background:"conic-gradient(from 0deg,transparent 0deg,rgba(236,74,10,.12) 8deg,transparent 16deg,rgba(236,74,10,.07) 24deg,transparent 32deg)",pointerEvents:"none"}}/>
-            </div>
-          </div>
-
-          {/* MOON */}
-          <div style={{position:"absolute",top:"8%",left:"11%",opacity:T.moonOp,transition:"opacity .85s ease"}}>
-            <div style={{position:"relative",width:78,height:78}}>
-              <MoonIcon style={{width:78,height:78,color:"#e0f2fe",animation:"moonFloat 6s ease-in-out infinite",filter:"drop-shadow(0 0 22px rgba(224,242,254,.65))"}}/>
-              <div style={{position:"absolute",top:"50%",left:"50%",transform:"translate(-50%,-50%)",width:125,height:125,borderRadius:"50%",background:"radial-gradient(circle,rgba(224,242,254,.2) 0%,transparent 68%)",pointerEvents:"none"}}/>
-            </div>
-          </div>
-
-          {/* STARS — visible in both modes at different opacities */}
-          {STARS.map((s, i) => (
-            <div
-              key={i}
-              aria-hidden="true"
-              style={{
-                position:"absolute",
-                top:s.top, left:s.left,
-                width:s.sz, height:s.sz,
-                color:T.starClr,
-                filter:T.starFx,
-                animation:`${T.starAnim} ${s.dur} ease-in-out ${s.delay} infinite`,
-                transition:"color .7s,filter .7s,opacity .7s",
-                opacity: isDark ? 1 : 0.35,
-              }}
-            >
-              <StarIcon style={{width:"100%",height:"100%"}}/>
-            </div>
-          ))}
-        </div>
 
         {/* ── CANVAS ─────────────────────────────────────────── */}
         <canvas
           ref={canvasRef}
           aria-hidden="true"
-          style={{position:"absolute",inset:0,width:"100%",height:"100%",pointerEvents:"none",zIndex:3}}
+          style={{position:"absolute",inset:0,width:"100%",height:"100%",pointerEvents:"none",zIndex:2}}
         />
 
         {/* ── CONTENT GRID ────────────────────────────────────── */}
@@ -612,8 +453,8 @@ export default function CompassHero() {
             margin:"0 auto",
             padding:"80px 40px",
             display:"grid",
-            gridTemplateColumns:"1fr 1fr",
-            gap:"56px",
+            gridTemplateColumns:"1.2fr 1fr",
+            gap:"100px",
             alignItems:"center",
             minHeight:"100vh",
           }}
@@ -623,122 +464,44 @@ export default function CompassHero() {
             className="ch-left"
             style={{display:"flex",flexDirection:"column",justifyContent:"center",gap:"24px",alignItems:"flex-start"}}
           >
-            {/* Decorative + */}
-            <span
-              className="ch-decor ch-floatPlus"
-              aria-hidden="true"
-              style={{color:T.plusClr,alignSelf:"flex-start",transition:"color .7s"}}
-            >+</span>
-
-            {/* Subtitle */}
-            <p
-              className="ch-subtitle ch-fadeInUp d200"
-              style={{
-                margin:0,
-                backgroundImage:`linear-gradient(135deg,${T.subtitleClr},${T.subtitleClr})`,
-              }}
+            {/* Dynamic Interactive Title Wrapper */}
+            <div 
+              className="ch-title-wrapper"
+              ref={titleWrapperRef}
+              onMouseMove={handleTitleMouseMove}
+              onMouseLeave={handleTitleMouseLeave}
             >
-              Engineering · Procurement · Construction
-            </p>
-
-            {/* Main Heading */}
-            <div style={{display:"flex",flexDirection:"column",gap:0}}>
+              {/* Base Text Layer */}
               <h1 style={{margin:0,padding:0,border:0,display:"flex",flexDirection:"column",gap:0}}>
-                {["Let's work","together!"].map((line, i) => (
-                  <span key={i} className={`ch-fadeInUp ${i===0?"d400":"d600"}`}>
-                    <span
-                      className="ch-title-line"
-                      style={{backgroundImage:T.titleGrad}}
-                    >{line}</span>
+                {lines.map((line, i) => (
+                  <span key={`base-${i}`} className={`ch-fadeInUp ${i===0?"d500":"d700"}`}>
+                    <span className="ch-title-line">{line}</span>
                   </span>
                 ))}
               </h1>
 
-              {/* Typing tagline */}
-              <div
-                style={{marginTop:"20px",minHeight:"3.4em"}}
-                aria-live="polite"
-                aria-atomic="false"
-              >
-                <p style={{
-                  fontFamily:"'Cormorant Garamond',serif",
-                  fontStyle:"italic",
-                  fontWeight:300,
-                  fontSize:"clamp(1.25rem,2.6vw,2.5rem)",
-                  lineHeight:1.25,
-                  margin:0,
-                  letterSpacing:"-0.01em",
-                }}>
-                  <span style={{display:"block",color:T.typeClr1,transition:"color .7s"}}>
-                    {currentLine===0 ? displayText : LINES[0]}
-                    {currentLine===0 && !typingDone &&
-                      <span className="ch-blink" style={{color:T.typeClr1}} aria-hidden="true">|</span>
-                    }
+              {/* Spotlight Hover Glow Layer */}
+              <div aria-hidden="true" className="ch-hover-overlay" style={{display:"flex",flexDirection:"column",gap:0}}>
+                {lines.map((line, i) => (
+                  <span key={`glow-${i}`} className={`ch-fadeInUp ${i===0?"d500":"d700"}`}>
+                    <span className="ch-title-line hover-glow">{line}</span>
                   </span>
-                  {currentLine >= 1 && (
-                    <span style={{display:"block",color:T.typeClr2,transition:"color .7s"}}>
-                      {currentLine===1 ? displayText : LINES[1]}
-                      {currentLine===1 && !typingDone &&
-                        <span className="ch-blink" style={{color:T.typeClr2}} aria-hidden="true">|</span>
-                      }
-                    </span>
-                  )}
-                </p>
+                ))}
               </div>
-            </div>
-
-            {/* Stat Badges */}
-            <div
-              className="ch-badges"
-              style={{
-                display:"flex",
-                gap:"14px",
-                flexWrap:"wrap",
-                marginTop:"4px",
-              }}
-            >
-              {[
-                { num:"25+", lbl:"Years Experience", delay:"1.0s" },
-                { num:"200+", lbl:"Projects Delivered", delay:"1.15s" },
-                { num:"40+", lbl:"Countries Served",  delay:"1.3s" },
-              ].map(({ num, lbl, delay }) => (
-                <div
-                  key={lbl}
-                  className="ch-badge"
-                  style={{
-                    background:T.cardBg,
-                    borderColor:T.cardBorder,
-                    animationDelay:delay,
-                    color:T.textColor,
-                    transition:"background .7s,border-color .7s,color .7s",
-                  }}
-                >
-                  <span
-                    className="ch-badge-num"
-                    style={{
-                      backgroundImage:T.titleGrad,
-                      backgroundClip:"text",
-                      WebkitBackgroundClip:"text",
-                      WebkitTextFillColor:"transparent",
-                    }}
-                  >{num}</span>
-                  <span className="ch-badge-lbl">{lbl}</span>
-                </div>
-              ))}
             </div>
 
             {/* CTA Button */}
             <button
-              className="ch-btn ch-fadeInUp d1200"
-              style={{alignSelf:"flex-start",marginTop:"8px"}}
-              aria-label="Contact DPV Offshore for EPC services"
+              className="ch-btn ch-fadeInUp d1000"
+              style={{marginTop:"24px"}}
+              aria-label="Contact DPV Offshore"
             >
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" aria-hidden="true">
                 <circle cx="12" cy="12" r="10"/>
                 <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>
               </svg>
               CONTACT US
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" aria-hidden="true" style={{flexShrink:0}}>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" aria-hidden="true" style={{flexShrink:0}}>
                 <path d="M5 12h14M12 5l7 7-7 7"/>
               </svg>
             </button>
@@ -750,7 +513,7 @@ export default function CompassHero() {
             style={{display:"flex",alignItems:"center",justifyContent:"center"}}
           >
             <div
-              className="ch-fadeInUp d800"
+              className="ch-fadeInUp d700"
               style={{
                 position:"relative",
                 aspectRatio:"1/1",
@@ -768,14 +531,14 @@ export default function CompassHero() {
                   borderRadius:"50%",
                   background: isDark
                     ? "radial-gradient(circle,rgba(56,189,248,0.09) 0%,transparent 70%)"
-                    : "radial-gradient(circle,rgba(74,52,204,0.07) 0%,transparent 70%)",
+                    : "radial-gradient(circle,rgba(37,26,102,0.05) 0%,transparent 70%)",
                   transition:"background .7s",
                 }}
               />
 
               <img
                 src="/dpv-offshore-redesign-website/images/compass_design.png"
-                alt="DPV Offshore compass — navigation through offshore engineering"
+                alt="DPV Offshore compass"
                 draggable="false"
                 loading="eager"
                 style={{
@@ -815,33 +578,46 @@ export default function CompassHero() {
           </div>
         </div>
 
-        {/* ── Floating decorative + (top-right) ────────────── */}
+        {/* ── Floating decorative + ────────────── */}
         <span
           className="ch-decor ch-floatPlus"
           aria-hidden="true"
           style={{
             position:"absolute",
-            top:"22%",
-            right:"14%",
+            top:"15%",
+            left:"8%",
             color:T.plusClr,
-            animationDelay:"2.1s",
+            animationDelay:"1.1s",
             zIndex:10,
             transition:"color .7s",
           }}
         >+</span>
 
-        {/* Second decorative + */}
         <span
           className="ch-decor ch-floatPlus"
           aria-hidden="true"
           style={{
             position:"absolute",
-            top:"58%",
-            right:"42%",
+            top:"30%",
+            right:"45%",
             color:T.plusClr,
             fontSize:16,
             opacity:0.5,
             animationDelay:"3.5s",
+            zIndex:10,
+            transition:"color .7s",
+          }}
+        >+</span>
+
+        <span
+          className="ch-decor ch-floatPlus"
+          aria-hidden="true"
+          style={{
+            position:"absolute",
+            bottom:"25%",
+            right:"12%",
+            color:T.plusClr,
+            animationDelay:"2.1s",
             zIndex:10,
             transition:"color .7s",
           }}
@@ -862,31 +638,6 @@ export default function CompassHero() {
             transition:"background .7s",
           }}
         />
-
-        {/* ── Scroll indicator ──────────────────────────────── */}
-        <a
-          href="#services"
-          className="ch-scroll"
-          aria-label="Scroll down to explore our services"
-          style={{color: T.textColor}}
-        >
-          <span className="ch-scroll-label" style={{color: T.textColor}}>Scroll</span>
-          <svg
-            className="ch-bounceArr"
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.8"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            style={{opacity:.4}}
-            aria-hidden="true"
-          >
-            <path d="M12 5v14M5 12l7 7 7-7"/>
-          </svg>
-        </a>
       </section>
     </>
   );
