@@ -18,7 +18,7 @@ export default function Navbar() {
 
   /* ================= CYLINDER (PILL) STYLES ================= */
   const activeStyles =
-    "bg-[#ec4a0a] text-white px-6 py-2.5 rounded-full flex items-center justify-center font-bold tracking-wider shadow-md transition-all duration-300 ease-in-out transform scale-105";
+    "bg-[#ec4a0a] text-white px-4 py-1.5 rounded-full flex items-center justify-center font-bold tracking-wider shadow-md transition-all duration-300 ease-in-out transform scale-105";
 
   const inactiveStyles =
     "text-[#1a1a54] dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 px-6 py-2.5 rounded-full flex items-center font-bold tracking-wider transition-all duration-300 ease-in-out";

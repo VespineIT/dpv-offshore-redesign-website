@@ -73,16 +73,22 @@ const AboutUsSection = () => {
 
           {/* ADDED TEXT SECTION */}
           <div className="max-w-4xl mx-auto text-center px-4 flex-grow flex flex-col justify-center my-6">
-            <p className="text-white text-sm sm:text-base md:text-xl leading-relaxed drop-shadow-md mb-4 md:mb-6">
-              <span className="text-[#FF4500] font-bold">DPV Offshore</span> specializes in engineering, procurement, and construction (EPC) services for the offshore industry, encompassing onshore, offshore, and subsea operations.
-            </p>
-            <p className="text-white text-sm sm:text-base md:text-xl leading-relaxed drop-shadow-md mb-4 md:mb-6">
-              Our comprehensive capabilities — from design engineering to manufacturing, installation, maintenance, repair, and component supply — enable us to deliver seamless project execution with uncompromising safety and quality standards.
-            </p>
-            <p className="text-white text-sm sm:text-base md:text-xl leading-relaxed drop-shadow-md">
-              Built on long-term client relationships and proven performance, we continue to earn the trust of our partners through our consistent commitment to excellence, reliability, and value-driven delivery.
-            </p>
-          </div>
+  <p className="text-white text-sm sm:text-base md:text-xl leading-relaxed drop-shadow-md mb-4 md:mb-6">
+    <span className="text-[#FF4500] font-bold">DPV Offshore</span> specializes in engineering, procurement, and construction (EPC) services for the offshore industry, encompassing onshore, offshore, and subsea operations.
+  </p>
+  <p className="text-white text-sm sm:text-base md:text-xl leading-relaxed drop-shadow-md mb-4 md:mb-6">
+    Our comprehensive capabilities — from design engineering to manufacturing, installation, maintenance, repair, and component supply — enable us to deliver seamless project execution with uncompromising safety and quality standards.
+  </p>
+  <p className="text-white text-sm sm:text-base md:text-xl leading-relaxed drop-shadow-md">
+    Built on long-term client relationships and proven performance, we continue to earn the trust of our partners through our consistent commitment to excellence, reliability, and value-driven delivery.
+    <a 
+      href="/about" 
+      className="inline-block ml-2 text-[#FF4500] font-bold hover:text-white transition-colors duration-300 underline underline-offset-4"
+    >
+      Learn more about our journey &rarr;
+    </a>
+  </p>
+</div>
 
           {/* Stats Section */}
           <div className="grid grid-cols-3 gap-2 max-w-5xl mx-auto w-full mb-4 md:mb-8">

@@ -29,47 +29,69 @@ const getSymbol = () => {
   return "+";
 };
 
+// Updated to Hex Codes
 const LIGHT_PALETTE = [
-  { r: 37,  g: 26,  b: 102 },
-  { r: 55,  g: 40,  b: 140 },
-  { r: 0,   g: 80,  b: 160 },
-  { r: 236, g: 74,  b: 10 }, 
-  { r: 255, g: 107, b: 53 }, 
-  { r: 10,  g: 90,  b: 180 },
+  "#251A66", "#37288C", "#0050A0", "#EC4A0A", "#FF6B35", "#0A5AB4"
 ];
 
 const DARK_PALETTE = [
-  { r: 56,  g: 189, b: 248 }, { r: 34,  g: 211, b: 238 },
-  { r: 99,  g: 102, b: 241 }, { r: 129, g: 140, b: 248 },
-  { r: 147, g: 197, b: 253 }, { r: 0,   g: 210, b: 220 },
-  { r: 167, g: 243, b: 208 }, { r: 224, g: 242, b: 254 },
+  "#251A66", // Deep Night (Input)
+  "#EC4A0A", // Burnt Orange (Input)
+  "#6366F1", // Electric Indigo
+  "#7C3AED", // Royal Purple
+  "#A855F7", // Soft Lavender
+  "#4C1D95", // Deep Violet
+  "#C084FC", // Periwinkle
+  "#E0E7FF"  // Sky Mist
 ];
 
 const getColor = (isDark) => {
   const p = isDark ? DARK_PALETTE : LIGHT_PALETTE;
-  return { ...p[Math.floor(Math.random() * p.length)] };
+  return p[Math.floor(Math.random() * p.length)]; // Returns hex string directly
 };
 
-const FIXED_PARTICLE_COUNT = 800;
+// Adjusted to 800 for less density but wider spread
+const FIXED_PARTICLE_COUNT = 800; 
 
 const makeParticle = (width, height, isDark) => {
+  const baseX = rnd(-100, width + 100);
+  
+  // Biased distribution covering 40%–100% height
   const yBias = Math.pow(Math.random(), 0.6);
+  const baseY = height * 0.4 + (height * 0.6 * yBias);
+
   return {
-    baseX:         rnd(-100, width + 100),
-    baseY:         height * 0.40 + yBias * height * 0.60, 
+    baseX,
+    baseY,
     symbol:        getSymbol(),
-    size:          rnd(12, 28), // Increased size
+    size:          rnd(10, 24),
     opacity:       rnd(0.2, isDark ? 0.6 : 0.85),
     phase:         rnd(0, Math.PI * 2),
-    speed:         rnd(0.5, 1.5), // Slightly increased wave speed for fluidity
-    amplitude:     rnd(8, 35),
+    phaseX:        rnd(0, Math.PI * 2),
+    speedY:        rnd(0.5, 1.5),     // Moderate, not too fast
+    speedX:        rnd(0.5, 1.5),     // Moderate spatial modulation
+    amplitude:     rnd(8, 35),        // Tighter, calmer vertical travel
     rotation:      rnd(0, 360),
-    rotationSpeed: rnd(-2.0, 2.0), // Slightly faster rotation for geometric shapes
-    drift:         rnd(-0.3, 0.3),
-    crossTime:     rnd(8000, 25000), // Decreased crossTime to make them move faster
+    rotationSpeed: rnd(-2.0, 2.0),    // More active spin
+    drift:         rnd(-0.15, 0.15),
+    crossTime:     rnd(17500, 25000),  // Wide variance (fast/slow mix)
     depth:         Math.random(),
     color:         getColor(isDark),
   };
+};
+
+/* ============================================================
+   SMOOTH SPATIAL WAVE
+   ============================================================ */
+const computeWave = (p, time) => {
+  const w1 = Math.sin(time * p.speedY + p.phase) * p.amplitude;
+  const w2 = Math.sin(time * p.speedY * 0.50 + p.phase * 1.3 + 0.8) * p.amplitude * 0.45;
+
+  // Tighter ripple crests using 0.008 and 0.01 spatial frequencies
+  const w3 = Math.sin(time * p.speedX + p.baseX * 0.008 + p.phaseX) * p.amplitude * 0.55;
+  const w4 = Math.cos(time * 0.12 + p.baseX * 0.01 + p.phase * 0.5) * p.amplitude * 0.20;
+
+  return w1 + w2 + w3 + w4;
 };
 
 /* ============================================================
@@ -88,7 +110,7 @@ export default function CompassHero() {
     return () => mq.removeEventListener("change", h);
   }, []);
 
-  /* ── Canvas ──────────────────────────────────────────────── */
+  /* ── Canvas refs ─────────────────────────────────────────── */
   const canvasRef    = useRef(null);
   const particlesRef = useRef([]);
   const rafRef       = useRef(null);
@@ -109,6 +131,9 @@ export default function CompassHero() {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
+
+    // Standard tick as requested
+    const TIME_STEP = 0.015;
     let time = 0;
     let animRunning = true;
 
@@ -129,22 +154,27 @@ export default function CompassHero() {
       canvas.width  = w * dpr;
       canvas.height = h * dpr;
       ctx.scale(dpr, dpr);
-      
+
       if (particlesRef.current.length === 0) {
         buildParticles(w, h);
+      } else {
+        particlesRef.current.forEach(p => {
+          const yBias = Math.pow(Math.random(), 0.6);
+          p.baseY = h * 0.4 + (h * 0.6 * yBias);
+        });
       }
     };
 
     const ro = new ResizeObserver(() => applySize());
     ro.observe(canvas.parentElement || document.body);
 
+    /* ── Mouse / Touch tracking ─────────────────────────── */
     const onMove = (e) => {
       const rect = canvas.getBoundingClientRect();
       mouseRef.current = { x: e.clientX - rect.left, y: e.clientY - rect.top };
     };
-    const onLeave = () => { mouseRef.current = { x: -9999, y: -9999 }; };
-
-    const onTouch = (e) => {
+    const onLeave   = () => { mouseRef.current = { x: -9999, y: -9999 }; };
+    const onTouch   = (e) => {
       if (!e.touches.length) return;
       const rect = canvas.getBoundingClientRect();
       mouseRef.current = {
@@ -154,66 +184,76 @@ export default function CompassHero() {
     };
     const onTouchEnd = () => { mouseRef.current = { x: -9999, y: -9999 }; };
 
+    /* ── Main draw loop ─────────────────────────────────── */
     const draw = () => {
       if (!animRunning) return;
       const { w, h } = dimsRef.current;
       if (!w || !h) { rafRef.current = requestAnimationFrame(draw); return; }
 
       ctx.clearRect(0, 0, w, h);
-      time += 0.015;
+      time += TIME_STEP;
 
       particlesRef.current.forEach((p) => {
-        const frameSpeed = w / (p.crossTime / 16); 
-        p.baseX += frameSpeed;
-        
-        if (p.baseX > w + 100) {
-          p.baseX   = -100;
-          p.baseY   = h * 0.40 + Math.pow(Math.random(), 0.6) * h * 0.60;
+        // ── RIGHT-TO-LEFT flow ──────────────────────────────
+        const frameSpeed = w / (p.crossTime / 16);
+        p.baseX -= frameSpeed;
+
+        // When particle exits left edge, respawn at right edge
+        if (p.baseX < -100) {
+          p.baseX   = w + 100;
+          const yBias = Math.pow(Math.random(), 0.6);
+          p.baseY   = h * 0.4 + (h * 0.6 * yBias);
           p.symbol  = getSymbol();
           p.opacity = rnd(0.2, isDarkRef.current ? 0.6 : 0.85);
-          p.size    = rnd(12, 28); // Increased size on respawn
+          p.size    = rnd(10, 24);
           p.color   = getColor(isDarkRef.current);
+          p.phase   = rnd(0, Math.PI * 2);
+          p.phaseX  = rnd(0, Math.PI * 2);
+          p.speedY  = rnd(0.5, 1.5); 
+          p.speedX  = rnd(0.5, 1.5); 
+          p.amplitude = rnd(8, 35);
+          p.rotationSpeed = rnd(-2.0, 2.0);
+          p.crossTime = rnd(17500, 25000);
         }
 
-        const xPercent = p.baseX / w;
-        
-        const wave1 = Math.sin(time * p.speed + p.phase + p.baseX * 0.008) * p.amplitude;
-        const wave2 = Math.sin(time * p.speed * 0.5 + p.phase * 1.3) * p.amplitude * 0.3;
-        const wave3 = Math.cos(time * p.speed * 0.8 + p.baseX * 0.01) * p.amplitude * 0.2;
-        const waveY = wave1 + wave2 + wave3;
-        const driftY = Math.sin(time * 0.5 + p.phase) * p.drift * 8;
-        
-        let dip = 0;
-        if (w >= 768 && xPercent > 0.30) {
-          const dipFactor = Math.min(1, (xPercent - 0.30) / 0.4); 
-          const ease = dipFactor * dipFactor * (3 - 2 * dipFactor); 
-          dip = ease * 380; 
-        }
+        // ── Smooth spatial wave displacement ────────────────
+        const waveY = computeWave(p, time);
+        const driftY = Math.sin(time * 0.18 + p.phase * 0.7) * p.drift * 10;
 
+        // ── Dip Effect ──────────────────────────────────────
+        const dipProgress = Math.max(0, p.baseX - w * 0.4) / (w * 0.6);
+        const dipY = dipProgress * dipProgress * 150; 
+
+        // ── Mouse repulsion (gentle, smooth) ────────────────
         const dx   = mouseRef.current.x - p.baseX;
-        const dy   = mouseRef.current.y - p.baseY;
+        const dy   = mouseRef.current.y - (p.baseY + waveY + dipY);
         const dist = Math.hypot(dx, dy);
         let mx = 0, my = 0;
-        
-        if (dist < 150 && dist > 0) {
-          const force = (1 - dist / 150) * 30;
-          mx = -(dx / dist) * force; 
-          my = -(dy / dist) * force; 
+        if (dist < 160 && dist > 0) {
+          const t     = 1 - dist / 160;
+          const force = t * t * 28; 
+          mx = -(dx / dist) * force;
+          my = -(dy / dist) * force;
         }
 
         p.rotation += p.rotationSpeed;
         const dScale = 0.45 + p.depth * 0.55;
+        
+        // Final position combines base, wave, drift, dip, and mouse forces
         const finalX = p.baseX + mx;
-        const finalY = p.baseY + waveY + driftY + dip + my;
-        const { r, g, b } = p.color;
+        const finalY = p.baseY + waveY + driftY + dipY + my;
 
         ctx.save();
         ctx.translate(finalX, finalY);
         ctx.rotate((p.rotation * Math.PI) / 180);
-        ctx.font = `${p.size * dScale}px "Segoe UI Symbol","Apple Symbols",serif`;
-        ctx.fillStyle = `rgba(${r},${g},${b},${p.opacity * dScale})`;
-        ctx.textAlign    = "center";
-        ctx.textBaseline = "middle";
+        ctx.font        = `${p.size * dScale}px "Segoe UI Symbol","Apple Symbols",serif`;
+        
+        // Updated to handle Hex Codes with Opacity
+        ctx.globalAlpha = p.opacity * dScale;
+        ctx.fillStyle   = p.color; 
+        
+        ctx.textAlign   = "center";
+        ctx.textBaseline= "middle";
         ctx.fillText(p.symbol, 0, 0);
         ctx.restore();
       });
@@ -225,7 +265,7 @@ export default function CompassHero() {
 
     window.addEventListener("mousemove",  onMove);
     window.addEventListener("mouseleave", onLeave);
-    window.addEventListener("touchmove",  onTouch,   { passive: true });
+    window.addEventListener("touchmove",  onTouch,    { passive: true });
     window.addEventListener("touchend",   onTouchEnd, { passive: true });
 
     return () => {
@@ -240,16 +280,14 @@ export default function CompassHero() {
     };
   }, []);
 
-  /* ── Dynamic Text Spotlight Tracker ──────────────────────── */
+  /* ── Dynamic Text Spotlight ──────────────────────────────── */
   const titleWrapperRef = useRef(null);
 
   const handleTitleMouseMove = useCallback((e) => {
     if (!titleWrapperRef.current) return;
     const rect = titleWrapperRef.current.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    titleWrapperRef.current.style.setProperty("--mouse-x", `${x}px`);
-    titleWrapperRef.current.style.setProperty("--mouse-y", `${y}px`);
+    titleWrapperRef.current.style.setProperty("--mouse-x", `${e.clientX - rect.left}px`);
+    titleWrapperRef.current.style.setProperty("--mouse-y", `${e.clientY - rect.top}px`);
   }, []);
 
   const handleTitleMouseLeave = useCallback(() => {
@@ -260,24 +298,19 @@ export default function CompassHero() {
 
   /* ── Theme tokens ────────────────────────────────────────── */
   const T = {
-    bg:          isDark
-      ? "linear-gradient(180deg,#030712 0%,#060d1f 55%,#0c1525 100%)"
-      : "linear-gradient(180deg,#ffffff 0%,#fafafa 50%,#f5f5f5 100%)",
-    overlay:     isDark
+    bg:         isDark ? "#030712" : "#ffffff",
+    overlay:    isDark
       ? "radial-gradient(ellipse 100% 60% at 50% 100%,rgba(56,189,248,0.06) 0%,transparent 70%)"
       : "radial-gradient(ellipse 100% 60% at 50% 100%,rgba(37,26,102,0.04) 0%,transparent 70%)",
-    bottomFade:  isDark
-      ? "linear-gradient(to top,rgba(56,189,248,0.08) 0%,transparent 100%)"
-      : "linear-gradient(to top,rgba(37,26,102,0.06) 0%,transparent 100%)",
-    titleBase:   isDark ? "#ffffff" : "#251A66",
-    hoverGrad:   isDark 
-      ? "linear-gradient(135deg, #e879f9 0%, #c084fc 25%, #22d3ee 50%, #8b5cf6 75%, #e879f9 100%)" 
-      : "linear-gradient(135deg, #251A66 0%, #5a3d9e 25%, #EC4A0A 50%, #ff6b35 75%, #251A66 100%)",
-    plusClr:     isDark ? "rgba(129,140,248,0.55)" : "rgba(37,26,102,0.4)",
-    compassFx:   isDark
+    titleBase:  isDark ? "#ffffff" : "#251A66",
+    hoverGrad:  isDark
+      ? "linear-gradient(135deg,#e879f9 0%,#c084fc 25%,#22d3ee 50%,#8b5cf6 75%,#e879f9 100%)"
+      : "linear-gradient(135deg,#251A66 0%,#5a3d9e 25%,#EC4A0A 50%,#ff6b35 75%,#251A66 100%)",
+    // These remain RGBA so the static plus signs can be semi-transparent in CSS
+    plusClr:    isDark ? "rgba(129,140,248,0.55)" : "rgba(37,26,102,0.4)",
+    compassFx:  isDark
       ? "drop-shadow(0 20px 60px rgba(56,189,248,0.32))"
       : "drop-shadow(0 20px 60px rgba(74,52,204,0.22))",
-    textColor:   isDark ? "rgba(255,255,255,0.9)" : "rgba(15,15,35,0.85)",
   };
 
   const lines = ["Let's work", "together!"];
@@ -287,24 +320,22 @@ export default function CompassHero() {
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Sans:wght@400;600;700&display=swap');
 
-        :root {
-          --title-hover-grad: ${T.hoverGrad};
-        }
+        :root { --title-hover-grad: ${T.hoverGrad}; }
 
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
 
-        @keyframes fadeInUp    { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
-        @keyframes floatPlus   { 0%,100%{transform:translateY(0) rotate(0deg);opacity:0.4} 50%{transform:translateY(-12px) rotate(90deg);opacity:0.7} }
-        @keyframes gradShift   { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
-        @keyframes pulseSlow   { 0%,100%{opacity:.28;transform:scale(1)} 50%{opacity:.55;transform:scale(1.12)} }
-        @keyframes rotateCW    { to{transform:rotate(360deg)} }
-        @keyframes rotateCCW   { to{transform:rotate(-360deg)} }
+        @keyframes fadeInUp  { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
+        @keyframes floatPlus { 0%,100%{transform:translateY(0) rotate(0deg);opacity:.4} 50%{transform:translateY(-12px) rotate(90deg);opacity:.7} }
+        @keyframes gradShift { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
+        @keyframes pulseSlow { 0%,100%{opacity:.28;transform:scale(1)} 50%{opacity:.55;transform:scale(1.12)} }
+        @keyframes rotateCW  { to{transform:rotate(360deg)} }
+        @keyframes rotateCCW { to{transform:rotate(-360deg)} }
 
         .ch-fadeInUp  { opacity:0; animation:fadeInUp 1s ease-out forwards; }
         .ch-floatPlus { animation:floatPlus 4s ease-in-out infinite; }
         .ch-pulseSlow { animation:pulseSlow 10s ease-in-out infinite; }
-        .ch-rotateCW  { animation:rotateCW  20s linear infinite; }
-        .ch-rotateCCW { animation:rotateCCW 15s linear infinite; }
+        .ch-rotateCW  { animation:rotateCW  30s linear infinite; }
+        .ch-rotateCCW { animation:rotateCCW 25s linear infinite; }
 
         .d400  { animation-delay:.4s; }
         .d500  { animation-delay:.5s; }
@@ -312,42 +343,45 @@ export default function CompassHero() {
         .d1000 { animation-delay:1s; }
 
         .ch-title-wrapper {
-          position: relative;
-          display: inline-block; 
-          --mouse-x: -9999px;
-          --mouse-y: -9999px;
+          position:relative;
+          display:inline-block;
+          --mouse-x:-9999px;
+          --mouse-y:-9999px;
+          padding-bottom:0.25em;
         }
 
         .ch-title-line {
           display:block;
-          font-family:'Inter', sans-serif;
-          font-size: clamp(42px, 11vw, 160px);
-          font-weight: 500; 
-          line-height: 1.05; 
-          letter-spacing: -0.03em;
-          color: ${T.titleBase};
+          font-family:'Inter',sans-serif;
+          font-size:clamp(48px,7vw,160px);
+          font-weight:500;
+          line-height:1.05;
+          letter-spacing:-0.03em;
+          color:${T.titleBase};
           cursor:default;
-          will-change: transform;
-          white-space: nowrap;
+          will-change:transform;
+          white-space:nowrap;
+          padding-bottom:0.2em;
+          margin-bottom:-0.2em;
         }
 
         .ch-hover-overlay {
-          position: absolute;
-          inset: 0;
-          pointer-events: none; 
-          -webkit-mask-image: radial-gradient(180px circle at var(--mouse-x) var(--mouse-y), black 10%, transparent 100%);
-          mask-image: radial-gradient(180px circle at var(--mouse-x) var(--mouse-y), black 10%, transparent 100%);
+          position:absolute;
+          inset:0;
+          pointer-events:none;
+          -webkit-mask-image:radial-gradient(180px circle at var(--mouse-x) var(--mouse-y),black 10%,transparent 100%);
+          mask-image:radial-gradient(180px circle at var(--mouse-x) var(--mouse-y),black 10%,transparent 100%);
         }
 
         .ch-title-line.hover-glow {
-          background-image: var(--title-hover-grad) !important;
-          background-size: 200% 200%;
-          background-clip: text;
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          color: transparent;
-          animation: gradShift 3s ease infinite; 
-          text-shadow: none;
+          background-image:var(--title-hover-grad) !important;
+          background-size:200% 200%;
+          background-clip:text;
+          -webkit-background-clip:text;
+          -webkit-text-fill-color:transparent;
+          color:transparent;
+          animation:gradShift 3s ease infinite;
+          text-shadow:none;
         }
 
         .ch-btn {
@@ -379,10 +413,7 @@ export default function CompassHero() {
           opacity:0;
           transition:opacity 0.3s;
         }
-        .ch-btn:hover {
-          transform:translateY(-4px) scale(1.03);
-          box-shadow:0 10px 36px rgba(236,74,10,.44),0 20px 64px rgba(236,74,10,.22);
-        }
+        .ch-btn:hover { transform:translateY(-4px) scale(1.03); box-shadow:0 10px 36px rgba(236,74,10,.44),0 20px 64px rgba(236,74,10,.22); }
         .ch-btn:hover::before { opacity:1; }
         .ch-btn:active { transform:translateY(-1px) scale(1.01); }
 
@@ -394,35 +425,44 @@ export default function CompassHero() {
           line-height:1;
         }
 
-        /* ── RESPONSIVE ── */
-        @media (max-width:1024px) {
-          .ch-grid { grid-template-columns:1fr 1fr !important; gap:20px !important; }
-          .ch-compass-wrap { max-width:400px !important; margin:0 auto; }
-        }
+        /* ── MOBILE RESPONSIVENESS UPDATES ── */
         @media (max-width:768px) {
-          .ch-grid { grid-template-columns:1fr !important; padding:0 20px !important; text-align:center; }
-          .ch-left { align-items:center !important; padding-top:40px; }
-          .ch-compass-wrap { display:none !important; } 
-          .ch-title-line { font-size: clamp(36px, 14vw, 72px); }
-        }
-        @media (min-width:1600px) {
-          .ch-grid { max-width:1440px !important; }
+          .ch-grid { 
+            grid-template-columns: 1fr !important; 
+            padding: 120px 5vw 40px !important; 
+            text-align: center; 
+            height: auto !important; 
+            min-height: 100vh; 
+            gap: 0px !important; 
+          }
+          .ch-left { 
+            align-items: center !important; 
+            justify-content: center !important;
+            width: 100%;
+          }
+          .ch-compass-wrap { 
+            display: none !important; /* HIDES COMPASS ENTIRELY ON MOBILE */
+          }
+          .ch-title-wrapper {
+            text-align: center;
+          }
+          .ch-title-line { 
+            font-size: clamp(40px, 14vw, 72px); 
+          }
         }
 
         @media (prefers-reduced-motion:reduce) {
-          .ch-fadeInUp,.ch-floatPlus,
-          .ch-pulseSlow,.ch-rotateCW,.ch-rotateCCW { animation:none !important; opacity:1 !important; transform:none !important; }
+          .ch-fadeInUp,.ch-floatPlus,.ch-pulseSlow,.ch-rotateCW,.ch-rotateCCW { animation:none !important; opacity:1 !important; transform:none !important; }
         }
       `}</style>
 
-      {/* ── SECTION ──────────────────────────────────────────── */}
       <section
         role="banner"
         aria-label="DPV Offshore - Let's Work Together"
         style={{
           position:"relative",
           width:"100%",
-          minHeight:"100vh",
+          height:"100vh",
           background:T.bg,
           display:"flex",
           alignItems:"center",
@@ -435,67 +475,53 @@ export default function CompassHero() {
       >
         <div aria-hidden="true" style={{position:"absolute",inset:0,background:T.overlay,pointerEvents:"none",zIndex:1,transition:"background .7s"}}/>
 
-        {/* ── CANVAS ─────────────────────────────────────────── */}
         <canvas
           ref={canvasRef}
           aria-hidden="true"
           style={{position:"absolute",inset:0,width:"100%",height:"100%",pointerEvents:"none",zIndex:2}}
         />
 
-        {/* ── CONTENT GRID ────────────────────────────────────── */}
         <div
           className="ch-grid"
           style={{
             position:"relative",
             zIndex:10,
             width:"100%",
-            maxWidth:1280,
-            margin:"0 auto",
-            padding:"80px 40px",
+            maxWidth:"100%",
+            padding:"0 6vw",
             display:"grid",
-            gridTemplateColumns:"1.2fr 1fr",
-            gap:"100px",
+            gridTemplateColumns:"1fr 1fr",
+            gap:"4vw",
             alignItems:"center",
-            minHeight:"100vh",
+            height:"100vh",
           }}
         >
-          {/* ── LEFT: Text ──────────────────────────────────── */}
-          <div
-            className="ch-left"
-            style={{display:"flex",flexDirection:"column",justifyContent:"center",gap:"24px",alignItems:"flex-start"}}
-          >
-            {/* Dynamic Interactive Title Wrapper */}
-            <div 
+          {/* LEFT: Text */}
+          <div className="ch-left" style={{display:"flex",flexDirection:"column",justifyContent:"center",gap:"24px",alignItems:"flex-start"}}>
+            <div
               className="ch-title-wrapper"
               ref={titleWrapperRef}
               onMouseMove={handleTitleMouseMove}
               onMouseLeave={handleTitleMouseLeave}
             >
-              {/* Base Text Layer */}
               <h1 style={{margin:0,padding:0,border:0,display:"flex",flexDirection:"column",gap:0}}>
                 {lines.map((line, i) => (
-                  <span key={`base-${i}`} className={`ch-fadeInUp ${i===0?"d500":"d700"}`}>
+                  <span key={`base-${i}`} className={`ch-fadeInUp ${i===0?"d500":"d700"}`} style={{display:"block"}}>
                     <span className="ch-title-line">{line}</span>
                   </span>
                 ))}
               </h1>
 
-              {/* Spotlight Hover Glow Layer */}
               <div aria-hidden="true" className="ch-hover-overlay" style={{display:"flex",flexDirection:"column",gap:0}}>
                 {lines.map((line, i) => (
-                  <span key={`glow-${i}`} className={`ch-fadeInUp ${i===0?"d500":"d700"}`}>
+                  <span key={`glow-${i}`} className={`ch-fadeInUp ${i===0?"d500":"d700"}`} style={{display:"block"}}>
                     <span className="ch-title-line hover-glow">{line}</span>
                   </span>
                 ))}
               </div>
             </div>
 
-            {/* CTA Button */}
-            <button
-              className="ch-btn ch-fadeInUp d1000"
-              style={{marginTop:"24px"}}
-              aria-label="Contact DPV Offshore"
-            >
+            <button className="ch-btn ch-fadeInUp d1000" style={{marginTop:"24px"}} aria-label="Contact DPV Offshore">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" aria-hidden="true">
                 <circle cx="12" cy="12" r="10"/>
                 <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>
@@ -507,137 +533,40 @@ export default function CompassHero() {
             </button>
           </div>
 
-          {/* ── RIGHT: Compass ──────────────────────────────── */}
-          <div
-            className="ch-compass-wrap"
-            style={{display:"flex",alignItems:"center",justifyContent:"center"}}
-          >
-            <div
-              className="ch-fadeInUp d700"
-              style={{
-                position:"relative",
-                aspectRatio:"1/1",
-                width:"100%",
-                maxWidth:580,
-              }}
-            >
-              {/* Outer glow ring */}
+          {/* RIGHT: Compass */}
+          <div className="ch-compass-wrap" style={{display:"flex",alignItems:"center",justifyContent:"center",width:"100%",height:"100%"}}>
+            <div className="ch-fadeInUp d700" style={{position:"relative",aspectRatio:"1/1",width:"100%",maxWidth:"85vh",maxHeight:"85vw"}}>
               <div
                 aria-hidden="true"
                 className="ch-pulseSlow"
                 style={{
-                  position:"absolute",
-                  inset:"-8%",
-                  borderRadius:"50%",
-                  background: isDark
+                  position:"absolute",inset:"-8%",borderRadius:"50%",
+                  background:isDark
                     ? "radial-gradient(circle,rgba(56,189,248,0.09) 0%,transparent 70%)"
                     : "radial-gradient(circle,rgba(37,26,102,0.05) 0%,transparent 70%)",
                   transition:"background .7s",
                 }}
               />
-
               <img
-                src="/dpv-offshore-redesign-website/images/compass_design.png"
+                src={isDark ? "/dpv-offshore-redesign-website/images/compass_design_dark.png" : "/dpv-offshore-redesign-website/images/compass_design.png"}
                 alt="DPV Offshore compass"
                 draggable="false"
                 loading="eager"
-                style={{
-                  width:"100%",
-                  height:"100%",
-                  objectFit:"contain",
-                  filter:T.compassFx,
-                  userSelect:"none",
-                  transition:"filter .7s",
-                  display:"block",
-                }}
+                style={{width:"100%",height:"100%",objectFit:"contain",filter:T.compassFx,userSelect:"none",transition:"filter .7s",display:"block"}}
               />
-
-              {/* Needle layers */}
-              <div
-                aria-hidden="true"
-                style={{position:"absolute",inset:0,display:"flex",alignItems:"center",justifyContent:"center"}}
-              >
+              <div aria-hidden="true" style={{position:"absolute",inset:0,display:"flex",alignItems:"center",justifyContent:"center"}}>
                 <div style={{position:"relative",width:"75%",height:"75%"}}>
-                  <img
-                    src="/dpv-offshore-redesign-website/images/big_needl.png"
-                    className="ch-rotateCW"
-                    draggable="false"
-                    alt=""
-                    style={{position:"absolute",inset:0,width:"100%",height:"100%",objectFit:"contain"}}
-                  />
-                  <img
-                    src="/dpv-offshore-redesign-website/images/small_needls.png"
-                    className="ch-rotateCCW"
-                    draggable="false"
-                    alt=""
-                    style={{position:"absolute",inset:0,width:"100%",height:"100%",objectFit:"contain"}}
-                  />
+                  <img src="/dpv-offshore-redesign-website/images/big_needl.png"   className="ch-rotateCW"  draggable="false" alt="" style={{position:"absolute",inset:0,width:"100%",height:"100%",objectFit:"contain"}}/>
+                  <img src="/dpv-offshore-redesign-website/images/small_needls.png" className="ch-rotateCCW" draggable="false" alt="" style={{position:"absolute",inset:0,width:"100%",height:"100%",objectFit:"contain"}}/>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        {/* ── Floating decorative + ────────────── */}
-        <span
-          className="ch-decor ch-floatPlus"
-          aria-hidden="true"
-          style={{
-            position:"absolute",
-            top:"15%",
-            left:"8%",
-            color:T.plusClr,
-            animationDelay:"1.1s",
-            zIndex:10,
-            transition:"color .7s",
-          }}
-        >+</span>
-
-        <span
-          className="ch-decor ch-floatPlus"
-          aria-hidden="true"
-          style={{
-            position:"absolute",
-            top:"30%",
-            right:"45%",
-            color:T.plusClr,
-            fontSize:16,
-            opacity:0.5,
-            animationDelay:"3.5s",
-            zIndex:10,
-            transition:"color .7s",
-          }}
-        >+</span>
-
-        <span
-          className="ch-decor ch-floatPlus"
-          aria-hidden="true"
-          style={{
-            position:"absolute",
-            bottom:"25%",
-            right:"12%",
-            color:T.plusClr,
-            animationDelay:"2.1s",
-            zIndex:10,
-            transition:"color .7s",
-          }}
-        >+</span>
-
-        {/* ── Bottom fade ───────────────────────────────────── */}
-        <div
-          aria-hidden="true"
-          style={{
-            position:"absolute",
-            bottom:0,
-            left:0,
-            right:0,
-            height:160,
-            background:T.bottomFade,
-            pointerEvents:"none",
-            zIndex:5,
-            transition:"background .7s",
-          }}
-        />
+        {/* Floating decorative + signs */}
+        <span className="ch-decor ch-floatPlus" aria-hidden="true" style={{position:"absolute",top:"15%",left:"8%",color:T.plusClr,animationDelay:"1.1s",zIndex:10,transition:"color .7s"}}>+</span>
+        <span className="ch-decor ch-floatPlus" aria-hidden="true" style={{position:"absolute",top:"30%",right:"45%",color:T.plusClr,fontSize:16,opacity:0.5,animationDelay:"3.5s",zIndex:10,transition:"color .7s"}}>+</span>
       </section>
     </>
   );
