@@ -15,28 +15,28 @@ export default function Services() {
       id: 1,
       title: "Ship Conversion",
       desc: "Comprehensive structural and functional conversion services tailored to meet modern maritime requirements.",
-      img: "/dpv-offshore-redesign-website/images/ship-1.jpg", // Replace with your actual paths
+      img: "/dpv-offshore-redesign-website/images/Rectangle_1010.png", // Replace with your actual paths
       category: "repair"
     },
     {
       id: 2,
       title: "Hull Repair & Fabrication",
       desc: "Advanced welding and fabrication services to restore hull integrity and ensure vessel safety.",
-      img: "/dpv-offshore-redesign-website/images/ship-4.jpg",
+      img: "/dpv-offshore-redesign-website/images/Rectangle_1011.png",
       category: "repair"
     },
     {
       id: 3,
       title: "Ship Electrical Engineering",
       desc: "State-of-the-art electrical diagnostics, rewiring, and power management system upgrades.",
-      img: "/dpv-offshore-redesign-website/images/ship-2.jpg",
+      img: "/dpv-offshore-redesign-website/images/Rectangle_1012.png",
       category: "systems"
     },
     {
       id: 4,
       title: "System Integration",
       desc: "Seamless integration of modern navigation, communication, and automation systems for smart vessels.",
-      img: "/dpv-offshore-redesign-website/images/ship-3.jpg",
+      img: "/dpv-offshore-redesign-website/images/Rectangle_1013.png",
       category: "systems"
     }
   ];

@@ -10,31 +10,27 @@ import MobileMenu from './MobileMenu';
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isLangMenuOpen, setIsLangMenuOpen] = useState(false); 
-  const [currentLang, setCurrentLang] = useState('English');   
+  const [isLangMenuOpen, setIsLangMenuOpen] = useState(false); // New state for language dropdown
+  const [currentLang, setCurrentLang] = useState('English');   // New state for current language
   const pathname = usePathname();
 
   const isActive = (path) => pathname === path;
 
   /* ================= CYLINDER (PILL) STYLES ================= */
-  // Note: Reduced padding from px-6 to px-3 to fit all 7 links comfortably
   const activeStyles =
-    "bg-[#ec4a0a] text-white px-3 py-2.5 rounded-full flex items-center justify-center font-bold tracking-wider shadow-md transition-all duration-300 ease-in-out transform scale-105";
+    "bg-[#ec4a0a] text-white px-6 py-2.5 rounded-full flex items-center justify-center font-bold tracking-wider shadow-md transition-all duration-300 ease-in-out transform scale-105";
 
   const inactiveStyles =
-    "text-[#1a1a54] dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 px-3 py-2.5 rounded-full flex items-center font-bold tracking-wider transition-all duration-300 ease-in-out";
+    "text-[#1a1a54] dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 px-6 py-2.5 rounded-full flex items-center font-bold tracking-wider transition-all duration-300 ease-in-out";
 
-  // Added all links from MobileMenu
   const navLinks = [
-    { name: 'HOME', path: '/' },
-    { name: 'ABOUT US', path: '/about' },
     { name: 'INDUSTRIES', path: '/industries' },
     { name: 'PRODUCTS', path: '/products' },
     { name: 'SERVICES', path: '/services' },
-    { name: 'BLOG', path: '/blog' },
-    { name: 'CAREER', path: '/career' },
   ];
 
+  // Map out the languages you want in your dropdown
+  // Note: 'code' must match Google Translate's official language codes
   const languages = [
     { code: 'en', name: 'English' },
     { code: 'es', name: 'Spanish' },
@@ -42,10 +38,12 @@ export default function Navbar() {
     { code: 'de', name: 'German' },
   ];
 
+  // Function to trigger Google Translate via JavaScript
   const handleLanguageChange = (langCode, langName) => {
     setCurrentLang(langName);
     setIsLangMenuOpen(false);
     
+    // Find the hidden Google select element and change its value
     const gtSelect = document.querySelector('.goog-te-combo');
     if (gtSelect) {
       gtSelect.value = langCode;
@@ -58,7 +56,7 @@ export default function Navbar() {
       {/* Backdrop */}
       {isMenuOpen && (
         <div
-          className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40 lg:hidden"
+          className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40"
           onClick={() => setIsMenuOpen(false)}
         />
       )}
@@ -81,8 +79,7 @@ export default function Navbar() {
           </div>
 
           {/* CENTER NAV LINKS */}
-          {/* Added lg:gap-4 or reduced gap if necessary to fit the items */}
-          <div className="hidden lg:flex items-center gap-1 xl:gap-2 h-full text-[13px] xl:text-[14px]">
+          <div className="hidden lg:flex items-center gap-2 h-full text-[14px]">
             {navLinks.map((link) => (
               <Link
                 key={link.path}
@@ -128,10 +125,11 @@ export default function Navbar() {
               )}
             </div>
 
-            {/* HAMBURGER - Now explicitly hidden on large screens (lg:hidden) */}
+            {/* HAMBURGER */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="lg:hidden flex flex-col gap-1.5 p-2 hover:bg-gray-100 dark:hover:bg-gray-800/50 rounded-lg transition-colors z-50 ml-2"
+              /* Removed lg:hidden from the end of this line below */
+              className="flex flex-col gap-1.5 p-2 hover:bg-gray-100 dark:hover:bg-gray-800/50 rounded-lg transition-colors z-50 ml-2"
               aria-label="Toggle Menu"
             >
               <span className={`w-7 h-[3px] bg-[#ec4a0a] rounded-full transition-all duration-300 ${isMenuOpen ? 'rotate-45 translate-y-[9px]' : ''}`} />
@@ -139,9 +137,9 @@ export default function Navbar() {
               <span className={`w-7 h-[3px] bg-[#ec4a0a] rounded-full transition-all duration-300 ${isMenuOpen ? '-rotate-45 -translate-y-[9px]' : ''}`} />
             </button>
 
-            {/* MOBILE MENU - Also hidden on large screens */}
+            {/* MOBILE MENU */}
             {isMenuOpen && (
-              <div className="absolute top-16 right-0 z-50 min-w-[200px] animate-in slide-in-from-top-2 fade-in duration-200 lg:hidden">
+              <div className="absolute top-16 right-0 z-50 min-w-[200px] animate-in slide-in-from-top-2 fade-in duration-200">
                 <MobileMenu onClose={() => setIsMenuOpen(false)} />
               </div>
             )}

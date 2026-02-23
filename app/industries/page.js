@@ -33,49 +33,49 @@ export default function Industries() {
       title: "Ship Repairs",
       description: "Fast, reliable, and class-approved ship repair services minimizing downtime for your vessel operations.",
       details: "From routine dry-docking to emergency afloat repairs, our certified engineers handle hull fabrications, piping renewals, and specialized welding. We partner with major classification societies to guarantee that all repairs meet the highest maritime regulatory requirements, getting your vessel back to sea safely and swiftly.",
-      image: "/dpv-offshore-redesign-website/images/industry-oil-gas.png" // Update paths as needed
+      image: "/dpv-offshore-redesign-website/images/Rectangle_982.png" // Update paths as needed
     },
     {
       title: "Ship Conversion",
       description: "Expert end-to-end conversion solutions, upgrading legacy vessels to meet modern industry standards.",
       details: "We specialize in complex turnkey vessel conversions, including FPSO/FSO upgrades, lengthening of hulls, and green-technology retrofits. Our naval architects and project managers oversee the entire process from feasibility studies and 3D modeling to final commissioning.",
-      image: "/dpv-offshore-redesign-website/images/industry-oil-gas.png"
+      image: "/dpv-offshore-redesign-website/images/Rectangle_1004.png"
     },
     {
       title: "Ship Electrical Engineering",
       description: "Advanced electrical diagnostics, rewiring, and power management system upgrades for marine vessels.",
       details: "Our electrical engineering services cover the installation and repair of main switchboards, alarm systems, and navigation equipment. We offer comprehensive power load analysis and modern retrofitting solutions to enhance energy efficiency and vessel automation.",
-      image: "/dpv-offshore-redesign-website/images/industry-oil-gas.png"
+      image: "/dpv-offshore-redesign-website/images/Rectangle_1006.png"
     },
     {
       title: "Ship Mechanical Engineering",
       description: "Precision mechanical overhauls, engine maintenance, and drivetrain optimization for maximum efficiency.",
       details: "Equipped with state-of-the-art machining tools, we execute major overhauls on 2-stroke and 4-stroke marine diesel engines, turbochargers, and propulsion systems. Our preventative maintenance programs are designed to extend equipment lifespan and optimize fuel consumption.",
-      image: "/dpv-offshore-redesign-website/images/industry-oil-gas.png"
+      image: "/dpv-offshore-redesign-website/images/Rectangle_1007.png"
     },
     {
       title: "Oil Field Services",
       description: "Robust support and procurement services designed specifically for offshore oil field infrastructure.",
       details: "We supply essential equipment, skilled manpower, and logistical support directly to offshore rigs and drillships. Our supply chain network guarantees the timely delivery of critical spares, safety gear, and specialized drilling components in remote locations.",
-      image: "/dpv-offshore-redesign-website/images/industry-oil-gas.png"
+      image: "/dpv-offshore-redesign-website/images/Rectangle_1008.png"
     },
     {
       title: "Process Automation",
       description: "State-of-the-art fluid control and automation system integration for safer, smarter offshore operations.",
       details: "We design and install customized PLC and SCADA systems for ballast water management, cargo monitoring, and engine control. Our automation solutions provide real-time data analytics, improving operational safety and reducing manual intervention.",
-      image: "/dpv-offshore-redesign-website/images/industry-oil-gas.png"
+      image: "/dpv-offshore-redesign-website/images/Rectangle_1013.png"
     },
     {
       title: "Subsea Operations",
       description: "Specialized engineering and structural support for deep-water and subsea exploration projects.",
       details: "Our subsea services include ROV (Remotely Operated Vehicle) support, underwater hull cleaning, and subsea infrastructure installations. We utilize advanced acoustic positioning and deep-water robotics to execute complex tasks in challenging marine environments.",
-      image: "/dpv-offshore-redesign-website/images/industry-oil-gas.png"
+      image: "/dpv-offshore-redesign-website/images/Rectangle_1010.png"
     },
     {
       title: "Maritime Procurement",
       description: "Global sourcing of high-grade marine components, ensuring quality and compliance at every step.",
       details: "Leveraging a global network of trusted OEMs, we source and deliver everything from heavy machinery components to specialized marine electronics. Our procurement team ensures cost-effective purchasing, rigorous quality control, and seamless customs clearance.",
-      image: "/dpv-offshore-redesign-website/images/industry-oil-gas.png"
+      image: "/dpv-offshore-redesign-website/images/Rectangle_1011.png"
     }
   ];
 
