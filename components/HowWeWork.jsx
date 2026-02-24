@@ -340,7 +340,7 @@ const HowWeWork = () => {
           </motion.div>
 
           <motion.div 
-            className="absolute right-[-4%] bottom-[32%] w-[280px] text-left"
+            className="absolute right-[-6%] bottom-[32%] w-[280px] text-left"
             variants={popVariant(timings.step5)}
             initial="hidden"
             whileInView="visible"
