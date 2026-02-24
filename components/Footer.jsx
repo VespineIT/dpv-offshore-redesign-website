@@ -76,7 +76,7 @@ export default function Footer() {
               {/* Resources (Horizontal) */}
               <div>
                 <h4 className="font-bold text-xl mb-6 text-white">Resources</h4>
-                <ul className="flex flex-wrap gap-6 text-gray-400">
+                <ul className="flex flex-wrap lg:flex-nowrap gap-4 text-gray-400 whitespace-nowrap">
                   <li>
                     <button 
                       onClick={() => setIsPrivacyOpen(true)} 
