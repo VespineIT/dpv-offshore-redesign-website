@@ -11,7 +11,7 @@ import MobileMenu from './MobileMenu';
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
-  const [isSolutionsOpen, setIsSolutionsOpen] = useState(false); // New state for Solutions dropdown
+  const [isSolutionsOpen, setIsSolutionsOpen] = useState(false); 
   
   // Define languages with their respective flag CDN URLs
   const languages = [
@@ -103,11 +103,15 @@ export default function Navbar() {
           <div className="flex items-center gap-4 relative">
 
             {/* CUSTOM LANGUAGE SELECTOR */}
-            <div className="relative">
+            <div 
+              className="relative"
+              onMouseEnter={() => setIsLangMenuOpen(true)}
+              onMouseLeave={() => setIsLangMenuOpen(false)}
+            >
               <div 
                 onClick={() => {
                   setIsLangMenuOpen(!isLangMenuOpen);
-                  setIsSolutionsOpen(false); // Close solutions if language opens
+                  setIsSolutionsOpen(false); // Close solutions if language opens via click
                 }}
                 className="flex items-center gap-2 bg-[#ec4a0a] hover:bg-[#d44309] text-white px-4 py-2 rounded-lg cursor-pointer transition-colors"
               >
@@ -128,7 +132,7 @@ export default function Navbar() {
 
               {/* LANGUAGE DROPDOWN MENU */}
               {isLangMenuOpen && (
-                <div className="absolute top-full mt-2 right-0 w-40 bg-white dark:bg-[#1a1a54] shadow-xl rounded-lg overflow-hidden z-50 border border-gray-100 dark:border-gray-800">
+                <div className="absolute top-full mt-2 left-1/2 -translate-x-1/2 w-32 bg-white dark:bg-[#1a1a54] shadow-xl rounded-lg overflow-hidden z-50 border border-gray-100 dark:border-gray-800">
                   {languages.map((lang) => (
                     <button
                       key={lang.code}
@@ -150,11 +154,15 @@ export default function Navbar() {
             </div>
 
             {/* SOLUTIONS DROPDOWN (Desktop Only) */}
-            <div className="hidden lg:block relative">
+            <div 
+              className="hidden lg:block relative"
+              onMouseEnter={() => setIsSolutionsOpen(true)}
+              onMouseLeave={() => setIsSolutionsOpen(false)}
+            >
               <button
                 onClick={() => {
                   setIsSolutionsOpen(!isSolutionsOpen);
-                  setIsLangMenuOpen(false); // Close language if solutions opens
+                  setIsLangMenuOpen(false); // Close language if solutions opens via click
                 }}
                 className={`flex items-center gap-1.5 px-3 py-2 rounded-lg font-bold tracking-wider transition-all duration-300 ease-in-out ${
                   isSolutionsOpen 
@@ -172,13 +180,13 @@ export default function Navbar() {
 
               {/* SOLUTIONS DROPDOWN MENU */}
               {isSolutionsOpen && (
-                <div className="absolute top-full mt-4 right-0 w-48 bg-white dark:bg-[#1a1a54] shadow-xl rounded-lg overflow-hidden z-50 border border-gray-100 dark:border-gray-800">
+                <div className="absolute top-full mt-2 left-1/2 -translate-x-1/2 w-36 bg-white dark:bg-[#1a1a54] shadow-xl rounded-lg overflow-hidden z-50 border border-gray-100 dark:border-gray-800">
                   {solutionsLinks.map((link) => (
                     <Link
                       key={link.path}
                       href={link.path}
                       onClick={() => setIsSolutionsOpen(false)}
-                      className="block w-full text-left px-4 py-3 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-[#ec4a0a] hover:text-white transition-colors"
+                      className="block w-full text-center px-4 py-3 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-[#ec4a0a] hover:text-white transition-colors"
                     >
                       {link.name}
                     </Link>
