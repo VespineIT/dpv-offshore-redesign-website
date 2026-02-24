@@ -111,7 +111,7 @@ export default function Navbar() {
               <div 
                 onClick={() => {
                   setIsLangMenuOpen(!isLangMenuOpen);
-                  setIsSolutionsOpen(false); // Close solutions if language opens via click
+                  setIsSolutionsOpen(false); 
                 }}
                 className="flex items-center gap-2 bg-[#ec4a0a] hover:bg-[#d44309] text-white px-4 py-2 rounded-lg cursor-pointer transition-colors"
               >
@@ -132,23 +132,25 @@ export default function Navbar() {
 
               {/* LANGUAGE DROPDOWN MENU */}
               {isLangMenuOpen && (
-                <div className="absolute top-full mt-2 left-1/2 -translate-x-1/2 w-32 bg-white dark:bg-[#1a1a54] shadow-xl rounded-lg overflow-hidden z-50 border border-gray-100 dark:border-gray-800">
-                  {languages.map((lang) => (
-                    <button
-                      key={lang.code}
-                      onClick={() => handleLanguageChange(lang)}
-                      className="w-full flex items-center gap-3 text-left px-4 py-3 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-[#ec4a0a] hover:text-white transition-colors"
-                    >
-                      <img 
-                        src={lang.flag} 
-                        alt={`${lang.name} flag`} 
-                        width="20" 
-                        height="15" 
-                        className="rounded-sm object-cover shadow-sm"
-                      />
-                      {lang.name}
-                    </button>
-                  ))}
+                <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 z-50">
+                  <div className="w-32 bg-white dark:bg-[#1a1a54] shadow-xl rounded-lg overflow-hidden border border-gray-100 dark:border-gray-800">
+                    {languages.map((lang) => (
+                      <button
+                        key={lang.code}
+                        onClick={() => handleLanguageChange(lang)}
+                        className="w-full flex items-center gap-3 text-left px-4 py-3 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-[#ec4a0a] hover:text-white transition-colors"
+                      >
+                        <img 
+                          src={lang.flag} 
+                          alt={`${lang.name} flag`} 
+                          width="20" 
+                          height="15" 
+                          className="rounded-sm object-cover shadow-sm"
+                        />
+                        {lang.name}
+                      </button>
+                    ))}
+                  </div>
                 </div>
               )}
             </div>
@@ -162,7 +164,7 @@ export default function Navbar() {
               <button
                 onClick={() => {
                   setIsSolutionsOpen(!isSolutionsOpen);
-                  setIsLangMenuOpen(false); // Close language if solutions opens via click
+                  setIsLangMenuOpen(false);
                 }}
                 className={`flex items-center gap-1.5 px-3 py-2 rounded-lg font-bold tracking-wider transition-all duration-300 ease-in-out ${
                   isSolutionsOpen 
@@ -180,17 +182,19 @@ export default function Navbar() {
 
               {/* SOLUTIONS DROPDOWN MENU */}
               {isSolutionsOpen && (
-                <div className="absolute top-full mt-2 left-1/2 -translate-x-1/2 w-36 bg-white dark:bg-[#1a1a54] shadow-xl rounded-lg overflow-hidden z-50 border border-gray-100 dark:border-gray-800">
-                  {solutionsLinks.map((link) => (
-                    <Link
-                      key={link.path}
-                      href={link.path}
-                      onClick={() => setIsSolutionsOpen(false)}
-                      className="block w-full text-center px-4 py-3 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-[#ec4a0a] hover:text-white transition-colors"
-                    >
-                      {link.name}
-                    </Link>
-                  ))}
+                <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 z-50">
+                  <div className="w-36 bg-white dark:bg-[#1a1a54] shadow-xl rounded-lg overflow-hidden border border-gray-100 dark:border-gray-800">
+                    {solutionsLinks.map((link) => (
+                      <Link
+                        key={link.path}
+                        href={link.path}
+                        onClick={() => setIsSolutionsOpen(false)}
+                        className="block w-full text-left px-4 py-3 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-[#ec4a0a] hover:text-white transition-colors"
+                      >
+                        {link.name}
+                      </Link>
+                    ))}
+                  </div>
                 </div>
               )}
             </div>
