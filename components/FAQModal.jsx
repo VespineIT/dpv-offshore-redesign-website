@@ -10,7 +10,7 @@ export default function FAQModal({ isOpen, onClose }) {
     },
     {
       question: "What industries do you serve?",
-      answer: "We serve: Offshore oil & gas, Marine vessels and shipyards, Power plants, Industrial facilities, and Construction and infrastructure projects."
+      answer: "We serve:\n• Offshore oil & gas\n• Marine vessels and shipyards\n• Power plants\n• Industrial facilities\n• Construction and infrastructure projects"
     },
     {
       question: "Where are you located?",
@@ -18,7 +18,7 @@ export default function FAQModal({ isOpen, onClose }) {
     },
     {
       question: "What electrical services do you provide?",
-      answer: "We provide On Board inspection & Technical attendance, HV/LV Motor & Alternator Overhauling, Control Panels & Safety Systems, Circuit Breaker Servicing & Testing, Power & Control Panel Fabrication, Rewiring & Equipment Replacement, Troubleshooting & Rectification, Panel Construction, Automatic Voltage Regulator (AVR), Switchboards Servicing, Transformer Servicing & Testing, Cable Laying & Termination, and Conveyor System Service."
+      answer: "We provide:\n• On Board inspection & Technical attendance\n• HV/LV Motor & Alternator Overhauling\n• Control Panels & Safety Systems\n• Circuit Breaker Servicing & Testing\n• Power & Control Panel Fabrication\n• Rewiring & Equipment Replacement\n• Troubleshooting & Rectification\n• Panel Construction\n• Automatic Voltage Regulator (AVR)\n• Switchboards Servicing\n• Transformer Servicing & Testing\n• Cable Laying & Termination\n• Conveyor System Service"
     },
     {
       question: "Do you provide both supply and installation?",
@@ -30,7 +30,7 @@ export default function FAQModal({ isOpen, onClose }) {
     },
     {
       question: "What welding services do you offer?",
-      answer: "We offer Structural fabrication, Pipe welding (CS, SS, Alloy), Marine repair welding, Equipment modification works, and Onsite and workshop fabrication."
+      answer: "We offer:\n• Structural fabrication\n• Pipe welding (CS, SS, Alloy)\n• Marine repair welding\n• Equipment modification works\n• Onsite and workshop fabrication"
     },
     {
       question: "Are your welders certified?",
@@ -46,11 +46,11 @@ export default function FAQModal({ isOpen, onClose }) {
     },
     {
       question: "How can we request a quotation?",
-      answer: "You can request a quotation by sending an email with project details, sharing technical drawings and specifications, or contacting our sales team directly through the website."
+      answer: "You can request a quotation by:\n• Sending an email with project details\n• Sharing technical drawings and specifications\n• Contacting our sales team directly through the website"
     },
     {
       question: "What information is required for a quotation?",
-      answer: "To provide an accurate quotation, we typically require: Scope of work, Technical specifications, Drawings (if available), Project location, and Required timeline."
+      answer: "To provide an accurate quotation, we typically require:\n• Scope of work\n• Technical specifications\n• Drawings (if available)\n• Project location\n• Required timeline"
     },
     {
       question: "Do you comply with offshore safety standards?",
@@ -58,7 +58,7 @@ export default function FAQModal({ isOpen, onClose }) {
     },
     {
       question: "Why choose DPV Offshore and Marine Services LLC?",
-      answer: "Experienced technical team, Fast response time, Competitive pricing, Quality workmanship, Reliable project execution, and Strong offshore and marine experience."
+      answer: "• Experienced technical team\n• Fast response time\n• Competitive pricing\n• Quality workmanship\n• Reliable project execution\n• Strong offshore and marine experience"
     },
     {
       question: "Do you handle small jobs as well as large projects?",
@@ -92,7 +92,8 @@ export default function FAQModal({ isOpen, onClose }) {
           {faqs.map((faq, index) => (
             <div key={index} className="bg-gray-50 dark:bg-[#111827] p-5 rounded-lg border border-gray-100 dark:border-gray-800">
               <h4 className="text-lg font-bold text-[#FF5722] mb-2">{faq.question}</h4>
-              <p className="text-gray-700 dark:text-gray-300">{faq.answer}</p>
+              {/* Added whitespace-pre-line so the \n characters render as actual line breaks for the bullet points */}
+              <p className="text-gray-700 dark:text-gray-300 whitespace-pre-line">{faq.answer}</p>
             </div>
           ))}
         </div>

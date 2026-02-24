@@ -5,17 +5,6 @@ import Image from 'next/image';
 
 const locations = [
   {
-    id: 'abu-dhabi',
-    city: 'Abu Dhabi',
-    country: 'UAE',
-    address: 'DPV Offshore & Marine Services LLC\nOffice No. 879, 8th Floor, Al Ghaith Tower\nMohammed Bin Hamdan Street\nAbu Dhabi, UAE',
-    description: 'Strategic hub for Middle East offshore operations.',
-    servicedPorts: 'Mina Zayed, Khalifa Port',
-    timezone: 'Asia/Dubai',
-    image: 'https://media.assettype.com/outlooktraveller%2F2024-08-20%2F0nbfvji7%2Fshutterstock_2473580625.jpg',
-    coordinates: { lat: 24.4539, lng: 54.3773 }
-  },
-  {
     id: 'dubai',
     city: 'Dubai',
     country: 'UAE',
@@ -25,6 +14,17 @@ const locations = [
     timezone: 'Asia/Dubai',
     image: 'https://images.unsplash.com/photo-1542281286-9e0a16bb7366?q=80&w=2000&auto=format&fit=crop',
     coordinates: { lat: 25.2048, lng: 55.2708 }
+  },
+  {
+    id: 'abu-dhabi',
+    city: 'Abu Dhabi',
+    country: 'UAE',
+    address: 'DPV Offshore & Marine Services LLC\nOffice No. 879, 8th Floor, Al Ghaith Tower\nMohammed Bin Hamdan Street\nAbu Dhabi, UAE',
+    description: 'Strategic hub for Middle East offshore operations.',
+    servicedPorts: 'Mina Zayed, Khalifa Port',
+    timezone: 'Asia/Dubai',
+    image: 'https://media.assettype.com/outlooktraveller%2F2024-08-20%2F0nbfvji7%2Fshutterstock_2473580625.jpg',
+    coordinates: { lat: 24.4539, lng: 54.3773 }
   },
   {
     id: 'fujairah',
@@ -64,30 +64,30 @@ const locations = [
 // Using reliable FlagCDN URLs for high-quality, perfectly sized flag images
 const tickerRegions = [
   { name: 'Abu Dhabi', flagUrl: 'https://flagcdn.com/w40/ae.png' }, 
-  { name: 'Dubai', flagUrl: 'https://flagcdn.com/w40/ae.png' }, 
-  { name: 'Fujairah', flagUrl: 'https://flagcdn.com/w40/ae.png' }, 
   { name: 'Colombo', flagUrl: 'https://flagcdn.com/w40/lk.png' }, 
   { name: 'Singapore', flagUrl: 'https://flagcdn.com/w40/sg.png' }, 
-  { name: 'UAE', flagUrl: 'https://flagcdn.com/w40/ae.png' }, 
   { name: 'Qatar', flagUrl: 'https://flagcdn.com/w40/qa.png' }, 
-  { name: 'Saudi Arabia', flagUrl: 'https://flagcdn.com/w40/sa.png' }, 
+  { name: 'Saudi Arabia', flagUrl: 'https://flagcdn.com/w40/sa.png' },
+  { name: 'UAE', flagUrl: 'https://flagcdn.com/w40/ae.png' },
   { name: 'Oman', flagUrl: 'https://flagcdn.com/w40/om.png' }, 
   { name: 'Bahrain', flagUrl: 'https://flagcdn.com/w40/bh.png' }, 
   { name: 'Kuwait', flagUrl: 'https://flagcdn.com/w40/kw.png' }, 
   { name: 'India', flagUrl: 'https://flagcdn.com/w40/in.png' }, 
-  { name: 'Egypt', flagUrl: 'https://flagcdn.com/w40/eg.png' }, 
+  { name: 'Egypt', flagUrl: 'https://flagcdn.com/w40/eg.png' },
+  { name: 'Dubai', flagUrl: 'https://flagcdn.com/w40/ae.png' }, 
   { name: 'Ghana', flagUrl: 'https://flagcdn.com/w40/gh.png' }, 
   { name: 'Congo', flagUrl: 'https://flagcdn.com/w40/cg.png' }, 
   { name: 'Kenya', flagUrl: 'https://flagcdn.com/w40/ke.png' }, 
   { name: 'Tanzania', flagUrl: 'https://flagcdn.com/w40/tz.png' }, 
   { name: 'Bulgaria', flagUrl: 'https://flagcdn.com/w40/bg.png' }, 
-  { name: 'Kazakhstan', flagUrl: 'https://flagcdn.com/w40/kz.png' }, 
+  { name: 'Kazakhstan', flagUrl: 'https://flagcdn.com/w40/kz.png' },
+  { name: 'Fujairah', flagUrl: 'https://flagcdn.com/w40/ae.png' },
   { name: 'Azerbaijan', flagUrl: 'https://flagcdn.com/w40/az.png' }, 
   { name: 'Sri Lanka', flagUrl: 'https://flagcdn.com/w40/lk.png' }
 ];
 
 export default function OfficeGlobe() {
-  const [activeId, setActiveId] = useState('colombo');
+  const [activeId, setActiveId] = useState('dubai');
   const [currentTime, setCurrentTime] = useState('');
   
   const activeLocation = locations.find(l => l.id === activeId) || locations[0];
@@ -150,7 +150,7 @@ export default function OfficeGlobe() {
                 alt={`${loc.city} maritime port view`}
                 fill
                 className="object-cover object-center transform scale-105 group-hover:scale-110 transition-transform duration-[12000ms]"
-                priority={loc.id === 'colombo'}
+                priority={loc.id === 'dubai'}
                 unoptimized
               />
             </div>

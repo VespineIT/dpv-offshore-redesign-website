@@ -6,80 +6,89 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, Factory, X } from "lucide-react";
 
 export default function Industries() {
-  // State to manage the currently selected industry for the popup
   const [selectedIndustry, setSelectedIndustry] = useState(null);
 
-  // Prevent background scrolling when modal is open
   useEffect(() => {
-    if (selectedIndustry) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
-    }
-    return () => {
-      document.body.style.overflow = "unset";
-    };
+    if (selectedIndustry) document.body.style.overflow = "hidden";
+    else document.body.style.overflow = "unset";
+    return () => { document.body.style.overflow = "unset"; };
   }, [selectedIndustry]);
 
-  // Data for the cards - Added 'details' for the popup content
   const industryData = [
     {
-      title: "Oil & Gas",
-      description: "Comprehensive offshore engineering and maintenance services tailored for the demanding oil and gas sector.",
-      details: "Our Oil & Gas division provides full-lifecycle support for offshore platforms, including structural integrity management, pipeline inspection, and advanced non-destructive testing (NDT). We deploy rapid-response teams globally to minimize downtime and ensure strict compliance with international safety and environmental standards.",
+      title: "Oil & Gas / Oil Field",
+      description: "Comprehensive mechanical and automation support services tailored for oil field operations and harsh environments.",
+      details: "We supply essential automation solutions, equipment, and structural integrity management directly to offshore rigs and drillships. Our supply chain ensures the timely delivery of critical components in remote oil field locations.",
       image: "/dpv-offshore-redesign-website/images/industry-oil-gas.png"
     },
     {
       title: "Ship Repairs",
-      description: "Fast, reliable, and class-approved ship repair services minimizing downtime for your vessel operations.",
-      details: "From routine dry-docking to emergency afloat repairs, our certified engineers handle hull fabrications, piping renewals, and specialized welding. We partner with major classification societies to guarantee that all repairs meet the highest maritime regulatory requirements, getting your vessel back to sea safely and swiftly.",
-      image: "/dpv-offshore-redesign-website/images/Rectangle_982.png" // Update paths as needed
+      description: "Complete ship repair and drydocking services, ensuring safe operations.",
+      details: "We provide reliable workmanship and on-time delivery in compliance with international marine standards. Our certified engineers handle everything from routine dry-docking to emergency afloat repairs.",
+      image: "/dpv-offshore-redesign-website/images/Rectangle_982.png" 
     },
     {
       title: "Ship Conversion",
-      description: "Expert end-to-end conversion solutions, upgrading legacy vessels to meet modern industry standards.",
-      details: "We specialize in complex turnkey vessel conversions, including FPSO/FSO upgrades, lengthening of hulls, and green-technology retrofits. Our naval architects and project managers oversee the entire process from feasibility studies and 3D modeling to final commissioning.",
+      description: "Transform your vessel with confidence through innovative conversion solutions.",
+      details: "Our expert team delivers ship conversion solutions that enhance performance, extend lifespan, and meet the demands of modern marine operations seamlessly.",
       image: "/dpv-offshore-redesign-website/images/Rectangle_1004.png"
     },
     {
       title: "Ship Electrical Engineering",
-      description: "Advanced electrical diagnostics, rewiring, and power management system upgrades for marine vessels.",
-      details: "Our electrical engineering services cover the installation and repair of main switchboards, alarm systems, and navigation equipment. We offer comprehensive power load analysis and modern retrofitting solutions to enhance energy efficiency and vessel automation.",
+      description: "Powering the future of marine operations through advanced electrical and technology solutions.",
+      details: "We deliver innovation, reliability, and performance to keep your vessel operating at its best, covering everything from main switchboards to energy storage and electric thruster systems.",
       image: "/dpv-offshore-redesign-website/images/Rectangle_1006.png"
     },
     {
       title: "Ship Mechanical Engineering",
-      description: "Precision mechanical overhauls, engine maintenance, and drivetrain optimization for maximum efficiency.",
-      details: "Equipped with state-of-the-art machining tools, we execute major overhauls on 2-stroke and 4-stroke marine diesel engines, turbochargers, and propulsion systems. Our preventative maintenance programs are designed to extend equipment lifespan and optimize fuel consumption.",
+      description: "Comprehensive engine overhaul services designed to restore power and reliability.",
+      details: "With meticulous attention to detail, we execute main and auxiliary engine overhauls, 2-stroke/4-stroke diagnostics, and provide skilled riding crews (CDC Holders) to restore maximum efficiency.",
       image: "/dpv-offshore-redesign-website/images/Rectangle_1007.png"
     },
     {
-      title: "Oil Field Services",
-      description: "Robust support and procurement services designed specifically for offshore oil field infrastructure.",
-      details: "We supply essential equipment, skilled manpower, and logistical support directly to offshore rigs and drillships. Our supply chain network guarantees the timely delivery of critical spares, safety gear, and specialized drilling components in remote locations.",
-      image: "/dpv-offshore-redesign-website/images/Rectangle_1008.png"
-    },
-    {
-      title: "Process Automation",
-      description: "State-of-the-art fluid control and automation system integration for safer, smarter offshore operations.",
-      details: "We design and install customized PLC and SCADA systems for ballast water management, cargo monitoring, and engine control. Our automation solutions provide real-time data analytics, improving operational safety and reducing manual intervention.",
+      title: "Process Automation & Fluid Control",
+      description: "Driving efficiency through smart innovation and fluid control solutions.",
+      details: "We offer the latest technology from pneumatic automation to electric actuation. Our solutions bring precision, reliability, and intelligent performance to every stage of your vessel's operation.",
       image: "/dpv-offshore-redesign-website/images/Rectangle_1013.png"
     },
     {
-      title: "Subsea Operations",
-      description: "Specialized engineering and structural support for deep-water and subsea exploration projects.",
-      details: "Our subsea services include ROV (Remotely Operated Vehicle) support, underwater hull cleaning, and subsea infrastructure installations. We utilize advanced acoustic positioning and deep-water robotics to execute complex tasks in challenging marine environments.",
+      title: "Power Plants",
+      description: "Ensuring power generation systems run smoothly with minimal downtime.",
+      details: "We provide preventive maintenance, mechanical and electrical repairs, turbine overhauls, emergency breakdown support, and control system upgrades to improve operational performance.",
+      image: "/dpv-offshore-redesign-website/images/Rectangle_1008.png"
+    },
+    {
+      title: "Hydropower",
+      description: "Engineering excellence in hydropower development, from feasibility to commissioning.",
+      details: "End-to-end solutions including hydrological studies, turbine selection, electrical services for stations, rewinding generator stators, and transformer solutions across Asia & Africa.",
       image: "/dpv-offshore-redesign-website/images/Rectangle_1010.png"
     },
     {
-      title: "Maritime Procurement",
-      description: "Global sourcing of high-grade marine components, ensuring quality and compliance at every step.",
-      details: "Leveraging a global network of trusted OEMs, we source and deliver everything from heavy machinery components to specialized marine electronics. Our procurement team ensures cost-effective purchasing, rigorous quality control, and seamless customs clearance.",
+      title: "Cranes",
+      description: "Automation solutions designed to increase crane productivity and operational safety.",
+      details: "Specialized systems engineered to improve throughput and precise control management, directly increasing heavy-lifting efficiency and site safety.",
+      image: "/dpv-offshore-redesign-website/images/Rectangle_1011.png"
+    },
+    {
+      title: "EPC Projects",
+      description: "Expert Engineering, Procurement, and Construction services.",
+      details: "We manage and deliver complex turnkey EPC projects on time and on budget, aligning world-class engineering with robust procurement networks and solid construction execution.",
+      image: "/dpv-offshore-redesign-website/images/Rectangle_1012.png"
+    },
+    {
+      title: "Industrial Automation",
+      description: "Empowering industries through precision, speed, and reliable automation.",
+      details: "Transforming traditional operations into smarter, more efficient systems through comprehensive industrial and process automation architectures.",
+      image: "/dpv-offshore-redesign-website/images/Rectangle_1010.png"
+    },
+    {
+      title: "Automotive",
+      description: "Driving innovation forward safely and efficiently.",
+      details: "Our automotive solutions combine engineering excellence and reliable performance to keep complex systems and infrastructure running seamlessly.",
       image: "/dpv-offshore-redesign-website/images/Rectangle_1011.png"
     }
   ];
 
-  // --- Framer Motion Variants ---
   const fadeUpVariant = {
     hidden: { opacity: 0, y: 30 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
@@ -87,35 +96,25 @@ export default function Industries() {
 
   const staggerContainer = {
     hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.1 },
-    },
+    visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
   };
 
   return (
     <main className="min-h-screen bg-gray-50 dark:bg-[#030712] pb-24 font-['Poppins'] transition-colors duration-300 relative">
       
-      {/* ================= HERO SECTION ================= */}
       <section className="relative w-full h-[50vh] min-h-[400px] md:h-[500px] flex items-center justify-center overflow-hidden rounded-b-[40px] md:rounded-b-[60px] shadow-2xl">
-        
-        {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <Image 
-            src="/dpv-offshore-redesign-website/images/worker-hero.png" // Replace with actual path
+            src="/dpv-offshore-redesign-website/images/worker-hero.png" 
             alt="Offshore Industries"
             fill 
             priority
             className="object-cover object-center"
           />
-          
-          {/* Deep Dark Overlay for Text Readability */}
           <div className="absolute inset-0 bg-black/60 dark:bg-[#030712]/70 mix-blend-multiply z-10"></div>
-          {/* Bottom gradient to blend smoothly into the page */}
           <div className="absolute inset-0 bg-gradient-to-t from-gray-50 dark:from-[#030712] via-transparent to-transparent z-10"></div>
         </div>
 
-        {/* Hero Content */}
         <div className="relative z-20 text-center px-4 max-w-4xl mx-auto -mt-10">
           <motion.div
             initial={{ opacity: 0, y: -20 }}
@@ -147,33 +146,19 @@ export default function Industries() {
         </div>
       </section>
 
-      {/* ================= CARDS GRID SECTION ================= */}
       <section className="max-w-[1400px] mx-auto px-4 sm:px-6 -mt-16 md:-mt-24 relative z-30">
-        <motion.div 
-          variants={staggerContainer}
-          initial="hidden"
-          animate="visible"
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
-        >
+        <motion.div variants={staggerContainer} initial="hidden" animate="visible" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {industryData.map((item, index) => (
             <motion.div 
-              key={index} 
-              variants={fadeUpVariant}
+              key={index} variants={fadeUpVariant}
               className="group bg-white dark:bg-[#1e293b] rounded-[30px] border border-gray-100 dark:border-gray-800 shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden flex flex-col transform hover:-translate-y-2 cursor-pointer"
-              onClick={() => setSelectedIndustry(item)} // Optional: click whole card to open
+              onClick={() => setSelectedIndustry(item)}
             >
-              {/* Card Image Area (Inset style) */}
               <div className="relative w-[calc(100%-16px)] h-56 mx-auto mt-2 bg-gray-100 dark:bg-gray-800 rounded-[24px] overflow-hidden">
-                <Image 
-                  src={item.image}
-                  alt={item.title}
-                  fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-700 ease-in-out"
-                />
+                <Image src={item.image} alt={item.title} fill className="object-cover group-hover:scale-110 transition-transform duration-700 ease-in-out" />
                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 dark:bg-black/20 transition-colors duration-300"></div>
               </div>
 
-              {/* Card Content */}
               <div className="p-6 md:p-8 flex flex-col flex-grow relative">
                 <h3 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-3 leading-tight group-hover:text-[#FF4500] transition-colors duration-300 pr-10">
                   {item.title}
@@ -182,13 +167,9 @@ export default function Industries() {
                   {item.description}
                 </p>
 
-                {/* Orange Action Button (Bottom Right) */}
                 <div className="absolute bottom-6 right-6">
                   <button 
-                    onClick={(e) => {
-                      e.stopPropagation(); // Prevents double firing if card is also clickable
-                      setSelectedIndustry(item);
-                    }}
+                    onClick={(e) => { e.stopPropagation(); setSelectedIndustry(item); }}
                     className="w-10 h-10 rounded-full bg-[#FF4500] hover:bg-[#E63E00] flex items-center justify-center shadow-lg hover:shadow-[0_0_15px_rgba(255,69,0,0.5)] transition-all duration-300 group/btn"
                     aria-label={`View details for ${item.title}`}
                   >
@@ -201,26 +182,18 @@ export default function Industries() {
         </motion.div>
       </section>
 
-      {/* ================= MODAL / POPUP SECTION ================= */}
       <AnimatePresence>
         {selectedIndustry && (
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+            initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
             className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/70 backdrop-blur-sm"
-            onClick={() => setSelectedIndustry(null)} // Click outside to close
+            onClick={() => setSelectedIndustry(null)}
           >
             <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              transition={{ duration: 0.3 }}
-              onClick={(e) => e.stopPropagation()} // Prevent clicks inside the modal from closing it
+              initial={{ opacity: 0, scale: 0.95, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.95, y: 20 }} transition={{ duration: 0.3 }}
+              onClick={(e) => e.stopPropagation()} 
               className="bg-white dark:bg-[#1e293b] w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-[30px] shadow-2xl flex flex-col md:flex-row relative"
             >
-              
-              {/* Close Button */}
               <button 
                 onClick={() => setSelectedIndustry(null)}
                 className="absolute top-4 right-4 z-10 w-10 h-10 bg-black/10 dark:bg-white/10 hover:bg-[#FF4500] hover:text-white rounded-full flex items-center justify-center transition-colors duration-300 backdrop-blur-md"
@@ -228,23 +201,14 @@ export default function Industries() {
                 <X className="w-5 h-5" />
               </button>
 
-              {/* Modal Image */}
               <div className="relative w-full md:w-2/5 h-64 md:h-auto min-h-[300px]">
-                <Image 
-                  src={selectedIndustry.image} 
-                  alt={selectedIndustry.title} 
-                  fill 
-                  className="object-cover"
-                />
-                {/* Gradient overlay to blend image with text block on mobile */}
+                <Image src={selectedIndustry.image} alt={selectedIndustry.title} fill className="object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-white dark:from-[#1e293b] to-transparent md:hidden"></div>
               </div>
 
-              {/* Modal Content */}
               <div className="p-6 md:p-10 w-full md:w-3/5 flex flex-col justify-center">
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gray-100 dark:bg-gray-800 text-[#FF4500] text-xs font-semibold tracking-wider uppercase mb-4 w-max">
-                  <Factory className="w-3 h-3" />
-                  Industry Details
+                  <Factory className="w-3 h-3" /> Industry Details
                 </div>
                 
                 <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
@@ -259,14 +223,12 @@ export default function Industries() {
                   {selectedIndustry.details}
                 </p>
 
-                {/* Optional Call to Action inside Modal */}
                 <div className="mt-8 pt-6 border-t border-gray-100 dark:border-gray-800">
                   <button className="px-6 py-3 bg-[#FF4500] hover:bg-[#E63E00] text-white rounded-full font-medium transition-colors duration-300 shadow-md">
                     Discuss a Project
                   </button>
                 </div>
               </div>
-              
             </motion.div>
           </motion.div>
         )}

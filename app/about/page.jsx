@@ -31,7 +31,7 @@ const AboutUsPage = () => {
             }, 16);
           };
 
-          // Updated Experience to 18 based on company profile 
+          // Demo data values kept for updating later
           animate(setExperience, 18, 1000);
           animate(setEmployee, 120, 2000);
           animate(setVessels, 456, 2500);
@@ -103,13 +103,13 @@ const AboutUsPage = () => {
               className="max-w-4xl mx-auto text-center px-4 flex-grow flex flex-col justify-center my-6"
             >
               <p className="text-white text-sm sm:text-base md:text-xl leading-relaxed drop-shadow-md mb-4 md:mb-6">
-                <span className="text-[#FF4500] font-bold">DPV Offshore & Marine Services</span> does more than deliver maritime services—we deliver trust, reliability, and innovation[cite: 2]. With every project, we navigate challenges with the same precision and dedication that define the maritime world we serve[cite: 3].
+                <span className="text-[#FF4500] font-bold">DPV Offshore & Marine Services</span> does more than deliver maritime services — we deliver trust, reliability, and innovation. With every project, we navigate challenges with the same precision and dedication that define the maritime world we serve.
               </p>
               <p className="text-white text-sm sm:text-base md:text-xl leading-relaxed drop-shadow-md mb-4 md:mb-6">
-                Your success is at the heart of everything we do, and we are dedicated to delivering the most effective and reliable maritime solutions to support your goals[cite: 14]. 
+                At DPV Offshore & Marine Services, we value every partnership we build. Your success is at the heart of everything we do, and we are dedicated to delivering the most effective and reliable maritime solutions to support your goals. 
               </p>
               <p className="text-white text-sm sm:text-base md:text-xl leading-relaxed drop-shadow-md font-semibold italic">
-                "Your trusted partner in navigating tomorrow's maritime challenges[cite: 12]."
+                "DPV Offshore & Marine Services — Your trusted partner in navigating tomorrow's maritime challenges."
               </p>
             </motion.div>
 
@@ -163,13 +163,13 @@ const AboutUsPage = () => {
           <h2 className="text-3xl md:text-4xl font-bold text-[#FF4500] uppercase tracking-widest mb-8">Our Journey</h2>
           <div className="text-gray-700 dark:text-gray-300 space-y-6 text-lg max-w-4xl mx-auto leading-relaxed">
             <p>
-              Founded in 2018 by a team of seasoned marine professionals, DPV emerged from a shared vision to raise industry standards by offering comprehensive, dependable, and high-quality maritime solutions[cite: 4, 5]. What began as a focused local initiative has evolved into an internationally respected name—recognised for excellence, integrity, and an unwavering commitment to our clients[cite: 6].
+              Founded in 2018 by a team of seasoned marine professionals, DPV emerged from a shared vision to raise industry standards by offering comprehensive, dependable, and high-quality maritime solutions. What began as a focused local initiative has evolved into an internationally respected name recognised for excellence, integrity, and an unwavering commitment to our clients.
             </p>
             <p>
-              With over 18 years of hands-on industry experience, our skilled team approaches every task with passion, technical mastery, and a relentless pursuit of perfection. Whether tackling complex offshore projects, vessel repairs, or tailored marine solutions, we operate with one clear mission: to help our clients move forward with confidence[cite: 8, 9].
+              With over 18 years of hands-on industry experience, our skilled team approaches every task with passion, technical mastery, and a relentless pursuit of perfection. Whether tackling complex offshore projects, vessel repairs, or tailored marine solutions, we operate with one clear mission: to help our clients move forward with confidence.
             </p>
             <p className="font-semibold text-gray-900 dark:text-gray-100">
-              At DPV, we believe excellence is not a destination—it is a continuous journey[cite: 10]. A journey we proudly share with our partners worldwide, steering them toward safer, smarter, and more successful marine engineering operations[cite: 11].
+              At DPV, we believe excellence is not a destination — it is a continuous journey. A journey we proudly share with our partners worldwide, steering them toward safer, smarter, and more successful marine engineering operations. With a commitment to excellence and a spirit of true collaboration, we stand by your side — navigating industry challenges together and ensuring seamless, confident progress at every stage.
             </p>
           </div>
         </motion.div>
@@ -191,15 +191,15 @@ const AboutUsPage = () => {
             <ul className="space-y-4 text-gray-700 dark:text-gray-300">
               <li className="flex items-start">
                 <span className="text-[#FF4500] mr-3 mt-1">▹</span>
-                <span>Provide professional fabrication, welding, mechanical, and electrical services that meet international standards[cite: 17].</span>
+                <span>Provide professional fabrication, welding, mechanical, and electrical services that meet international standards.</span>
               </li>
               <li className="flex items-start">
                 <span className="text-[#FF4500] mr-3 mt-1">▹</span>
-                <span>Support ship owners, shipyards, and industrial clients with responsive, flexible, and solution-focused service[cite: 18].</span>
+                <span>Support ship owners, shipyards, and industrial clients with responsive, flexible, and solution-focused service.</span>
               </li>
               <li className="flex items-start">
                 <span className="text-[#FF4500] mr-3 mt-1">▹</span>
-                <span>Continuously improve people, processes, and technology to deliver better value to customers[cite: 19].</span>
+                <span>Continuously improve people, processes, and technology to deliver better value to customers.</span>
               </li>
             </ul>
           </motion.div>
@@ -214,10 +214,7 @@ const AboutUsPage = () => {
           >
             <h3 className="text-2xl md:text-3xl font-bold text-[#FF4500] uppercase tracking-wider mb-6">Our Vision</h3>
             <p className="text-gray-700 dark:text-gray-300 text-lg leading-relaxed mb-6">
-              To be a trusted marine offshore & subsea service partner in the region, recognized for quality workmanship, safety, and timely project delivery[cite: 21].
-            </p>
-            <p className="text-gray-700 dark:text-gray-300 text-lg leading-relaxed border-l-4 border-[#5A45D3] pl-4 italic">
-              "With a commitment to excellence and a spirit of true collaboration, we stand by your side—navigating industry challenges together and ensuring seamless, confident progress at every stage[cite: 15]."
+              To be a trusted marine offshore & subsea service partner in region, recognized for quality workmanship, safety, and timely project delivery.
             </p>
           </motion.div>
 
@@ -227,7 +224,7 @@ const AboutUsPage = () => {
       {/* ================= CORE VALUES ================= */}
       <section className="py-16 md:py-24 px-4 max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-[#FF4500] uppercase tracking-widest">Core Values</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-[#FF4500] uppercase tracking-widest">Values</h2>
         </div>
 
         <motion.div 
@@ -243,7 +240,7 @@ const AboutUsPage = () => {
               <ShieldCheck className="text-[#FF4500] w-8 h-8" />
             </div>
             <h4 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-3">Safety First</h4>
-            <p className="text-gray-600 dark:text-gray-400">Safety first in every job and location[cite: 23].</p>
+            <p className="text-gray-600 dark:text-gray-400">Safety first in every job and location.</p>
           </motion.div>
 
           {/* Value 2 */}
@@ -252,7 +249,7 @@ const AboutUsPage = () => {
               <Wrench className="text-[#FF4500] w-8 h-8" />
             </div>
             <h4 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-3">Quality</h4>
-            <p className="text-gray-600 dark:text-gray-400">Quality workmanship and attention to detail[cite: 24].</p>
+            <p className="text-gray-600 dark:text-gray-400">Quality workmanship and attention to detail.</p>
           </motion.div>
 
           {/* Value 3 */}
@@ -261,7 +258,7 @@ const AboutUsPage = () => {
               <Handshake className="text-[#FF4500] w-8 h-8" />
             </div>
             <h4 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-3">Integrity</h4>
-            <p className="text-gray-600 dark:text-gray-400">Integrity and transparency in all dealings[cite: 25].</p>
+            <p className="text-gray-600 dark:text-gray-400">Integrity and transparency in all dealings.</p>
           </motion.div>
 
           {/* Value 4 */}
@@ -270,7 +267,7 @@ const AboutUsPage = () => {
               <Clock className="text-[#FF4500] w-8 h-8" />
             </div>
             <h4 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-3">Timeliness</h4>
-            <p className="text-gray-600 dark:text-gray-400">Commitment to on-time delivery[cite: 26].</p>
+            <p className="text-gray-600 dark:text-gray-400">Commitment to on-time delivery.</p>
           </motion.div>
 
           {/* Value 5 */}
@@ -279,7 +276,7 @@ const AboutUsPage = () => {
               <Globe className="text-[#FF4500] w-8 h-8" />
             </div>
             <h4 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-3">Global Mindset</h4>
-            <p className="text-gray-600 dark:text-gray-400">Respect, teamwork, and pride in Sri Lankan roots and global service[cite: 27].</p>
+            <p className="text-gray-600 dark:text-gray-400">Respect, teamwork, and pride in Sri Lankan roots and global service.</p>
           </motion.div>
         </motion.div>
       </section>

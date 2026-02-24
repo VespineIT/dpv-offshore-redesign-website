@@ -17,8 +17,8 @@ export default function GoogleTranslateHelper() {
       new window.google.translate.TranslateElement(
         { 
           pageLanguage: 'en', 
-          // You can limit languages here, e.g., 'en,es,fr'. Leave blank for all.
-          includedLanguages: 'en,es,fr,de,ar,zh-CN', 
+          // Added 'ru' for Russian
+          includedLanguages: 'en,fr,de,ru', 
           autoDisplay: false 
         },
         'google_translate_element'

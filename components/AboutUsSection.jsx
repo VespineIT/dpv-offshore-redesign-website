@@ -28,7 +28,8 @@ const AboutUsSection = () => {
             }, 16);
           };
 
-          animate(setExperience, 2, 1000);
+          // Updated Experience to 18 based on the PDF data
+          animate(setExperience, 18, 1000);
           animate(setEmployee, 120, 2000);
           animate(setVessels, 456, 2500);
         }
@@ -71,24 +72,24 @@ const AboutUsSection = () => {
             About Us
           </h2>
 
-          {/* ADDED TEXT SECTION */}
+          {/* ADDED TEXT SECTION - Updated with PDF Data */}
           <div className="max-w-4xl mx-auto text-center px-4 flex-grow flex flex-col justify-center my-6">
-  <p className="text-white text-sm sm:text-base md:text-xl leading-relaxed drop-shadow-md mb-4 md:mb-6">
-    <span className="text-[#FF4500] font-bold">DPV Offshore</span> specializes in engineering, procurement, and construction (EPC) services for the offshore industry, encompassing onshore, offshore, and subsea operations.
-  </p>
-  <p className="text-white text-sm sm:text-base md:text-xl leading-relaxed drop-shadow-md mb-4 md:mb-6">
-    Our comprehensive capabilities — from design engineering to manufacturing, installation, maintenance, repair, and component supply — enable us to deliver seamless project execution with uncompromising safety and quality standards.
-  </p>
-  <p className="text-white text-sm sm:text-base md:text-xl leading-relaxed drop-shadow-md">
-    Built on long-term client relationships and proven performance, we continue to earn the trust of our partners through our consistent commitment to excellence, reliability, and value-driven delivery.
-    <a 
-      href="/about" 
-      className="inline-block ml-2 text-[#FF4500] font-bold hover:text-white transition-colors duration-300 underline underline-offset-4"
-    >
-      Learn more about our journey &rarr;
-    </a>
-  </p>
-</div>
+            <p className="text-white text-sm sm:text-base md:text-xl leading-relaxed drop-shadow-md mb-4 md:mb-6">
+              <span className="text-[#FF4500] font-bold">DPV Offshore & Marine Services</span> does more than deliver maritime services — we deliver trust, reliability, and innovation. With every project, we navigate challenges with the same precision and dedication that define the maritime world we serve.
+            </p>
+            <p className="text-white text-sm sm:text-base md:text-xl leading-relaxed drop-shadow-md mb-4 md:mb-6">
+              Our skilled team approaches every task with passion, technical mastery, and a relentless pursuit of perfection, operating with one clear mission: to help our clients move forward with confidence.
+            </p>
+            <p className="text-white text-sm sm:text-base md:text-xl leading-relaxed drop-shadow-md">
+              Your success is at the heart of everything we do, and we are dedicated to delivering the most effective and reliable maritime solutions to support your goals.
+              <a 
+                href="/about" 
+                className="inline-block ml-2 text-[#FF4500] font-bold hover:text-white transition-colors duration-300 underline underline-offset-4"
+              >
+                Learn more about our journey &rarr;
+              </a>
+            </p>
+          </div>
 
           {/* Stats Section */}
           <div className="grid grid-cols-3 gap-2 max-w-5xl mx-auto w-full mb-4 md:mb-8">

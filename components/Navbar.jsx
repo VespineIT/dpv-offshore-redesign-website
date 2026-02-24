@@ -5,13 +5,23 @@ import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { Globe, ChevronDown } from 'lucide-react'; 
+import { ChevronDown } from 'lucide-react'; 
 import MobileMenu from './MobileMenu';
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isLangMenuOpen, setIsLangMenuOpen] = useState(false); // New state for language dropdown
-  const [currentLang, setCurrentLang] = useState('English');   // New state for current language
+  const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
+  const [isSolutionsOpen, setIsSolutionsOpen] = useState(false); // New state for Solutions dropdown
+  
+  // Define languages with their respective flag CDN URLs
+  const languages = [
+    { code: 'en', name: 'English', flag: 'https://flagcdn.com/w20/gb.png' },
+    { code: 'fr', name: 'French', flag: 'https://flagcdn.com/w20/fr.png' },
+    { code: 'de', name: 'German', flag: 'https://flagcdn.com/w20/de.png' },
+    { code: 'ru', name: 'Russian', flag: 'https://flagcdn.com/w20/ru.png' },
+  ];
+
+  const [currentLang, setCurrentLang] = useState(languages[0]);   
   const pathname = usePathname();
 
   const isActive = (path) => pathname === path;
@@ -23,40 +33,38 @@ export default function Navbar() {
   const inactiveStyles =
     "text-[#1a1a54] dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 px-6 py-2.5 rounded-full flex items-center font-bold tracking-wider transition-all duration-300 ease-in-out";
 
-  const navLinks = [
-    { name: 'INDUSTRIES', path: '/industries' },
-    { name: 'PRODUCTS', path: '/products' },
-    { name: 'SERVICES', path: '/services' },
+  // Center navigation links for desktop
+  const centerLinks = [
+    { name: 'HOME', path: '/' },
+    { name: 'ABOUT US', path: '/about' },
+    { name: 'BLOG', path: '/blog' },
+    { name: 'CAREER', path: '/career' },
   ];
 
-  // Map out the languages you want in your dropdown
-  // Note: 'code' must match Google Translate's official language codes
-  const languages = [
-    { code: 'en', name: 'English' },
-    { code: 'es', name: 'Spanish' },
-    { code: 'fr', name: 'French' },
-    { code: 'de', name: 'German' },
+  // Solutions dropdown links
+  const solutionsLinks = [
+    { name: 'Products', path: '/products' },
+    { name: 'Services', path: '/services' },
+    { name: 'Industries', path: '/industries' },
   ];
 
-  // Function to trigger Google Translate via JavaScript
-  const handleLanguageChange = (langCode, langName) => {
-    setCurrentLang(langName);
+  const handleLanguageChange = (langObj) => {
+    setCurrentLang(langObj);
     setIsLangMenuOpen(false);
     
-    // Find the hidden Google select element and change its value
     const gtSelect = document.querySelector('.goog-te-combo');
     if (gtSelect) {
-      gtSelect.value = langCode;
+      gtSelect.value = langObj.code;
       gtSelect.dispatchEvent(new Event('change'));
     }
   };
 
   return (
     <>
-      {/* Backdrop */}
+      {/* Backdrop for Mobile Menu */}
       {isMenuOpen && (
         <div
-          className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40"
+          className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40 lg:hidden"
           onClick={() => setIsMenuOpen(false)}
         />
       )}
@@ -78,9 +86,9 @@ export default function Navbar() {
             </Link>
           </div>
 
-          {/* CENTER NAV LINKS */}
+          {/* CENTER NAV LINKS (Desktop Only) */}
           <div className="hidden lg:flex items-center gap-2 h-full text-[14px]">
-            {navLinks.map((link) => (
+            {centerLinks.map((link) => (
               <Link
                 key={link.path}
                 href={link.path}
@@ -97,11 +105,20 @@ export default function Navbar() {
             {/* CUSTOM LANGUAGE SELECTOR */}
             <div className="relative">
               <div 
-                onClick={() => setIsLangMenuOpen(!isLangMenuOpen)}
+                onClick={() => {
+                  setIsLangMenuOpen(!isLangMenuOpen);
+                  setIsSolutionsOpen(false); // Close solutions if language opens
+                }}
                 className="flex items-center gap-2 bg-[#ec4a0a] hover:bg-[#d44309] text-white px-4 py-2 rounded-lg cursor-pointer transition-colors"
               >
-                <Globe size={18} strokeWidth={2.5} /> 
-                <span className="text-[13px] font-bold">{currentLang}</span>
+                <img 
+                  src={currentLang.flag} 
+                  alt={`${currentLang.name} flag`} 
+                  width="20" 
+                  height="15" 
+                  className="rounded-sm object-cover" 
+                />
+                <span className="text-[13px] font-bold hidden sm:inline-block">{currentLang.name}</span>
                 <ChevronDown 
                   size={16} 
                   strokeWidth={3} 
@@ -109,15 +126,22 @@ export default function Navbar() {
                 />
               </div>
 
-              {/* DROPDOWN MENU */}
+              {/* LANGUAGE DROPDOWN MENU */}
               {isLangMenuOpen && (
-                <div className="absolute top-full mt-2 right-0 w-36 bg-white dark:bg-[#1a1a54] shadow-xl rounded-lg overflow-hidden z-50 border border-gray-100 dark:border-gray-800">
+                <div className="absolute top-full mt-2 right-0 w-40 bg-white dark:bg-[#1a1a54] shadow-xl rounded-lg overflow-hidden z-50 border border-gray-100 dark:border-gray-800">
                   {languages.map((lang) => (
                     <button
                       key={lang.code}
-                      onClick={() => handleLanguageChange(lang.code, lang.name)}
-                      className="w-full text-left px-4 py-3 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-[#ec4a0a] hover:text-white transition-colors"
+                      onClick={() => handleLanguageChange(lang)}
+                      className="w-full flex items-center gap-3 text-left px-4 py-3 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-[#ec4a0a] hover:text-white transition-colors"
                     >
+                      <img 
+                        src={lang.flag} 
+                        alt={`${lang.name} flag`} 
+                        width="20" 
+                        height="15" 
+                        className="rounded-sm object-cover shadow-sm"
+                      />
                       {lang.name}
                     </button>
                   ))}
@@ -125,11 +149,48 @@ export default function Navbar() {
               )}
             </div>
 
-            {/* HAMBURGER */}
+            {/* SOLUTIONS DROPDOWN (Desktop Only) */}
+            <div className="hidden lg:block relative">
+              <button
+                onClick={() => {
+                  setIsSolutionsOpen(!isSolutionsOpen);
+                  setIsLangMenuOpen(false); // Close language if solutions opens
+                }}
+                className={`flex items-center gap-1.5 px-3 py-2 rounded-lg font-bold tracking-wider transition-all duration-300 ease-in-out ${
+                  isSolutionsOpen 
+                    ? "text-[#ec4a0a]" 
+                    : "text-[#1a1a54] dark:text-gray-200 hover:text-[#ec4a0a] dark:hover:text-[#ec4a0a]"
+                }`}
+              >
+                SOLUTIONS
+                <ChevronDown 
+                  size={16} 
+                  strokeWidth={3} 
+                  className={`transition-transform duration-200 ${isSolutionsOpen ? 'rotate-180' : ''}`} 
+                />
+              </button>
+
+              {/* SOLUTIONS DROPDOWN MENU */}
+              {isSolutionsOpen && (
+                <div className="absolute top-full mt-4 right-0 w-48 bg-white dark:bg-[#1a1a54] shadow-xl rounded-lg overflow-hidden z-50 border border-gray-100 dark:border-gray-800">
+                  {solutionsLinks.map((link) => (
+                    <Link
+                      key={link.path}
+                      href={link.path}
+                      onClick={() => setIsSolutionsOpen(false)}
+                      className="block w-full text-left px-4 py-3 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-[#ec4a0a] hover:text-white transition-colors"
+                    >
+                      {link.name}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* HAMBURGER (Mobile Only - hidden on 'lg' screens) */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              /* Removed lg:hidden from the end of this line below */
-              className="flex flex-col gap-1.5 p-2 hover:bg-gray-100 dark:hover:bg-gray-800/50 rounded-lg transition-colors z-50 ml-2"
+              className="lg:hidden flex flex-col gap-1.5 p-2 hover:bg-gray-100 dark:hover:bg-gray-800/50 rounded-lg transition-colors z-50 ml-2"
               aria-label="Toggle Menu"
             >
               <span className={`w-7 h-[3px] bg-[#ec4a0a] rounded-full transition-all duration-300 ${isMenuOpen ? 'rotate-45 translate-y-[9px]' : ''}`} />
@@ -139,7 +200,7 @@ export default function Navbar() {
 
             {/* MOBILE MENU */}
             {isMenuOpen && (
-              <div className="absolute top-16 right-0 z-50 min-w-[200px] animate-in slide-in-from-top-2 fade-in duration-200">
+              <div className="absolute top-16 right-0 z-50 min-w-[200px] animate-in slide-in-from-top-2 fade-in duration-200 lg:hidden">
                 <MobileMenu onClose={() => setIsMenuOpen(false)} />
               </div>
             )}
