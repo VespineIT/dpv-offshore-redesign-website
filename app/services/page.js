@@ -29,7 +29,7 @@ export default function Services() {
       title: "Ship Repairs & Drydocking",
       desc: "Complete ship repair and drydocking services, ensuring safe operations, reliable workmanship, and on-time delivery.",
       details: "We provide complete ship repair and drydocking services, ensuring safe operations, reliable workmanship, and on-time delivery in compliance with international marine standards. Our certified engineers handle everything from routine maintenance to complex structural repairs.",
-      img: "/dpv-offshore-redesign-website/images/Rectangle_1010.png",
+      img: "/dpv-offshore-redesign-website/images/ship_pic_1.png",
       category: "repair"
     },
     {
@@ -37,7 +37,7 @@ export default function Services() {
       title: "Ship Conversion",
       desc: "Transform your vessel with confidence. Innovative ship conversion solutions that enhance performance and extend lifespan.",
       details: "Transform your vessel with confidence. Our expert team delivers innovative ship conversion solutions that enhance performance, extend lifespan, and meet the demands of modern marine operations. We oversee the entire process from feasibility studies to final commissioning.",
-      img: "/dpv-offshore-redesign-website/images/Rectangle_1011.png",
+      img: "/dpv-offshore-redesign-website/images/ship_pic_2.png",
       category: "repair"
     },
     {
@@ -45,7 +45,7 @@ export default function Services() {
       title: "Propulsion Services",
       desc: "High-quality work on MAN, ZF, Wartsila, Berg, & Kawasaki. Includes FPP/CPP overhauls, thruster overhauls, and blade polishing.",
       details: "Our engineers are experienced and highly skilled in products of the best-known brands in the industry such as MAN, ZF, Wartsila, Berg, Kawasaki & etc. We provide propulsion services by arranging flying squads attending vessels in worldwide shipyards, an ideal option for difficult areas with no service facilities.",
-      img: "/dpv-offshore-redesign-website/images/Rectangle_1012.png",
+      img: "/dpv-offshore-redesign-website/images/ship_pic_3.png",
       category: "repair"
     },
     // --- System Configuration ---
@@ -54,7 +54,7 @@ export default function Services() {
       title: "System Integration",
       desc: "Seamless connection. Superior control. Unite every component of your vessel into one efficient network for smart operations.",
       details: "Seamless connection. Superior control. Our system integration solutions unite every component of your vessel into one efficient network, enhancing performance, reliability, and smart marine operations across navigation, communication, and automation systems.",
-      img: "/dpv-offshore-redesign-website/images/Rectangle_1013.png",
+      img: "/dpv-offshore-redesign-website/images/ship_pic_4.png",
       category: "systems"
     },
     {
@@ -62,7 +62,7 @@ export default function Services() {
       title: "System Configurations",
       desc: "Tailored configurations optimizing performance: Generator sets, Energy storage, Switchboards, Transformers, and Drives.",
       details: "Configuring excellence for every voyage. Our expert team delivers tailored system configuration solutions that optimize performance, ensure reliability, and align your vessel’s technology with operational success. We cover main switchboards, distribution boards, motor control centers, and more.",
-      img: "/dpv-offshore-redesign-website/images/Rectangle_1010.png",
+      img: "/dpv-offshore-redesign-website/images/ship_pic_5.png",
       category: "systems"
     },
     {
@@ -70,7 +70,7 @@ export default function Services() {
       title: "Thruster & DP Control",
       desc: "Configuration and optimization of main and auxiliary thrusters, including advanced Thruster control, Joystick, and DP systems.",
       details: "We deliver advanced configurations for electric thruster motors, electric propulsion systems, and main/auxiliary thrusters. Our expertise includes integrating seamless Joystick and Dynamic Positioning (DP) systems for superior maneuverability in harsh conditions.",
-      img: "/dpv-offshore-redesign-website/images/Rectangle_1011.png",
+      img: "/dpv-offshore-redesign-website/images/ship_pic_6.png",
       category: "systems"
     },
     // --- Automation & Control ---
@@ -79,7 +79,7 @@ export default function Services() {
       title: "Pneumatic Technology",
       desc: "Actuators, valves, solenoid valves, proportional fittings, and vacuum handling. Combining mechanics and electronics.",
       details: "The range of pneumatic solutions includes actuators, valves, solenoid valves, proportional technology fittings, handling vacuum and air treatment components. All combine the mechanics and electronics required for motion management and control with optimized consumption and functional parameters.",
-      img: "/dpv-offshore-redesign-website/images/Rectangle_1012.png",
+      img: "/dpv-offshore-redesign-website/images/ship_pic_7.png",
       category: "automation"
     },
     {
@@ -87,7 +87,7 @@ export default function Services() {
       title: "Electric Actuation",
       desc: "Reliable electric actuation solutions engineered for precision, durability, and efficiency across marine systems.",
       details: "We deliver reliable electric actuation solutions engineered for precision, durability, and efficiency, enabling smooth control and enhanced performance across marine and industrial systems. Designed to operate safely in challenging environments.",
-      img: "/dpv-offshore-redesign-website/images/Rectangle_1013.png",
+      img: "/dpv-offshore-redesign-website/images/ship_pic_8.png",
       category: "automation"
     },
     {
@@ -95,7 +95,7 @@ export default function Services() {
       title: "Fluid & Process Automation",
       desc: "Engineered for precision. Streamlined performance through smart process automation and fluid control.",
       details: "Engineered for precision, built for performance. Our fluid control and process automation solutions ensure smooth, reliable, and efficient operations — keeping your systems running at optimum flow. We drive efficiency in every stage of your vessel's operation.",
-      img: "/dpv-offshore-redesign-website/images/Rectangle_1010.png",
+      img: "/dpv-offshore-redesign-website/images/ship_pic_9.png",
       category: "automation"
     },
     // --- Machining & Reconditioning ---
@@ -104,7 +104,7 @@ export default function Services() {
       title: "Reconditioning Services",
       desc: "Precision machining for Piston Crowns/Skirts, Cylinder Heads, Exhaust Valves, Rods, and Remetalling Bearings.",
       details: "Your trusted partner for comprehensive engine reconditioning services. We specialize in revitalizing engines across diverse industries. From precision machining to meticulous assembly of Cylinder Heads, Piston Skirts, Exhaust Valve Spindles, and Remetalling Babbitt Bearings.",
-      img: "/dpv-offshore-redesign-website/images/Rectangle_1011.png",
+      img: "/dpv-offshore-redesign-website/images/ship_pic_10.png",
       category: "machining"
     },
     {
@@ -112,7 +112,7 @@ export default function Services() {
       title: "Mobile In-Situ Machining",
       desc: "On-site Turning, Line Boring, Milling, Grinding, and Drilling. Eliminates logistical issues related to moving heavy equipment.",
       details: "Our mobile in-site/on-site machining capacity eliminates the logistical and budgetary issues related to maintenance and replacements on large equipment. We provide on-site Turning & Line Boring, Milling, Grinding, specialized Drilling, and Shaft machining made to measure.",
-      img: "/dpv-offshore-redesign-website/images/Rectangle_1012.png",
+      img: "/dpv-offshore-redesign-website/images/ship_pic_11.png",
       category: "machining"
     },
     {
@@ -120,7 +120,7 @@ export default function Services() {
       title: "Flange Machining & Pipe Cutting",
       desc: "On-site machining of new or worn flanges. Mobile pipe cutting solutions and precision weld seam preparation.",
       details: "On-site machining of new, worn, or damaged flanges to achieve perfect sealing surfaces and correct alignment. We also offer mobile pipe cutting solutions for a wide range of diameters and wall thicknesses with clean, accurate separation and optimal weld seam preparation.",
-      img: "/dpv-offshore-redesign-website/images/Rectangle_1013.png",
+      img: "/dpv-offshore-redesign-website/images/ship_pic_8.png",
       category: "machining"
     }
   ];

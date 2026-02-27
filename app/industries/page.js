@@ -25,67 +25,67 @@ export default function Industries() {
       title: "Ship Repairs",
       description: "Complete ship repair and drydocking services, ensuring safe operations.",
       details: "We provide reliable workmanship and on-time delivery in compliance with international marine standards. Our certified engineers handle everything from routine dry-docking to emergency afloat repairs.",
-      image: "/dpv-offshore-redesign-website/images/Rectangle_982.png" 
+      image: "/dpv-offshore-redesign-website/images/ship_pic_1.png" 
     },
     {
       title: "Ship Conversion",
       description: "Transform your vessel with confidence through innovative conversion solutions.",
       details: "Our expert team delivers ship conversion solutions that enhance performance, extend lifespan, and meet the demands of modern marine operations seamlessly.",
-      image: "/dpv-offshore-redesign-website/images/Rectangle_1004.png"
+      image: "/dpv-offshore-redesign-website/images/ship_pic_2.png"
     },
     {
       title: "Ship Electrical Engineering",
       description: "Powering the future of marine operations through advanced electrical and technology solutions.",
       details: "We deliver innovation, reliability, and performance to keep your vessel operating at its best, covering everything from main switchboards to energy storage and electric thruster systems.",
-      image: "/dpv-offshore-redesign-website/images/Rectangle_1006.png"
+      image: "/dpv-offshore-redesign-website/images/ship_pic_3.png"
     },
     {
       title: "Ship Mechanical Engineering",
       description: "Comprehensive engine overhaul services designed to restore power and reliability.",
       details: "With meticulous attention to detail, we execute main and auxiliary engine overhauls, 2-stroke/4-stroke diagnostics, and provide skilled riding crews (CDC Holders) to restore maximum efficiency.",
-      image: "/dpv-offshore-redesign-website/images/Rectangle_1007.png"
+      image: "/dpv-offshore-redesign-website/images/ship_pic_4.png"
     },
     {
       title: "Process Automation & Fluid Control",
       description: "Driving efficiency through smart innovation and fluid control solutions.",
       details: "We offer the latest technology from pneumatic automation to electric actuation. Our solutions bring precision, reliability, and intelligent performance to every stage of your vessel's operation.",
-      image: "/dpv-offshore-redesign-website/images/Rectangle_1013.png"
+      image: "/dpv-offshore-redesign-website/images/ship_pic_5.png"
     },
     {
       title: "Power Plants",
       description: "Ensuring power generation systems run smoothly with minimal downtime.",
       details: "We provide preventive maintenance, mechanical and electrical repairs, turbine overhauls, emergency breakdown support, and control system upgrades to improve operational performance.",
-      image: "/dpv-offshore-redesign-website/images/Rectangle_1008.png"
+      image: "/dpv-offshore-redesign-website/images/ship_pic_6.png"
     },
     {
       title: "Hydropower",
       description: "Engineering excellence in hydropower development, from feasibility to commissioning.",
       details: "End-to-end solutions including hydrological studies, turbine selection, electrical services for stations, rewinding generator stators, and transformer solutions across Asia & Africa.",
-      image: "/dpv-offshore-redesign-website/images/Rectangle_1010.png"
+      image: "/dpv-offshore-redesign-website/images/ship_pic_7.png"
     },
     {
       title: "Cranes",
       description: "Automation solutions designed to increase crane productivity and operational safety.",
       details: "Specialized systems engineered to improve throughput and precise control management, directly increasing heavy-lifting efficiency and site safety.",
-      image: "/dpv-offshore-redesign-website/images/Rectangle_1011.png"
+      image: "/dpv-offshore-redesign-website/images/ship_pic_8.png"
     },
     {
       title: "EPC Projects",
       description: "Expert Engineering, Procurement, and Construction services.",
       details: "We manage and deliver complex turnkey EPC projects on time and on budget, aligning world-class engineering with robust procurement networks and solid construction execution.",
-      image: "/dpv-offshore-redesign-website/images/Rectangle_1012.png"
+      image: "/dpv-offshore-redesign-website/images/ship_pic_9.png"
     },
     {
       title: "Industrial Automation",
       description: "Empowering industries through precision, speed, and reliable automation.",
       details: "Transforming traditional operations into smarter, more efficient systems through comprehensive industrial and process automation architectures.",
-      image: "/dpv-offshore-redesign-website/images/Rectangle_1010.png"
+      image: "/dpv-offshore-redesign-website/images/ship_pic_10.png"
     },
     {
       title: "Automotive",
       description: "Driving innovation forward safely and efficiently.",
       details: "Our automotive solutions combine engineering excellence and reliable performance to keep complex systems and infrastructure running seamlessly.",
-      image: "/dpv-offshore-redesign-website/images/Rectangle_1011.png"
+      image: "/dpv-offshore-redesign-website/images/ship_pic_11.png"
     }
   ];
 
