@@ -105,7 +105,7 @@ export default function Industries() {
       <section className="relative w-full h-[50vh] min-h-[400px] md:h-[500px] flex items-center justify-center overflow-hidden rounded-b-[40px] md:rounded-b-[60px] shadow-2xl">
         <div className="absolute inset-0 z-0">
           <Image 
-            src="/dpv-offshore-redesign-website/images/worker-hero.png" 
+            src="/dpv-offshore-redesign-website/images/career-hero.jpeg" 
             alt="Offshore Industries"
             fill 
             priority

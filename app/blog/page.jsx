@@ -13,7 +13,7 @@ const blogPosts = [
     content: "In offshore and marine environments, electrical systems are not just components. They are the backbone of safe and continuous operations. From motors and alternators to sensors and control panels, every part must perform under extreme conditions.\n\nAt DPV Offshore & Marine Services LLC, we understand the importance of:\n• Marine-grade electrical components\n• Corrosion-resistant materials\n• Reliable temperature sensors and AVR systems\n• High-performance winding coils and red varnish insulation\n\nUsing the right supplier ensures reduced downtime, improved safety, and long-term reliability. In offshore projects, failure is not an option, quality is everything.",
     category: "Electrical Supply",
     date: "February 20, 2026",
-    image: "https://via.placeholder.com/800x500/251a66/E0E7FF?text=Electrical+Supply"
+    image: "/dpv-offshore-redesign-website/images/blog_1.png"
   },
   {
     id: 2,
