@@ -313,7 +313,7 @@ export default function CompassHero() {
       : "drop-shadow(0 20px 60px rgba(74,52,204,0.22))",
   };
 
-  const lines = ["Your ","satisfaction", "is our Desire"];
+  const lines = ["YOUR ASSETS", "ARE IN", "SAFE HANDS"];
 
   return (
     <>

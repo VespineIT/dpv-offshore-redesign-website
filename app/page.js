@@ -4,6 +4,7 @@ import OfficeGlobe from "@/components/OfficeGlobe";
 import CallToAction from "@/components/CallToAction";
 import AboutUsSection from "@/components/AboutUsSection";
 import HowWeWork from "@/components/HowWeWork";
+import ExpertiseSection from "@/components/ExpertiseSection"
 
 export default function Page() {
   return (
@@ -11,6 +12,9 @@ export default function Page() {
       
       {/* Hero Section */}
       <CompassHero />
+
+      {/*ExpertiseSection*/}
+      <ExpertiseSection/>
       {/* About Us */}
       <AboutUsSection />
       <HowWeWork />
