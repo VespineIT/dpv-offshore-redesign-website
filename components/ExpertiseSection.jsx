@@ -1,9 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
-export default function AboutExpertiseSection() {
-  /* ── Dark mode detection ────────────────────────────────── */
+export default function ExpertiseShowcase() {
   const [isDark, setIsDark] = useState(false);
 
   useEffect(() => {
@@ -15,205 +15,338 @@ export default function AboutExpertiseSection() {
     return () => mq.removeEventListener("change", h);
   }, []);
 
-  /* ── Theme tokens (Matching Hero Palette) ───────────────── */
   const T = {
-    // Slightly off-background from the hero to create a natural section break
-    bg: isDark ? "#050814" : "#FAFAFA", 
-    textMain: isDark ? "#F9FAFB" : "#251A66", // White vs Deep Navy
-    textMuted: isDark ? "#A1A1AA" : "#4B5563",
-    accent: "#EC4A0A", // Burnt Orange (Brand consistent)
-    cardBg: isDark ? "rgba(255, 255, 255, 0.03)" : "#FFFFFF",
-    cardBorder: isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(37, 26, 102, 0.08)",
-    cardHoverBorder: isDark ? "#6366F1" : "#EC4A0A", // Indigo for dark, Orange for light
-    cardHoverShadow: isDark 
-      ? "0 10px 30px -10px rgba(99, 102, 241, 0.2)" 
-      : "0 10px 30px -10px rgba(236, 74, 10, 0.15)",
+    bg: isDark ? "#030712" : "#FAFAFA",
+    textMain: isDark ? "#F9FAFB" : "#251A66",
+    textMuted: isDark ? "#9CA3AF" : "#4B5563",
+    accent: "#EC4A0A",
+    activePill: isDark ? "#6366F1" : "#EC4A0A",
+    rule: isDark ? "rgba(255,255,255,0.1)" : "rgba(37,26,102,0.12)",
   };
 
   const expertiseList = [
-    "Products",
-    "Operations",
-    "Technical Support",
-    "Repair Orders",
-    "Maintenance"
+    { title: "Products",          imageUrl: "/dpv-offshore-redesign-website/images/expertise_products.png" },
+    { title: "Operations",        imageUrl: "/dpv-offshore-redesign-website/images/expertise_operations.png" },
+    { title: "Technical Support", imageUrl: "/dpv-offshore-redesign-website/images/expertise_support.png" },
+    { title: "Repair Orders",     imageUrl: "/dpv-offshore-redesign-website/images/expertise_repair.png" },
+    { title: "Maintenance",       imageUrl: "/dpv-offshore-redesign-website/images/expertise_maintenance.png" },
   ];
+
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setActiveIndex((p) => (p + 1) % expertiseList.length);
+    }, 5000);
+    return () => clearInterval(id);
+  }, [expertiseList.length]);
 
   return (
     <section
       style={{
         backgroundColor: T.bg,
         color: T.textMain,
-        padding: "120px 6vw",
         fontFamily: "'DM Sans', sans-serif",
         transition: "background-color 0.5s ease, color 0.5s ease",
-        position: "relative",
-        borderTop: `1px solid ${T.cardBorder}`
+        minHeight: "100vh", // Ensures the section is at least full screen height
+        display: "flex",
+        flexDirection: "column",
       }}
     >
       <style>{`
-        .ae-container {
-          max-width: 1400px;
+        .es-wrap {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          max-width: 1600px;
+          width: 100%;
           margin: 0 auto;
+          padding: 6vh 6vw; /* Viewport-height based padding to fit screens dynamically */
         }
 
-        /* Large Intro Statement */
-        .ae-statement {
+        /* TOP */
+        .es-top {
+          border-top: 1px solid ${T.rule};
+          padding-top: 4vh;
+          padding-bottom: 4vh;
+          width: 100%;
+        }
+
+        .es-statement {
           font-family: 'Inter', sans-serif;
-          font-size: clamp(32px, 4vw, 56px);
+          font-size: clamp(32px, 4vw, 64px); /* Scaled up slightly to fill space better */
           font-weight: 500;
           line-height: 1.2;
           letter-spacing: -0.02em;
-          max-width: 1100px;
-          margin-bottom: 80px;
+          width: 100%; /* Removed max-width to allow it to fill the whole top */
+          margin: 0;
         }
-        
-        .ae-statement strong {
+        .es-statement strong {
           color: ${T.accent};
           font-weight: 500;
         }
 
-        /* Grid Layout */
-        .ae-grid {
+        /* MIDDLE */
+        .es-middle {
+          flex: 1; /* Pushes the top and bottom apart, filling available space */
           display: grid;
-          grid-template-columns: 1fr 1.5fr;
-          gap: 80px;
-          align-items: start;
+          grid-template-columns: 1fr 1.6fr;
+          border-top: 1px solid ${T.rule};
+          min-height: 0; /* Important for preventing flexbox overflow */
         }
 
-        /* Expertise Column */
-        .ae-subtitle {
-          font-family: 'DM Sans', sans-serif;
-          font-size: 14px;
-          font-weight: 700;
-          letter-spacing: 2px;
-          text-transform: uppercase;
-          color: ${T.accent};
-          margin-bottom: 32px;
-          display: flex;
-          align-items: center;
-          gap: 12px;
-        }
-
-        .ae-subtitle::before {
-          content: "";
-          display: block;
-          width: 24px;
-          height: 2px;
-          background-color: ${T.accent};
-        }
-
-        .ae-expertise-list {
+        /* LEFT TABS */
+        .es-tabs {
+          border-right: 1px solid ${T.rule};
+          padding-right: 0;
           display: flex;
           flex-direction: column;
-          gap: 16px;
-          list-style: none;
-          padding: 0;
+        }
+
+        .es-tabs-label {
+          font-size: 10px;
+          font-weight: 700;
+          letter-spacing: 3px;
+          text-transform: uppercase;
+          color: ${T.textMuted};
+          padding: 3vh 40px 3vh 0;
+          border-bottom: 1px solid ${T.rule};
           margin: 0;
         }
 
-        .ae-expertise-card {
-          background: ${T.cardBg};
-          border: 1px solid ${T.cardBorder};
-          padding: 24px 32px;
-          border-radius: 12px;
-          font-family: 'Inter', sans-serif;
-          font-size: 20px;
-          font-weight: 500;
-          color: ${T.textMain};
-          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        .es-tab {
+          position: relative;
           display: flex;
-          justify-content: space-between;
           align-items: center;
-          cursor: default;
+          gap: 18px;
+          padding: 0 40px 0 0;
+          flex: 1; /* Tabs stretch evenly to fill vertical space */
+          cursor: pointer;
+          border-bottom: 1px solid ${T.rule};
+          overflow: hidden;
         }
 
-        .ae-expertise-card:hover {
-          border-color: ${T.cardHoverBorder};
-          transform: translateX(8px);
-          box-shadow: ${T.cardHoverShadow};
+        .es-tab-fill {
+          position: absolute;
+          inset: 0;
+          background: ${T.activePill};
+          z-index: 0;
         }
 
-        .ae-expertise-card svg {
+        .es-tab-num {
+          font-family: 'DM Mono', 'Courier New', monospace;
+          font-size: 11px;
+          font-weight: 500;
+          position: relative;
+          z-index: 1;
+          width: 24px;
+          text-align: right;
+          flex-shrink: 0;
+          transition: color 0.25s;
+        }
+
+        .es-tab-divider {
+          width: 18px;
+          height: 1px;
+          flex-shrink: 0;
+          position: relative;
+          z-index: 1;
+          transition: background-color 0.25s;
+        }
+
+        .es-tab-name {
+          font-family: 'Inter', sans-serif;
+          font-weight: 500;
+          font-size: clamp(15px, 1.1vw, 18px);
+          position: relative;
+          z-index: 1;
+          flex: 1;
+          transition: color 0.25s;
+        }
+
+        .es-tab-arrow {
+          position: relative;
+          z-index: 1;
+          margin-left: auto;
           opacity: 0;
-          transform: translateX(-10px);
-          transition: all 0.3s ease;
-          color: ${T.cardHoverBorder};
+          transform: translateX(-8px);
+          transition: opacity 0.3s, transform 0.3s;
+          flex-shrink: 0;
         }
-
-        .ae-expertise-card:hover svg {
+        .es-tab.active .es-tab-arrow {
           opacity: 1;
           transform: translateX(0);
         }
 
-        /* Paragraph Column */
-        .ae-paragraphs {
-          display: flex;
-          flex-direction: column;
-          gap: 32px;
-          padding-top: 10px;
+        /* RIGHT IMAGE */
+        .es-image-col {
+          position: relative;
+          overflow: hidden;
+          height: 100%; /* Fits perfectly into the flex grid container */
+          min-height: 300px; /* Fallback for very small screens */
         }
 
-        .ae-paragraph {
-          font-size: clamp(16px, 1.5vw, 20px);
-          line-height: 1.8;
+        .es-image-col img {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+
+        .es-prog {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          height: 2px;
+          background: ${T.accent};
+          z-index: 5;
+        }
+
+        /* BOTTOM */
+        .es-bottom {
+          border-top: 1px solid ${T.rule};
+          padding-top: 4vh;
+          display: grid;
+          grid-template-columns: 1fr 1fr 1fr;
+          gap: 48px;
+        }
+
+        .es-paragraph {
+          font-size: clamp(14px, 1vw, 16px);
+          line-height: 1.9;
           color: ${T.textMuted};
           font-weight: 400;
+          margin: 0;
         }
 
-        /* Mobile Responsiveness */
-        @media (max-width: 992px) {
-          .ae-grid {
-            grid-template-columns: 1fr;
-            gap: 64px;
-          }
-          .ae-statement {
-            margin-bottom: 64px;
-          }
-          .ae-expertise-card:hover {
-            transform: translateX(4px);
-          }
+        /* RESPONSIVE */
+        @media (max-width: 1024px) {
+          .es-wrap { padding: 80px 6vw; height: auto; min-height: 100vh; }
+          .es-middle { grid-template-columns: 1fr; flex: none; }
+          .es-tabs { border-right: none; }
+          .es-tab { min-height: 70px; flex: none; }
+          .es-image-col { min-height: 320px; aspect-ratio: 16/9; }
+          .es-bottom { grid-template-columns: 1fr 1fr; margin-top: 4vh; }
+        }
+        @media (max-width: 640px) {
+          .es-bottom { grid-template-columns: 1fr; }
+          .es-tab { padding-right: 20px; }
         }
       `}</style>
 
-      <div className="ae-container">
-        {/* Main Statement */}
-        <h2 className="ae-statement">
-          Delivering <strong>safe, efficient, and cost-effective</strong> asset management solutions that ensure <strong>optimum value and performance.</strong>
-        </h2>
+      <div className="es-wrap">
 
-        {/* Two-Column Content Area */}
-        <div className="ae-grid">
-          
-          {/* Left Column: Expertise List */}
-          <div>
-            <h3 className="ae-subtitle">OUR EXPERTISE</h3>
-            <ul className="ae-expertise-list">
-              {expertiseList.map((item, index) => (
-                <li key={index} className="ae-expertise-card">
-                  {item}
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                    <polyline points="12 5 19 12 12 19"></polyline>
-                  </svg>
-                </li>
-              ))}
-            </ul>
+        {/* TOP */}
+        <div className="es-top">
+          <h2 className="es-statement">
+            Delivering <strong>safe, efficient, and cost-effective</strong> asset management
+            solutions that ensure <strong>optimum value and performance.</strong>
+          </h2>
+        </div>
+
+        {/* MIDDLE */}
+        <div className="es-middle">
+
+          {/* Left: Tabs */}
+          <div className="es-tabs">
+            <p className="es-tabs-label">Our Expertise</p>
+
+            {expertiseList.map((item, index) => {
+              const isActive = index === activeIndex;
+              return (
+                <div
+                  key={item.title}
+                  className={`es-tab${isActive ? " active" : ""}`}
+                  onClick={() => setActiveIndex(index)}
+                >
+                  {isActive && (
+                    <motion.div
+                      className="es-tab-fill"
+                      layoutId="tabFill"
+                      transition={{ type: "spring", stiffness: 380, damping: 34, mass: 0.8 }}
+                    />
+                  )}
+
+                  <span
+                    className="es-tab-num"
+                    style={{ color: isActive ? "rgba(255,255,255,0.45)" : T.textMuted }}
+                  >
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+
+                  <span
+                    className="es-tab-divider"
+                    style={{ backgroundColor: isActive ? "rgba(255,255,255,0.35)" : T.rule }}
+                  />
+
+                  <span
+                    className="es-tab-name"
+                    style={{ color: isActive ? "#FFFFFF" : T.textMain }}
+                  >
+                    {item.title}
+                  </span>
+
+                  <span className="es-tab-arrow">
+                    <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
+                      <path
+                        d="M2.5 7.5H12.5M12.5 7.5L8 3M12.5 7.5L8 12"
+                        stroke="#FFFFFF"
+                        strokeWidth="1.4"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </span>
+                </div>
+              );
+            })}
           </div>
 
-          {/* Right Column: Descriptions */}
-          <div className="ae-paragraphs">
-            <p className="ae-paragraph">
-              DPV Offshore specializes in engineering, procurement, and construction (EPC) services for the offshore industry, encompassing onshore, offshore, and subsea operations.
-            </p>
-            <p className="ae-paragraph">
-              Our comprehensive capabilities — from design engineering to manufacturing, installation, maintenance, repair, and component supply — enable us to deliver seamless project execution with uncompromising safety and quality standards.
-            </p>
-            <p className="ae-paragraph">
-              Built on long-term client relationships and proven performance, we continue to earn the trust of our partners through our consistent commitment to excellence, reliability, and value-driven delivery.
-            </p>
+          {/* Right: Image */}
+          <div className="es-image-col">
+            <AnimatePresence>
+              <motion.img
+                key={activeIndex}
+                src={expertiseList[activeIndex].imageUrl}
+                alt={expertiseList[activeIndex].title}
+                initial={{ opacity: 0, scale: 1.06, filter: "blur(8px)" }}
+                animate={{ opacity: 1, scale: 1,    filter: "blur(0px)" }}
+                exit={{    opacity: 0, scale: 0.97,  filter: "blur(4px)" }}
+                transition={{ duration: 1.2, ease: [0.25, 1, 0.5, 1] }}
+              />
+            </AnimatePresence>
+
+            <motion.div
+              className="es-prog"
+              key={`prog-${activeIndex}`}
+              initial={{ width: "0%" }}
+              animate={{ width: "100%" }}
+              transition={{ duration: 5, ease: "linear" }}
+            />
           </div>
 
         </div>
+
+        {/* BOTTOM */}
+        <div className="es-bottom">
+          <p className="es-paragraph">
+            DPV Offshore specializes in engineering, procurement, and construction (EPC)
+            services for the offshore industry, encompassing onshore, offshore, and subsea
+            operations.
+          </p>
+          <p className="es-paragraph">
+            Our comprehensive capabilities — from design engineering to manufacturing,
+            installation, maintenance, repair, and component supply — enable seamless project
+            execution with uncompromising safety and quality standards.
+          </p>
+          <p className="es-paragraph">
+            Built on long-term client relationships and proven performance, we continue to earn
+            the trust of our partners through our consistent commitment to excellence,
+            reliability, and value-driven delivery.
+          </p>
+        </div>
+
       </div>
     </section>
   );
