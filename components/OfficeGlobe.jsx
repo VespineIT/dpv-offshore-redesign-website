@@ -5,17 +5,6 @@ import Image from 'next/image';
 
 const locations = [
   {
-    id: 'dubai',
-    city: 'Dubai',
-    country: 'UAE',
-    address: 'DPV Offshore & Marine Services LLC\nP.O. Box 75287\nWorkshop 05, W306\nDubai Maritime City\nDubai, UAE',
-    description: 'Core workshop and marine services facility in Dubai Maritime City.',
-    servicedPorts: 'Jebel Ali, Port Rashid, Hamriya Port',
-    timezone: 'Asia/Dubai',
-    image: 'https://images.unsplash.com/photo-1542281286-9e0a16bb7366?q=80&w=2000&auto=format&fit=crop',
-    coordinates: { lat: 25.2048, lng: 55.2708 }
-  },
-  {
     id: 'abu-dhabi',
     city: 'Abu Dhabi',
     country: 'UAE',
@@ -26,6 +15,18 @@ const locations = [
     image: 'https://media.assettype.com/outlooktraveller%2F2024-08-20%2F0nbfvji7%2Fshutterstock_2473580625.jpg',
     coordinates: { lat: 24.4539, lng: 54.3773 }
   },
+  {
+    id: 'dubai',
+    city: 'Dubai',
+    country: 'UAE',
+    address: 'DPV Offshore & Marine Services LLC\nP.O. Box 75287\nWorkshop 05, W306\nDubai Maritime City\nDubai, UAE',
+    description: 'Core workshop and marine services facility in Dubai Maritime City.',
+    servicedPorts: 'Jebel Ali, Port Rashid, Hamriya Port',
+    timezone: 'Asia/Dubai',
+    image: 'https://images.unsplash.com/photo-1542281286-9e0a16bb7366?q=80&w=2000&auto=format&fit=crop',
+    coordinates: { lat: 25.2048, lng: 55.2708 }
+  },
+  
   {
     id: 'fujairah',
     city: 'Fujairah',
