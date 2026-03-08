@@ -126,11 +126,11 @@ export default function OfficeGlobe() {
       `}} />
 
       <div className="container mx-auto px-4 mb-16 relative z-10">
-        <h2 className="font-['Poppins'] text-3xl md:text-3xl font-bold text-[#FF4500] text-center tracking-widest uppercase mb-4 transition-colors duration-300">
+        <h2 className="font-['Poppins'] text-3xl md:text-2xl font-bold text-[#FF4500] text-center tracking-widest uppercase mb-4 transition-colors duration-300">
           Our Global Offices
         </h2>
         <p className="text-center text-gray-600 dark:text-gray-400 mb-12 max-w-2xl mx-auto transition-colors duration-300">
-          Strategic presence in key maritime hubs worldwide — ready to serve your vessel needs 24/7.
+          Strategic presence in key maritime hubs worldwide & ready to serve your vessel needs 24/7.
         </p>
 
         {/* Main Globe Card Container */}

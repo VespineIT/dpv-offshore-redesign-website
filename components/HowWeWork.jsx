@@ -112,7 +112,7 @@ const HowWeWork = () => {
     <section className="py-12 md:py-20 bg-white dark:bg-[#030712] overflow-hidden transition-colors duration-300">
       <div className="container mx-auto px-4">
         {/* Title */}
-        <h2 className="font-['Poppins'] text-3xl md:text-3xl font-bold text-[#FF4500] text-center tracking-widest uppercase mb-12 md:mb-16">
+        <h2 className="font-['Poppins'] text-3xl md:text-2xl font-bold text-[#FF4500] text-center tracking-widest uppercase mb-12 md:mb-16">
           How We Work
         </h2>
 
