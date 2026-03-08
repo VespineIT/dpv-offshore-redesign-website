@@ -8,67 +8,74 @@ const locations = [
     id: 'abu-dhabi',
     city: 'Abu Dhabi',
     country: 'UAE',
-    address: 'DPV Offshore & Marine Services LLC\nOffice No. 879, 8th Floor, Al Ghaith Tower\nMohammed Bin Hamdan Street\nAbu Dhabi, UAE',
+    address: 'Contact: Roshen Tharuka\nPhone: +971 50 273 3471\nEmail: projects@dpvoffshore.com\n\nDPV Offshore & Marine Services LLC\nOffice No. 879, 8th Floor, Al Ghaith Tower\nMohammed Bin Hamdan Street\nAbu Dhabi, UAE',
     description: 'Strategic hub for Middle East offshore operations.',
-    servicedPorts: 'Mina Zayed, Khalifa Port',
+    servicedPorts: 'Free Port, Mina, Khalifa Port, Zayed Port, Musaffah Port',
     timezone: 'Asia/Dubai',
-    image: 'https://media.assettype.com/outlooktraveller%2F2024-08-20%2F0nbfvji7%2Fshutterstock_2473580625.jpg',
+    image: '/dpv-offshore-redesign-website/images/Khalifa-Port.jpg',
     coordinates: { lat: 24.4539, lng: 54.3773 }
   },
   {
     id: 'dubai',
     city: 'Dubai',
     country: 'UAE',
-    address: 'DPV Offshore & Marine Services LLC\nP.O. Box 75287\nWorkshop 05, W306\nDubai Maritime City\nDubai, UAE',
+    address: 'Contact: Siron\n\nDPV Offshore & Marine Services LLC\nP.O. Box 75287\nWorkshop 05, W306\nDubai Maritime City\nDubai, UAE',
     description: 'Core workshop and marine services facility in Dubai Maritime City.',
     servicedPorts: 'Jebel Ali, Port Rashid, Hamriya Port',
     timezone: 'Asia/Dubai',
-    image: 'https://images.unsplash.com/photo-1542281286-9e0a16bb7366?q=80&w=2000&auto=format&fit=crop',
+    image: '/dpv-offshore-redesign-website/images/Jebel-Ali-Port.png',
     coordinates: { lat: 25.2048, lng: 55.2708 }
   },
-  
+  {
+    id: 'sharjah',
+    city: 'Sharjah',
+    country: 'UAE',
+    address: 'Contact: Kavini\nPhone: +971 50 435 4936\nEmail: eps.operations@dpvoffshore.com\n\nSharjah, UAE',
+    description: 'Key serviced port for extended maritime operations.',
+    servicedPorts: 'Khalid Port, Hamriyah Port, Khorfakkan',
+    timezone: 'Asia/Dubai',
+    image: '/dpv-offshore-redesign-website/images/port-khalid.jpg',
+    coordinates: { lat: 25.3463, lng: 55.4209 }
+  },
   {
     id: 'fujairah',
     city: 'Fujairah',
     country: 'UAE',
-    address: 'DPV Offshore & Marine Services L.L.C - Fujairah Branch\nAl Theeb Building (Opposite Civil Defense Building)\nMohammed Bin Zayed City\nShop 1, Fujairah, UAE',
+    address: 'Contact: Harsha\nPhone: +971 50 629 7308\n\nDPV Offshore & Marine Services L.L.C - Fujairah Branch\nAl Theeb Building (Opposite Civil Defense Building)\nMohammed Bin Zayed City\nShop 1, Fujairah, UAE',
     description: 'Branch office providing dedicated support for eastern seaboard maritime operations.',
     servicedPorts: 'Fujairah Port',
     timezone: 'Asia/Dubai',
-    image: 'https://images.unsplash.com/photo-1582650517303-b51f08e8203f?q=80&w=2000&auto=format&fit=crop',
+    image: '/dpv-offshore-redesign-website/images/Fujairah-Port.jpg',
     coordinates: { lat: 25.1288, lng: 56.3265 }
   },
   {
     id: 'colombo',
     city: 'Colombo',
     country: 'Sri Lanka',
-    address: 'DPV Offshore & Marine Services LLC\nNo. 736, Dr. Danister De Silva Mawatha\nColombo 00900\nSri Lanka',
+    address: 'Phone: +94 77 774 3023\nEmail: admin.cmb@dvpoffshore.com\n\nDPV Offshore & Marine Services LLC\nNo. 736, Dr. Danister De Silva Mawatha\nColombo 00900\nSri Lanka',
     description: 'Headquarters - Regional office and main coordination center.',
-    servicedPorts: 'Colombo, Hambantota, Trincomalee',
+    servicedPorts: 'Colombo, Galle, Hambantota, Trincomalee, OPL Services - SL',
     timezone: 'Asia/Colombo',
-    image: 'https://www.andbeyond.com/wp-content/uploads/sites/5/colombo-sri-lanka.jpg',
+    image: '/dpv-offshore-redesign-website/images/Colombo-fort.jpg',
     coordinates: { lat: 6.9271, lng: 79.8612 }
   },
   {
     id: 'singapore',
     city: 'Singapore',
     country: 'Singapore',
-    address: 'Synergy Offshore and Marine Consultant PTE LTD\n9 Tampines Grande, Asia Green, #02-00\nTampines, Singapore 528735\nIMO No: 6493815\nEmail: Jonathan.balagtas@dpvoffshore.com',
-    description: 'Representative Office. Synergy Offshore and Marine Consultant Pte Ltd. Contact: Jonathan Balagtas.',
+    address: 'Contact: Jonathan\nPhone: +65 8181 4669\nEmail: sgp@dvpoffshore.com\n\n9 Tampines Grande, Asia Green, #02-00\nTampines, Singapore 528735\nIMO No: 6493815',
+    description: 'Representative Office serving the Asia-Pacific region.',
     servicedPorts: 'Jurong Port, Pasir Panjang Terminal',
     timezone: 'Asia/Singapore',
-    image: 'https://images.trvl-media.com/place/6047873/15d3ae30-ef33-406e-971f-9520c03f1089.jpg',
+    image: '/dpv-offshore-redesign-website/images/Jurong-Port.jpg',
     coordinates: { lat: 1.3521, lng: 103.8198 }
   }
 ];
 
 // Using reliable FlagCDN URLs for high-quality, perfectly sized flag images
 const tickerRegions = [
-  { name: 'Abu Dhabi', flagUrl: 'https://flagcdn.com/w40/ae.png' }, 
-  { name: 'Colombo', flagUrl: 'https://flagcdn.com/w40/lk.png' }, 
   { name: 'Singapore', flagUrl: 'https://flagcdn.com/w40/sg.png' }, 
   { name: 'Qatar', flagUrl: 'https://flagcdn.com/w40/qa.png' }, 
-  { name: 'Saudi Arabia', flagUrl: 'https://flagcdn.com/w40/sa.png' },
   { name: 'UAE', flagUrl: 'https://flagcdn.com/w40/ae.png' },
   { name: 'Oman', flagUrl: 'https://flagcdn.com/w40/om.png' }, 
   { name: 'Bahrain', flagUrl: 'https://flagcdn.com/w40/bh.png' }, 
@@ -77,14 +84,12 @@ const tickerRegions = [
   { name: 'Egypt', flagUrl: 'https://flagcdn.com/w40/eg.png' },
   { name: 'Dubai', flagUrl: 'https://flagcdn.com/w40/ae.png' }, 
   { name: 'Ghana', flagUrl: 'https://flagcdn.com/w40/gh.png' }, 
-  { name: 'Congo', flagUrl: 'https://flagcdn.com/w40/cg.png' }, 
-  { name: 'Kenya', flagUrl: 'https://flagcdn.com/w40/ke.png' }, 
   { name: 'Tanzania', flagUrl: 'https://flagcdn.com/w40/tz.png' }, 
   { name: 'Bulgaria', flagUrl: 'https://flagcdn.com/w40/bg.png' }, 
   { name: 'Kazakhstan', flagUrl: 'https://flagcdn.com/w40/kz.png' },
-  { name: 'Fujairah', flagUrl: 'https://flagcdn.com/w40/ae.png' },
   { name: 'Azerbaijan', flagUrl: 'https://flagcdn.com/w40/az.png' }, 
-  { name: 'Sri Lanka', flagUrl: 'https://flagcdn.com/w40/lk.png' }
+  { name: 'Sri Lanka', flagUrl: 'https://flagcdn.com/w40/lk.png' },
+  { name: 'Nigeria', flagUrl: 'https://flagcdn.com/w40/ng.png' }
 ];
 
 export default function OfficeGlobe() {
