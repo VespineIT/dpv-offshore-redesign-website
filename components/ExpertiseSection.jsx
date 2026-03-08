@@ -1,193 +1,390 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useEffect, useState, useRef } from 'react';
+
+const expertiseList = [
+  { title: 'Products',          desc: 'Industry-leading offshore products engineered to meet the highest performance standards.' },
+  { title: 'Operations',        desc: 'End-to-end operational management from onshore logistics to subsea execution.' },
+  { title: 'Technical Support', desc: 'Round-the-clock expert technical assistance keeping your assets running at peak efficiency.' },
+  { title: 'Repair Orders',     desc: 'Fast-turnaround repair workflows minimizing downtime and maximizing asset lifespan.' },
+  { title: 'Maintenance',       desc: 'Planned and corrective maintenance programs designed for uncompromising safety and reliability.' },
+];
+
+const ORANGE = '#EC4A0A';
+const PURPLE = '#4A3FA0';
+const PURPLE_LIGHT = '#6B5FD4';
+const BG = '#FAFAFA';
+const GRAY_BG = '#F0EFF7';
 
 export default function ExpertiseShowcase() {
-  const [isDark, setIsDark] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [animating, setAnimating] = useState(false);
+  const timerRef = useRef(null);
 
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-    const mq = window.matchMedia('(prefers-color-scheme: dark)');
-    setIsDark(mq.matches);
-    const h = (e) => setIsDark(e.matches);
-    mq.addEventListener('change', h);
-    return () => mq.removeEventListener('change', h);
-  }, []);
-
-  // Preserved exact color palette
-  const T = {
-    bg: isDark ? '#030712' : '#FAFAFA',
-    textMain: isDark ? '#F9FAFB' : '#251A66',
-    textMuted: isDark ? '#9CA3AF' : '#4B5563',
-    accent: '#EC4A0A',
-    activePill: isDark ? '#6366F1' : '#EC4A0A',
-    rule: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(37,26,102,0.12)',
+  const goTo = (i) => {
+    if (animating) return;
+    setAnimating(true);
+    setTimeout(() => {
+      setActiveIndex(i);
+      setAnimating(false);
+    }, 300);
   };
 
-  const expertiseList = [
-    { title: 'Products',          imageUrl: '/dpv-offshore-redesign-website/images/expertise_products.png' },
-    { title: 'Operations',        imageUrl: '/dpv-offshore-redesign-website/images/expertise_operations.png' },
-    { title: 'Technical Support', imageUrl: '/dpv-offshore-redesign-website/images/expertise_support.png' },
-    { title: 'Repair Orders',     imageUrl: '/dpv-offshore-redesign-website/images/expertise_repair.png' },
-    { title: 'Maintenance',       imageUrl: '/dpv-offshore-redesign-website/images/expertise_maintenance.png' },
-  ];
-
-  // Auto-advance logic preserved
   useEffect(() => {
-    const id = setInterval(() => {
+    timerRef.current = setInterval(() => {
       setActiveIndex((p) => (p + 1) % expertiseList.length);
     }, 5000);
-    return () => clearInterval(id);
-  }, [expertiseList.length]);
+    return () => clearInterval(timerRef.current);
+  }, []);
+
+  // Arc geometry: items spread across top semicircle
+  // angleStart = 200deg, angleEnd = -20deg (left to right on top)
+  const R = 260; // arc radius for items
+  const cx = 0;  // SVG centre x (we'll use transform)
+  const totalItems = expertiseList.length;
+
+  const getItemAngle = (i) => {
+    // spread from 205° to -25° (going counterclockwise = left to right on top half)
+    const startDeg = 205;
+    const endDeg = -25;
+    return startDeg + (endDeg - startDeg) * (i / (totalItems - 1));
+  };
+
+  const degToRad = (d) => (d * Math.PI) / 180;
+
+  const getItemPos = (i) => {
+    const angle = degToRad(getItemAngle(i));
+    return {
+      x: R * Math.cos(angle),
+      y: -R * Math.sin(angle), // negative because SVG y goes down
+    };
+  };
+
+  // Progress for the orange arc based on activeIndex
+  // Arc goes from 205° to -25° (230° sweep). We highlight up to active item.
+  const arcFraction = activeIndex / (totalItems - 1);
+
+  // SVG arc helper
+  const polarToCart = (r, angleDeg) => {
+    const a = degToRad(angleDeg);
+    return { x: r * Math.cos(a), y: -r * Math.sin(a) };
+  };
+
+  const describeArc = (r, startDeg, endDeg) => {
+    const s = polarToCart(r, startDeg);
+    const e = polarToCart(r, endDeg);
+    const largeArc = Math.abs(endDeg - startDeg) > 180 ? 1 : 0;
+    // Going from startDeg to endDeg counterclockwise in SVG coords
+    return `M ${s.x} ${s.y} A ${r} ${r} 0 ${largeArc} 0 ${e.x} ${e.y}`;
+  };
+
+  const arcStart = 205;
+  const arcEnd = -25;
+  const activeAngle = arcStart + (arcEnd - arcStart) * arcFraction;
+  const bgArcPath     = describeArc(R, arcStart, arcEnd);
+  const activeArcPath = describeArc(R, arcStart, activeAngle);
+
+  const SZ = 640; // SVG viewBox size
+  const halfSZ = SZ / 2;
 
   return (
-    <section 
-      className="py-16 md:py-24 transition-colors duration-500 relative overflow-hidden flex items-center min-h-screen"
-      style={{ backgroundColor: T.bg, fontFamily: "'DM Sans', sans-serif" }}
+    <section
+      style={{
+        backgroundColor: BG,
+        fontFamily: "'Sora', 'DM Sans', sans-serif",
+        minHeight: '100vh',
+        display: 'flex',
+        flexDirection: 'column',
+        overflow: 'hidden',
+      }}
     >
-      <div className="container mx-auto px-4 relative z-10 w-full max-w-screen-2xl">
-        
-        {/* Main Hero Card Container */}
-        <div 
-          className="relative w-full min-h-[800px] rounded-[2.5rem] shadow-2xl overflow-hidden group border-[1.5px]"
-          style={{ 
-            backgroundColor: isDark ? 'rgba(255,255,255,0.02)' : '#FFFFFF',
-            borderColor: T.rule,
-            boxShadow: isDark ? '0 25px 50px -12px rgba(0,0,0,0.5)' : '0 25px 50px -12px rgba(37,26,102,0.08)'
+      {/* ── Top white zone ── */}
+      <div
+        style={{
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          padding: '56px 24px 0',
+          textAlign: 'center',
+          position: 'relative',
+        }}
+      >
+        {/* Badge */}
+        <span
+          style={{
+            display: 'inline-block',
+            backgroundColor: ORANGE,
+            color: '#fff',
+            fontSize: '11px',
+            fontWeight: 700,
+            letterSpacing: '0.18em',
+            textTransform: 'uppercase',
+            padding: '6px 20px',
+            borderRadius: '100px',
+            marginBottom: '28px',
           }}
         >
-          {/* Progress Bar (Bottom of the whole card) */}
-          <motion.div
-            className="absolute bottom-0 left-0 h-1.5 z-30"
-            key={`prog-${activeIndex}`}
-            initial={{ width: '0%' }}
-            animate={{ width: '100%' }}
-            transition={{ duration: 5, ease: 'linear' }}
-            style={{ backgroundColor: T.accent }}
-          />
+          Our Expertise
+        </span>
 
-          {/* Content Split Layout */}
-          <div className="relative z-20 w-full h-full flex flex-col lg:flex-row p-8 md:p-12 lg:p-16 gap-12 lg:gap-20 items-stretch min-h-[800px]">
-            
-            {/* Left: Main Information */}
-            <div className="flex-1 w-full flex flex-col justify-center h-full">
-              
-              {/* Badge */}
-              <div className="mb-8">
-                <span 
-                  className="px-5 py-2 text-xs font-bold uppercase tracking-[0.2em] rounded-full shadow-sm"
-                  style={{ backgroundColor: T.accent, color: '#FFFFFF' }}
+        {/* Main heading */}
+        <h2
+          style={{
+            color: PURPLE,
+            fontSize: 'clamp(28px, 4vw, 52px)',
+            fontWeight: 800,
+            lineHeight: 1.2,
+            maxWidth: '820px',
+            margin: '0 auto 16px',
+            letterSpacing: '-0.02em',
+          }}
+        >
+          Smart asset management for{' '}
+          <span style={{ color: ORANGE }}>safe, efficient</span> &amp;{' '}
+          <span style={{ color: ORANGE }}>high value performance</span>
+        </h2>
+
+        {/* ── Circular Arc Navigator ── */}
+        <div
+          style={{
+            position: 'relative',
+            width: '100%',
+            maxWidth: '680px',
+            marginTop: '-20px',
+          }}
+        >
+          <svg
+            viewBox={`${-halfSZ} ${-halfSZ} ${SZ} ${SZ}`}
+            style={{ width: '100%', overflow: 'visible' }}
+          >
+            {/* Background track arc */}
+            <path
+              d={bgArcPath}
+              fill="none"
+              stroke="#E5E0F5"
+              strokeWidth="3"
+              strokeLinecap="round"
+            />
+
+            {/* Active progress arc */}
+            <path
+              d={activeArcPath}
+              fill="none"
+              stroke={ORANGE}
+              strokeWidth="3.5"
+              strokeLinecap="round"
+              style={{ transition: 'all 0.6s cubic-bezier(0.4,0,0.2,1)' }}
+            />
+
+            {/* Dot at active arc tip */}
+            {(() => {
+              const tip = polarToCart(R, activeAngle);
+              return (
+                <circle
+                  cx={tip.x}
+                  cy={tip.y}
+                  r="7"
+                  fill={ORANGE}
+                  style={{ transition: 'all 0.6s cubic-bezier(0.4,0,0.2,1)', filter: `drop-shadow(0 0 6px ${ORANGE})` }}
+                />
+              );
+            })()}
+
+            {/* Item labels around the arc */}
+            {expertiseList.map((item, i) => {
+              const { x, y } = getItemPos(i);
+              const isActive = i === activeIndex;
+              const angle = getItemAngle(i);
+              // Determine text-anchor based on position on arc
+              let anchor = 'middle';
+              if (angle > 160) anchor = 'end';
+              else if (angle < 20) anchor = 'start';
+
+              return (
+                <g
+                  key={item.title}
+                  onClick={() => goTo(i)}
+                  style={{ cursor: 'pointer' }}
                 >
-                  Our Expertise
-                </span>
-              </div>
+                  {/* Invisible hit area */}
+                  <circle cx={x} cy={y} r="40" fill="transparent" />
 
-              {/* Main Statement */}
-              <h2 
-                className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-medium mb-10 leading-[1.15] tracking-tight"
-                style={{ color: T.textMain, fontFamily: "'Inter', sans-serif" }}
-              >
-                Delivering <strong style={{ color: T.accent, fontWeight: 600 }}>safe, efficient, and cost-effective</strong> asset management solutions that ensure <strong style={{ color: T.accent, fontWeight: 600 }}>optimum value and performance.</strong>
-              </h2>
-              
-              {/* Paragraphs */}
-              <div 
-                className="flex flex-col gap-6 pt-10 border-t-[1.5px]"
-                style={{ borderColor: T.rule }}
-              >
-                <p className="text-base md:text-lg leading-relaxed font-normal" style={{ color: T.textMuted }}>
-                  DPV Offshore specializes in engineering, procurement, and construction (EPC) services for the offshore industry, encompassing onshore, offshore, and subsea operations.
-                </p>
-                <p className="text-base md:text-lg leading-relaxed font-normal" style={{ color: T.textMuted }}>
-                  Our comprehensive capabilities — from design engineering to manufacturing, installation, maintenance, repair, and component supply — enable seamless project execution with uncompromising safety and quality standards.
-                </p>
-                <p className="text-base md:text-lg leading-relaxed font-normal" style={{ color: T.textMuted }}>
-                  Built on long-term client relationships and proven performance, we continue to earn the trust of our partners through our consistent commitment to excellence, reliability, and value-driven delivery.
-                </p>
-              </div>
-            </div>
-
-            {/* Right: Images + Interactive Navigation Tabs */}
-            <div className="w-full lg:w-5/12 xl:w-1/3 flex flex-col gap-8 justify-center">
-              
-              {/* Top Right: Image Window */}
-              <div 
-                className="relative w-full h-64 md:h-72 lg:h-80 rounded-[2rem] overflow-hidden shadow-xl border-[1.5px] bg-black/5"
-                style={{ borderColor: T.rule }}
-              >
-                <AnimatePresence mode="wait">
-                  <motion.img
-                    key={activeIndex}
-                    src={expertiseList[activeIndex].imageUrl}
-                    alt={expertiseList[activeIndex].title}
-                    className="absolute inset-0 w-full h-full object-cover"
-                    initial={{ opacity: 0, scale: 1.06, filter: "blur(8px)" }}
-                    animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-                    exit={{ opacity: 0, scale: 0.97, filter: "blur(4px)" }}
-                    transition={{ duration: 0.8, ease: [0.25, 1, 0.5, 1] }}
+                  {/* Node dot */}
+                  <circle
+                    cx={x}
+                    cy={y}
+                    r={isActive ? 10 : 6}
+                    fill={isActive ? PURPLE : '#D1CAF5'}
+                    style={{ transition: 'all 0.4s ease' }}
                   />
-                </AnimatePresence>
-              </div>
+                  {isActive && (
+                    <circle
+                      cx={x}
+                      cy={y}
+                      r="18"
+                      fill="none"
+                      stroke={PURPLE}
+                      strokeWidth="1.5"
+                      strokeDasharray="4 3"
+                      opacity="0.5"
+                    />
+                  )}
 
-              {/* Bottom Right: Tabs */}
-              <div className="flex flex-col gap-3 w-full">
-                {expertiseList.map((item, index) => {
-                  const isActive = activeIndex === index;
-                  return (
-                    <button
-                      key={item.title}
-                      onClick={() => setActiveIndex(index)}
-                      className={`group flex items-center justify-between w-full p-5 md:p-6 rounded-[1.5rem] transition-all duration-500 border-[1.5px] backdrop-blur-xl ${
-                        isActive 
-                          ? 'translate-x-0 shadow-md' 
-                          : 'hover:shadow-lg md:translate-x-4 md:hover:translate-x-2'
-                      }`}
-                      style={{
-                        backgroundColor: isActive 
-                          ? (isDark ? 'rgba(255,255,255,0.05)' : '#FAFAFA') 
-                          : 'transparent',
-                        borderColor: isActive ? T.activePill : T.rule,
-                      }}
-                    >
-                      <div className="flex items-center gap-5">
-                        {/* Number Indicator */}
-                        <span 
-                          className="font-mono text-sm font-semibold transition-colors duration-300"
-                          style={{ color: isActive ? T.activePill : T.textMuted }}
-                        >
-                          {String(index + 1).padStart(2, '0')}
-                        </span>
-                        
-                        {/* Tab Title */}
-                        <span 
-                          className="text-lg md:text-xl font-medium text-left transition-colors duration-300"
-                          style={{ color: isActive ? T.textMain : T.textMuted, fontFamily: "'Inter', sans-serif" }}
-                        >
-                          {item.title}
-                        </span>
-                      </div>
+                  {/* Label */}
+                  <text
+                    x={x + (anchor === 'end' ? -26 : anchor === 'start' ? 26 : 0)}
+                    y={y + (y < -20 ? -28 : 32)}
+                    textAnchor={anchor}
+                    fill={isActive ? PURPLE : '#9490C0'}
+                    fontSize={isActive ? '15' : '13'}
+                    fontWeight={isActive ? '700' : '500'}
+                    style={{ transition: 'all 0.4s ease', fontFamily: "'Sora', sans-serif" }}
+                  >
+                    {item.title}
+                  </text>
+                </g>
+              );
+            })}
+          </svg>
 
-                      {/* Glowing Active Dot */}
-                      {isActive && (
-                        <div 
-                          className="w-2.5 h-2.5 rounded-full animate-pulse relative z-10 flex-shrink-0 ml-4" 
-                          style={{ 
-                            backgroundColor: T.activePill, 
-                            boxShadow: `0 0 12px ${T.activePill}` 
-                          }} 
-                        />
-                      )}
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-            
+          {/* Centre active label — overlaid on the SVG */}
+          <div
+            style={{
+              position: 'absolute',
+              top: '50%',
+              left: '50%',
+              transform: 'translate(-50%, -10%)',
+              textAlign: 'center',
+              pointerEvents: 'none',
+            }}
+          >
+            {/* Down-arrow triangle */}
+            <div
+              style={{
+                width: 0,
+                height: 0,
+                borderLeft: '16px solid transparent',
+                borderRight: '16px solid transparent',
+                borderTop: `24px solid ${PURPLE_LIGHT}`,
+                margin: '0 auto 12px',
+                opacity: 0.85,
+              }}
+            />
+            <p
+              key={activeIndex}
+              style={{
+                color: PURPLE,
+                fontSize: 'clamp(22px, 3.5vw, 42px)',
+                fontWeight: 900,
+                letterSpacing: '0.12em',
+                textTransform: 'uppercase',
+                margin: 0,
+                opacity: animating ? 0 : 1,
+                transform: animating ? 'translateY(8px)' : 'translateY(0)',
+                transition: 'opacity 0.3s ease, transform 0.3s ease',
+              }}
+            >
+              {expertiseList[activeIndex].title}
+            </p>
           </div>
         </div>
       </div>
+
+      {/* ── Bottom gray zone ── */}
+      <div
+        style={{
+          backgroundColor: GRAY_BG,
+          padding: '48px 24px 56px',
+          textAlign: 'center',
+        }}
+      >
+        {/* Description for active item */}
+        <p
+          key={`desc-${activeIndex}`}
+          style={{
+            color: PURPLE,
+            fontSize: 'clamp(14px, 1.6vw, 17px)',
+            fontWeight: 700,
+            lineHeight: 1.75,
+            maxWidth: '780px',
+            margin: '0 auto 20px',
+            opacity: animating ? 0 : 1,
+            transition: 'opacity 0.4s ease',
+          }}
+        >
+          {expertiseList[activeIndex].desc}
+        </p>
+
+        {/* Static boilerplate paragraph */}
+        <p
+          style={{
+            color: '#6B6B8E',
+            fontSize: 'clamp(13px, 1.4vw, 15px)',
+            fontWeight: 400,
+            lineHeight: 1.8,
+            maxWidth: '780px',
+            margin: '0 auto 36px',
+          }}
+        >
+          DPV Offshore specializes in engineering, procurement, and construction (EPC) services for the offshore industry,
+          covering onshore, offshore, and subsea operations. From design engineering to manufacturing, installation,
+          maintenance, repair, and component supply, we deliver seamless projects with the highest safety and quality
+          standards. Built on strong client relationships and proven performance, we are trusted for our commitment to
+          excellence, reliability, and value-driven delivery.
+        </p>
+
+        {/* Progress dots */}
+        <div style={{ display: 'flex', justifyContent: 'center', gap: '10px' }}>
+          {expertiseList.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => goTo(i)}
+              style={{
+                width: i === activeIndex ? '28px' : '10px',
+                height: '10px',
+                borderRadius: '100px',
+                border: 'none',
+                cursor: 'pointer',
+                backgroundColor: i === activeIndex ? ORANGE : '#C9C4E8',
+                transition: 'all 0.4s cubic-bezier(0.4,0,0.2,1)',
+                padding: 0,
+              }}
+            />
+          ))}
+        </div>
+
+        {/* Progress bar */}
+        <div
+          style={{
+            width: '100%',
+            maxWidth: '780px',
+            height: '3px',
+            backgroundColor: '#E0DBF5',
+            borderRadius: '2px',
+            margin: '24px auto 0',
+            overflow: 'hidden',
+          }}
+        >
+          <div
+            key={activeIndex}
+            style={{
+              height: '100%',
+              backgroundColor: ORANGE,
+              borderRadius: '2px',
+              animation: 'progressFill 5s linear',
+            }}
+          />
+        </div>
+      </div>
+
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;500;700;800;900&display=swap');
+        @keyframes progressFill {
+          from { width: 0% }
+          to   { width: 100% }
+        }
+      `}</style>
     </section>
   );
 }
