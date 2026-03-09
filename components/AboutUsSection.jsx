@@ -104,44 +104,44 @@ const AboutUsSection = () => {
             
             {/* Experience */}
             <div className="flex flex-col items-center justify-center p-2">
-              <FaAward className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-[#FF4500] mb-2 drop-shadow-[0_4px_8px_rgba(0,0,0,0.5)]" />
+              <FaAward className="text-3xl sm:text-4xl md:text-5xl text-[#FF4500] mb-2 drop-shadow-[0_4px_8px_rgba(0,0,0,0.5)]" />
               <div className="text-white text-[12px] sm:text-sm md:text-lg lg:text-xl font-bold uppercase tracking-tight drop-shadow-md">
                 Experience
               </div>
-              <div className="text-xl sm:text-2xl md:text-3xl font-black text-[#FF4500] mt-1 drop-shadow-md">
+              <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-[#FF4500] mt-1 drop-shadow-md">
                 {experience}Y+
               </div>
             </div>
 
             {/* Countries */}
             <div className="flex flex-col items-center justify-center p-2">
-              <FaGlobe className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-[#FF4500] mb-2 drop-shadow-[0_4px_8px_rgba(0,0,0,0.5)]" />
+              <FaGlobe className="text-3xl sm:text-4xl md:text-5xl text-[#FF4500] mb-2 drop-shadow-[0_4px_8px_rgba(0,0,0,0.5)]" />
               <div className="text-white text-[12px] sm:text-sm md:text-lg lg:text-xl font-bold uppercase tracking-tight drop-shadow-md">
                 Countries
               </div>
-              <div className="text-xl sm:text-2xl md:text-3xl font-black text-[#FF4500] mt-1 drop-shadow-md">
+              <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-[#FF4500] mt-1 drop-shadow-md">
                 {countries}+
               </div>
             </div>
 
             {/* Employees */}
             <div className="flex flex-col items-center justify-center p-2">
-              <FaUsers className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-[#FF4500] mb-2 drop-shadow-[0_4px_8px_rgba(0,0,0,0.5)]" />
+              <FaUsers className="text-3xl sm:text-4xl md:text-5xl text-[#FF4500] mb-2 drop-shadow-[0_4px_8px_rgba(0,0,0,0.5)]" />
               <div className="text-white text-[12px] sm:text-sm md:text-lg lg:text-xl font-bold uppercase tracking-tight drop-shadow-md">
                 Employees
               </div>
-              <div className="text-xl sm:text-2xl md:text-3xl font-black text-[#FF4500] mt-1 drop-shadow-md">
+              <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-[#FF4500] mt-1 drop-shadow-md">
                 {employee}+
               </div>
             </div>
 
             {/* Vessels */}
             <div className="flex flex-col items-center justify-center p-2">
-              <FaShip className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-[#FF4500] mb-2 drop-shadow-[0_4px_8px_rgba(0,0,0,0.5)]" />
+              <FaShip className="text-3xl sm:text-4xl md:text-5xl text-[#FF4500] mb-2 drop-shadow-[0_4px_8px_rgba(0,0,0,0.5)]" />
               <div className="text-white text-[12px] sm:text-sm md:text-lg lg:text-xl font-bold uppercase tracking-tight drop-shadow-md">
                 Vessels
               </div>
-              <div className="text-xl sm:text-2xl md:text-3xl font-black text-[#FF4500] mt-1 drop-shadow-md">
+              <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-[#FF4500] mt-1 drop-shadow-md">
                 {vessels}
               </div>
             </div>
