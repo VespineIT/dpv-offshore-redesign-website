@@ -22,48 +22,54 @@ export default function Footer() {
           {/* Main Grid Layout */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8">
             
-            {/* 1. Logo & Company Info Section (Left) - Increased to col-span-3 */}
-            <div className="lg:col-span-3 flex flex-col items-start">
-               <h2 className="text-[#FF5722] text-3xl font-bold tracking-tight whitespace-nowrap">
-                 DPV Offshore
+            {/* 1 & 2. Licenses & Certifications (Redesigned Layout) */}
+            <div className="lg:col-span-6 flex flex-col">
+               {/* Title */}
+               <h2 className="text-[#FF5722] text-3xl font-bold tracking-tight whitespace-nowrap mb-8">
+                 DPV Offshore & Marine services L.L.C
                </h2>
                
-               {/* Company Registration & License Info */}
-               <div className="mt-6 text-sm text-gray-400 space-y-4">
-                 <div className="space-y-1">
-                   {/* Removed the <br/> tags to keep everything on one line */}
-                   <p>Dubai dry dock Reg No: <span className="text-white font-medium">91328</span></p>
-                   <p>ShipServ – TNID: <span className="text-white font-medium">311752</span></p>
-                 </div>
+               <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 items-start">
                  
-                 <div>
-                   <p className="mb-2 text-gray-300 font-medium">Trade License Number</p>
-                   <ul className="space-y-1 pl-1">
-                     <li>• Dubai: <span className="text-white">929197</span></li>
-                     <li>• Abu Dhabi: <span className="text-white">6357970</span></li>
-                     <li>• Fujairah: <span className="text-white">TN-26-10934</span></li>
-                   </ul>
+                 {/* Left Column: Trade License & ISO */}
+                 <div className="flex flex-col space-y-4">
+                   <div className="text-gray-300 text-sm">
+                     <p className="font-bold text-white mb-2">Trade License Number</p>
+                     <ul className="space-y-1">
+                       <li>• Dubai: <span className="text-white">929197</span></li>
+                       <li>• Abu Dhabi: <span className="text-white">6357970</span></li>
+                       <li>• Fujairah: <span className="text-white">TN-26-10934</span></li>
+                     </ul>
+                   </div>
+                   
+                   {/* ISO Image - Boxes Removed */}
+                   <div className="pt-2">
+                     <img 
+                       src="/dpv-offshore-redesign-website/images/iso_logo.png" 
+                       alt="ISO Certifications" 
+                       className="max-h-28 w-auto object-contain" 
+                     />
+                   </div>
                  </div>
+
+                 {/* Right Column: Reg No & Ship Serve */}
+                 <div className="flex flex-col space-y-4">
+                   <div className="text-gray-300 text-sm space-y-2 mt-0 sm:mt-1">
+                     <p className="font-bold text-white">Dubai dry dock Reg No: <span className="font-normal">91328</span></p>
+                     <p className="font-bold text-white">ShipServ – TNID: <span className="font-normal">311752</span></p>
+                   </div>
+                   
+                   {/* Ship Serve Image - Boxes Removed */}
+                   <div className="pt-4">
+                     <img 
+                       src="/dpv-offshore-redesign-website/images/ship_serv.jpg" 
+                       alt="ShipServ" 
+                       className="h-10 w-auto object-contain rounded-sm" 
+                     />
+                   </div>
+                 </div>
+
                </div>
-            </div>
-
-            {/* 2. ISO Certification & Memberships Section (Center-Left) - Reduced to col-span-3 to balance the grid */}
-            <div className="lg:col-span-3 flex flex-col items-center justify-center text-center mt-4 lg:mt-0 gap-6 lg:pl-4">
-               
-               {/* Badge Icon / Footer Logo (Expanded) */}
-               <img 
-                 src="/dpv-offshore-redesign-website/images/iso_logo.png" 
-                 alt="ISO Certifications" 
-                 className="w-64 lg:w-72 h-auto object-contain" 
-               />
-
-               {/* ShipServ & Bureau Veritas Logos */}
-               <img 
-                 src="/dpv-offshore-redesign-website/images/ship_serv.jpg" 
-                 alt="ShipServ TradeNet" 
-                 className="h-10 w-auto object-contain rounded-md"
-               />
-               
             </div>
 
             {/* 3. Quick Links (Center-Right) */}
@@ -128,10 +134,7 @@ export default function Footer() {
                    <a href="https://www.linkedin.com/company/102757900/admin/dashboard/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-white rounded flex items-center justify-center text-black hover:bg-[#FF5722] hover:text-white transition-all">
                       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h5v-8.321c0-4.608 5.472-4.474 5.472 0v8.321h5v-9.643c0-6.18-7.093-6.007-10.504-2.88v-1.798z"/></svg>
                    </a>
-                   {/* Instagram */}
-                   <a href="#" className="w-10 h-10 bg-white rounded flex items-center justify-center text-black hover:bg-[#FF5722] hover:text-white transition-all">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-                   </a>
+                   
                    {/* Facebook */}
                    <a href="#" className="w-10 h-10 bg-white rounded flex items-center justify-center text-black hover:bg-[#FF5722] hover:text-white transition-all">
                       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg>
