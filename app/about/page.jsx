@@ -3,12 +3,14 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { ShieldCheck, Wrench, Handshake, Clock, Globe } from "lucide-react";
+import { FaAward, FaUsers, FaShip, FaGlobe as FaGlobeIcon } from "react-icons/fa";
 
 const AboutUsPage = () => {
   // --- Hero Section State & Logic ---
   const [experience, setExperience] = useState(0);
   const [employee, setEmployee] = useState(0);
   const [vessels, setVessels] = useState(0);
+  const [countries, setCountries] = useState(0); 
   const [hasAnimated, setHasAnimated] = useState(false);
   const sectionRef = useRef(null);
 
@@ -31,8 +33,9 @@ const AboutUsPage = () => {
             }, 16);
           };
 
-          // Demo data values kept for updating later
+          // Demo data values
           animate(setExperience, 18, 1000);
+          animate(setCountries, 15, 1500); 
           animate(setEmployee, 120, 2000);
           animate(setVessels, 456, 2500);
         }
@@ -95,7 +98,7 @@ const AboutUsPage = () => {
               About Us
             </motion.h1>
 
-            {/* Intro Text */}
+            {/* Intro Text - UPDATED */}
             <motion.div 
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -106,44 +109,63 @@ const AboutUsPage = () => {
                 <span className="text-[#FF4500] font-bold">DPV Offshore & Marine Services</span> does more than deliver maritime services — we deliver trust, reliability, and innovation. With every project, we navigate challenges with the same precision and dedication that define the maritime world we serve.
               </p>
               <p className="text-white text-sm sm:text-base md:text-xl leading-relaxed drop-shadow-md mb-4 md:mb-6">
-                At DPV Offshore & Marine Services, we value every partnership we build. Your success is at the heart of everything we do, and we are dedicated to delivering the most effective and reliable maritime solutions to support your goals. 
+                Our skilled team approaches every task with passion, technical mastery, and a relentless pursuit of perfection, operating with one clear mission: to help our clients move forward with confidence.
               </p>
-              <p className="text-white text-sm sm:text-base md:text-xl leading-relaxed drop-shadow-md font-semibold italic">
-                "DPV Offshore & Marine Services — Your trusted partner in navigating tomorrow's maritime challenges."
+              <p className="text-white text-sm sm:text-base md:text-xl leading-relaxed drop-shadow-md">
+                Your success is at the heart of everything we do, and we are dedicated to delivering the most effective and reliable maritime solutions to support your goals.
+                
+                
               </p>
             </motion.div>
 
-            {/* Stats Section */}
+            {/* Restructured Stats Section */}
             <motion.div 
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="grid grid-cols-3 gap-2 max-w-5xl mx-auto w-full mb-4 md:mb-8"
+              className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-2 max-w-5xl mx-auto w-full mb-4 md:mb-8"
             >
-              <div className="flex flex-col items-center">
-                <div className="text-4xl sm:text-5xl md:text-7xl font-black text-[#FF4500] drop-shadow-[0_4px_8px_rgba(0,0,0,0.5)]">
-                  {experience}Y+
-                </div>
-                <div className="text-white text-[12px] sm:text-sm md:text-xl font-bold mt-1 md:mt-2 uppercase tracking-tight drop-shadow-md">
+              {/* Experience */}
+              <div className="flex flex-col items-center justify-center p-2">
+                <FaAward className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-[#FF4500] mb-2 drop-shadow-[0_4px_8px_rgba(0,0,0,0.5)]" />
+                <div className="text-white text-[12px] sm:text-sm md:text-lg lg:text-xl font-bold uppercase tracking-tight drop-shadow-md">
                   Experience
                 </div>
+                <div className="text-xl sm:text-2xl md:text-3xl font-black text-[#FF4500] mt-1 drop-shadow-md">
+                  {experience}Y+
+                </div>
               </div>
 
-              <div className="flex flex-col items-center">
-                <div className="text-4xl sm:text-5xl md:text-7xl font-black text-[#FF4500] drop-shadow-[0_4px_8px_rgba(0,0,0,0.5)]">
-                  {employee}+
+              {/* Countries */}
+              <div className="flex flex-col items-center justify-center p-2">
+                <FaGlobeIcon className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-[#FF4500] mb-2 drop-shadow-[0_4px_8px_rgba(0,0,0,0.5)]" />
+                <div className="text-white text-[12px] sm:text-sm md:text-lg lg:text-xl font-bold uppercase tracking-tight drop-shadow-md">
+                  Countries
                 </div>
-                <div className="text-white text-[12px] sm:text-sm md:text-xl font-bold mt-1 md:mt-2 uppercase tracking-tight drop-shadow-md">
+                <div className="text-xl sm:text-2xl md:text-3xl font-black text-[#FF4500] mt-1 drop-shadow-md">
+                  {countries}+
+                </div>
+              </div>
+
+              {/* Employees */}
+              <div className="flex flex-col items-center justify-center p-2">
+                <FaUsers className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-[#FF4500] mb-2 drop-shadow-[0_4px_8px_rgba(0,0,0,0.5)]" />
+                <div className="text-white text-[12px] sm:text-sm md:text-lg lg:text-xl font-bold uppercase tracking-tight drop-shadow-md">
                   Employees
                 </div>
+                <div className="text-xl sm:text-2xl md:text-3xl font-black text-[#FF4500] mt-1 drop-shadow-md">
+                  {employee}+
+                </div>
               </div>
 
-              <div className="flex flex-col items-center">
-                <div className="text-4xl sm:text-5xl md:text-7xl font-black text-[#FF4500] drop-shadow-[0_4px_8px_rgba(0,0,0,0.5)]">
-                  {vessels}
-                </div>
-                <div className="text-white text-[12px] sm:text-sm md:text-xl font-bold mt-1 md:mt-2 uppercase tracking-tight drop-shadow-md">
+              {/* Vessels */}
+              <div className="flex flex-col items-center justify-center p-2">
+                <FaShip className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-[#FF4500] mb-2 drop-shadow-[0_4px_8px_rgba(0,0,0,0.5)]" />
+                <div className="text-white text-[12px] sm:text-sm md:text-lg lg:text-xl font-bold uppercase tracking-tight drop-shadow-md">
                   Vessels
+                </div>
+                <div className="text-xl sm:text-2xl md:text-3xl font-black text-[#FF4500] mt-1 drop-shadow-md">
+                  {vessels}
                 </div>
               </div>
             </motion.div>
