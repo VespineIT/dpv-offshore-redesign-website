@@ -6,18 +6,32 @@ export default function ContactUsModal({ isOpen, onClose }) {
   const offices = [
     {
       city: "Abu Dhabi, UAE",
-      title: "Head Office",
+      title: "Strategic Hub",
       address: "DPV Offshore & Marine Services LLC, Office No. 879, 8th Floor, Al Ghaith Tower, Mohammed Bin Hamdan Street, Abu Dhabi, UAE",
-      ports: ["Mina Zayed", "Khalifa Port"],
-      email: null,
+      ports: ["Free Port", "Mina", "Khalifa Port", "Zayed Port", "Musaffah Port"],
+      contactName: "Roshen Tharuka",
+      phone: "+971 50 273 3471",
+      email: "projects@dpvoffshore.com",
       imo: null
     },
     {
       city: "Dubai, UAE",
-      title: "Branch Office",
+      title: "Core Workshop",
       address: "DPV Offshore & Marine Services LLC, P.O. Box 75287, Workshop 05, W306, Dubai Maritime City, Dubai, UAE",
       ports: ["Jebel Ali", "Port Rashid", "Hamriya Port"],
-      email: null,
+      contactName: "Duminda",
+      phone: "+971 56 706 0326",
+      email: "gm@dpvoffshore.com",
+      imo: null
+    },
+    {
+      city: "Sharjah, UAE",
+      title: "Key Serviced Port",
+      address: "Sharjah, UAE",
+      ports: ["Khalid Port", "Hamriyah Port", "Khorfakkan"],
+      contactName: "Kavini",
+      phone: "+971 50 435 4936",
+      email: "operations@dpvoffshore.com",
       imo: null
     },
     {
@@ -25,6 +39,8 @@ export default function ContactUsModal({ isOpen, onClose }) {
       title: "Branch Office",
       address: "DPV Offshore & Marine Services L.L.C - Fujairah Branch, Al Theeb Building (Opposite Civil Defense Building), Mohammed Bin Zayed City, Shop 1, Fujairah, UAE",
       ports: ["Fujairah Port"],
+      contactName: "Harsha",
+      phone: "+971 50 629 4308",
       email: null,
       imo: null
     },
@@ -32,31 +48,28 @@ export default function ContactUsModal({ isOpen, onClose }) {
       city: "Colombo, Sri Lanka",
       title: "Branch Office",
       address: "DPV Offshore & Marine Services LLC, No. 736, Dr. Danister De Silva Mawatha, Colombo 00900, Sri Lanka",
-      ports: ["Colombo", "Hambantota", "Trincomalee"],
-      email: null,
+      ports: ["Colombo", "Galle", "Hambantota", "Trincomalee", "OPL Services - SL"],
+      contactName: "Duminda",
+      phone: "+94 77 774 3023",
+      email: "cmb@dvpoffshore.com",
       imo: null
     },
     {
       city: "Singapore",
       title: "Representative Office",
-      address: "Synergy Offshore and Marine Consultant PTE LTD, 9 Tampines Grande, Asia Green, #02-00, Tampines, Singapore 528735",
+      address: "9 Tampines Grande, Asia Green, #02-00, Tampines, Singapore 528735",
       ports: ["Jurong Port", "Pasir Panjang Terminal"],
-      email: "Jonathan.balagtas@dpvoffshore.com",
+      contactName: "Jonathan",
+      phone: "+65 8181 4669",
+      email: "sgp@dvpoffshore.com",
       imo: "6493815"
     }
-  ];
-
-  const otherCountries = [
-    "UAE", "Qatar", "Saudi Arabia", "Oman", "Bahrain", "Kuwait", "India", "Egypt", 
-    "Ghana (West Africa)", "Congo (Central Africa)", "Kenya (East Africa)", 
-    "Tanzania (East Africa)", "Bulgaria", "Kazakhstan", "Azerbaijan"
   ];
 
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/70 backdrop-blur-sm p-4 transition-opacity">
       
       {/* Modal Container */}
-      {/* Note: I used max-w-6xl here instead of 4xl to give the 3-column grid enough room to breathe */}
       <div className="bg-white dark:bg-[#0a0f1c] text-gray-800 w-full max-w-6xl rounded-xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh] animate-in fade-in zoom-in-95 duration-200 border dark:border-gray-800">
         
         {/* Modal Header */}
@@ -107,30 +120,23 @@ export default function ContactUsModal({ isOpen, onClose }) {
                     ))}
                   </ul>
 
-                  {office.email && (
-                    <div className="mt-4 space-y-1.5 text-sm text-gray-600 dark:text-gray-400 bg-white dark:bg-[#0a0f1c] p-3 rounded-lg border border-gray-100 dark:border-gray-800">
-                      <p><strong className="text-gray-800 dark:text-gray-200 block text-xs uppercase mb-1">Contact:</strong> <a href={`mailto:${office.email}`} className="text-[#FF5722] hover:underline break-all">{office.email}</a></p>
-                      <p><strong className="text-gray-800 dark:text-gray-200">IMO No:</strong> {office.imo}</p>
-                    </div>
-                  )}
+                  <div className="mt-4 space-y-1.5 text-sm text-gray-600 dark:text-gray-400 bg-white dark:bg-[#0a0f1c] p-3 rounded-lg border border-gray-100 dark:border-gray-800">
+                    {office.contactName && (
+                      <p><strong className="text-gray-800 dark:text-gray-200 text-xs uppercase">Contact:</strong> {office.contactName}</p>
+                    )}
+                    {office.phone && (
+                      <p><strong className="text-gray-800 dark:text-gray-200 text-xs uppercase">Phone:</strong> <a href={`tel:${office.phone.replace(/\s+/g, '')}`} className="hover:text-[#FF5722] transition-colors">{office.phone}</a></p>
+                    )}
+                    {office.email && (
+                      <p><strong className="text-gray-800 dark:text-gray-200 block text-xs uppercase mb-1 mt-2">Email:</strong> <a href={`mailto:${office.email}`} className="text-[#FF5722] hover:underline break-all">{office.email}</a></p>
+                    )}
+                    {office.imo && (
+                      <p className="mt-2"><strong className="text-gray-800 dark:text-gray-200 text-xs uppercase">IMO No:</strong> {office.imo}</p>
+                    )}
+                  </div>
                 </div>
               </div>
             ))}
-          </div>
-
-          {/* Other Countries We Serve Area */}
-          <div className="bg-[#1a1a54] dark:bg-[#111827] rounded-2xl p-6 md:p-8 text-center shadow-inner border border-transparent dark:border-gray-800">
-            <h4 className="text-xl font-bold text-white mb-6">Other Countries We Serve</h4>
-            <div className="flex flex-wrap justify-center gap-2.5 md:gap-3">
-              {otherCountries.map((country, index) => (
-                <span 
-                  key={index} 
-                  className="bg-white/10 hover:bg-[#FF5722] text-white border border-white/20 transition-colors duration-300 text-xs md:text-sm px-4 py-1.5 rounded-full cursor-default whitespace-nowrap"
-                >
-                  {country}
-                </span>
-              ))}
-            </div>
           </div>
 
         </div>

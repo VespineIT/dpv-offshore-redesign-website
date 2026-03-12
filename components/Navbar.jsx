@@ -11,7 +11,6 @@ import MobileMenu from './MobileMenu';
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
-  const [isSolutionsOpen, setIsSolutionsOpen] = useState(false); 
   
   // Define languages with their respective flag CDN URLs
   const languages = [
@@ -33,19 +32,15 @@ export default function Navbar() {
   const inactiveStyles =
     "text-[#1a1a54] dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 px-6 py-2.5 rounded-full flex items-center font-bold tracking-wider transition-all duration-300 ease-in-out";
 
-  // Center navigation links for desktop
+  // Center navigation links for desktop (Updated with new links)
   const centerLinks = [
     { name: 'HOME', path: '/' },
     { name: 'ABOUT US', path: '/about' },
+    { name: 'PRODUCTS', path: '/products' },
+    { name: 'SERVICES', path: '/services' },
+    { name: 'INDUSTRIES', path: '/industries' },
     { name: 'BLOG', path: '/blog' },
     { name: 'CAREER', path: '/career' },
-  ];
-
-  // Solutions dropdown links
-  const solutionsLinks = [
-    { name: 'Products', path: '/products' },
-    { name: 'Services', path: '/services' },
-    { name: 'Industries', path: '/industries' },
   ];
 
   const handleLanguageChange = (langObj) => {
@@ -109,10 +104,7 @@ export default function Navbar() {
               onMouseLeave={() => setIsLangMenuOpen(false)}
             >
               <div 
-                onClick={() => {
-                  setIsLangMenuOpen(!isLangMenuOpen);
-                  setIsSolutionsOpen(false); 
-                }}
+                onClick={() => setIsLangMenuOpen(!isLangMenuOpen)}
                 className="flex items-center gap-2 bg-[#ec4a0a] hover:bg-[#d44309] text-white px-4 py-2 rounded-lg cursor-pointer transition-colors"
               >
                 <img 
@@ -149,50 +141,6 @@ export default function Navbar() {
                         />
                         {lang.name}
                       </button>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
-
-            {/* SOLUTIONS DROPDOWN (Desktop Only) */}
-            <div 
-              className="hidden lg:block relative"
-              onMouseEnter={() => setIsSolutionsOpen(true)}
-              onMouseLeave={() => setIsSolutionsOpen(false)}
-            >
-              <button
-                onClick={() => {
-                  setIsSolutionsOpen(!isSolutionsOpen);
-                  setIsLangMenuOpen(false);
-                }}
-                className={`flex items-center gap-1.5 px-3 py-2 rounded-lg font-bold tracking-wider transition-all duration-300 ease-in-out ${
-                  isSolutionsOpen 
-                    ? "text-[#ec4a0a]" 
-                    : "text-[#1a1a54] dark:text-gray-200 hover:text-[#ec4a0a] dark:hover:text-[#ec4a0a]"
-                }`}
-              >
-                SOLUTIONS
-                <ChevronDown 
-                  size={16} 
-                  strokeWidth={3} 
-                  className={`transition-transform duration-200 ${isSolutionsOpen ? 'rotate-180' : ''}`} 
-                />
-              </button>
-
-              {/* SOLUTIONS DROPDOWN MENU */}
-              {isSolutionsOpen && (
-                <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 z-50">
-                  <div className="w-36 bg-white dark:bg-[#1a1a54] shadow-xl rounded-lg overflow-hidden border border-gray-100 dark:border-gray-800">
-                    {solutionsLinks.map((link) => (
-                      <Link
-                        key={link.path}
-                        href={link.path}
-                        onClick={() => setIsSolutionsOpen(false)}
-                        className="block w-full text-left px-4 py-3 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-[#ec4a0a] hover:text-white transition-colors"
-                      >
-                        {link.name}
-                      </Link>
                     ))}
                   </div>
                 </div>

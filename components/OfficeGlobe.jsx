@@ -10,7 +10,7 @@ const locations = [
     country: 'UAE',
     address: 'Contact: Roshen Tharuka\nPhone: +971 50 273 3471\nEmail: projects@dpvoffshore.com\n\nDPV Offshore & Marine Services LLC\nOffice No. 879, 8th Floor, Al Ghaith Tower\nMohammed Bin Hamdan Street\nAbu Dhabi, UAE',
     description: 'Strategic hub for Middle East offshore operations.',
-    servicedPorts: 'Free Port, Mina, Khalifa Port, Zayed Port, Musaffah Port',
+    servicedPorts: 'Free Port, Khalifa Port, Zayed Port, Musaffah Port',
     timezone: 'Asia/Dubai',
     image: '/dpv-offshore-redesign-website/images/Khalifa-Port.jpg',
     coordinates: { lat: 24.4539, lng: 54.3773 }
@@ -53,7 +53,7 @@ const locations = [
     city: 'Colombo',
     country: 'Sri Lanka',
     address: 'Contact: Duminda\nPhone: +94 77 774 3023\nEmail: cmb@dvpoffshore.com\n\nDPV Offshore & Marine Services LLC\nNo. 736, Dr. Danister De Silva Mawatha\nColombo 00900\nSri Lanka',
-    description: 'Headquarters - Regional office and main coordination center.',
+    description: 'Branch Office - Regional office.',
     servicedPorts: 'Colombo, Galle, Hambantota, Trincomalee, OPL Services - SL',
     timezone: 'Asia/Colombo',
     image: '/dpv-offshore-redesign-website/images/Colombo-fort.jpg',
@@ -175,7 +175,7 @@ export default function OfficeGlobe() {
                     {/* Badge + Time */}
                     <div className="flex flex-wrap items-center gap-4 mb-8">
                     <span className="px-4 py-1.5 bg-[#E95623]/80 backdrop-blur-md text-white text-xs font-bold uppercase tracking-widest rounded-full shadow-sm border border-white/20">
-                        {activeLocation.id === 'colombo' ? 'Headquarters' :
+                        {activeLocation.id === 'colombo' ? 'Branch Office' :
                         activeLocation.id === 'singapore' ? 'Representative Office' :
                         activeLocation.id === 'fujairah' ? 'Branch Office' : 'Regional Hub'}
                     </span>

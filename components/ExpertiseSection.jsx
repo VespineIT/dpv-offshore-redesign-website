@@ -34,7 +34,7 @@ export default function ExpertiseShowcase() {
           Our Expertise
         </h2>
         <p className="text-center text-[#1E3A8A] dark:text-white text-xl md:text-3xl font-bold max-w-3xl mx-auto tracking-tight transition-colors duration-300">
-          Smart asset management for safe, efficient & high value performance
+          Smart asset management for safe, cost efficient & high value performance
         </p>
       </div>
 

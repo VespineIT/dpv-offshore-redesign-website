@@ -10,84 +10,56 @@ export default function Careers() {
   const jobOpenings = [
     { 
       title: "Automation Engineer", 
-      location: "Colombo",
+      location: "UAE",
       description: "Design, implement, and maintain automated control systems for complex offshore and subsea EPC projects."
     },
     { 
       title: "Mechatronics Engineer", 
-      location: "Colombo",
+      location: "UAE",
       description: "Integrate mechanical and electronic systems to optimize operations across our offshore and onshore facilities."
     },
     { 
       title: "Ship Electrician", 
-      location: "Colombo",
+      location: "UAE",
       description: "Maintain, troubleshoot, and repair critical electrical systems on offshore vessels and marine platforms."
     },
     { 
       title: "Ship Mechanic", 
-      location: "Colombo",
+      location: "UAE",
       description: "Perform comprehensive mechanical repairs and preventative maintenance on marine vessels and heavy offshore equipment."
     },
     { 
       title: "Mechanical Foreman", 
-      location: "Colombo",
+      location: "UAE",
       description: "Supervise mechanical teams and oversee daily execution of mechanical operations on offshore and onshore sites."
     },
     { 
       title: "Mechanical Technician", 
-      location: "Colombo",
+      location: "UAE",
       description: "Execute routine maintenance and precision mechanical repairs for advanced subsea and offshore machinery."
     },
-    { 
-      title: "Fabrication Technician", 
-      location: "Colombo",
-      description: "Fabricate, assemble, and install structural components for offshore platforms and marine EPC projects."
-    },
-    { 
-      title: "Certified Welder", 
-      location: "Colombo",
-      description: "Perform specialized, high-grade welding for critical structural and piping systems in marine and subsea environments."
-    },
-    { 
-      title: "Machinist", 
-      location: "Colombo",
-      description: "Operate precision machining equipment to manufacture and repair components for offshore machinery and vessels."
-    },
+    
     { 
       title: "Rigger", 
-      location: "Colombo",
+      location: "UAE",
       description: "Ensure the safe and efficient lifting, moving, and positioning of heavy equipment during offshore construction."
     },
-    { 
-      title: "Driver", 
-      location: "Colombo",
-      description: "Provide reliable transportation of specialized materials, personnel, and equipment across onshore facilities and ports."
-    },
+    
     { 
       title: "Sales Engineer (Marine Division)", 
-      location: "Colombo",
+      location: "UAE",
       description: "Drive technical sales, foster client relationships, and expand our marine and offshore EPC service portfolio."
     },
     { 
       title: "Estimation / Costing Engineer", 
-      location: "Colombo",
+      location: "UAE",
       description: "Prepare accurate cost estimates, project budgets, and financial forecasts for complex offshore and subsea operations."
     },
     { 
       title: "Procurement Engineer", 
-      location: "Colombo",
+      location: "UAE",
       description: "Source, evaluate, and procure specialized materials and technical equipment essential for offshore EPC operations."
-    },
-    { 
-      title: "Accountant", 
-      location: "Colombo",
-      description: "Manage daily financial operations, project-specific accounting, and reporting for our diverse offshore projects."
-    },
-    { 
-      title: "Human Resources & Administration Officer", 
-      location: "Colombo",
-      description: "Oversee recruitment, employee relations, and administrative support tailored to our specialized marine workforce."
-    },
+    }
   ];
 
   // --- Framer Motion Variants ---

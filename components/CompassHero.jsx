@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, useCallback } from "react";
+import ContactUsModal from './ContactUsModal';
 
 /* ============================================================
    PARTICLE HELPERS
@@ -100,6 +101,7 @@ const computeWave = (p, time) => {
 export default function CompassHero() {
   /* ── Dark mode ──────────────────────────────────────────── */
   const [isDark, setIsDark] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -313,7 +315,7 @@ export default function CompassHero() {
       : "drop-shadow(0 20px 60px rgba(74,52,204,0.22))",
   };
 
-  const lines = ["YOUR ASSETS", "ARE IN", "SAFE HANDS"];
+  const lines = ["YOUR ASSET", "IN SAFE" ,"HANDS"];
 
   return (
     <>
@@ -521,7 +523,12 @@ export default function CompassHero() {
               </div>
             </div>
 
-            <button className="ch-btn ch-fadeInUp d1000" style={{marginTop:"24px"}} aria-label="Contact DPV Offshore">
+            <button 
+              className="ch-btn ch-fadeInUp d1000" 
+              style={{marginTop:"24px"}} 
+              aria-label="Contact DPV Offshore"
+              onClick={() => setIsModalOpen(true)}
+            >
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" aria-hidden="true">
                 <circle cx="12" cy="12" r="10"/>
                 <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>
@@ -568,6 +575,14 @@ export default function CompassHero() {
         <span className="ch-decor ch-floatPlus" aria-hidden="true" style={{position:"absolute",top:"15%",left:"8%",color:T.plusClr,animationDelay:"1.1s",zIndex:10,transition:"color .7s"}}>+</span>
         <span className="ch-decor ch-floatPlus" aria-hidden="true" style={{position:"absolute",top:"30%",right:"45%",color:T.plusClr,fontSize:16,opacity:0.5,animationDelay:"3.5s",zIndex:10,transition:"color .7s"}}>+</span>
       </section>
+
+      {/* Render the modal when isOpen state is true */}
+      {isModalOpen && (
+        <ContactUsModal 
+          isOpen={isModalOpen} 
+          onClose={() => setIsModalOpen(false)} 
+        />
+      )}
     </>
   );
 }
