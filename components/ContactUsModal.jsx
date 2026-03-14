@@ -9,9 +9,20 @@ export default function ContactUsModal({ isOpen, onClose }) {
       title: "Strategic Hub",
       address: "DPV Offshore & Marine Services LLC, Office No. 879, 8th Floor, Al Ghaith Tower, Mohammed Bin Hamdan Street, Abu Dhabi, UAE",
       ports: ["Free Port", "Mina", "Khalifa Port", "Zayed Port", "Musaffah Port"],
-      contactName: "Roshen Tharuka",
-      phone: "+971 50 273 3471",
-      email: "projects@dpvoffshore.com",
+      contacts: [
+        {
+          name: "Mr. Mohomed Roshan",
+          position: "Branch Manager",
+          phone: "+971 50 112 4870",
+          email: "sales2@dpvoffshore.com"
+        },
+        {
+          name: "Mr. Tharuka Vishvajith",
+          position: "Marine Engineer",
+          phone: "+971 50 273 3471",
+          email: "projects@dpvoffshore.com"
+        }
+      ],
       imo: null
     },
     {
@@ -19,9 +30,14 @@ export default function ContactUsModal({ isOpen, onClose }) {
       title: "Core Workshop",
       address: "DPV Offshore & Marine Services LLC, P.O. Box 75287, Workshop 05, W306, Dubai Maritime City, Dubai, UAE",
       ports: ["Jebel Ali", "Port Rashid", "Hamriya Port"],
-      contactName: "Duminda",
-      phone: "+971 56 706 0326",
-      email: "gm@dpvoffshore.com",
+      contacts: [
+        {
+          name: "Mr. Duminda Gunathilake",
+          position: "General Manager",
+          phone: "+971 56 706 0326",
+          email: "gm@dpvoffshore.com"
+        }
+      ],
       imo: null
     },
     {
@@ -29,9 +45,14 @@ export default function ContactUsModal({ isOpen, onClose }) {
       title: "Key Serviced Port",
       address: "Sharjah, UAE",
       ports: ["Khalid Port", "Hamriyah Port", "Khorfakkan"],
-      contactName: "Kavini",
-      phone: "+971 50 435 4936",
-      email: "operations@dpvoffshore.com",
+      contacts: [
+        {
+          name: "Mrs. Kawini Koshila",
+          position: "Branch Manager",
+          phone: "+971 56 435 4936",
+          email: "operations@dpvoffshore.com"
+        }
+      ],
       imo: null
     },
     {
@@ -39,9 +60,14 @@ export default function ContactUsModal({ isOpen, onClose }) {
       title: "Branch Office",
       address: "DPV Offshore & Marine Services L.L.C - Fujairah Branch, Al Theeb Building (Opposite Civil Defense Building), Mohammed Bin Zayed City, Shop 1, Fujairah, UAE",
       ports: ["Fujairah Port"],
-      contactName: "Harsha",
-      phone: "+971 50 629 4308",
-      email: null,
+      contacts: [
+        {
+          name: "Mr. Harsha Dissanayake",
+          position: "Mechanical Engineer",
+          phone: "+971 50 629 4308",
+          email: "me4@dpvoffshore.com"
+        }
+      ],
       imo: null
     },
     {
@@ -49,9 +75,14 @@ export default function ContactUsModal({ isOpen, onClose }) {
       title: "Branch Office",
       address: "DPV Offshore & Marine Services LLC, No. 736, Dr. Danister De Silva Mawatha, Colombo 00900, Sri Lanka",
       ports: ["Colombo", "Galle", "Hambantota", "Trincomalee", "OPL Services - SL"],
-      contactName: "Duminda",
-      phone: "+94 77 774 3023",
-      email: "cmb@dvpoffshore.com",
+      contacts: [
+        {
+          name: "Duminda",
+          position: null,
+          phone: "+94 77 774 3023",
+          email: "cmb@dvpoffshore.com"
+        }
+      ],
       imo: null
     },
     {
@@ -59,9 +90,14 @@ export default function ContactUsModal({ isOpen, onClose }) {
       title: "Representative Office",
       address: "9 Tampines Grande, Asia Green, #02-00, Tampines, Singapore 528735",
       ports: ["Jurong Port", "Pasir Panjang Terminal"],
-      contactName: "Jonathan",
-      phone: "+65 8181 4669",
-      email: "sgp@dvpoffshore.com",
+      contacts: [
+        {
+          name: "Mr. Jonathan Balagtas",
+          position: "Technical Director",
+          phone: "+65 8181 4669",
+          email: "sgp@dvpoffshore.com"
+        }
+      ],
       imo: "6493815"
     }
   ];
@@ -120,18 +156,32 @@ export default function ContactUsModal({ isOpen, onClose }) {
                     ))}
                   </ul>
 
-                  <div className="mt-4 space-y-1.5 text-sm text-gray-600 dark:text-gray-400 bg-white dark:bg-[#0a0f1c] p-3 rounded-lg border border-gray-100 dark:border-gray-800">
-                    {office.contactName && (
-                      <p><strong className="text-gray-800 dark:text-gray-200 text-xs uppercase">Contact:</strong> {office.contactName}</p>
-                    )}
-                    {office.phone && (
-                      <p><strong className="text-gray-800 dark:text-gray-200 text-xs uppercase">Phone:</strong> <a href={`tel:${office.phone.replace(/\s+/g, '')}`} className="hover:text-[#FF5722] transition-colors">{office.phone}</a></p>
-                    )}
-                    {office.email && (
-                      <p><strong className="text-gray-800 dark:text-gray-200 block text-xs uppercase mb-1 mt-2">Email:</strong> <a href={`mailto:${office.email}`} className="text-[#FF5722] hover:underline break-all">{office.email}</a></p>
-                    )}
+                  <div className="mt-4 space-y-4 text-sm text-gray-600 dark:text-gray-400 bg-white dark:bg-[#0a0f1c] p-3 rounded-lg border border-gray-100 dark:border-gray-800">
+                    {office.contacts?.map((contact, cIndex) => (
+                      <div key={cIndex} className={cIndex > 0 ? "pt-4 border-t border-gray-100 dark:border-gray-800" : ""}>
+                        {contact.name && (
+                          <p>
+                            <strong className="text-gray-800 dark:text-gray-200 text-xs uppercase">Contact:</strong> {contact.name}
+                            {contact.position && <span className="text-xs text-gray-500 ml-1">({contact.position})</span>}
+                          </p>
+                        )}
+                        {contact.phone && (
+                          <p className="mt-1">
+                            <strong className="text-gray-800 dark:text-gray-200 text-xs uppercase">Phone:</strong> <a href={`tel:${contact.phone.replace(/\s+/g, '')}`} className="hover:text-[#FF5722] transition-colors">{contact.phone}</a>
+                          </p>
+                        )}
+                        {contact.email && (
+                          <p className="mt-1">
+                            <strong className="text-gray-800 dark:text-gray-200 text-xs uppercase">Email:</strong> <a href={`mailto:${contact.email}`} className="text-[#FF5722] hover:underline break-all ml-1">{contact.email}</a>
+                          </p>
+                        )}
+                      </div>
+                    ))}
+                    
                     {office.imo && (
-                      <p className="mt-2"><strong className="text-gray-800 dark:text-gray-200 text-xs uppercase">IMO No:</strong> {office.imo}</p>
+                      <div className="pt-3 border-t border-gray-100 dark:border-gray-800">
+                        <p><strong className="text-gray-800 dark:text-gray-200 text-xs uppercase">IMO No:</strong> {office.imo}</p>
+                      </div>
                     )}
                   </div>
                 </div>

@@ -140,7 +140,7 @@ export default function Services() {
       <section className="relative w-full h-[50vh] min-h-[400px] md:h-[500px] flex items-center justify-center overflow-hidden rounded-b-[40px] md:rounded-b-[60px] shadow-2xl">
         <div className="absolute inset-0 z-0">
           <Image 
-            src="/dpv-offshore-redesign-website/images/career-hero.jpeg"
+            src="/dpv-offshore-redesign-website/images/Our_Services_hero_banner.png"
             alt="Offshore Services"
             fill 
             priority
