@@ -8,19 +8,19 @@ export default function ContactUsModal({ isOpen, onClose }) {
       city: "Abu Dhabi, UAE",
       title: "Strategic Hub",
       address: "DPV Offshore & Marine Services LLC, Office No. 879, 8th Floor, Al Ghaith Tower, Mohammed Bin Hamdan Street, Abu Dhabi, UAE",
-      ports: ["Free Port", "Mina", "Khalifa Port", "Zayed Port", "Musaffah Port"],
+      ports: ["Free Port", "Khalifa Port", "Zayed Port", "Musaffah Port"],
       contacts: [
         {
           name: "Mr. Mohomed Roshan",
           position: "Branch Manager",
           phone: "+971 50 112 4870",
-          email: "sales2@dpvoffshore.com"
+          email: "info@dpvoffshore.com"
         },
         {
           name: "Mr. Tharuka Vishvajith",
           position: "Marine Engineer",
           phone: "+971 50 273 3471",
-          email: "projects@dpvoffshore.com"
+          email: "info@dpvoffshore.com"
         }
       ],
       imo: null
@@ -47,10 +47,10 @@ export default function ContactUsModal({ isOpen, onClose }) {
       ports: ["Khalid Port", "Hamriyah Port", "Khorfakkan"],
       contacts: [
         {
-          name: "Mrs. Kawini Koshila",
-          position: "Branch Manager",
+          name: "Ms. Kawini Koshila",
+          position: "Operation Executive",
           phone: "+971 56 435 4936",
-          email: "operations@dpvoffshore.com"
+          email: "info@dpvoffshore.com"
         }
       ],
       imo: null
@@ -65,7 +65,7 @@ export default function ContactUsModal({ isOpen, onClose }) {
           name: "Mr. Harsha Dissanayake",
           position: "Mechanical Engineer",
           phone: "+971 50 629 4308",
-          email: "me4@dpvoffshore.com"
+          email: "info@dpvoffshore.com"
         }
       ],
       imo: null
@@ -77,10 +77,10 @@ export default function ContactUsModal({ isOpen, onClose }) {
       ports: ["Colombo", "Galle", "Hambantota", "Trincomalee", "OPL Services - SL"],
       contacts: [
         {
-          name: "Duminda",
-          position: null,
+          name: "Mr. Duminda Gunathilake",
+          position: "General Manager",
           phone: "+94 77 774 3023",
-          email: "cmb@dvpoffshore.com"
+          email: "cmb@dpvoffshore.com"
         }
       ],
       imo: null

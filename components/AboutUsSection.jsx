@@ -2,13 +2,13 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { FaAward, FaUsers, FaShip, FaGlobe } from 'react-icons/fa';
+import { FaAward, FaUsers, FaIndustry, FaBolt } from 'react-icons/fa';
 
 const AboutUsSection = () => {
   const [experience, setExperience] = useState(0);
   const [employee, setEmployee] = useState(0);
-  const [vessels, setVessels] = useState(0);
-  const [countries, setCountries] = useState(0);
+  const [epc, setEpc] = useState(0);
+  const [powerPlants, setPowerPlants] = useState(0);
   const [hasAnimated, setHasAnimated] = useState(false);
   const sectionRef = useRef(null);
 
@@ -17,24 +17,32 @@ const AboutUsSection = () => {
       (entries) => {
         if (entries[0].isIntersecting && !hasAnimated) {
           setHasAnimated(true);
+          
+          // Highly optimized animation using requestAnimationFrame
           const animate = (setter, target, duration) => {
-            const increment = target / (duration / 16);
-            let current = 0;
-            const timer = setInterval(() => {
-              current += increment;
-              if (current >= target) {
-                setter(target);
-                clearInterval(timer);
-              } else {
-                setter(Math.ceil(current));
+            let startTimestamp = null;
+            const step = (timestamp) => {
+              if (!startTimestamp) startTimestamp = timestamp;
+              // Calculate progress between 0 and 1
+              const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+              
+              // Apply an ease-out cubic curve for a premium smooth finish
+              const easeOutProgress = 1 - Math.pow(1 - progress, 3); 
+              
+              setter(Math.ceil(easeOutProgress * target));
+              
+              if (progress < 1) {
+                window.requestAnimationFrame(step);
               }
-            }, 16);
+            };
+            window.requestAnimationFrame(step);
           };
 
-          animate(setExperience, 18, 1000);
-          animate(setCountries, 15, 1500);
-          animate(setEmployee, 120, 2000);
-          animate(setVessels, 456, 2500);
+          // Adjusted durations slightly so they feel snappy but smooth
+          animate(setExperience, 12, 1200);
+          animate(setEmployee, 100, 1800);
+          animate(setEpc, 12, 2200);
+          animate(setPowerPlants, 7, 2600);
         }
       },
       { threshold: 0.3 }
@@ -113,17 +121,6 @@ const AboutUsSection = () => {
               </div>
             </div>
 
-            {/* Countries */}
-            <div className="flex flex-col items-center justify-center p-2">
-              <FaGlobe className="text-3xl sm:text-4xl md:text-5xl text-[#FF4500] mb-2 drop-shadow-[0_4px_8px_rgba(0,0,0,0.5)]" />
-              <div className="text-white text-[12px] sm:text-sm md:text-lg lg:text-xl font-bold uppercase tracking-tight drop-shadow-md">
-                Countries
-              </div>
-              <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-[#FF4500] mt-1 drop-shadow-md">
-                {countries}+
-              </div>
-            </div>
-
             {/* Employees */}
             <div className="flex flex-col items-center justify-center p-2">
               <FaUsers className="text-3xl sm:text-4xl md:text-5xl text-[#FF4500] mb-2 drop-shadow-[0_4px_8px_rgba(0,0,0,0.5)]" />
@@ -135,14 +132,25 @@ const AboutUsSection = () => {
               </div>
             </div>
 
-            {/* Vessels */}
+            {/* EPC */}
             <div className="flex flex-col items-center justify-center p-2">
-              <FaShip className="text-3xl sm:text-4xl md:text-5xl text-[#FF4500] mb-2 drop-shadow-[0_4px_8px_rgba(0,0,0,0.5)]" />
+              <FaIndustry className="text-3xl sm:text-4xl md:text-5xl text-[#FF4500] mb-2 drop-shadow-[0_4px_8px_rgba(0,0,0,0.5)]" />
               <div className="text-white text-[12px] sm:text-sm md:text-lg lg:text-xl font-bold uppercase tracking-tight drop-shadow-md">
-                Vessels
+                EPC
               </div>
               <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-[#FF4500] mt-1 drop-shadow-md">
-                {vessels}
+                {epc}+
+              </div>
+            </div>
+
+            {/* Power Plants */}
+            <div className="flex flex-col items-center justify-center p-2">
+              <FaBolt className="text-3xl sm:text-4xl md:text-5xl text-[#FF4500] mb-2 drop-shadow-[0_4px_8px_rgba(0,0,0,0.5)]" />
+              <div className="text-white text-[12px] sm:text-sm md:text-lg lg:text-xl font-bold uppercase tracking-tight drop-shadow-md">
+                Power Plants
+              </div>
+              <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-[#FF4500] mt-1 drop-shadow-md">
+                {powerPlants}+
               </div>
             </div>
 

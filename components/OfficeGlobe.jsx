@@ -8,7 +8,20 @@ const locations = [
     id: 'abu-dhabi',
     city: 'Abu Dhabi',
     country: 'UAE',
-    address: 'Contact: Mr. Mohomed Roshan (Branch Manager)\nPhone: +971 50 112 4870\nEmail: sales2@dpvoffshore.com\n\nContact: Mr. Tharuka Vishvajith (Marine Engineer)\nPhone: +971 50 273 3471\nEmail: projects@dpvoffshore.com\n\nDPV Offshore & Marine Services LLC\nOffice No. 879, 8th Floor, Al Ghaith Tower\nMohammed Bin Hamdan Street\nAbu Dhabi, UAE',
+    contacts: [
+      {
+        name: 'Mr. Mohomed Roshan',
+        position: 'Branch Manager',
+        phone: '+971 50 112 4870',
+        email: 'info@dpvoffshore.com'
+      },
+      {
+        name: 'Mr. Tharuka Vishvajith',
+        position: 'Marine Engineer',
+        phone: '+971 50 273 3471',
+        email: 'info@dpvoffshore.com'
+      }
+    ],
     description: 'Strategic hub for Middle East offshore operations.',
     servicedPorts: 'Free Port, Khalifa Port, Zayed Port, Musaffah Port',
     timezone: 'Asia/Dubai',
@@ -19,7 +32,14 @@ const locations = [
     id: 'dubai',
     city: 'Dubai',
     country: 'UAE',
-    address: 'Contact: Mr. Duminda Gunathilake (General Manager)\nPhone: +971 56 706 0326\nEmail: gm@dpvoffshore.com\n\nDPV Offshore & Marine Services LLC\nP.O. Box 75287\nWorkshop 05, W306\nDubai Maritime City\nDubai, UAE',
+    contacts: [
+      {
+        name: 'Mr. Duminda Gunathilake',
+        position: 'General Manager',
+        phone: '+971 56 706 0326',
+        email: 'gm@dpvoffshore.com'
+      }
+    ],
     description: 'Core workshop and marine services facility in Dubai Maritime City.',
     servicedPorts: 'Jebel Ali, Port Rashid, Hamriya Port',
     timezone: 'Asia/Dubai',
@@ -30,7 +50,14 @@ const locations = [
     id: 'sharjah',
     city: 'Sharjah',
     country: 'UAE',
-    address: 'Contact: Mrs. Kawini Koshila (Branch Manager)\nPhone: +971 56 435 4936\nEmail: operations@dpvoffshore.com\n\nSharjah, UAE',
+    contacts: [
+      {
+        name: 'Ms. Kawini Koshila',
+        position: 'Operation Executive',
+        phone: '+971 56 435 4936',
+        email: 'info@dpvoffshore.com'
+      }
+    ],
     description: 'Key serviced port for extended maritime operations.',
     servicedPorts: 'Khalid Port, Hamriyah Port, Khorfakkan',
     timezone: 'Asia/Dubai',
@@ -41,7 +68,14 @@ const locations = [
     id: 'fujairah',
     city: 'Fujairah',
     country: 'UAE',
-    address: 'Contact: Mr. Harsha Dissanayake (Mechanical Engineer)\nPhone: +971 50 629 4308\nEmail: me4@dpvoffshore.com\n\nDPV Offshore & Marine Services L.L.C - Fujairah Branch\nAl Theeb Building (Opposite Civil Defense Building)\nMohammed Bin Zayed City\nShop 1, Fujairah, UAE',
+    contacts: [
+      {
+        name: 'Mr. Harsha Dissanayake',
+        position: 'Mechanical Engineer',
+        phone: '+971 50 629 4308',
+        email: 'info@dpvoffshore.com'
+      }
+    ],
     description: 'Branch office providing dedicated support for eastern seaboard maritime operations.',
     servicedPorts: 'Fujairah Port',
     timezone: 'Asia/Dubai',
@@ -49,30 +83,43 @@ const locations = [
     coordinates: { lat: 25.1288, lng: 56.3265 }
   },
   {
-    id: 'colombo',
-    city: 'Colombo',
-    country: 'Sri Lanka',
-    address: 'Contact: Duminda\nPhone: +94 77 774 3023\nEmail: cmb@dvpoffshore.com\n\nDPV Offshore & Marine Services LLC\nNo. 736, Dr. Danister De Silva Mawatha\nColombo 00900\nSri Lanka',
-    description: 'Branch Office - Regional office.',
-    servicedPorts: 'Colombo, Galle, Hambantota, Trincomalee, OPL Services - SL',
-    timezone: 'Asia/Colombo',
-    image: '/dpv-offshore-redesign-website/images/Colombo-fort.jpg',
-    coordinates: { lat: 6.9271, lng: 79.8612 }
-  },
-  {
     id: 'singapore',
     city: 'Singapore',
     country: 'Singapore',
-    address: 'Contact: Mr. Jonathan Balagtas (Technical Director)\nPhone: +65 8181 4669\nEmail: sgp@dvpoffshore.com\n\n9 Tampines Grande, Asia Green, #02-00\nTampines, Singapore 528735\nIMO No: 6493815',
+    contacts: [
+      {
+        name: 'Mr. Jonathan Balagtas',
+        position: 'Technical Director',
+        phone: '+65 8181 4669',
+        email: 'sgp@dvpoffshore.com'
+      }
+    ],
     description: 'Representative Office serving the Asia-Pacific region.',
     servicedPorts: 'Jurong Port, Pasir Panjang Terminal',
     timezone: 'Asia/Singapore',
     image: '/dpv-offshore-redesign-website/images/Jurong-Port.jpg',
     coordinates: { lat: 1.3521, lng: 103.8198 }
+  },
+  {
+    id: 'colombo',
+    city: 'Colombo',
+    country: 'Sri Lanka',
+    contacts: [
+      {
+        name: 'Mr. Duminda Gunathilake',
+        position: 'General Manager',
+        phone: '+94 77 774 3023',
+        email: 'cmb@dpvoffshore.com'
+      }
+    ],
+    description: 'Branch Office - Regional office.',
+    servicedPorts: 'Colombo, Galle, Hambantota, Trincomalee, OPL Services - SL',
+    timezone: 'Asia/Colombo',
+    image: '/dpv-offshore-redesign-website/images/Colombo-fort.jpg',
+    coordinates: { lat: 6.9271, lng: 79.8612 }
   }
 ];
 
-// Using reliable FlagCDN URLs for high-quality, perfectly sized flag images
 const tickerRegions = [
   { name: 'Singapore', flagUrl: 'https://flagcdn.com/w40/sg.png' }, 
   { name: 'Qatar', flagUrl: 'https://flagcdn.com/w40/qa.png' }, 
@@ -116,7 +163,6 @@ export default function OfficeGlobe() {
 
   return (
     <section className="py-16 md:py-24 bg-gray-50 dark:bg-gray-950 transition-colors duration-300 relative overflow-hidden">
-      {/* Injecting keyframes for the ticker */}
       <style dangerouslySetInnerHTML={{ __html: `
         @keyframes ticker {
           0% { transform: translateX(0); }
@@ -138,7 +184,6 @@ export default function OfficeGlobe() {
           Strategic presence in key maritime hubs worldwide & ready to serve your vessel needs 24/7.
         </p>
 
-        {/* Main Globe Card Container */}
         <div className="relative w-full min-h-[750px] md:min-h-[700px] bg-gray-900 rounded-[2.5rem] shadow-2xl overflow-hidden group">
           
           {/* Background Image Slider */}
@@ -207,19 +252,40 @@ export default function OfficeGlobe() {
                     </p>
                     </div>
 
-                    {/* Address */}
-                    <div className="flex items-start gap-4 border-t border-gray-900/10 dark:border-white/10 pt-6">
-                        <svg className="w-6 h-6 text-[#E95623] mt-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                        </svg>
-                        <p className="text-base text-gray-900/80 dark:text-white/80 whitespace-pre-line leading-relaxed font-medium">
-                        {activeLocation.address}
-                        </p>
+                    {/* Contacts Information */}
+                    <div className="flex flex-col gap-6 border-t border-gray-900/10 dark:border-white/10 pt-6">
+                      {activeLocation.contacts.map((contact, index) => (
+                        <div key={index} className="flex items-start gap-4">
+                          <svg className="w-6 h-6 text-[#E95623] mt-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                          </svg>
+                          <div className="flex flex-col">
+                            <span className="text-lg font-bold text-gray-900 dark:text-white">{contact.name}</span>
+                            <span className="text-sm font-semibold text-[#E95623] uppercase tracking-wide mb-2">{contact.position}</span>
+                            
+                            <div className="flex flex-col sm:flex-row sm:gap-6 text-sm text-gray-800 dark:text-white/80 font-medium">
+                              <span className="flex items-center gap-2 mb-1 sm:mb-0">
+                                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                                </svg>
+                                {contact.phone}
+                              </span>
+                              <span className="flex items-center gap-2">
+                                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                </svg>
+                                <a href={`mailto:${contact.email}`} className="hover:text-[#E95623] transition-colors">
+                                  {contact.email}
+                                </a>
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
                     </div>
 
                     {/* Button */}
-                    <div className="mt-10">
+                    <div className="mt-8">
                     <a
                         href={`http://googleusercontent.com/maps.google.com/?q=${activeLocation.coordinates.lat},${activeLocation.coordinates.lng}`}
                         target="_blank"
