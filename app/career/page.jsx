@@ -171,10 +171,13 @@ export default function Careers() {
                 </div>
 
                 {/* Apply Button */}
-                <button className="w-full sm:w-auto bg-[#FF4500] hover:bg-[#E63E00] text-white font-bold py-3 px-8 rounded-full shadow-md hover:shadow-[0_0_20px_rgba(255,69,0,0.4)] transition-all duration-300 flex items-center justify-center space-x-2 group/btn">
+                <a 
+                  href={`mailto:info@dpvoffshore.com?subject=Application for ${job.title}`}
+                  className="w-full sm:w-auto bg-[#FF4500] hover:bg-[#E63E00] text-white font-bold py-3 px-8 rounded-full shadow-md hover:shadow-[0_0_20px_rgba(255,69,0,0.4)] transition-all duration-300 flex items-center justify-center space-x-2 group/btn"
+                >
                   <span>Apply Now</span>
                   <ArrowRight className="w-5 h-5 group-hover/btn:translate-x-1 transition-transform" />
-                </button>
+                </a>
               </div>
             </motion.div>
           ))}
@@ -188,7 +191,7 @@ export default function Careers() {
           transition={{ delay: 0.8, duration: 0.8 }}
           className="mt-12 text-center text-gray-500 dark:text-gray-400 py-8"
         >
-          Don't see a role that fits? Send your CV to <a href="mailto:careers@dpvoffshore.com" className="text-[#FF4500] font-bold hover:underline">careers@dpvoffshore.com</a>
+          Don't see a role that fits? Send your CV to <a href="mailto:info@dpvoffshore.com" className="text-[#FF4500] font-bold hover:underline">info@dpvoffshore.com</a>
         </motion.div>
 
       </section>
