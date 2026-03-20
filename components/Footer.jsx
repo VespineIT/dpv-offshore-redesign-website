@@ -26,7 +26,7 @@ export default function Footer() {
             <div className="lg:col-span-6 flex flex-col">
                {/* Title */}
                <h2 className="text-[#FF5722] text-3xl font-bold tracking-tight whitespace-nowrap mb-8">
-                 DPV Offshore & Marine services L.L.C
+                 DPV Offshore & Marine Services L.L.C
                </h2>
                
                <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 items-start">
