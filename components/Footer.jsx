@@ -24,10 +24,16 @@ export default function Footer() {
             
             {/* 1 & 2. Licenses & Certifications (Redesigned Layout) */}
             <div className="lg:col-span-6 flex flex-col">
-               {/* Title */}
-               <h2 className="text-[#FF5722] text-3xl font-bold tracking-tight whitespace-nowrap mb-8">
-                 DPV Offshore & Marine Services L.L.C
-               </h2>
+               
+               {/* Titles */}
+               <div className="mb-8">
+                 <h2 className="text-[#FF5722] text-3xl font-bold tracking-tight whitespace-nowrap mb-1">
+                   DPV Offshore & Marine Services L.L.C
+                 </h2>
+                 <h3 className="text-[#FF5722] text-lg font-normal tracking-tight whitespace-nowrap">
+                   DPV Offshore & Marine Services ( Pvt ) Ltd
+                 </h3>
+               </div>
                
                <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 items-start">
                  
