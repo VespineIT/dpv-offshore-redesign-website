@@ -2,13 +2,15 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { FaAward, FaUsers, FaIndustry, FaBolt } from 'react-icons/fa';
+import { FaAward, FaUsers, FaIndustry, FaBolt, FaShip, FaGlobe } from 'react-icons/fa';
 
 const AboutUsSection = () => {
   const [experience, setExperience] = useState(0);
   const [employee, setEmployee] = useState(0);
   const [epc, setEpc] = useState(0);
   const [powerPlants, setPowerPlants] = useState(0);
+  const [vessels, setVessels] = useState(0);
+  const [countries, setCountries] = useState(0);
   const [hasAnimated, setHasAnimated] = useState(false);
   const sectionRef = useRef(null);
 
@@ -43,6 +45,8 @@ const AboutUsSection = () => {
           animate(setEmployee, 100, 1800);
           animate(setEpc, 12, 2200);
           animate(setPowerPlants, 7, 2600);
+          animate(setVessels, 465, 2400); // 2.4s for the larger number
+          animate(setCountries, 14, 1500); // 1.5s for countries
         }
       },
       { threshold: 0.3 }
@@ -107,8 +111,8 @@ const AboutUsSection = () => {
             </p>
           </motion.div>
 
-          {/* Restructured Stats Section */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-2 max-w-5xl mx-auto w-full mb-4 md:mb-8">
+          {/* Restructured Stats Section - Changed to accommodate 6 items dynamically */}
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-2 max-w-6xl mx-auto w-full mb-4 md:mb-8">
             
             {/* Experience */}
             <div className="flex flex-col items-center justify-center p-2">
@@ -151,6 +155,28 @@ const AboutUsSection = () => {
               </div>
               <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-[#FF4500] mt-1 drop-shadow-md">
                 {powerPlants}+
+              </div>
+            </div>
+
+            {/* Vessels */}
+            <div className="flex flex-col items-center justify-center p-2">
+              <FaShip className="text-3xl sm:text-4xl md:text-5xl text-[#FF4500] mb-2 drop-shadow-[0_4px_8px_rgba(0,0,0,0.5)]" />
+              <div className="text-white text-[12px] sm:text-sm md:text-lg lg:text-xl font-bold uppercase tracking-tight drop-shadow-md">
+                Vessels
+              </div>
+              <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-[#FF4500] mt-1 drop-shadow-md">
+                {vessels}+
+              </div>
+            </div>
+
+            {/* Countries */}
+            <div className="flex flex-col items-center justify-center p-2">
+              <FaGlobe className="text-3xl sm:text-4xl md:text-5xl text-[#FF4500] mb-2 drop-shadow-[0_4px_8px_rgba(0,0,0,0.5)]" />
+              <div className="text-white text-[12px] sm:text-sm md:text-lg lg:text-xl font-bold uppercase tracking-tight drop-shadow-md">
+                Countries
+              </div>
+              <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-[#FF4500] mt-1 drop-shadow-md">
+                {countries}+
               </div>
             </div>
 

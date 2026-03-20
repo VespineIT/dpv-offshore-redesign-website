@@ -40,11 +40,12 @@ export default function Footer() {
                  {/* Left Column: Trade License & ISO */}
                  <div className="flex flex-col space-y-4">
                    <div className="text-gray-300 text-sm">
-                     <p className="font-bold text-white mb-2">Trade License Number</p>
+                     <p className="font-bold text-white mb-2">Trade Licenses & Registrations</p>
                      <ul className="space-y-1">
                        <li>• Dubai: <span className="text-white">929197</span></li>
                        <li>• Abu Dhabi: <span className="text-white">6357970</span></li>
                        <li>• Fujairah: <span className="text-white">TN-26-10934</span></li>
+                       <li>• Sri Lanka: <span className="text-white">PV 00270574</span></li>
                      </ul>
                    </div>
                    

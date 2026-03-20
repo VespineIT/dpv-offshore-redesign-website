@@ -3,12 +3,21 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { ShieldCheck, Wrench, Handshake, Clock, Globe } from "lucide-react";
-import { FaAward, FaUsers, FaShip, FaGlobe as FaGlobeIcon } from "react-icons/fa";
+import { 
+  FaAward, 
+  FaUsers, 
+  FaShip, 
+  FaGlobe as FaGlobeIcon, 
+  FaIndustry, 
+  FaBolt 
+} from "react-icons/fa";
 
 const AboutUsPage = () => {
   // --- Hero Section State & Logic ---
   const [experience, setExperience] = useState(0);
   const [employee, setEmployee] = useState(0);
+  const [epc, setEpc] = useState(0);
+  const [powerPlants, setPowerPlants] = useState(0);
   const [vessels, setVessels] = useState(0);
   const [countries, setCountries] = useState(0); 
   const [hasAnimated, setHasAnimated] = useState(false);
@@ -19,25 +28,33 @@ const AboutUsPage = () => {
       (entries) => {
         if (entries[0].isIntersecting && !hasAnimated) {
           setHasAnimated(true);
+          
+          // Highly optimized animation using requestAnimationFrame
           const animate = (setter, target, duration) => {
-            const increment = target / (duration / 16);
-            let current = 0;
-            const timer = setInterval(() => {
-              current += increment;
-              if (current >= target) {
-                setter(target);
-                clearInterval(timer);
-              } else {
-                setter(Math.ceil(current));
+            let startTimestamp = null;
+            const step = (timestamp) => {
+              if (!startTimestamp) startTimestamp = timestamp;
+              const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+              
+              // Ease-out cubic curve for a smooth finish
+              const easeOutProgress = 1 - Math.pow(1 - progress, 3); 
+              
+              setter(Math.ceil(easeOutProgress * target));
+              
+              if (progress < 1) {
+                window.requestAnimationFrame(step);
               }
-            }, 16);
+            };
+            window.requestAnimationFrame(step);
           };
 
-          // Demo data values
-          animate(setExperience, 18, 1000);
-          animate(setCountries, 15, 1500); 
-          animate(setEmployee, 120, 2000);
-          animate(setVessels, 456, 2500);
+          // Values and durations
+          animate(setExperience, 12, 1200);
+          animate(setEmployee, 100, 1800);
+          animate(setEpc, 12, 2000);
+          animate(setPowerPlants, 7, 2200);
+          animate(setVessels, 465, 2500);
+          animate(setCountries, 14, 1500); 
         }
       },
       { threshold: 0.3 }
@@ -98,7 +115,7 @@ const AboutUsPage = () => {
               About Us
             </motion.h1>
 
-            {/* Intro Text - UPDATED */}
+            {/* Intro Text */}
             <motion.div 
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -116,12 +133,12 @@ const AboutUsPage = () => {
               </p>
             </motion.div>
 
-            {/* Restructured Stats Section */}
+            {/* Restructured Stats Section (6 items) */}
             <motion.div 
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-2 max-w-5xl mx-auto w-full mb-4 md:mb-8"
+              className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-2 max-w-6xl mx-auto w-full mb-4 md:mb-8"
             >
               {/* Experience */}
               <div className="flex flex-col items-center justify-center p-2">
@@ -131,17 +148,6 @@ const AboutUsPage = () => {
                 </div>
                 <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-[#FF4500] mt-1 drop-shadow-md">
                   {experience}Y+
-                </div>
-              </div>
-
-              {/* Countries */}
-              <div className="flex flex-col items-center justify-center p-2">
-                <FaGlobeIcon className="text-3xl sm:text-4xl md:text-5xl text-[#FF4500] mb-2 drop-shadow-[0_4px_8px_rgba(0,0,0,0.5)]" />
-                <div className="text-white text-[12px] sm:text-sm md:text-lg lg:text-xl font-bold uppercase tracking-tight drop-shadow-md">
-                  Countries
-                </div>
-                <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-[#FF4500] mt-1 drop-shadow-md">
-                  {countries}+
                 </div>
               </div>
 
@@ -156,6 +162,28 @@ const AboutUsPage = () => {
                 </div>
               </div>
 
+              {/* EPC */}
+              <div className="flex flex-col items-center justify-center p-2">
+                <FaIndustry className="text-3xl sm:text-4xl md:text-5xl text-[#FF4500] mb-2 drop-shadow-[0_4px_8px_rgba(0,0,0,0.5)]" />
+                <div className="text-white text-[12px] sm:text-sm md:text-lg lg:text-xl font-bold uppercase tracking-tight drop-shadow-md">
+                  EPC
+                </div>
+                <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-[#FF4500] mt-1 drop-shadow-md">
+                  {epc}+
+                </div>
+              </div>
+
+              {/* Power Plants */}
+              <div className="flex flex-col items-center justify-center p-2">
+                <FaBolt className="text-3xl sm:text-4xl md:text-5xl text-[#FF4500] mb-2 drop-shadow-[0_4px_8px_rgba(0,0,0,0.5)]" />
+                <div className="text-white text-[12px] sm:text-sm md:text-lg lg:text-xl font-bold uppercase tracking-tight drop-shadow-md">
+                  Power Plants
+                </div>
+                <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-[#FF4500] mt-1 drop-shadow-md">
+                  {powerPlants}+
+                </div>
+              </div>
+
               {/* Vessels */}
               <div className="flex flex-col items-center justify-center p-2">
                 <FaShip className="text-3xl sm:text-4xl md:text-5xl text-[#FF4500] mb-2 drop-shadow-[0_4px_8px_rgba(0,0,0,0.5)]" />
@@ -163,7 +191,18 @@ const AboutUsPage = () => {
                   Vessels
                 </div>
                 <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-[#FF4500] mt-1 drop-shadow-md">
-                  {vessels}
+                  {vessels}+
+                </div>
+              </div>
+
+              {/* Countries */}
+              <div className="flex flex-col items-center justify-center p-2">
+                <FaGlobeIcon className="text-3xl sm:text-4xl md:text-5xl text-[#FF4500] mb-2 drop-shadow-[0_4px_8px_rgba(0,0,0,0.5)]" />
+                <div className="text-white text-[12px] sm:text-sm md:text-lg lg:text-xl font-bold uppercase tracking-tight drop-shadow-md">
+                  Countries
+                </div>
+                <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-[#FF4500] mt-1 drop-shadow-md">
+                  {countries}+
                 </div>
               </div>
             </motion.div>
