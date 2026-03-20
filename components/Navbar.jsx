@@ -71,7 +71,7 @@ export default function Navbar() {
           <div className="flex-shrink-0">
             <Link href="/">
               <Image
-                src="/dpv-offshore-redesign-website/images/dpv_logo.png"
+                src="/images/dpv_logo.png"
                 alt="DPV Offshore Logo"
                 width={160}
                 height={60}

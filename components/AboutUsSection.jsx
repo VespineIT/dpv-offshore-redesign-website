@@ -67,7 +67,7 @@ const AboutUsSection = () => {
           playsInline
           className="absolute inset-0 w-full h-full object-cover z-0"
         >
-          <source src="/dpv-offshore-redesign-website/Videos/jackup_barge .mp4" type="video/mp4" />
+          <source src="/Videos/jackup_barge .mp4" type="video/mp4" />
           <img src="/fallback-image.jpg" alt="Offshore background" className="w-full h-full object-cover" />
         </video>
 

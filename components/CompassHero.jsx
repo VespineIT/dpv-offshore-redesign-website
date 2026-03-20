@@ -555,7 +555,7 @@ export default function CompassHero() {
                 }}
               />
               <img
-                src={isDark ? "/dpv-offshore-redesign-website/images/compass_design_dark.png" : "/dpv-offshore-redesign-website/images/compass_design.png"}
+                src={isDark ? "/images/compass_design_dark.png" : "/images/compass_design.png"}
                 alt="DPV Offshore compass"
                 draggable="false"
                 loading="eager"
@@ -563,8 +563,8 @@ export default function CompassHero() {
               />
               <div aria-hidden="true" style={{position:"absolute",inset:0,display:"flex",alignItems:"center",justifyContent:"center"}}>
                 <div style={{position:"relative",width:"75%",height:"75%"}}>
-                  <img src="/dpv-offshore-redesign-website/images/big_needl.png"   className="ch-rotateCW"  draggable="false" alt="" style={{position:"absolute",inset:0,width:"100%",height:"100%",objectFit:"contain"}}/>
-                  <img src="/dpv-offshore-redesign-website/images/small_needls.png" className="ch-rotateCCW" draggable="false" alt="" style={{position:"absolute",inset:0,width:"100%",height:"100%",objectFit:"contain"}}/>
+                  <img src="/images/big_needl.png"   className="ch-rotateCW"  draggable="false" alt="" style={{position:"absolute",inset:0,width:"100%",height:"100%",objectFit:"contain"}}/>
+                  <img src="/images/small_needls.png" className="ch-rotateCCW" draggable="false" alt="" style={{position:"absolute",inset:0,width:"100%",height:"100%",objectFit:"contain"}}/>
                 </div>
               </div>
             </div>

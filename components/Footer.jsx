@@ -45,7 +45,7 @@ export default function Footer() {
                    {/* ISO Image - Boxes Removed */}
                    <div className="pt-2">
                      <img 
-                       src="/dpv-offshore-redesign-website/images/iso_logo.png" 
+                       src="/images/iso_logo.png" 
                        alt="ISO Certifications" 
                        className="max-h-28 w-auto object-contain" 
                      />
@@ -62,7 +62,7 @@ export default function Footer() {
                    {/* Ship Serve Image - Boxes Removed */}
                    <div className="pt-4">
                      <img 
-                       src="/dpv-offshore-redesign-website/images/ship_serv.jpg" 
+                       src="/images/ship_serv.jpg" 
                        alt="ShipServ" 
                        className="h-10 w-auto object-contain rounded-sm" 
                      />

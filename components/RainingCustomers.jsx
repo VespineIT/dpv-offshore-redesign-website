@@ -3,32 +3,32 @@ import React from 'react';
 import Image from 'next/image';
 
 const customerLogos = [
-  '/dpv-offshore-redesign-website/images/customer-logo/AD_port_logo.png',
-  '/dpv-offshore-redesign-website/images/customer-logo/adnoc_logo.png',
-  '/dpv-offshore-redesign-website/images/customer-logo/ae_logo.png',
-  '/dpv-offshore-redesign-website/images/customer-logo/bp_logo.png',
-  '/dpv-offshore-redesign-website/images/customer-logo/ceb_logo.png',
-  '/dpv-offshore-redesign-website/images/customer-logo/Drydocks_World_logo.png',
-  '/dpv-offshore-redesign-website/images/customer-logo/el_logo.png',
-  '/dpv-offshore-redesign-website/images/customer-logo/e-marine_logo.png',
-  '/dpv-offshore-redesign-website/images/customer-logo/Gms_logo.png',
-  '/dpv-offshore-redesign-website/images/customer-logo/gov_logo.png',
-  '/dpv-offshore-redesign-website/images/customer-logo/Hayleys_logo.png',
-  '/dpv-offshore-redesign-website/images/customer-logo/koc_logo.png',
-  '/dpv-offshore-redesign-website/images/customer-logo/kpc_logo.png',
-  '/dpv-offshore-redesign-website/images/customer-logo/lakdhanavi_logo.png',
-  '/dpv-offshore-redesign-website/images/customer-logo/marsa_logo.png',
-  '/dpv-offshore-redesign-website/images/customer-logo/mbk_logo.png',
-  '/dpv-offshore-redesign-website/images/customer-logo/MSC_logo.png',
-  '/dpv-offshore-redesign-website/images/customer-logo/Premier_Marine_logo.png',
-  '/dpv-offshore-redesign-website/images/customer-logo/qata_logo.png',
-  '/dpv-offshore-redesign-website/images/customer-logo/Shell_logo.png',
-  '/dpv-offshore-redesign-website/images/customer-logo/sinopec.png',
-  '/dpv-offshore-redesign-website/images/customer-logo/sipam.png',
-  '/dpv-offshore-redesign-website/images/customer-logo/sl_port_logo.png',
-  '/dpv-offshore-redesign-website/images/customer-logo/SLMD_logo.png',
-  '/dpv-offshore-redesign-website/images/customer-logo/Snika_marine_logo.png',
-  '/dpv-offshore-redesign-website/images/customer-logo/zmi_logo.png',
+  '/images/customer-logo/AD_port_logo.png',
+  '/images/customer-logo/adnoc_logo.png',
+  '/images/customer-logo/ae_logo.png',
+  '/images/customer-logo/bp_logo.png',
+  '/images/customer-logo/ceb_logo.png',
+  '/images/customer-logo/Drydocks_World_logo.png',
+  '/images/customer-logo/el_logo.png',
+  '/images/customer-logo/e-marine_logo.png',
+  '/images/customer-logo/Gms_logo.png',
+  '/images/customer-logo/gov_logo.png',
+  '/images/customer-logo/Hayleys_logo.png',
+  '/images/customer-logo/koc_logo.png',
+  '/images/customer-logo/kpc_logo.png',
+  '/images/customer-logo/lakdhanavi_logo.png',
+  '/images/customer-logo/marsa_logo.png',
+  '/images/customer-logo/mbk_logo.png',
+  '/images/customer-logo/MSC_logo.png',
+  '/images/customer-logo/Premier_Marine_logo.png',
+  '/images/customer-logo/qata_logo.png',
+  '/images/customer-logo/Shell_logo.png',
+  '/images/customer-logo/sinopec.png',
+  '/images/customer-logo/sipam.png',
+  '/images/customer-logo/sl_port_logo.png',
+  '/images/customer-logo/SLMD_logo.png',
+  '/images/customer-logo/Snika_marine_logo.png',
+  '/images/customer-logo/zmi_logo.png',
 ];
 
 export default function RainingCustomers() {
@@ -85,11 +85,11 @@ export default function RainingCustomers() {
 const LogoBox = ({ src }) => {
   // 1. Identify logos that need a dark background for visibility
   const needsDarkBg = [
-    '/dpv-offshore-redesign-website/images/customer-logo/Hayleys_logo.png',
-    '/dpv-offshore-redesign-website/images/customer-logo/e-marine_logo.png',
-    '/dpv-offshore-redesign-website/images/customer-logo/marsa_logo.png',
-    '/dpv-offshore-redesign-website/images/customer-logo/ae_logo.png',
-    '/dpv-offshore-redesign-website/images/customer-logo/ceb_logo.png'
+    '/images/customer-logo/Hayleys_logo.png',
+    '/images/customer-logo/e-marine_logo.png',
+    '/images/customer-logo/marsa_logo.png',
+    '/images/customer-logo/ae_logo.png',
+    '/images/customer-logo/ceb_logo.png'
   ].includes(src);
 
   // 2. Conditionally apply Tailwind classes

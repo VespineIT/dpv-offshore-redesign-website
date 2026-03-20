@@ -25,7 +25,7 @@ const locations = [
     description: 'Strategic hub for Middle East offshore operations.',
     servicedPorts: 'Free Port, Khalifa Port, Zayed Port, Musaffah Port',
     timezone: 'Asia/Dubai',
-    image: '/dpv-offshore-redesign-website/images/Khalifa-Port.jpg',
+    image: '/images/Khalifa-Port.jpg',
     coordinates: { lat: 24.4539, lng: 54.3773 }
   },
   {
@@ -43,7 +43,7 @@ const locations = [
     description: 'Core workshop and marine services facility in Dubai Maritime City.',
     servicedPorts: 'Jebel Ali, Port Rashid, Hamriya Port',
     timezone: 'Asia/Dubai',
-    image: '/dpv-offshore-redesign-website/images/Jebel-Ali-Port.png',
+    image: '/images/Jebel-Ali-Port.png',
     coordinates: { lat: 25.2048, lng: 55.2708 }
   },
   {
@@ -61,7 +61,7 @@ const locations = [
     description: 'Key serviced port for extended maritime operations.',
     servicedPorts: 'Khalid Port, Hamriyah Port, Khorfakkan',
     timezone: 'Asia/Dubai',
-    image: '/dpv-offshore-redesign-website/images/port-khalid.jpg',
+    image: '/images/port-khalid.jpg',
     coordinates: { lat: 25.3463, lng: 55.4209 }
   },
   {
@@ -79,7 +79,7 @@ const locations = [
     description: 'Branch office providing dedicated support for eastern seaboard maritime operations.',
     servicedPorts: 'Fujairah Port',
     timezone: 'Asia/Dubai',
-    image: '/dpv-offshore-redesign-website/images/Fujairah-Port.jpg',
+    image: '/images/Fujairah-Port.jpg',
     coordinates: { lat: 25.1288, lng: 56.3265 }
   },
   {
@@ -97,7 +97,7 @@ const locations = [
     description: 'Representative Office serving the Asia-Pacific region.',
     servicedPorts: 'Jurong Port, Pasir Panjang Terminal',
     timezone: 'Asia/Singapore',
-    image: '/dpv-offshore-redesign-website/images/Jurong-Port.jpg',
+    image: '/images/Jurong-Port.jpg',
     coordinates: { lat: 1.3521, lng: 103.8198 }
   },
   {
@@ -115,7 +115,7 @@ const locations = [
     description: 'Branch Office - Regional office.',
     servicedPorts: 'Colombo, Galle, Hambantota, Trincomalee, OPL Services - SL',
     timezone: 'Asia/Colombo',
-    image: '/dpv-offshore-redesign-website/images/Colombo-fort.jpg',
+    image: '/images/Colombo-fort.jpg',
     coordinates: { lat: 6.9271, lng: 79.8612 }
   }
 ];

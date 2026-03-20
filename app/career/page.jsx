@@ -92,7 +92,7 @@ export default function Careers() {
         
         {/* Background Image */}
         <Image 
-          src="/dpv-offshore-redesign-website/images/career-hero.jpeg" // Replace with actual path
+          src="/images/career-hero.jpeg" // Replace with actual path
           alt="Offshore Marine Careers" 
           fill 
           priority

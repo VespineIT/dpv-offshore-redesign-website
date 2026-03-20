@@ -11,14 +11,14 @@ export default function Products() {
       id: 1,
       title: "Design & Build Eco Vessels",
       description: "We are pioneers in creating sustainable maritime solutions. Our dedicated production teams design and build fully electric passenger vessels tailored to minimize environmental impact while maximizing operational efficiency and comfort.",
-      image: "/dpv-offshore-redesign-website/images/production-1.png", 
+      image: "/images/production-1.png", 
       features: ["Electrical Passenger Vessels", "Eco-Friendly Design Services", "Turnkey Construction"],
     },
     {
       id: 2,
       title: "Customized Solutions & Products",
       description: "Tailored to your vision. We design and deliver customized production solutions, systems, and products that adapt perfectly to your operational needs—ensuring performance, reliability, and long-term value you can trust.",
-      image: "/dpv-offshore-redesign-website/images/production-2.png", 
+      image: "/images/production-2.png", 
       features: ["Tailored Engineering", "Custom Fabrication", "Performance Optimization"],
     }
   ];
@@ -44,7 +44,7 @@ export default function Products() {
       <section className="relative w-full h-[50vh] min-h-[400px] md:h-[500px] flex items-center justify-center rounded-b-[40px] md:rounded-b-[60px] shadow-2xl overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image 
-            src="/dpv-offshore-redesign-website/images/Our_production_hero_banner.png"
+            src="/images/Our_production_hero_banner.png"
             alt="Our Production Hero"
             fill 
             priority

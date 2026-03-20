@@ -41,7 +41,7 @@ Whether you're dealing with emergency hull repairs after a collision or planned 
 Need certified welding services for your vessel? Our marine welding specialists hold current certifications from major classification societies and are available for emergency response worldwide.`,
     category: "Welding",
     date: "March 12, 2026",
-    image: "/dpv-offshore-redesign-website/images/blog_1.png"
+    image: "/images/blog_1.png"
   },
   {
     id: 2,
@@ -88,7 +88,7 @@ Selecting between air-cooled and seawater-cooled shaft generators depends on pow
 Technical Support Available: Our marine electrical team can assist with shaft generator selection, bearing specifications, and cooling system design for newbuilds and retrofits.`,
     category: "Power Systems",
     date: "March 5, 2026",
-    image: "/dpv-offshore-redesign-website/images/blog_2.png"
+    image: "/images/blog_2.png"
   },
   {
     id: 3,
@@ -185,7 +185,7 @@ Mastering these MSB and power system disciplines separates competent marine elec
 Training Available: We offer advanced marine electrical training for engineering teams, covering MSB maintenance, PMS commissioning, and troubleshooting methodologies.`,
     category: "Electrical",
     date: "February 24, 2026",
-    image: "/dpv-offshore-redesign-website/images/blog_3.png"
+    image: "/images/blog_3.png"
   },
   {
     id: 4,
@@ -257,7 +257,7 @@ In marine and offshore operations, you can't manage what you can't measure accur
 Calibration Services: We provide onboard and shore-based calibration services for all marine electrical instruments, with ISO/IEC 17025 accredited procedures and class-accepted certification. Emergency calibration services available in major ports worldwide.`,
     category: "Calibration",
     date: "February 16, 2026",
-    image: "/dpv-offshore-redesign-website/images/blog_4.png"
+    image: "/images/blog_4.png"
   }
 ];
 

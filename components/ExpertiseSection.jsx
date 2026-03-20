@@ -4,11 +4,11 @@ import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 
 const expertiseList = [
-  { title: 'Products',          imageUrl: '/dpv-offshore-redesign-website/images/expertise_products.png' },
-  { title: 'Operations',        imageUrl: '/dpv-offshore-redesign-website/images/expertise_operations.png' },
-  { title: 'Technical Support', imageUrl: '/dpv-offshore-redesign-website/images/expertise_support.png' },
-  { title: 'Repair Orders',     imageUrl: '/dpv-offshore-redesign-website/images/expertise_repair.png' },
-  { title: 'Maintenance',       imageUrl: '/dpv-offshore-redesign-website/images/expertise_maintenance.png' },
+  { title: 'Products',          imageUrl: '/images/expertise_products.png' },
+  { title: 'Operations',        imageUrl: '/images/expertise_operations.png' },
+  { title: 'Technical Support', imageUrl: '/images/expertise_support.png' },
+  { title: 'Repair Orders',     imageUrl: '/images/expertise_repair.png' },
+  { title: 'Maintenance',       imageUrl: '/images/expertise_maintenance.png' },
 ];
 
 const ORANGE = '#FF4500';

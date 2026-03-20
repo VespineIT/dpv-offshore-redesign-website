@@ -219,7 +219,7 @@ const HowWeWork = () => {
                 
                 {/* Replaced Pen Icon with custom pen.png */}
                 <image 
-                  href="/dpv-offshore-redesign-website/images/pen.png" 
+                  href="/images/pen.png" 
                   x="320" 
                   y="255" 
                   width="50" 
