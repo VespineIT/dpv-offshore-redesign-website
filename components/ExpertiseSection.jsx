@@ -109,17 +109,31 @@ export default function ExpertiseShowcase() {
       </div>
 
       {/* ── Bottom Boilerplate & Progress ── */}
-      <div className="px-4 transition-colors duration-300 max-w-[820px] text-center">
-        <p className="text-[#6B6B8E] dark:text-white transition-colors duration-300 text-[clamp(14px,1.5vw,16px)] font-normal leading-[1.8] mx-auto mb-9">
-          DPV Offshore specializes in engineering, procurement, and construction (EPC) services for the offshore industry,
-          covering onshore, offshore, and subsea operations. From design engineering to manufacturing, installation,
-          maintenance, repair, and component supply, we deliver seamless projects with the highest safety and quality
-          standards. Built on strong client relationships and proven performance, we are trusted for our commitment to
-          excellence, reliability, and value-driven delivery.
+      {/* ── Bottom Boilerplate & Progress ── */}
+      <div className="px-4 transition-colors duration-300 max-w-[820px] w-full text-center mx-auto">
+        <p className="text-[#1A1A24] dark:text-gray-200 transition-colors duration-300 text-[clamp(14px,1.5vw,16px)] font-normal leading-[1.8] mb-5">
+          DPV offshore delivers engineering, procurement and construction services to the offshore industry.
+        </p>
+
+        {/* 3 Columns Layout styled as pill buttons (Centered with reduced vertical spacing) */}
+        <div className="flex justify-center gap-4 md:gap-12 items-center w-full my-6 text-[clamp(12px,1.2vw,16px)]">
+          <span className="bg-[#FF4500] text-white font-bold uppercase rounded-full px-4 py-2 md:px-8 md:py-3 shadow-md tracking-wider text-center">
+            ONSHORE
+          </span>
+          <span className="bg-[#FF4500] text-white font-bold uppercase rounded-full px-4 py-2 md:px-8 md:py-3 shadow-md tracking-wider text-center">
+            OFFSHORE
+          </span>
+          <span className="bg-[#FF4500] text-white font-bold uppercase rounded-full px-4 py-2 md:px-8 md:py-3 shadow-md tracking-wider text-center">
+            SUBSEA
+          </span>
+        </div>
+
+        <p className="text-[#1A1A24] dark:text-gray-200 transition-colors duration-300 text-[clamp(14px,1.5vw,16px)] font-normal leading-[1.8] mb-8 text-left">
+          The service, which ranges from design engineering to the manufacture, installation, maintenance, repair and supply of components, has allowed us to have a long history with a good level of satisfaction on the part of our customers, and that they place their trust in our work.
         </p>
 
         {/* Simple Progress Indicators */}
-        <div className="flex justify-center gap-3">
+        <div className="flex justify-center gap-3 w-full">
           {expertiseList.map((_, i) => (
             <button
               key={i}

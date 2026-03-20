@@ -250,15 +250,15 @@ const AboutUsPage = () => {
             <ul className="space-y-4 text-gray-700 dark:text-gray-300">
               <li className="flex items-start">
                 <span className="text-[#FF4500] mr-3 mt-1">▹</span>
-                <span>Provide professional fabrication, welding, mechanical, and electrical services that meet international standards.</span>
+                <span>We strive to deliver exceptional results in all our comprehensive services & value your timelines.</span>
               </li>
               <li className="flex items-start">
                 <span className="text-[#FF4500] mr-3 mt-1">▹</span>
-                <span>Support ship owners, shipyards, and industrial clients with responsive, flexible, and solution-focused service.</span>
+                <span>We are innovative to new technology with our well-equipped & highly skilled professionals.</span>
               </li>
               <li className="flex items-start">
                 <span className="text-[#FF4500] mr-3 mt-1">▹</span>
-                <span>Continuously improve people, processes, and technology to deliver better value to customers.</span>
+                <span>We are committed to always maintain the highest safety & quality standards.</span>
               </li>
             </ul>
           </motion.div>
