@@ -1,14 +1,28 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, Wrench, Cpu, Zap, PenTool, Settings, X } from "lucide-react";
+import { ArrowRight, ArrowLeft, Wrench, Cpu, Zap, PenTool, Settings, X, Anchor, Activity, Power, Toolbox, Cog } from "lucide-react";
 
 export default function Services() {
-  const [activeTab, setActiveTab] = useState("repair");
-  // State to manage the currently selected service for the popup
+  // State for Hub & Spoke
+  const [selectedCategory, setSelectedCategory] = useState(null);
+  
+  // State for Modal
   const [selectedService, setSelectedService] = useState(null);
+
+  // Reference for auto-scrolling
+  const contentTopRef = useRef(null);
+
+  // Auto-scroll up when a category is selected
+  useEffect(() => {
+    if (selectedCategory && contentTopRef.current) {
+      // Calculates position and scrolls smoothly, offsetting by 40px for breathing room
+      const y = contentTopRef.current.getBoundingClientRect().top + window.scrollY - 40;
+      window.scrollTo({ top: y, behavior: "smooth" });
+    }
+  }, [selectedCategory]);
 
   // Prevent background scrolling when modal is open
   useEffect(() => {
@@ -22,122 +36,117 @@ export default function Services() {
     };
   }, [selectedService]);
 
-  const serviceCards = [
-    // --- Ship Repair & Dry Docking ---
-    {
-      id: 1,
-      title: "Ship Repairs & Drydocking",
-      desc: "Complete ship repair and drydocking services, ensuring safe operations, reliable workmanship, and on-time delivery.",
-      details: "We provide complete ship repair and drydocking services, ensuring safe operations, reliable workmanship, and on-time delivery in compliance with international marine standards. Our certified engineers handle everything from routine maintenance to complex structural repairs.",
-      img: "/images/ship_pic_1.png",
-      category: "repair"
-    },
-    {
-      id: 2,
-      title: "Ship Conversion",
-      desc: "Transform your vessel with confidence. Innovative ship conversion solutions that enhance performance and extend lifespan.",
-      details: "Transform your vessel with confidence. Our expert team delivers innovative ship conversion solutions that enhance performance, extend lifespan, and meet the demands of modern marine operations. We oversee the entire process from feasibility studies to final commissioning.",
-      img: "/images/ship_pic_2.png",
-      category: "repair"
-    },
-    {
-      id: 3,
-      title: "Propulsion Services",
-      desc: "High-quality work on MAN, ZF, Wartsila, Berg, & Kawasaki. Includes FPP/CPP overhauls, thruster overhauls, and blade polishing.",
-      details: "Our engineers are experienced and highly skilled in products of the best-known brands in the industry such as MAN, ZF, Wartsila, Berg, Kawasaki & etc. We provide propulsion services by arranging flying squads attending vessels in worldwide shipyards, an ideal option for difficult areas with no service facilities.",
-      img: "/images/ship_pic_3.png",
-      category: "repair"
-    },
-    // --- System Configuration ---
-    {
-      id: 4,
-      title: "System Integration",
-      desc: "Seamless connection. Superior control. Unite every component of your vessel into one efficient network for smart operations.",
-      details: "Seamless connection. Superior control. Our system integration solutions unite every component of your vessel into one efficient network, enhancing performance, reliability, and smart marine operations across navigation, communication, and automation systems.",
-      img: "/images/ship_pic_4.png",
-      category: "systems"
-    },
-    {
-      id: 5,
-      title: "System Configurations",
-      desc: "Tailored configurations optimizing performance: Generator sets, Energy storage, Switchboards, Transformers, and Drives.",
-      details: "Configuring excellence for every voyage. Our expert team delivers tailored system configuration solutions that optimize performance, ensure reliability, and align your vessel’s technology with operational success. We cover main switchboards, distribution boards, motor control centers, and more.",
-      img: "/images/ship_pic_5.png",
-      category: "systems"
-    },
-    {
-      id: 6,
-      title: "Thruster & DP Control",
-      desc: "Configuration and optimization of main and auxiliary thrusters, including advanced Thruster control, Joystick, and DP systems.",
-      details: "We deliver advanced configurations for electric thruster motors, electric propulsion systems, and main/auxiliary thrusters. Our expertise includes integrating seamless Joystick and Dynamic Positioning (DP) systems for superior maneuverability in harsh conditions.",
-      img: "/images/ship_pic_6.png",
-      category: "systems"
-    },
-    // --- Automation & Control ---
-    {
-      id: 7,
-      title: "Pneumatic Technology",
-      desc: "Actuators, valves, solenoid valves, proportional fittings, and vacuum handling. Combining mechanics and electronics.",
-      details: "The range of pneumatic solutions includes actuators, valves, solenoid valves, proportional technology fittings, handling vacuum and air treatment components. All combine the mechanics and electronics required for motion management and control with optimized consumption and functional parameters.",
-      img: "/images/ship_pic_7.png",
-      category: "automation"
-    },
-    {
-      id: 8,
-      title: "Electric Actuation",
-      desc: "Reliable electric actuation solutions engineered for precision, durability, and efficiency across marine systems.",
-      details: "We deliver reliable electric actuation solutions engineered for precision, durability, and efficiency, enabling smooth control and enhanced performance across marine and industrial systems. Designed to operate safely in challenging environments.",
-      img: "/images/ship_pic_8.png",
-      category: "automation"
-    },
-    {
-      id: 9,
-      title: "Fluid & Process Automation",
-      desc: "Engineered for precision. Streamlined performance through smart process automation and fluid control.",
-      details: "Engineered for precision, built for performance. Our fluid control and process automation solutions ensure smooth, reliable, and efficient operations — keeping your systems running at optimum flow. We drive efficiency in every stage of your vessel's operation.",
-      img: "/images/ship_pic_9.png",
-      category: "automation"
-    },
-    // --- Machining & Reconditioning ---
-    {
-      id: 10,
-      title: "Reconditioning Services",
-      desc: "Precision machining for Piston Crowns/Skirts, Cylinder Heads, Exhaust Valves, Rods, and Remetalling Bearings.",
-      details: "Your trusted partner for comprehensive engine reconditioning services. We specialize in revitalizing engines across diverse industries. From precision machining to meticulous assembly of Cylinder Heads, Piston Skirts, Exhaust Valve Spindles, and Remetalling Babbitt Bearings.",
-      img: "/images/ship_pic_10.png",
-      category: "machining"
-    },
-    {
-      id: 11,
-      title: "Mobile In-Situ Machining",
-      desc: "On-site Turning, Line Boring, Milling, Grinding, and Drilling. Eliminates logistical issues related to moving heavy equipment.",
-      details: "Our mobile in-site/on-site machining capacity eliminates the logistical and budgetary issues related to maintenance and replacements on large equipment. We provide on-site Turning & Line Boring, Milling, Grinding, specialized Drilling, and Shaft machining made to measure.",
-      img: "/images/ship_pic_11.png",
-      category: "machining"
-    },
-    {
-      id: 12,
-      title: "Flange Machining & Pipe Cutting",
-      desc: "On-site machining of new or worn flanges. Mobile pipe cutting solutions and precision weld seam preparation.",
-      details: "On-site machining of new, worn, or damaged flanges to achieve perfect sealing surfaces and correct alignment. We also offer mobile pipe cutting solutions for a wide range of diameters and wall thicknesses with clean, accurate separation and optimal weld seam preparation.",
-      img: "/images/ship_pic_8.png",
-      category: "machining"
-    }
+  // The 11 Main Categories (The "Hub")
+  const categories = [
+    { id: "cat_1", label: "Ship Repair", icon: Anchor, img: "/images/ship_pic_1.png", desc: "Comprehensive dry docking, conversions, and hull maintenance." },
+    { id: "cat_2", label: "Yacht Refitting", icon: PenTool, img: "/images/ship_pic_5.png", desc: "Premium painting, electrical, and fiberglass restorations." },
+    { id: "cat_3", label: "Ship Electrical Engineering & Technology", icon: Zap, img: "/images/ship_pic_2.png", desc: "System integration, configuration, and motor rewinding." },
+    { id: "cat_4", label: "Ship Pneumatic Technology", icon: Activity, img: "/images/ship_pic_4.png", desc: "Advanced electric actuation and intelligent fluid control." },
+    { id: "cat_5", label: "Ship Mechanical Engineering & Technology", icon: Cog, img: "/images/ship_pic_6.png", desc: "Heavy mechanical overhauls and bearing remetalling." },
+    { id: "cat_6", label: "PROPULSION", icon: Toolbox, img: "/images/ship_pic_3.png", desc: "FPP, CPP, and thruster overhauls with precision blade polishing." },
+    { id: "cat_7", label: "Mobile In-Situ Machining", icon: Wrench, img: "/images/ship_pic_7.png", desc: "On-site turning, milling, grinding, and line boring." },
+    { id: "cat_8", label: "Power Plant Related Services", icon: Power, img: "/images/ship_pic_8.png", desc: "Maintenance, retrofits, and emergency breakdown repairs." },
+    { id: "cat_9", label: "Electrical Services for Hydro Power Stations", icon: Zap, img: "/images/ship_pic_4.png", desc: "Stator rewinding and high-voltage transformer solutions." },
+    { id: "cat_10", label: "Cranes", icon: Settings, img: "/images/ship_pic_9.png", desc: "Shipyard diagnostics, new systems, and life-extension retrofits." },
+    { id: "cat_11", label: "OEM Solutions", icon: Cpu, img: "/images/ship_pic_2.png", desc: "Genuine spare parts for engines, cranes, and auxiliary machinery." },
   ];
 
-  const filteredServices = serviceCards.filter(service => service.category === activeTab);
+  // The specific services mapped to categories (The "Spokes")
+  const serviceCards = [
+    // 1. Ship Repair
+    { id: 101, title: "Dry Docking", desc: "Expert Dry Docking services.", details: "Comprehensive dry docking solutions ensuring your vessel meets all operational standards.", img: "/images/ship_pic_1.png", category: "cat_1" },
+    { id: 102, title: "Dry Docking Management", desc: "Professional Dry Docking Management.", details: "Complete management of dry docking schedules, logistics, and operational execution.", img: "/images/ship_pic_2.png", category: "cat_1" },
+    { id: 103, title: "Ship Conversion", desc: "Ship Conversion solutions.", details: "Transform your vessel's capabilities and extend its lifespan with our specialized conversion services.", img: "/images/ship_pic_3.png", category: "cat_1" },
+    { id: 104, title: "Piping", desc: "Marine Piping systems.", details: "High-quality fabrication, installation, and repair for all marine piping configurations.", img: "/images/ship_pic_4.png", category: "cat_1" },
 
-  const fadeUpVariant = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
-    exit: { opacity: 0, y: -20, transition: { duration: 0.3 } }
+    // 2. Yacht Refitting
+    { id: 201, title: "Hull Painting & Fiberglass Works", desc: "Protective Hull Painting & Fiberglass.", details: "Premium coating applications and structural fiberglass repairs for ultimate durability.", img: "/images/ship_pic_5.png", category: "cat_2" },
+    { id: 202, title: "Electrical Systems & Lighting", desc: "Electrical Systems & Lighting.", details: "Complete servicing and installation of yacht electrical grids and advanced lighting systems.", img: "/images/ship_pic_6.png", category: "cat_2" },
+    { id: 203, title: "Onboard Instrumentation", desc: "Onboard Instrumentation maintenance.", details: "Calibration and repair of crucial navigation and operational instruments.", img: "/images/ship_pic_7.png", category: "cat_2" },
+    { id: 204, title: "Anti-Osmosis Treatment", desc: "Anti-Osmosis Treatment.", details: "Specialized hull treatments to prevent and repair osmotic blistering on yachts.", img: "/images/ship_pic_8.png", category: "cat_2" },
+
+    // 3. Ship Electrical Engineering & Technology
+    { id: 301, title: "Ship Electrical Engineering", desc: "Ship Electrical Engineering.", details: "Expert engineering covering all electrical power generation and distribution onboard.", img: "/images/ship_pic_9.png", category: "cat_3" },
+    { id: 302, title: "System Integration", desc: "System Integration.", details: "Uniting distinct marine systems into a single efficient, monitored network.", img: "/images/ship_pic_1.png", category: "cat_3" },
+    { id: 303, title: "System Configuration", desc: "System Configuration.", details: "Tailored setups for generators, switchboards, and drives for optimal performance.", img: "/images/ship_pic_2.png", category: "cat_3" },
+    { id: 304, title: "Motors & Rotors Rewinding", desc: "Motors & Rotors Rewinding.", details: "Precision rewinding extending the lifecycle and efficiency of critical marine motors.", img: "/images/ship_pic_3.png", category: "cat_3" },
+
+    // 4. Ship Pneumatic Technology
+    { id: 401, title: "Electric Actuation", desc: "Electric Actuation.", details: "Motion management systems engineered for marine precision and durability.", img: "/images/ship_pic_4.png", category: "cat_4" },
+    { id: 402, title: "Fluid Control", desc: "Fluid Control.", details: "Advanced valves, fittings, and air treatment components for streamlined fluid handling.", img: "/images/ship_pic_5.png", category: "cat_4" },
+
+    // 5. Ship Mechanical Engineering & Technology
+    { id: 501, title: "Overhaul Services", desc: "Overhaul Services.", details: "Full breakdown, inspection, and rebuilding of essential mechanical systems.", img: "/images/ship_pic_6.png", category: "cat_5" },
+    { id: 502, title: "RECONDITIONING SERVICES", desc: "RECONDITIONING SERVICES.", details: "Machining and revitalizing worn engine components to factory specifications.", img: "/images/ship_pic_7.png", category: "cat_5" },
+    { id: 503, title: "REMETALLING BABBITT BEARINGS", desc: "REMETALLING BABBITT BEARINGS.", details: "Specialized remetalling to restore bearing surfaces for high-load machinery.", img: "/images/ship_pic_8.png", category: "cat_5" },
+
+    // 6. PROPULSION
+    { id: 601, title: "FPP Overhaul", desc: "FPP Overhaul.", details: "Inspection, repair, and balancing of fixed pitch propellers.", img: "/images/ship_pic_9.png", category: "cat_6" },
+    { id: 602, title: "CPP Overhaul", desc: "CPP Overhaul.", details: "Complex overhauls for controllable pitch propeller units.", img: "/images/ship_pic_1.png", category: "cat_6" },
+    { id: 603, title: "Thruster Overhaul", desc: "Thruster Overhaul.", details: "Restoring maneuverability by overhauling crucial thruster assemblies.", img: "/images/ship_pic_2.png", category: "cat_6" },
+    { id: 604, title: "Polishing Blades", desc: "Polishing Blades.", details: "Propeller polishing to enhance hydrodynamic efficiency and save fuel.", img: "/images/ship_pic_3.png", category: "cat_6" },
+
+    // 7. Mobile In-Situ Machining
+    { id: 701, title: "Turning & Line Boring", desc: "Turning & Line Boring.", details: "Mobile lathe and spindle work for all applications on site.", img: "/images/ship_pic_4.png", category: "cat_7" },
+    { id: 702, title: "Mobile lathe and spindle work for all applications", desc: "Mobile lathe and spindle work for all applications.", details: "Comprehensive in-situ lathe and spindle machining.", img: "/images/ship_pic_5.png", category: "cat_7" },
+    { id: 703, title: "Milling", desc: "Milling.", details: "High-precision on-site milling for heavy equipment structures.", img: "/images/ship_pic_6.png", category: "cat_7" },
+    { id: 704, title: "Grinding", desc: "Grinding.", details: "Precision surface grinding for demanding industrial applications.", img: "/images/ship_pic_7.png", category: "cat_7" },
+    { id: 705, title: "Blade grinding for the efficiency of gas turbines", desc: "Blade grinding for the efficiency of gas turbines.", details: "Specialized grinding to maintain peak gas turbine performance.", img: "/images/ship_pic_8.png", category: "cat_7" },
+    { id: 706, title: "Drilling", desc: "Drilling.", details: "In-situ drilling operations for structural and mechanical repairs.", img: "/images/ship_pic_9.png", category: "cat_7" },
+    { id: 707, title: "Shaft machining", desc: "Shaft machining.", details: "In-place shaft machining and restoration.", img: "/images/ship_pic_1.png", category: "cat_7" },
+    { id: 708, title: "Professional rotor shaft machining on site", desc: "Professional rotor shaft machining on site.", details: "Expert on-site machining specifically for rotor shafts.", img: "/images/ship_pic_2.png", category: "cat_7" },
+    { id: 709, title: "Flange Machining", desc: "Flange Machining.", details: "Restoring worn flanges to achieve perfect sealing surfaces.", img: "/images/ship_pic_3.png", category: "cat_7" },
+    { id: 710, title: "Runner Processing and Balancing Operations", desc: "Runner Processing and Balancing Operations.", details: "Accurate processing and balancing to eliminate vibrations.", img: "/images/ship_pic_4.png", category: "cat_7" },
+    { id: 711, title: "Honing and burnishing", desc: "Honing and burnishing.", details: "Surface finish improvements for cylinders and liners.", img: "/images/ship_pic_5.png", category: "cat_7" },
+    { id: 712, title: "Pipe cutting and weld seam preparation", desc: "Pipe cutting and weld seam preparation.", details: "Mobile cutting solutions ensuring perfect preparation for critical welds.", img: "/images/ship_pic_6.png", category: "cat_7" },
+
+    // 8. Power Plant Related Services
+    { id: 801, title: "Preventive Maintenance", desc: "Preventive Maintenance.", details: "Routine maintenance programs maximizing plant uptime.", img: "/images/ship_pic_7.png", category: "cat_8" },
+    { id: 802, title: "Retrofit and Upgrades", desc: "Retrofit and Upgrades.", details: "Modernizing existing power infrastructure with the latest technology.", img: "/images/ship_pic_8.png", category: "cat_8" },
+    { id: 803, title: "Engine Services", desc: "Engine Services.", details: "Servicing massive power generators for continuous reliable output.", img: "/images/ship_pic_9.png", category: "cat_8" },
+    { id: 804, title: "Turbine Related Maintenance", desc: "Turbine Related Maintenance.", details: "Specialized care for gas and steam turbine systems.", img: "/images/ship_pic_1.png", category: "cat_8" },
+    { id: 805, title: "Emergency Breakdown Services", desc: "Emergency Breakdown Services.", details: "Rapid response teams deployed to troubleshoot and repair sudden failures.", img: "/images/ship_pic_2.png", category: "cat_8" },
+    { id: 806, title: "Control Systems & Automation", desc: "Control Systems & Automation.", details: "Upgrading PLC networks and SCADA systems for modern plant management.", img: "/images/ship_pic_3.png", category: "cat_8" },
+
+    // 9. Electrical Services for Hydro Power Stations
+    { id: 901, title: "Rewinding of the generator stators", desc: "Rewinding of the generator stators.", details: "High-voltage stator rewinding extending generator operational life.", img: "/images/ship_pic_4.png", category: "cat_9" },
+    { id: 902, title: "Increasing of power hydroelectric generators", desc: "Increasing of power hydroelectric generators.", details: "Capacity and efficiency boosting for active hydro facilities.", img: "/images/ship_pic_5.png", category: "cat_9" },
+    { id: 903, title: "Transformer solutions", desc: "Transformer solutions.", details: "Testing, oil purification, and repair for crucial transformers.", img: "/images/ship_pic_6.png", category: "cat_9" },
+
+    // 10. Cranes
+    { id: 1001, title: "Automation, system integration and diagnostics for port & shipyard, Ship crane applications", desc: "Automation, system integration and diagnostics.", details: "Complete integration and diagnostics for port, shipyard, and ship crane applications.", img: "/images/ship_pic_7.png", category: "cat_10" },
+    { id: 1002, title: "Crane System Upgrades", desc: "Crane System Upgrades.", details: "Modernizing older crane systems with safer, faster drives and controls.", img: "/images/ship_pic_8.png", category: "cat_10" },
+    { id: 1003, title: "New Crane Systems to Fit Your Needs", desc: "New Crane Systems to Fit Your Needs.", details: "Turnkey installations of new lifting equipment tailored to operations.", img: "/images/ship_pic_9.png", category: "cat_10" },
+    { id: 1004, title: "Retrofit Solutions to Extend a Crane’s Service Life", desc: "Retrofit Solutions to Extend a Crane’s Service Life.", details: "Targeted component replacements extending functionality economically.", img: "/images/ship_pic_1.png", category: "cat_10" },
+
+    // 11. OEM Solutions
+    { id: 1101, title: "Engine Spare Parts Supply", desc: "Engine Spare Parts Supply.", details: "Sourcing and delivering crucial engine parts for uninterrupted operations.", img: "/images/ship_pic_2.png", category: "cat_11" },
+    { id: 1102, title: "Crane Spare Parts Supply", desc: "Crane Spare Parts Supply.", details: "Direct supply of certified replacement parts for crane systems.", img: "/images/ship_pic_3.png", category: "cat_11" },
+    { id: 1103, title: "Auxiliary Machinery Spare Parts Supply", desc: "Auxiliary Machinery Spare Parts Supply.", details: "Supplying vital components for onboard pumps, compressors, and purifiers.", img: "/images/ship_pic_4.png", category: "cat_11" },
+    { id: 1104, title: "Propulsion Spare Supply", desc: "Propulsion Spare Supply.", details: "Ensuring top-tier genuine parts for drive mechanisms and main engines.", img: "/images/ship_pic_5.png", category: "cat_11" }
+  ];
+
+  // Helper variables for rendering the active Spoke
+  const activeCategoryObj = categories.find(cat => cat.id === selectedCategory);
+  const activeServices = serviceCards.filter(service => service.category === selectedCategory);
+
+  // Animation Variants
+  const viewTransition = {
+    hidden: { opacity: 0, x: -20 },
+    visible: { opacity: 1, x: 0, transition: { duration: 0.4, staggerChildren: 0.1 } },
+    exit: { opacity: 0, x: 20, transition: { duration: 0.3 } }
+  };
+
+  const cardFadeUp = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.4 } }
   };
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-[#030712] font-['Poppins'] transition-colors duration-300 pb-24 relative">
       
       {/* ================= HERO SECTION ================= */}
-      <section className="relative w-full h-[50vh] min-h-[400px] md:h-[500px] flex items-center justify-center overflow-hidden rounded-b-[40px] md:rounded-b-[60px] shadow-2xl">
+      <section className="relative w-full h-[40vh] min-h-[350px] md:h-[450px] flex items-center justify-center overflow-hidden rounded-b-[40px] md:rounded-b-[60px] shadow-2xl">
         <div className="absolute inset-0 z-0">
           <Image 
             src="/images/Our_Services_hero_banner.png"
@@ -150,7 +159,7 @@ export default function Services() {
           <div className="absolute inset-0 bg-gradient-to-t from-gray-50 dark:from-[#030712] via-transparent to-transparent z-10"></div>
         </div>
 
-        <div className="relative z-20 text-center px-4 max-w-4xl mx-auto -mt-10">
+        <div className="relative z-20 text-center px-4 max-w-4xl mx-auto -mt-6">
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -176,97 +185,134 @@ export default function Services() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-gray-200 text-base md:text-xl max-w-2xl mx-auto drop-shadow-md"
           >
-            From heavy-duty dry docking to advanced system integrations, we provide end-to-end maritime solutions you can trust.
+            Comprehensive solutions across marine, electrical, mechanical, and heavy industrial applications.
           </motion.p>
         </div>
       </section>
 
-      {/* ================= TABS ================= */}
-      <section className="max-w-5xl mx-auto px-6 pt-16 pb-12 relative z-20">
-        <nav className="flex flex-wrap justify-center gap-6 md:gap-10 border-b border-gray-200 dark:border-gray-800">
+      {/* ================= HUB AND SPOKE CONTENT ================= */}
+      {/* We add the ref right here to this wrapping section */}
+      <section ref={contentTopRef} className="max-w-[1400px] mx-auto px-4 sm:px-6 relative z-20 min-h-[500px] pt-12 md:pt-16">
+        <AnimatePresence mode="wait">
           
-          <button 
-            onClick={() => setActiveTab("repair")}
-            className={`relative pb-4 text-sm md:text-lg font-bold transition-colors duration-300 flex items-center justify-center gap-2 ${activeTab === "repair" ? "text-[#FF4500]" : "text-gray-500 hover:text-gray-800 dark:hover:text-gray-300"}`}
-          >
-            <Wrench className="w-4 h-4 md:w-5 md:h-5" />
-            Ship Repairs
-            {activeTab === "repair" && <motion.div layoutId="activeTab" className="absolute bottom-[-1px] left-0 right-0 h-1 bg-[#FF4500] rounded-t-md" />}
-          </button>
+          {/* ----- THE HUB: SHOW ALL CATEGORIES ----- */}
+          {!selectedCategory ? (
+            <motion.div 
+              key="hub-view"
+              variants={viewTransition}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+            >
+              <div className="text-center mb-12">
+                <h2 className="text-3xl font-bold text-gray-900 dark:text-white">Select a Service Division</h2>
+                <div className="w-24 h-1 bg-[#FF4500] mx-auto mt-4 rounded-full"></div>
+              </div>
 
-          <button 
-            onClick={() => setActiveTab("systems")}
-            className={`relative pb-4 text-sm md:text-lg font-bold transition-colors duration-300 flex items-center justify-center gap-2 ${activeTab === "systems" ? "text-[#FF4500]" : "text-gray-500 hover:text-gray-800 dark:hover:text-gray-300"}`}
-          >
-            <Cpu className="w-4 h-4 md:w-5 md:h-5" />
-            Systems
-            {activeTab === "systems" && <motion.div layoutId="activeTab" className="absolute bottom-[-1px] left-0 right-0 h-1 bg-[#FF4500] rounded-t-md" />}
-          </button>
-
-          <button 
-            onClick={() => setActiveTab("automation")}
-            className={`relative pb-4 text-sm md:text-lg font-bold transition-colors duration-300 flex items-center justify-center gap-2 ${activeTab === "automation" ? "text-[#FF4500]" : "text-gray-500 hover:text-gray-800 dark:hover:text-gray-300"}`}
-          >
-            <Zap className="w-4 h-4 md:w-5 md:h-5" />
-            Automation
-            {activeTab === "automation" && <motion.div layoutId="activeTab" className="absolute bottom-[-1px] left-0 right-0 h-1 bg-[#FF4500] rounded-t-md" />}
-          </button>
-
-          <button 
-            onClick={() => setActiveTab("machining")}
-            className={`relative pb-4 text-sm md:text-lg font-bold transition-colors duration-300 flex items-center justify-center gap-2 ${activeTab === "machining" ? "text-[#FF4500]" : "text-gray-500 hover:text-gray-800 dark:hover:text-gray-300"}`}
-          >
-            <PenTool className="w-4 h-4 md:w-5 md:h-5" />
-            Machining
-            {activeTab === "machining" && <motion.div layoutId="activeTab" className="absolute bottom-[-1px] left-0 right-0 h-1 bg-[#FF4500] rounded-t-md" />}
-          </button>
-
-        </nav>
-      </section>
-
-      {/* ================= GRID ================= */}
-      <section className="max-w-[1400px] mx-auto px-4 sm:px-6 relative z-20 min-h-[400px]">
-        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          <AnimatePresence mode="popLayout">
-            {filteredServices.map((service) => (
-              <motion.div 
-                key={service.id} 
-                layout 
-                variants={fadeUpVariant} 
-                initial="hidden" 
-                animate="visible" 
-                exit="exit"
-                onClick={() => setSelectedService(service)}
-                className="group cursor-pointer bg-white dark:bg-[#1e293b] rounded-[30px] shadow-lg hover:shadow-2xl border border-gray-100 dark:border-gray-800 transition-all duration-300 flex flex-col overflow-hidden transform hover:-translate-y-2"
-              >
-                <div className="relative w-[calc(100%-16px)] h-48 mx-auto mt-2 bg-blue-50/50 dark:bg-gray-800/50 rounded-[24px] overflow-hidden flex items-center justify-center">
-                  <Image src={service.img} alt={service.title} fill className="object-cover group-hover:scale-110 transition-transform duration-700 ease-in-out" />
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 dark:bg-black/20 transition-colors duration-300"></div>
-                </div>
-
-                <div className="p-6 md:p-8 flex flex-col flex-grow relative">
-                  <h3 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-[#FF4500] transition-colors duration-300 pr-10">
-                    {service.title}
-                  </h3>
-                  <p className="text-gray-600 dark:text-gray-400 text-sm md:text-base leading-relaxed mb-6 flex-grow">
-                    {service.desc}
-                  </p>
-                  <div className="absolute bottom-6 right-6">
-                    <button 
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setSelectedService(service);
-                      }}
-                      className="w-10 h-10 rounded-full bg-[#FF4500] hover:bg-[#E63E00] flex items-center justify-center shadow-lg hover:shadow-[0_0_15px_rgba(255,69,0,0.5)] transition-all duration-300 group/btn"
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                {categories.map((category) => {
+                  const Icon = category.icon;
+                  return (
+                    <motion.div 
+                      key={category.id}
+                      variants={cardFadeUp}
+                      onClick={() => setSelectedCategory(category.id)}
+                      className="group cursor-pointer bg-white dark:bg-[#1e293b] rounded-[24px] shadow-md hover:shadow-xl border border-gray-100 dark:border-gray-800 transition-all duration-300 flex flex-col overflow-hidden hover:-translate-y-1"
                     >
-                      <ArrowRight className="w-5 h-5 text-white group-hover/btn:translate-x-1 transition-transform duration-300" />
-                    </button>
-                  </div>
+                      <div className="relative h-40 w-full bg-gray-100 dark:bg-gray-800 overflow-hidden">
+                        <Image src={category.img} alt={category.label} fill className="object-cover group-hover:scale-105 transition-transform duration-500 opacity-80" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+                        <div className="absolute bottom-4 left-4 right-4 flex items-center gap-3">
+                           <div className="p-2 bg-[#FF4500] rounded-lg">
+                             <Icon className="w-5 h-5 text-white" />
+                           </div>
+                           <h3 className="text-white font-bold text-lg leading-tight drop-shadow-md">
+                             {category.label}
+                           </h3>
+                        </div>
+                      </div>
+                      <div className="p-5 flex flex-col flex-grow justify-between bg-white dark:bg-[#1e293b]">
+                        <p className="text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-2">
+                          {category.desc}
+                        </p>
+                        <div className="flex items-center text-[#FF4500] text-sm font-semibold group-hover:translate-x-2 transition-transform duration-300 w-max">
+                          View Services <ArrowRight className="w-4 h-4 ml-1" />
+                        </div>
+                      </div>
+                    </motion.div>
+                  )
+                })}
+              </div>
+            </motion.div>
+          ) 
+          
+          /* ----- THE SPOKES: SHOW SPECIFIC SERVICES FOR A CATEGORY ----- */
+          : (
+            <motion.div 
+              key="spoke-view"
+              variants={viewTransition}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+              className="w-full"
+            >
+              {/* Top Navigation Bar inside Spoke */}
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-10 pb-6 border-b border-gray-200 dark:border-gray-800">
+                <button 
+                  onClick={() => setSelectedCategory(null)}
+                  className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-white dark:bg-[#1e293b] text-gray-700 dark:text-gray-200 shadow-sm border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 hover:border-[#FF4500] transition-all duration-300 w-max"
+                >
+                  <ArrowLeft className="w-4 h-4" /> Back to Categories
+                </button>
+                
+                <div className="flex items-center gap-3 pr-4">
+                  {activeCategoryObj && <activeCategoryObj.icon className="w-6 h-6 text-[#FF4500]" />}
+                  <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
+                    {activeCategoryObj?.label}
+                  </h2>
                 </div>
-              </motion.div>
-            ))}
-          </AnimatePresence>
-        </motion.div>
+              </div>
+
+              {/* Service Cards Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                {activeServices.map((service) => (
+                  <motion.div 
+                    key={service.id} 
+                    variants={cardFadeUp} 
+                    onClick={() => setSelectedService(service)}
+                    className="group cursor-pointer bg-white dark:bg-[#1e293b] rounded-[30px] shadow-lg hover:shadow-2xl border border-gray-100 dark:border-gray-800 transition-all duration-300 flex flex-col overflow-hidden transform hover:-translate-y-2"
+                  >
+                    <div className="relative w-[calc(100%-16px)] h-48 mx-auto mt-2 bg-blue-50/50 dark:bg-gray-800/50 rounded-[24px] overflow-hidden flex items-center justify-center">
+                      <Image src={service.img} alt={service.title} fill className="object-cover group-hover:scale-110 transition-transform duration-700 ease-in-out" />
+                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 dark:bg-black/20 transition-colors duration-300"></div>
+                    </div>
+
+                    <div className="p-6 md:p-8 flex flex-col flex-grow relative">
+                      <h3 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-[#FF4500] transition-colors duration-300 pr-10">
+                        {service.title}
+                      </h3>
+                      <p className="text-gray-600 dark:text-gray-400 text-sm md:text-base leading-relaxed mb-6 flex-grow line-clamp-2">
+                        {service.desc}
+                      </p>
+                      <div className="absolute bottom-6 right-6">
+                        <button 
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setSelectedService(service);
+                          }}
+                          className="w-10 h-10 rounded-full bg-[#FF4500] hover:bg-[#E63E00] flex items-center justify-center shadow-lg hover:shadow-[0_0_15px_rgba(255,69,0,0.5)] transition-all duration-300 group/btn"
+                        >
+                          <ArrowRight className="w-5 h-5 text-white group-hover/btn:translate-x-1 transition-transform duration-300" />
+                        </button>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          )}
+
+        </AnimatePresence>
       </section>
 
       {/* ================= MODAL / POPUP SECTION ================= */}
@@ -276,15 +322,15 @@ export default function Services() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/70 backdrop-blur-sm"
-            onClick={() => setSelectedService(null)} // Click outside to close
+            className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 bg-black/70 backdrop-blur-sm"
+            onClick={() => setSelectedService(null)} 
           >
             <motion.div
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
               transition={{ duration: 0.3 }}
-              onClick={(e) => e.stopPropagation()} // Prevent clicks inside from closing
+              onClick={(e) => e.stopPropagation()} 
               className="bg-white dark:bg-[#1e293b] w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-[30px] shadow-2xl flex flex-col md:flex-row relative"
             >
               

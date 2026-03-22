@@ -16,7 +16,7 @@ export default function Industries() {
 
   const industryData = [
     {
-      title: "Oil & Gas / Oil Field",
+      title: "Oil & Gas",
       description: "Comprehensive mechanical and automation support services tailored for oil field operations and harsh environments.",
       details: "We supply essential automation solutions, equipment, and structural integrity management directly to offshore rigs and drillships. Our supply chain ensures the timely delivery of critical components in remote oil field locations.",
       image: "/images/industry-oil-gas.png"
@@ -28,28 +28,16 @@ export default function Industries() {
       image: "/images/ship_pic_1.png" 
     },
     {
-      title: "Ship Conversion",
-      description: "Transform your vessel with confidence through innovative conversion solutions.",
-      details: "Our expert team delivers ship conversion solutions that enhance performance, extend lifespan, and meet the demands of modern marine operations seamlessly.",
+      title: "Rig Repairs",
+      description: "Specialized maintenance and repair services for offshore drilling rigs and platforms.",
+      details: "Our certified technicians deliver structural, mechanical, and electrical repair services for jack-ups, semi-submersibles, and drillships, ensuring minimal downtime and strict compliance with rigorous offshore safety standards.",
       image: "/images/ship_pic_2.png"
     },
     {
-      title: "Ship Electrical Engineering",
-      description: "Powering the future of marine operations through advanced electrical and technology solutions.",
-      details: "We deliver innovation, reliability, and performance to keep your vessel operating at its best, covering everything from main switchboards to energy storage and electric thruster systems.",
-      image: "/images/ship_pic_3.png"
-    },
-    {
-      title: "Ship Mechanical Engineering",
-      description: "Comprehensive engine overhaul services designed to restore power and reliability.",
-      details: "With meticulous attention to detail, we execute main and auxiliary engine overhauls, 2-stroke/4-stroke diagnostics, and provide skilled riding crews (CDC Holders) to restore maximum efficiency.",
-      image: "/images/ship_pic_4.png"
-    },
-    {
-      title: "Process Automation & Fluid Control",
-      description: "Driving efficiency through smart innovation and fluid control solutions.",
-      details: "We offer the latest technology from pneumatic automation to electric actuation. Our solutions bring precision, reliability, and intelligent performance to every stage of your vessel's operation.",
-      image: "/images/ship_pic_5.png"
+      title: "EPC Projects",
+      description: "Expert Engineering, Procurement, and Construction services.",
+      details: "We manage and deliver complex turnkey EPC projects on time and on budget, aligning world-class engineering with robust procurement networks and solid construction execution.",
+      image: "/images/ship_pic_9.png"
     },
     {
       title: "Power Plants",
@@ -58,7 +46,7 @@ export default function Industries() {
       image: "/images/ship_pic_6.png"
     },
     {
-      title: "Hydropower",
+      title: "Hydro Power",
       description: "Engineering excellence in hydropower development, from feasibility to commissioning.",
       details: "End-to-end solutions including hydrological studies, turbine selection, electrical services for stations, rewinding generator stators, and transformer solutions across Asia & Africa.",
       image: "/images/ship_pic_7.png"
@@ -70,10 +58,10 @@ export default function Industries() {
       image: "/images/ship_pic_8.png"
     },
     {
-      title: "EPC Projects",
-      description: "Expert Engineering, Procurement, and Construction services.",
-      details: "We manage and deliver complex turnkey EPC projects on time and on budget, aligning world-class engineering with robust procurement networks and solid construction execution.",
-      image: "/images/ship_pic_9.png"
+      title: "Process Automation & Fluid Control",
+      description: "Driving efficiency through smart innovation and fluid control solutions.",
+      details: "We offer the latest technology from pneumatic automation to electric actuation. Our solutions bring precision, reliability, and intelligent performance to every stage of your vessel's operation.",
+      image: "/images/ship_pic_5.png"
     },
     {
       title: "Industrial Automation",
@@ -86,6 +74,18 @@ export default function Industries() {
       description: "Driving innovation forward safely and efficiently.",
       details: "Our automotive solutions combine engineering excellence and reliable performance to keep complex systems and infrastructure running seamlessly.",
       image: "/images/ship_pic_11.png"
+    },
+    {
+      title: "Integrated Products & Trading",
+      description: "A comprehensive supply chain solution for high-quality marine, industrial, and offshore components.",
+      details: "We source and distribute premium equipment, spare parts, and specialized consumables worldwide. Our robust trading network guarantees genuine products, competitive pricing, and swift global logistics.",
+      image: "/images/ship_pic_3.png" 
+    },
+    {
+      title: "Ship Management",
+      description: "End-to-end vessel management services ensuring operational efficiency and regulatory compliance.",
+      details: "We provide comprehensive technical management, crew administration, and risk assessment services. Our proactive approach maximizes vessel availability, optimizes performance, and protects your maritime assets.",
+      image: "/images/ship_pic_4.png" 
     }
   ];
 
@@ -215,9 +215,11 @@ export default function Industries() {
                   {selectedIndustry.title}
                 </h2>
                 
-                <h4 className="text-lg font-medium text-gray-700 dark:text-gray-300 mb-6 border-l-4 border-[#FF4500] pl-4">
-                  {selectedIndustry.description}
-                </h4>
+                {selectedIndustry.description && (
+                  <h4 className="text-lg font-medium text-gray-700 dark:text-gray-300 mb-6 border-l-4 border-[#FF4500] pl-4">
+                    {selectedIndustry.description}
+                  </h4>
+                )}
                 
                 <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
                   {selectedIndustry.details}
