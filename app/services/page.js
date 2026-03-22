@@ -205,7 +205,7 @@ export default function Services() {
               exit="exit"
             >
               <div className="text-center mb-12">
-                <h2 className="text-3xl font-bold text-gray-900 dark:text-white">Select a Service Division</h2>
+                <h2 className="text-3xl font-bold text-gray-900 dark:text-white">Service Divisions</h2>
                 <div className="w-24 h-1 bg-[#FF4500] mx-auto mt-4 rounded-full"></div>
               </div>
 
