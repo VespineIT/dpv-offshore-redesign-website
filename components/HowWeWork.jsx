@@ -3,10 +3,67 @@
 import React from "react";
 import { motion } from "framer-motion";
 
+/* ══════════════════════════════════════════════════════════
+   SVG HELPERS  — defined outside component for stable refs
+══════════════════════════════════════════════════════════ */
+
+/** Returns SVG polygon points string for a regular hexagon */
+function hexPts(cx, cy, r) {
+  return Array.from({ length: 6 }, (_, i) => {
+    const a = (Math.PI / 180) * (60 * i - 30);
+    return `${(cx + r * Math.cos(a)).toFixed(2)},${(cy + r * Math.sin(a)).toFixed(2)}`;
+  }).join(" ");
+}
+
+/** Material-icon paths for the 5 step badges */
+const ICON_PATHS = [
+  // 1 · Mail
+  "M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z",
+  // 2 · Edit / Pencil
+  "M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z",
+  // 3 · Document
+  "M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z",
+  // 4 · Settings / Gear
+  "M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z",
+  // 5 · Flag
+  "M14.4 6L14 4H5v17h2v-7h5.6l.4 2h7V6z",
+];
+
+/**
+ * Animated orange hexagon badge rendered inside an SVG.
+ * Uses fade-in only (no scale) to avoid SVG transform-origin quirks.
+ */
+function HexBadge({ x, y, r, iconIdx, delay }) {
+  return (
+    <motion.g
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      transition={{ delay, duration: 0.45 }}
+      viewport={{ once: true, amount: 0.2 }}
+    >
+      {/* Outer glow ring */}
+      <polygon points={hexPts(x, y, r + 8)} fill="#EC4A0A" opacity="0.10" />
+      {/* Main filled hex */}
+      <polygon points={hexPts(x, y, r)} fill="#EC4A0A" />
+      {/* White border */}
+      <polygon points={hexPts(x, y, r)} fill="none" stroke="white" strokeWidth="2.5" />
+      {/* Icon scaled to fit hex */}
+      <g transform={`translate(${x - r * 0.5}, ${y - r * 0.5}) scale(${r / 24})`}>
+        <path d={ICON_PATHS[iconIdx]} fill="white" />
+      </g>
+    </motion.g>
+  );
+}
+
+/* ══════════════════════════════════════════════════════════
+   MAIN COMPONENT
+══════════════════════════════════════════════════════════ */
+
 const HowWeWork = () => {
-  // --- Framer Motion Variants ---
-  
-  // Animates the main curved line (Desktop)
+
+  /* ─── Framer Motion Variants ─── */
+
+  // Animates the main curved path (all breakpoints)
   const pathVariant = {
     hidden: { pathLength: 0, opacity: 0 },
     visible: {
@@ -16,108 +73,125 @@ const HowWeWork = () => {
     },
   };
 
-  // Animates the vertical drawing line (Tablet & Mobile)
-  const verticalLineVariant = {
-    hidden: { scaleY: 0, opacity: 0 },
-    visible: {
-      scaleY: 1,
-      opacity: 1,
-      transition: { duration: 2.5, ease: "easeInOut" },
-    },
-  };
-
-  // Animates the icons/numbers popping up. 
+  // Pop-spring for numbers / desktop icons
   const popVariant = (delay) => ({
     hidden: { opacity: 0, scale: 0.5, y: 20 },
     visible: {
       opacity: 1,
       scale: 1,
       y: 0,
-      transition: {
-        type: "spring",
-        stiffness: 100,
-        damping: 12,
-        delay: delay,
-      },
+      transition: { type: "spring", stiffness: 100, damping: 12, delay },
     },
   });
 
-  // Slide-in from Left (Used in Tablet alternating layout)
-  const slideRightVariant = (delay) => ({
-    hidden: { opacity: 0, x: -30 },
+  // Subtle fade-up for mobile / tablet cards
+  const fadeUpVariant = (delay) => ({
+    hidden: { opacity: 0, y: 10 },
     visible: {
       opacity: 1,
-      x: 0,
-      transition: { delay: delay + 0.1, duration: 0.5, ease: "easeOut" },
+      y: 0,
+      transition: { duration: 0.4, ease: "easeOut", delay },
     },
   });
 
-  // Slide-in from Right (Used in Tablet alternating layout)
-  const slideLeftVariant = (delay) => ({
-    hidden: { opacity: 0, x: 30 },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: { delay: delay + 0.1, duration: 0.5, ease: "easeOut" },
-    },
-  });
-
-  // Timings mapped to the drawing of the 2.5-second path
+  /* ─── Desktop animation timings (kept from original) ─── */
   const timings = {
-    step1: 0.2, // Start
-    step2: 0.7, // 1/4 way
-    step3: 1.3, // 1/2 way
-    step4: 1.9, // 3/4 way
-    step5: 2.4, // End
+    step1: 0.2,
+    step2: 0.7,
+    step3: 1.3,
+    step4: 1.9,
+    step5: 2.4,
   };
 
-  // Data for Tablet and Mobile views
+  /* ─── Step copy ─── */
   const stepsData = [
-    { 
-      id: 1, 
-      title: "Send Inquiry", 
-      desc: "Clients share their requirements, project details, or questions through our inquiry channels to get prompt solutions." 
+    {
+      id: 1,
+      title: "Send Inquiry",
+      desc: "Clients share their requirements, project details, or questions through our inquiry channels to get prompt solutions.",
     },
-    { 
-      id: 2, 
-      title: "Site Inspection", 
-      desc: "Our team visits the site to assess conditions, take measurements, and identify technical requirements for accurate planning." 
+    {
+      id: 2,
+      title: "Site Inspection",
+      desc: "Our team visits the site to assess conditions, take measurements, and identify technical requirements for accurate planning.",
     },
-    { 
-      id: 3, 
-      title: "Proposal & Quotation", 
-      desc: "We prepare a detailed proposal and cost estimate based on site findings, outlining scope, timelines, and pricing." 
+    {
+      id: 3,
+      title: "Proposal & Quotation",
+      desc: "We prepare a detailed proposal and cost estimate based on site findings, outlining scope, timelines, and pricing.",
     },
-    { 
-      id: 4, 
-      title: "Project Execution", 
-      desc: "Our skilled team executes the project efficiently, following approved plans, quality standards, and safety practices." 
+    {
+      id: 4,
+      title: "Project Execution",
+      desc: "Our skilled team executes the project efficiently, following approved plans, quality standards, and safety practices.",
     },
-    { 
-      id: 5, 
-      title: "Testing & Handover", 
-      desc: "We thoroughly test the work to ensure performance and quality before formally handing over all necessary documentation." 
-    }
+    {
+      id: 5,
+      title: "Testing & Handover",
+      desc: "We thoroughly test the work to ensure performance and quality before formally handing over all necessary documentation.",
+    },
   ];
 
-  // Common styling for the large numbers
+  /* ─── Shared gradient for large step numbers ─── */
   const numberGradientStyle = {
-    background: "linear-gradient(180deg, #251a66 0%, rgba(94,83,139,0.5) 45.67%, rgba(255,242,242,0.5) 85.1%)",
+    background:
+      "linear-gradient(180deg, #251a66 0%, rgba(94,83,139,0.5) 45.67%, rgba(255,242,242,0.5) 85.1%)",
     WebkitBackgroundClip: "text",
     WebkitTextFillColor: "transparent",
-    backgroundClip: "text"
+    backgroundClip: "text",
   };
+
+  /* ══════════════════════════════════════════════════════
+     MOBILE layout data  ·  viewBox 375 × 960
+     S-curve: top-center → right → center → left → bottom-center
+     All card positions expressed as % of (375 × 960) so they
+     scale correctly when the intrinsic-ratio container resizes.
+  ══════════════════════════════════════════════════════ */
+
+  const mBadges = [
+    { x: 188, y: 148 }, // 1 – top center  (clears header ~88px)
+    { x: 285, y: 315 }, // 2 – right
+    { x: 188, y: 482 }, // 3 – center
+    { x: 90,  y: 649 }, // 4 – left
+    { x: 188, y: 816 }, // 5 – bottom center
+  ];
+
+  const mPathD =
+    "M 188 148 C 232 198 310 258 285 315 " +
+    "C 260 372 212 432 188 482 " +
+    "C 164 532 110 602 90  649 " +
+    "C 70  696 144 766 188 816";
+
+  // pixel coords → % of (375 × 960), gap = 12px between badge edge and card
+  const mCards = [
+    { left: "9.33%",  top: "18.96%", width: "81.33%" }, // below badge 1
+    { left: "2.67%",  top: "28.96%", width: "63.47%" }, // left of badge 2
+    { left: "9.33%",  top: "53.75%", width: "81.33%" }, // below badge 3
+    { left: "32.53%", top: "63.75%", width: "58.13%" }, // right of badge 4
+    { left: "9.33%",  top: "88.54%", width: "81.33%" }, // below badge 5
+  ];
+
+  const mTimings = [0.30, 0.85, 1.35, 1.88, 2.42];
+
+  /* ══════════════════════════════════════════════════════════════════
+     RENDER
+  ══════════════════════════════════════════════════════════════════ */
 
   return (
     <section className="py-12 md:py-20 bg-white dark:bg-[#030712] overflow-hidden transition-colors duration-300">
       <div className="container mx-auto px-4">
-        {/* Title */}
-        <h2 className="font-['Poppins'] text-3xl md:text-2xl font-bold text-[#FF4500] text-center tracking-widest uppercase mb-12 md:mb-16">
+
+        {/* Section title — shown for tablet and desktop (lg+) */}
+        <h2 className="hidden lg:block font-['Poppins'] text-3xl font-bold text-[#FF4500] text-center tracking-widest uppercase mb-12 md:mb-16">
           How We Work
         </h2>
 
-        {/* --- 1. Desktop Layout (Untouched as requested) --- */}
-        <div className="hidden xl:block relative max-w-[1400px] mx-auto h-[600px]">
+        {/* ════════════════════════════════════════════
+            1. DESKTOP / TABLET LAYOUT  (lg+)
+            Fixed canvas — never shrinks below 1100px.
+            Smaller lg viewports scroll horizontally.
+        ════════════════════════════════════════════ */}
+        <div className="hidden lg:block relative max-w-[1400px] mx-auto h-[600px]">
           {/* Main SVG with curve and hexagon icons */}
           <svg
             width="100%"
@@ -191,7 +265,7 @@ const HowWeWork = () => {
             </g>
 
             {/* --- ICONS (Animated) --- */}
-            
+
             {/* 1. Mail */}
             <motion.g
               transform="translate(0, 10)"
@@ -207,23 +281,20 @@ const HowWeWork = () => {
             </motion.g>
 
             {/* 2. Pencil */}
-            <g transform="translate(130, 7)"> 
+            <g transform="translate(130, 7)">
               <motion.g
                 variants={popVariant(timings.step2)}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.3 }}
               >
-                {/* The Orange Hexagon background */}
                 <path d="M340 330C342.833 331.544 346.257 331.544 349.09 330L386.52 309.609C389.575 307.945 391.476 304.744 391.476 301.266V261.27C391.476 257.792 389.575 254.591 386.52 252.927L349.09 232.535C346.257 230.992 342.833 230.992 340 232.535L302.569 252.927C299.515 254.591 297.614 257.792 297.614 261.27V301.266C297.614 304.744 299.515 307.945 302.569 309.609L340 330Z" fill="#EC4A0A" stroke="white" strokeWidth="3" />
-                
-                {/* Replaced Pen Icon with custom pen.png */}
-                <image 
-                  href="/images/pen.png" 
-                  x="320" 
-                  y="255" 
-                  width="50" 
-                  height="50" 
+                <image
+                  href="/images/pen.png"
+                  x="320"
+                  y="255"
+                  width="50"
+                  height="50"
                   preserveAspectRatio="xMidYMid meet"
                 />
               </motion.g>
@@ -268,18 +339,18 @@ const HowWeWork = () => {
           </svg>
 
           {/* Text overlays (Desktop) - Animated */}
-          <motion.div 
+          <motion.div
             className="absolute left-0 bottom-[8%] w-[350px]"
             variants={popVariant(timings.step1)}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
           >
-            <div className="flex items-start gap-4"> 
+            <div className="flex items-start gap-4">
               <span className="text-[120px] font-bold leading-none select-none block transition-colors duration-300 text-transparent bg-clip-text" style={numberGradientStyle}>
                 1
               </span>
-              <div className="flex flex-col mt-4"> 
+              <div className="flex flex-col mt-4">
                 <h3 className="text-2xl font-bold text-gray-700 dark:text-gray-100 transition-colors duration-300">
                   Send Inquiry
                 </h3>
@@ -290,7 +361,7 @@ const HowWeWork = () => {
             </div>
           </motion.div>
 
-          <motion.div 
+          <motion.div
             className="absolute left-[14%] top-[7%] w-[300px]"
             variants={popVariant(timings.step2)}
             initial="hidden"
@@ -310,7 +381,7 @@ const HowWeWork = () => {
             </p>
           </motion.div>
 
-          <motion.div 
+          <motion.div
             className="absolute left-[45%] -translate-x-1/2 top-[22%] w-[320px]"
             variants={popVariant(timings.step3)}
             initial="hidden"
@@ -330,7 +401,7 @@ const HowWeWork = () => {
             </p>
           </motion.div>
 
-          <motion.div 
+          <motion.div
             className="absolute right-[13%] top-[-6%] w-[300px]"
             variants={popVariant(timings.step4)}
             initial="hidden"
@@ -348,7 +419,7 @@ const HowWeWork = () => {
             </p>
           </motion.div>
 
-          <motion.div 
+          <motion.div
             className="absolute right-[-6%] bottom-[32%] w-[280px] text-left"
             variants={popVariant(timings.step5)}
             initial="hidden"
@@ -362,118 +433,136 @@ const HowWeWork = () => {
               <h3 className="text-2xl font-bold text-gray-700 dark:text-gray-100 ml-2 transition-colors duration-300">Testing & handover</h3>
             </div>
             <p className="text-gray-600 dark:text-gray-400 text-[13px] mt-4 leading-relaxed pr-8 transition-colors duration-300">
-            After completion, we thoroughly test the work to ensure performance and quality, then formally hand over the project with all necessary documentation.
+              After completion, we thoroughly test the work to ensure performance and quality, then formally hand over the project with all necessary documentation.
             </p>
           </motion.div>
         </div>
+        {/* END Desktop / Tablet */}
 
-        {/* --- 2. Advanced Tablet Layout (Alternating Timeline) --- */}
-        <div className="hidden lg:block xl:hidden relative max-w-4xl mx-auto py-10">
-          
-          {/* Subtle Background Line */}
-          <div className="absolute top-4 bottom-4 left-1/2 w-[3px] -translate-x-1/2 bg-gray-200 dark:bg-gray-800 rounded-full" />
-          
-          {/* Animated Drawing Line */}
-          <motion.div
-            className="absolute top-4 bottom-4 left-1/2 w-[3px] -translate-x-1/2 bg-[#5A45D3] origin-top rounded-full"
-            variants={verticalLineVariant}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.1 }}
-          />
+        {/* ════════════════════════════════════════════
+            3. MOBILE LAYOUT  (< lg)
+            Fixed 375 × 960 px canvas — never scales.
+            Centered on screen; scrolls vertically.
+        ════════════════════════════════════════════ */}
+        <div className="lg:hidden overflow-x-auto">
+          <div
+            className="relative bg-white dark:bg-[#0f172a]"
+            style={{ width: 375, height: 960, margin: "0 auto" }}
+          >
 
-          <div className="flex flex-col space-y-20 relative z-10">
-            {stepsData.map((step, index) => {
-              const isEven = index % 2 === 0;
-              const delay = index * 0.45; // Match with the 2.5s drawing time 
+              {/* ── Internal section header ── */}
+              <div className="absolute left-0 right-0 text-center" style={{ top: 16, padding: "0 24px" }}>
+                <p className="font-['Poppins'] font-bold tracking-[0.16em] uppercase text-[#EC4A0A] mb-1.5" style={{ fontSize: 10 }}>
+                  How We Work
+                </p>
+                <p className="font-['Poppins'] font-bold text-[#251A66] dark:text-white leading-tight" style={{ fontSize: 22 }}>
+                  Your project,<br />guided step by step
+                </p>
+              </div>
 
-              return (
-                <div key={step.id} className={`flex items-center w-full ${isEven ? 'flex-row' : 'flex-row-reverse'}`}>
-                  
-                  {/* Text Container (Slides in based on side) */}
-                  <motion.div 
-                    className={`w-5/12 ${isEven ? 'text-right pr-8' : 'text-left pl-8'}`}
-                    variants={isEven ? slideRightVariant(delay) : slideLeftVariant(delay)}
+              {/* ── SVG: path · rings · dots · badges ── */}
+              <svg
+                viewBox="0 0 375 960"
+                className="absolute inset-0 w-full h-full pointer-events-none"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <defs>
+                  <linearGradient id="mPathGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%"   stopColor="#251A66" />
+                    <stop offset="100%" stopColor="#5A45D3" />
+                  </linearGradient>
+                </defs>
+
+                {/* Short offset connectors for steps 2 & 4 (badge is beside its card) */}
+                <line x1="250" y1="315" x2="263" y2="315" stroke="#5A45D3" strokeWidth="1.5" strokeDasharray="4 3" opacity="0.4" />
+                <line x1="112" y1="645" x2="122" y2="630" stroke="#5A45D3" strokeWidth="1.5" strokeDasharray="4 3" opacity="0.4" />
+
+                {/* Waypoint glow rings */}
+                {mBadges.map((b, i) => (
+                  <circle key={i} cx={b.x} cy={b.y} r={38} fill="none" stroke="#5A45D3" strokeWidth="0.5" opacity="0.08" />
+                ))}
+
+                {/* Animated S-curve path */}
+                <motion.path
+                  d={mPathD}
+                  stroke="url(#mPathGrad)"
+                  strokeWidth="2.5"
+                  fill="none"
+                  strokeLinecap="round"
+                  variants={pathVariant}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.05 }}
+                />
+
+                {/* Motion dots at badge centres */}
+                {mBadges.map((b, i) => (
+                  <motion.circle
+                    key={i}
+                    cx={b.x} cy={b.y} r={3}
+                    fill="#5A45D3"
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 0.25 }}
+                    transition={{ delay: mTimings[i] + 0.2, duration: 0.3 }}
+                    viewport={{ once: true }}
+                  />
+                ))}
+
+                {/* Hex badges */}
+                {mBadges.map((b, i) => (
+                  <HexBadge key={i} x={b.x} y={b.y} r={22} iconIdx={i} delay={mTimings[i]} />
+                ))}
+              </svg>
+
+              {/* ── Step cards (HTML, percentage-positioned) ── */}
+              {stepsData.map((step, i) => {
+                const c = mCards[i];
+                return (
+                  <motion.div
+                    key={i}
+                    className="absolute"
+                    style={{ left: c.left, top: c.top, width: c.width }}
+                    variants={fadeUpVariant(mTimings[i] + 0.08)}
                     initial="hidden"
                     whileInView="visible"
-                    viewport={{ once: true }}
+                    viewport={{ once: true, amount: 0.2 }}
                   >
-                    <h3 className="text-2xl font-bold text-gray-700 dark:text-gray-100 transition-colors duration-300">{step.title}</h3>
-                    <p className="text-gray-600 dark:text-gray-400 text-sm mt-3 leading-relaxed transition-colors duration-300">{step.desc}</p>
+                    <div className="relative bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl shadow-md px-3.5 py-2.5 overflow-hidden">
+                      {/* Faint number watermark */}
+                      <span
+                        className="absolute font-['Poppins'] font-extrabold text-[#251A66] leading-none pointer-events-none select-none"
+                        style={{ fontSize: 68, opacity: 0.06, right: 8, top: -6 }}
+                        aria-hidden="true"
+                      >
+                        {step.id}
+                      </span>
+                      <p className="relative font-['Poppins'] font-bold text-[#251A66] dark:text-purple-300 mb-0.5 leading-snug" style={{ fontSize: 12 }}>
+                        {step.title}
+                      </p>
+                      <p className="relative text-gray-500 dark:text-gray-400 leading-[1.55]" style={{ fontSize: 10.5 }}>
+                        {step.desc}
+                      </p>
+                    </div>
                   </motion.div>
+                );
+              })}
 
-                  {/* Centered Number Indicator (Pops up directly over the line) */}
-                  <motion.div 
-                    className="w-2/12 flex justify-center bg-white dark:bg-[#030712] py-4 transition-colors duration-300"
-                    variants={popVariant(delay)}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true }}
-                  >
-                    <span className="text-7xl font-bold text-transparent bg-clip-text leading-none select-none transition-colors duration-300" style={numberGradientStyle}>
-                      {step.id}
-                    </span>
-                  </motion.div>
-
-                  {/* Empty Spacer */}
-                  <div className="w-5/12" />
-                </div>
-              );
-            })}
+              {/* ── Bottom tagline ── */}
+              <motion.p
+                className="absolute left-0 right-0 text-center text-gray-400 tracking-[0.08em]"
+                style={{ bottom: 10, fontSize: 9 }}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 0.7 }}
+                transition={{ delay: 2.8, duration: 0.5 }}
+                viewport={{ once: true }}
+              >
+                ONSHORE · OFFSHORE · SUBSEA
+              </motion.p>
           </div>
         </div>
+        {/* END Mobile */}
 
-        {/* --- 3. Advanced Mobile Layout (Left-Aligned Timeline) --- */}
-        <div className="lg:hidden relative py-6 pl-2">
-          
-          {/* Subtle Background Line */}
-          <div className="absolute top-6 bottom-6 left-[46px] w-[3px] bg-gray-200 dark:bg-gray-800 rounded-full" />
-          
-          {/* Animated Drawing Line */}
-          <motion.div
-            className="absolute top-6 bottom-6 left-[46px] w-[3px] bg-[#5A45D3] origin-top rounded-full"
-            variants={verticalLineVariant}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.1 }}
-          />
-
-          <div className="flex flex-col space-y-12 relative z-10">
-            {stepsData.map((step, index) => {
-               const delay = index * 0.45;
-
-               return (
-                <div key={step.id} className="flex items-start gap-4 w-full">
-                  
-                  {/* Number Indicator (Pops up directly over the line) */}
-                  <motion.div 
-                    className="w-[88px] flex justify-center bg-white dark:bg-[#030712] py-2 transition-colors duration-300 flex-shrink-0"
-                    variants={popVariant(delay)}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true }}
-                  >
-                    <span className="text-6xl font-bold text-transparent bg-clip-text leading-none select-none transition-colors duration-300" style={numberGradientStyle}>
-                      {step.id}
-                    </span>
-                  </motion.div>
-                  
-                  {/* Text Container (Slides in from the right) */}
-                  <motion.div 
-                    className="pt-3 pr-2 flex-1"
-                    variants={slideLeftVariant(delay)}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true }}
-                  >
-                    <h3 className="text-xl font-bold text-gray-700 dark:text-gray-100 transition-colors duration-300">{step.title}</h3>
-                    <p className="text-gray-600 dark:text-gray-400 text-[13px] mt-2 leading-relaxed transition-colors duration-300">{step.desc}</p>
-                  </motion.div>
-                </div>
-               );
-            })}
-          </div>
-        </div>
       </div>
     </section>
   );

@@ -20,19 +20,13 @@ const AboutUsSection = () => {
         if (entries[0].isIntersecting && !hasAnimated) {
           setHasAnimated(true);
           
-          // Highly optimized animation using requestAnimationFrame
           const animate = (setter, target, duration) => {
             let startTimestamp = null;
             const step = (timestamp) => {
               if (!startTimestamp) startTimestamp = timestamp;
-              // Calculate progress between 0 and 1
               const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-              
-              // Apply an ease-out cubic curve for a premium smooth finish
               const easeOutProgress = 1 - Math.pow(1 - progress, 3); 
-              
               setter(Math.ceil(easeOutProgress * target));
-              
               if (progress < 1) {
                 window.requestAnimationFrame(step);
               }
@@ -40,13 +34,12 @@ const AboutUsSection = () => {
             window.requestAnimationFrame(step);
           };
 
-          // Adjusted durations slightly so they feel snappy but smooth
           animate(setExperience, 12, 1200);
           animate(setEmployee, 100, 1800);
           animate(setEpc, 12, 2200);
           animate(setPowerPlants, 7, 2600);
-          animate(setVessels, 465, 2400); // 2.4s for the larger number
-          animate(setCountries, 14, 1500); // 1.5s for countries
+          animate(setVessels, 465, 2400);
+          animate(setCountries, 14, 1500);
         }
       },
       { threshold: 0.3 }
@@ -103,7 +96,7 @@ const AboutUsSection = () => {
               "DPV Offshore & Marine Services — Your trusted partner in navigating tomorrow's maritime challenges."
               <br/>
               <a 
-                href="/dpv-offshore-redesign-website/about" 
+                href="/about" 
                 className="inline-block ml-2 text-[#FF4500] font-bold hover:text-white transition-colors duration-300 underline underline-offset-4 not-italic"
               >
                 Learn more about our journey &rarr;
@@ -111,8 +104,8 @@ const AboutUsSection = () => {
             </p>
           </motion.div>
 
-          {/* Restructured Stats Section - Changed to accommodate 6 items dynamically */}
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-2 max-w-6xl mx-auto w-full mb-4 md:mb-8">
+          {/* Stats Section — mobile: 3×2 invisible grid · tablet/desktop: unchanged */}
+          <div className="grid grid-cols-3 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-2 max-w-6xl mx-auto w-full mb-4 md:mb-8">
             
             {/* Experience */}
             <div className="flex flex-col items-center justify-center p-2">
