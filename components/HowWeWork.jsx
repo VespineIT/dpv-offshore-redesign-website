@@ -446,7 +446,7 @@ const HowWeWork = () => {
         ════════════════════════════════════════════ */}
         <div className="lg:hidden overflow-x-auto">
           <div
-            className="relative bg-white dark:bg-[#0f172a]"
+            className="relative bg-white dark:bg-[#030712]"
             style={{ width: 375, height: 960, margin: "0 auto" }}
           >
 
