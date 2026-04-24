@@ -548,17 +548,7 @@ const HowWeWork = () => {
                 );
               })}
 
-              {/* ── Bottom tagline ── */}
-              <motion.p
-                className="absolute left-0 right-0 text-center text-gray-400 tracking-[0.08em]"
-                style={{ bottom: 10, fontSize: 9 }}
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 0.7 }}
-                transition={{ delay: 2.8, duration: 0.5 }}
-                viewport={{ once: true }}
-              >
-                ONSHORE · OFFSHORE · SUBSEA
-              </motion.p>
+              
           </div>
         </div>
         {/* END Mobile */}
