@@ -1,30 +1,20 @@
-import CompassHero from "@/components/CompassHero";
-import RainingCustomers from "@/components/RainingCustomers";
-import OfficeGlobe from "@/components/OfficeGlobe";
-import CallToAction from "@/components/CallToAction";
-import AboutUsSection from "@/components/AboutUsSection";
-import HowWeWork from "@/components/HowWeWork";
-import ExpertiseSection from "@/components/ExpertiseSection"
+import CompassHero from "@/components/sections/CompassHero";
+import RainingCustomers from "@/components/sections/RainingCustomers";
+import OfficeGlobe from "@/components/sections/OfficeGlobe";
+import CallToAction from "@/components/sections/CallToAction";
+import AboutUsSection from "@/components/sections/AboutUsSection";
+import HowWeWork from "@/components/sections/HowWeWork";
+import ExpertiseSection from "@/components/sections/ExpertiseSection";
 
 export default function Page() {
   return (
     <main className="min-h-screen flex flex-col">
-      
-      {/* Hero Section */}
       <CompassHero />
-
-      {/*ExpertiseSection*/}
-      <ExpertiseSection/>
-      {/* About Us */}
+      <ExpertiseSection />
       <AboutUsSection />
       <HowWeWork />
-      {/* Office Globe */}
-      <OfficeGlobe/>
-
-      {/* Raining Customers */}
+      <OfficeGlobe />
       <RainingCustomers />
-
-      {/* Call to Action */}
       <CallToAction />
     </main>
   );

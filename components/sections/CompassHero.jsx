@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, useCallback } from "react";
-import ContactUsModal from './ContactUsModal';
+import ContactUsModal from "../modals/ContactUsModal";
 
 /* ============================================================
    PARTICLE HELPERS

@@ -4,40 +4,10 @@ import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Anchor, ArrowRight, CheckCircle2 } from "lucide-react";
+import { productionData } from "@/data/products";
+import { fadeUpSlow, slideInLeft, slideInRight } from "@/lib/animations";
 
 export default function Products() {
-  const productionData = [
-    {
-      id: 1,
-      title: "Design & Build Eco Vessels",
-      description: "We are pioneers in creating sustainable maritime solutions. Our dedicated production teams design and build fully electric passenger vessels tailored to minimize environmental impact while maximizing operational efficiency and comfort.",
-      image: "/images/production-1.png", 
-      features: ["Electrical Passenger Vessels", "Eco-Friendly Design Services", "Turnkey Construction"],
-    },
-    {
-      id: 2,
-      title: "Customized Solutions & Products",
-      description: "Tailored to your vision. We design and deliver customized production solutions, systems, and products that adapt perfectly to your operational needs—ensuring performance, reliability, and long-term value you can trust.",
-      image: "/images/production-2.png", 
-      features: ["Tailored Engineering", "Custom Fabrication", "Performance Optimization"],
-    }
-  ];
-
-  const fadeUpVariant = {
-    hidden: { opacity: 0, y: 40 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
-  };
-
-  const slideInLeft = {
-    hidden: { opacity: 0, x: -50 },
-    visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: "easeOut" } },
-  };
-
-  const slideInRight = {
-    hidden: { opacity: 0, x: 50 },
-    visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: "easeOut" } },
-  };
-
   return (
     <main className="min-h-screen bg-gray-50 dark:bg-[#030712] pb-24 font-['Poppins'] transition-colors duration-300 overflow-hidden">
       
@@ -91,7 +61,7 @@ export default function Products() {
 
           return (
             <motion.div 
-              key={item.id} variants={fadeUpVariant} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }}
+              key={item.id} variants={fadeUpSlow} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }}
               className={`bg-white dark:bg-[#1e293b] rounded-[30px] border border-gray-100 dark:border-gray-800 shadow-xl overflow-hidden flex flex-col ${isReversed ? 'md:flex-row-reverse' : 'md:flex-row'} items-center gap-8 md:gap-16 p-6 md:p-12`}
             >
               <motion.div variants={isReversed ? slideInRight : slideInLeft} className="w-full md:w-1/2 relative h-[300px] md:h-[450px] rounded-[24px] overflow-hidden bg-blue-50/50 dark:bg-gray-800/50 shadow-inner group">

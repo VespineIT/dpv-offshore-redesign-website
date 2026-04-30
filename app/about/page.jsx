@@ -1,93 +1,34 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 import { ShieldCheck, Wrench, Handshake, Clock, Globe } from "lucide-react";
-import { 
-  FaAward, 
-  FaUsers, 
-  FaShip, 
-  FaGlobe as FaGlobeIcon, 
-  FaIndustry, 
-  FaBolt 
-} from "react-icons/fa";
+import { FaAward, FaUsers, FaShip, FaGlobe as FaGlobeIcon, FaIndustry, FaBolt } from "react-icons/fa";
+import { useCounterAnimation } from "@/hooks/useCounterAnimation";
+import StatItem from "@/components/ui/StatItem";
+import { fadeUpVariant, staggerContainer } from "@/lib/animations";
+
+const COUNTER_TARGETS = [
+  { target: 12, duration: 1200 },
+  { target: 100, duration: 1800 },
+  { target: 12, duration: 2000 },
+  { target: 7, duration: 2200 },
+  { target: 465, duration: 2500 },
+  { target: 14, duration: 1500 },
+];
 
 const AboutUsPage = () => {
-  // --- Hero Section State & Logic ---
-  const [experience, setExperience] = useState(0);
-  const [employee, setEmployee] = useState(0);
-  const [epc, setEpc] = useState(0);
-  const [powerPlants, setPowerPlants] = useState(0);
-  const [vessels, setVessels] = useState(0);
-  const [countries, setCountries] = useState(0); 
-  const [hasAnimated, setHasAnimated] = useState(false);
-  const sectionRef = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting && !hasAnimated) {
-          setHasAnimated(true);
-          
-          // Highly optimized animation using requestAnimationFrame
-          const animate = (setter, target, duration) => {
-            let startTimestamp = null;
-            const step = (timestamp) => {
-              if (!startTimestamp) startTimestamp = timestamp;
-              const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-              
-              // Ease-out cubic curve for a smooth finish
-              const easeOutProgress = 1 - Math.pow(1 - progress, 3); 
-              
-              setter(Math.ceil(easeOutProgress * target));
-              
-              if (progress < 1) {
-                window.requestAnimationFrame(step);
-              }
-            };
-            window.requestAnimationFrame(step);
-          };
-
-          // Values and durations
-          animate(setExperience, 12, 1200);
-          animate(setEmployee, 100, 1800);
-          animate(setEpc, 12, 2000);
-          animate(setPowerPlants, 7, 2200);
-          animate(setVessels, 465, 2500);
-          animate(setCountries, 14, 1500); 
-        }
-      },
-      { threshold: 0.3 }
-    );
-
-    if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => observer.disconnect();
-  }, [hasAnimated]);
-
-  // --- Framer Motion Variants ---
-  const fadeUpVariant = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
-  };
-
-  const staggerContainer = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.15 },
-    },
-  };
+  const { counts, sectionRef } = useCounterAnimation(COUNTER_TARGETS);
+  const [experience, employee, epc, powerPlants, vessels, countries] = counts;
 
   return (
     <div className="bg-white dark:bg-[#030712] min-h-screen transition-colors duration-300 font-['Poppins']">
-      
-      {/* ================= HERO SECTION (VIDEO) ================= */}
+
       <section className="relative w-full h-screen flex items-center justify-center overflow-hidden p-[15px]">
-        <div 
+        <div
           ref={sectionRef}
           className="relative w-full h-full rounded-[24px] overflow-hidden shadow-2xl"
         >
-          {/* Video Background */}
           <video
             autoPlay
             loop
@@ -99,14 +40,11 @@ const AboutUsPage = () => {
             <img src="/fallback-image.jpg" alt="Offshore background" className="w-full h-full object-cover" />
           </video>
 
-          {/* Dark Overlay */}
           <div className="absolute inset-0 bg-black/50 dark:bg-black/70 z-10 pointer-events-none"></div>
 
-          {/* Content Wrapper */}
           <div className="relative z-20 flex flex-col justify-between h-full pt-12 pb-8 md:pb-16 px-4">
-            
-            {/* Header */}
-            <motion.h1 
+
+            <motion.h1
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
@@ -115,8 +53,7 @@ const AboutUsPage = () => {
               About Us
             </motion.h1>
 
-            {/* Intro Text */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
@@ -133,86 +70,25 @@ const AboutUsPage = () => {
               </p>
             </motion.div>
 
-            {/* Restructured Stats Section (6 items) */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
               className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-2 max-w-6xl mx-auto w-full mb-4 md:mb-8"
             >
-              {/* Experience */}
-              <div className="flex flex-col items-center justify-center p-2">
-                <FaAward className="text-3xl sm:text-4xl md:text-5xl text-[#FF4500] mb-2 drop-shadow-[0_4px_8px_rgba(0,0,0,0.5)]" />
-                <div className="text-white text-[12px] sm:text-sm md:text-lg lg:text-xl font-bold uppercase tracking-tight drop-shadow-md">
-                  Experience
-                </div>
-                <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-[#FF4500] mt-1 drop-shadow-md">
-                  {experience}Y+
-                </div>
-              </div>
-
-              {/* Employees */}
-              <div className="flex flex-col items-center justify-center p-2">
-                <FaUsers className="text-3xl sm:text-4xl md:text-5xl text-[#FF4500] mb-2 drop-shadow-[0_4px_8px_rgba(0,0,0,0.5)]" />
-                <div className="text-white text-[12px] sm:text-sm md:text-lg lg:text-xl font-bold uppercase tracking-tight drop-shadow-md">
-                  Employees
-                </div>
-                <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-[#FF4500] mt-1 drop-shadow-md">
-                  {employee}+
-                </div>
-              </div>
-
-              {/* EPC */}
-              <div className="flex flex-col items-center justify-center p-2">
-                <FaIndustry className="text-3xl sm:text-4xl md:text-5xl text-[#FF4500] mb-2 drop-shadow-[0_4px_8px_rgba(0,0,0,0.5)]" />
-                <div className="text-white text-[12px] sm:text-sm md:text-lg lg:text-xl font-bold uppercase tracking-tight drop-shadow-md">
-                  EPC
-                </div>
-                <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-[#FF4500] mt-1 drop-shadow-md">
-                  {epc}+
-                </div>
-              </div>
-
-              {/* Power Plants */}
-              <div className="flex flex-col items-center justify-center p-2">
-                <FaBolt className="text-3xl sm:text-4xl md:text-5xl text-[#FF4500] mb-2 drop-shadow-[0_4px_8px_rgba(0,0,0,0.5)]" />
-                <div className="text-white text-[12px] sm:text-sm md:text-lg lg:text-xl font-bold uppercase tracking-tight drop-shadow-md">
-                  Power Plants
-                </div>
-                <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-[#FF4500] mt-1 drop-shadow-md">
-                  {powerPlants}+
-                </div>
-              </div>
-
-              {/* Vessels */}
-              <div className="flex flex-col items-center justify-center p-2">
-                <FaShip className="text-3xl sm:text-4xl md:text-5xl text-[#FF4500] mb-2 drop-shadow-[0_4px_8px_rgba(0,0,0,0.5)]" />
-                <div className="text-white text-[12px] sm:text-sm md:text-lg lg:text-xl font-bold uppercase tracking-tight drop-shadow-md">
-                  Vessels
-                </div>
-                <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-[#FF4500] mt-1 drop-shadow-md">
-                  {vessels}+
-                </div>
-              </div>
-
-              {/* Countries */}
-              <div className="flex flex-col items-center justify-center p-2">
-                <FaGlobeIcon className="text-3xl sm:text-4xl md:text-5xl text-[#FF4500] mb-2 drop-shadow-[0_4px_8px_rgba(0,0,0,0.5)]" />
-                <div className="text-white text-[12px] sm:text-sm md:text-lg lg:text-xl font-bold uppercase tracking-tight drop-shadow-md">
-                  Countries
-                </div>
-                <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-[#FF4500] mt-1 drop-shadow-md">
-                  {countries}+
-                </div>
-              </div>
+              <StatItem icon={FaAward} label="Experience" value={experience} suffix="Y+" />
+              <StatItem icon={FaUsers} label="Employees" value={employee} />
+              <StatItem icon={FaIndustry} label="EPC" value={epc} />
+              <StatItem icon={FaBolt} label="Power Plants" value={powerPlants} />
+              <StatItem icon={FaShip} label="Vessels" value={vessels} />
+              <StatItem icon={FaGlobeIcon} label="Countries" value={countries} />
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* ================= OUR STORY ================= */}
       <section className="py-16 md:py-24 px-4 max-w-6xl mx-auto">
-        <motion.div 
+        <motion.div
           variants={fadeUpVariant}
           initial="hidden"
           whileInView="visible"
@@ -234,12 +110,10 @@ const AboutUsPage = () => {
         </motion.div>
       </section>
 
-      {/* ================= MISSION & VISION ================= */}
       <section className="bg-gray-50 dark:bg-[#0f172a] py-16 md:py-24 transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-4 grid md:grid-cols-2 gap-12">
-          
-          {/* Mission */}
-          <motion.div 
+
+          <motion.div
             variants={fadeUpVariant}
             initial="hidden"
             whileInView="visible"
@@ -263,8 +137,7 @@ const AboutUsPage = () => {
             </ul>
           </motion.div>
 
-          {/* Vision */}
-          <motion.div 
+          <motion.div
             variants={fadeUpVariant}
             initial="hidden"
             whileInView="visible"
@@ -280,20 +153,18 @@ const AboutUsPage = () => {
         </div>
       </section>
 
-      {/* ================= CORE VALUES ================= */}
       <section className="py-16 md:py-24 px-4 max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-[#FF4500] uppercase tracking-widest">Values</h2>
         </div>
 
-        <motion.div 
+        <motion.div
           variants={staggerContainer}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
         >
-          {/* Value 1 */}
           <motion.div variants={fadeUpVariant} className="bg-white dark:bg-[#030712] border border-gray-100 dark:border-gray-800 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow group">
             <div className="w-14 h-14 bg-[#fff0eb] dark:bg-[#1a0e0a] rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
               <ShieldCheck className="text-[#FF4500] w-8 h-8" />
@@ -302,7 +173,6 @@ const AboutUsPage = () => {
             <p className="text-gray-600 dark:text-gray-400">Safety first in every job and location.</p>
           </motion.div>
 
-          {/* Value 2 */}
           <motion.div variants={fadeUpVariant} className="bg-white dark:bg-[#030712] border border-gray-100 dark:border-gray-800 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow group">
             <div className="w-14 h-14 bg-[#fff0eb] dark:bg-[#1a0e0a] rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
               <Wrench className="text-[#FF4500] w-8 h-8" />
@@ -311,7 +181,6 @@ const AboutUsPage = () => {
             <p className="text-gray-600 dark:text-gray-400">Quality workmanship and attention to detail.</p>
           </motion.div>
 
-          {/* Value 3 */}
           <motion.div variants={fadeUpVariant} className="bg-white dark:bg-[#030712] border border-gray-100 dark:border-gray-800 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow group">
             <div className="w-14 h-14 bg-[#fff0eb] dark:bg-[#1a0e0a] rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
               <Handshake className="text-[#FF4500] w-8 h-8" />
@@ -320,7 +189,6 @@ const AboutUsPage = () => {
             <p className="text-gray-600 dark:text-gray-400">Integrity and transparency in all dealings.</p>
           </motion.div>
 
-          {/* Value 4 */}
           <motion.div variants={fadeUpVariant} className="bg-white dark:bg-[#030712] border border-gray-100 dark:border-gray-800 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow group">
             <div className="w-14 h-14 bg-[#fff0eb] dark:bg-[#1a0e0a] rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
               <Clock className="text-[#FF4500] w-8 h-8" />
@@ -329,7 +197,6 @@ const AboutUsPage = () => {
             <p className="text-gray-600 dark:text-gray-400">Commitment to on-time delivery.</p>
           </motion.div>
 
-          {/* Value 5 */}
           <motion.div variants={fadeUpVariant} className="bg-white dark:bg-[#030712] border border-gray-100 dark:border-gray-800 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow group md:col-span-2 lg:col-span-1">
             <div className="w-14 h-14 bg-[#fff0eb] dark:bg-[#1a0e0a] rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
               <Globe className="text-[#FF4500] w-8 h-8" />

@@ -1,8 +1,7 @@
 import React from 'react';
+import BaseModal from '../ui/BaseModal';
 
 export default function FAQModal({ isOpen, onClose }) {
-  if (!isOpen) return null;
-
   const faqs = [
     {
       question: "Who is DPV Offshore and Marine Services LLC?",
@@ -67,38 +66,15 @@ export default function FAQModal({ isOpen, onClose }) {
   ];
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/70 backdrop-blur-sm p-4 transition-opacity">
-      
-      {/* Modal Container */}
-      <div className="bg-white dark:bg-[#0a0f1c] text-gray-800 w-full max-w-4xl rounded-xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh] animate-in fade-in zoom-in-95 duration-200 border dark:border-gray-800">
-        
-        {/* Modal Header */}
-        <div className="flex justify-between items-center p-6 border-b border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-[#030712]">
-          <h3 className="text-2xl font-bold text-[#1C1C1C] dark:text-white">Frequently Asked Questions</h3>
-          <button 
-            onClick={onClose}
-            className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors text-gray-500 dark:text-gray-400 hover:text-red-500 dark:hover:text-red-400"
-            aria-label="Close modal"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <line x1="18" y1="6" x2="6" y2="18"></line>
-              <line x1="6" y1="6" x2="18" y2="18"></line>
-            </svg>
-          </button>
-        </div>
-
-        {/* Modal Body (Scrollable) */}
-        <div className="p-6 md:p-8 overflow-y-auto space-y-6 text-base leading-relaxed">
-          {faqs.map((faq, index) => (
-            <div key={index} className="bg-gray-50 dark:bg-[#111827] p-5 rounded-lg border border-gray-100 dark:border-gray-800">
-              <h4 className="text-lg font-bold text-[#FF5722] mb-2">{faq.question}</h4>
-              {/* Added whitespace-pre-line so the \n characters render as actual line breaks for the bullet points */}
-              <p className="text-gray-700 dark:text-gray-300 whitespace-pre-line">{faq.answer}</p>
-            </div>
-          ))}
-        </div>
-
+    <BaseModal isOpen={isOpen} onClose={onClose} title="Frequently Asked Questions" maxWidth="max-w-4xl">
+      <div className="space-y-6 text-base leading-relaxed">
+        {faqs.map((faq, index) => (
+          <div key={index} className="bg-gray-50 dark:bg-[#111827] p-5 rounded-lg border border-gray-100 dark:border-gray-800">
+            <h4 className="text-lg font-bold text-[#FF5722] mb-2">{faq.question}</h4>
+            <p className="text-gray-700 dark:text-gray-300 whitespace-pre-line">{faq.answer}</p>
+          </div>
+        ))}
       </div>
-    </div>
+    </BaseModal>
   );
 }

@@ -1,11 +1,10 @@
-// app/layout.js
 import { Poppins } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import GoogleTranslateHelper from "@/components/GoogleTranslateHelper"; // Added this
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
+import GoogleTranslateHelper from "@/components/layout/GoogleTranslateHelper";
 
-const poppins = Poppins({ 
+const poppins = Poppins({
   subsets: ["latin"],
   weight: ['300', '400', '500', '600', '700'],
   variable: '--font-poppins',
@@ -20,7 +19,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={poppins.className}>
-        <GoogleTranslateHelper /> {/* Added this */}
+        <GoogleTranslateHelper />
         <Navbar />
         {children}
         <Footer />

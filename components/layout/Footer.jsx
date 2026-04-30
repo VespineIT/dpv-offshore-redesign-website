@@ -2,10 +2,10 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import PrivacyPolicyModal from './PrivacyPolicyModal';
-import TermsAndConditionsModal from './TermsAndConditionsModal';
-import FAQModal from './FAQModal';
-import ContactUsModal from './ContactUsModal';
+import PrivacyPolicyModal from '../modals/PrivacyPolicyModal';
+import TermsAndConditionsModal from '../modals/TermsAndConditionsModal';
+import FAQModal from '../modals/FAQModal';
+import ContactUsModal from '../modals/ContactUsModal';
 
 export default function Footer() {
   // States to control the popup visibility
