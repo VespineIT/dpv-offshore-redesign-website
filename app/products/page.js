@@ -93,11 +93,16 @@ export default function Products() {
                 </ul>
 
                 <div>
-                  <button className="inline-flex items-center gap-2 bg-[#FF4500] hover:bg-[#E63E00] text-white font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-[0_0_15px_rgba(255,69,0,0.5)] transition-all duration-300 group">
-                    Learn More
-                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                  </button>
-                </div>
+  <a 
+    href="mailto:info@dpvoffshore.com?subject=Inquiry for More Information" 
+    className="inline-block"
+  >
+    <button className="inline-flex items-center gap-2 bg-[#FF4500] hover:bg-[#E63E00] text-white font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-[0_0_15px_rgba(255,69,0,0.5)] transition-all duration-300 group">
+      Learn More
+      <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+    </button>
+  </a>
+</div>
               </motion.div>
             </motion.div>
           );
@@ -114,9 +119,14 @@ export default function Products() {
         <p className="text-gray-600 dark:text-gray-400 mb-8">
           Contact our production team today to discuss your specific build requirements.
         </p>
-        <button className="bg-transparent border-2 border-[#FF4500] text-[#FF4500] hover:bg-[#FF4500] hover:text-white font-bold py-3 px-10 rounded-full transition-all duration-300">
-          Contact Us
-        </button>
+        <a 
+  href="mailto:info@dpvoffshore.com?subject=General Inquiry" 
+  className="inline-block"
+>
+  <button className="bg-transparent border-2 border-[#FF4500] text-[#FF4500] hover:bg-[#FF4500] hover:text-white font-bold py-3 px-10 rounded-full transition-all duration-300">
+    Contact Us
+  </button>
+</a>
       </motion.section>
 
     </main>

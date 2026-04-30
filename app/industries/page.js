@@ -143,10 +143,15 @@ export default function Industries() {
                 </p>
 
                 <div className="mt-8 pt-6 border-t border-gray-100 dark:border-gray-800">
-                  <button className="px-6 py-3 bg-[#FF4500] hover:bg-[#E63E00] text-white rounded-full font-medium transition-colors duration-300 shadow-md">
-                    Discuss a Project
-                  </button>
-                </div>
+  <a 
+    href="mailto:info@dpvoffshore.com?subject=Project Inquiry" 
+    className="inline-block"
+  >
+    <button className="px-6 py-3 bg-[#FF4500] hover:bg-[#E63E00] text-white rounded-full font-medium transition-colors duration-300 shadow-md">
+      Discuss a Project
+    </button>
+  </a>
+</div>
               </div>
             </motion.div>
           </motion.div>

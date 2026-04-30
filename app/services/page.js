@@ -319,10 +319,15 @@ export default function Services() {
 
                 {/* Footer Section (Pinned to bottom of scroll content) */}
                 <div className="shrink-0 mt-8 pt-6 border-t border-gray-100 dark:border-gray-800">
-                  <button className="px-6 py-3 bg-[#FF4500] hover:bg-[#E63E00] text-white rounded-full font-medium transition-colors duration-300 shadow-md">
-                    Request This Service
-                  </button>
-                </div>
+  <a 
+    href="mailto:info@dpvoffshore.com?subject=Service Request" 
+    className="inline-block"
+  >
+    <button className="px-6 py-3 bg-[#FF4500] hover:bg-[#E63E00] text-white rounded-full font-medium transition-colors duration-300 shadow-md">
+      Request This Service
+    </button>
+  </a>
+</div>
                 
               </div>
               
