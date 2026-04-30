@@ -38,8 +38,8 @@ export default function ExpertiseShowcase() {
         </p>
       </div>
 
-      {/* ── Expanding Image Accordion ── */}
-      <div className="px-4 flex gap-4 w-full max-w-[1200px] h-[500px] mb-12">
+      {/* ── Expanding Image Accordion (Desktop) ── */}
+      <div className="hidden md:flex px-4 gap-4 w-full max-w-[1200px] h-[500px] mb-12">
         {expertiseList.map((item, index) => {
           const isActive = index === activeIndex;
 
@@ -47,24 +47,21 @@ export default function ExpertiseShowcase() {
             <motion.div
               key={item.title}
               onClick={() => setActiveIndex(index)}
-              // Framer Motion handles the flex interpolation smoothly here
               animate={{ flex: isActive ? 5 : 1 }}
               transition={{ duration: 0.6, ease: [0.25, 1, 0.5, 1] }}
               className="relative rounded-[24px] overflow-hidden cursor-pointer bg-[#E5E0F5]"
             >
-              {/* Background Image */}
               <motion.img
                 src={item.imageUrl}
                 alt={item.title}
-                animate={{ 
-                  scale: isActive ? 1.05 : 1, 
-                  opacity: isActive ? 1 : 0.6 
+                animate={{
+                  scale: isActive ? 1.05 : 1,
+                  opacity: isActive ? 1 : 0.6
                 }}
                 transition={{ duration: 0.8, ease: 'easeOut' }}
                 className="w-full h-full object-cover object-center"
               />
 
-              {/* Dark Gradient Overlay for text readability */}
               <motion.div
                 animate={{
                   background: isActive
@@ -75,25 +72,22 @@ export default function ExpertiseShowcase() {
                 className="absolute inset-0"
               />
 
-              {/* Title Container */}
               <div className="absolute bottom-0 left-0 w-full p-[32px_24px] flex items-end">
-                {/* Horizontal Title (Active) */}
                 <motion.h3
                   initial={false}
-                  animate={{ 
-                    opacity: isActive ? 1 : 0, 
-                    y: isActive ? 0 : 20 
+                  animate={{
+                    opacity: isActive ? 1 : 0,
+                    y: isActive ? 0 : 20
                   }}
-                  transition={{ 
-                    duration: 0.4, 
-                    delay: isActive ? 0.2 : 0 
+                  transition={{
+                    duration: 0.4,
+                    delay: isActive ? 0.2 : 0
                   }}
                   className={`font-['Poppins'] text-white text-[28px] font-extrabold m-0 whitespace-nowrap ${isActive ? 'relative' : 'absolute'}`}
                 >
                   {item.title}
                 </motion.h3>
 
-                {/* Vertical Rotated Title (Inactive) */}
                 <motion.h3
                   initial={false}
                   animate={{ opacity: isActive ? 0 : 1 }}
@@ -106,6 +100,53 @@ export default function ExpertiseShowcase() {
             </motion.div>
           );
         })}
+      </div>
+
+      {/* ── Mobile Crossfade View ── */}
+      <div className="md:hidden w-full px-4 mb-10">
+        {/* Main active image card */}
+        <div className="relative rounded-[20px] overflow-hidden h-[260px] bg-[#E5E0F5]">
+          {expertiseList.map((item, index) => (
+            <motion.div
+              key={item.title}
+              className="absolute inset-0"
+              animate={{ opacity: index === activeIndex ? 1 : 0 }}
+              transition={{ duration: 0.6, ease: 'easeInOut' }}
+            >
+              <img
+                src={item.imageUrl}
+                alt={item.title}
+                className="w-full h-full object-cover object-center"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[rgba(74,63,160,0.88)] via-transparent to-transparent" />
+              <h3 className="absolute bottom-5 left-5 text-white text-2xl font-extrabold font-['Poppins']">
+                {item.title}
+              </h3>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Thumbnail strip */}
+        <div className="flex gap-2 mt-3">
+          {expertiseList.map((item, index) => (
+            <button
+              key={index}
+              onClick={() => setActiveIndex(index)}
+              className={`flex-1 rounded-xl overflow-hidden transition-all duration-300 ${
+                index === activeIndex
+                  ? 'ring-2 ring-[#FF4500] opacity-100'
+                  : 'opacity-40 hover:opacity-60'
+              }`}
+              aria-label={item.title}
+            >
+              <img
+                src={item.imageUrl}
+                alt={item.title}
+                className="w-full h-[52px] object-cover object-center"
+              />
+            </button>
+          ))}
+        </div>
       </div>
 
       {/* ── Bottom Boilerplate & Progress ── */}
