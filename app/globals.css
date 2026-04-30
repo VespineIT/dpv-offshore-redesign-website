@@ -23,7 +23,8 @@ body {
   color: #1A1A1A;
   background: #FFFFFF;
   /* Force body to stay at the top (Google Translate tries to push it down) */
-  top: 0px !important; 
+  top: 0px !important;
+  overflow-x: hidden;
 }
 
 /* =========================================
