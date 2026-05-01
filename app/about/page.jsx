@@ -145,7 +145,7 @@ const AboutUsPage = () => {
                 Mr. Duminda Gunathilake founded DPV Offshore & Marine Services L.L.C. in 2018 with a clear vision — to build a world-class engineering company that delivers reliable, end-to-end marine and industrial solutions across the Middle East and beyond.
               </p>
               <p>
-                With over 18 years of hands-on industry experience, he has led the company to complete over 100 projects across the Middle East and South Asia, serving key sectors including marine, oil & gas, power generation, and heavy industry.
+                With over 12 years of hands-on industry experience, he has led the company to complete over 100 projects across the Middle East and South Asia, serving key sectors including marine, oil & gas, power generation, and heavy industry.
               </p>
               <p>
                 Under his leadership, DPV has grown into a trusted name recognized for technical excellence, safety, and a commitment to long-term partnerships with clients across the GCC region.
