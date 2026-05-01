@@ -27,10 +27,10 @@ export default function Footer() {
                
                {/* Titles */}
                <div className="mb-8">
-                 <h2 className="text-[#FF5722] text-xl sm:text-2xl lg:text-3xl font-bold tracking-tight leading-snug mb-2">
+                 <h2 className="text-[#FF5722] text-[3.8vw] sm:text-2xl lg:text-3xl font-bold tracking-tight leading-snug mb-2 whitespace-nowrap">
                    DPV Offshore & Marine Services L.L.C
                  </h2>
-                 <h3 className="text-[#FF5722] text-xl sm:text-2xl lg:text-3xl font-bold tracking-tight leading-snug">
+                 <h3 className="text-[#FF5722] text-[3.8vw] sm:text-2xl lg:text-3xl font-bold tracking-tight leading-snug whitespace-nowrap">
                    DPV Offshore & Marine Services ( Pvt ) Ltd
                  </h3>
                </div>

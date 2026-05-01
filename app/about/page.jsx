@@ -1,8 +1,9 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
-import { ShieldCheck, Wrench, Handshake, Clock, Globe } from "lucide-react";
+import { ShieldCheck, Wrench, Handshake, Clock, Globe, Download, FileText } from "lucide-react";
 import { FaAward, FaUsers, FaShip, FaGlobe as FaGlobeIcon, FaIndustry, FaBolt } from "react-icons/fa";
 import { useCounterAnimation } from "@/hooks/useCounterAnimation";
 import StatItem from "@/components/ui/StatItem";
@@ -110,6 +111,71 @@ const AboutUsPage = () => {
         </motion.div>
       </section>
 
+      <section className="py-16 md:py-24 px-4 max-w-6xl mx-auto">
+        <motion.div
+          variants={fadeUpVariant}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          className="flex flex-col md:flex-row items-center gap-12 md:gap-16"
+        >
+          <div className="shrink-0 flex flex-col items-center">
+            <div className="relative w-56 h-56 md:w-72 md:h-72 rounded-full overflow-hidden border-4 border-[#FF4500] shadow-2xl">
+              <Image
+                src="/images/owner.jpeg"
+                alt="Mr. Duminda Gunathilake"
+                fill
+                className="object-cover object-top"
+              />
+            </div>
+            <div className="mt-5 text-center">
+              <p className="text-xl font-bold text-gray-900 dark:text-white">Mr. Duminda Gunathilake</p>
+              <p className="text-[#FF4500] font-semibold text-sm mt-1 tracking-wide uppercase">Founder & General Manager</p>
+              <p className="text-gray-500 dark:text-gray-400 text-sm mt-1">DPV Offshore & Marine Services L.L.C.</p>
+            </div>
+          </div>
+
+          <div className="flex-1">
+            <p className="text-[#FF4500] font-semibold text-sm uppercase tracking-widest mb-3">Meet Our Founder</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6 leading-tight">
+              Driven by Excellence,<br className="hidden md:block" /> Built on Trust
+            </h2>
+            <div className="space-y-4 text-gray-600 dark:text-gray-400 text-base leading-relaxed">
+              <p>
+                Mr. Duminda Gunathilake founded DPV Offshore & Marine Services L.L.C. in 2018 with a clear vision — to build a world-class engineering company that delivers reliable, end-to-end marine and industrial solutions across the Middle East and beyond.
+              </p>
+              <p>
+                With over 18 years of hands-on industry experience, he has led the company to complete over 100 projects across the Middle East and South Asia, serving key sectors including marine, oil & gas, power generation, and heavy industry.
+              </p>
+              <p>
+                Under his leadership, DPV has grown into a trusted name recognized for technical excellence, safety, and a commitment to long-term partnerships with clients across the GCC region.
+              </p>
+            </div>
+            <div className="mt-8 flex flex-wrap gap-6">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-[#fff0eb] dark:bg-[#1a0e0a] flex items-center justify-center">
+                  <FaAward className="text-[#FF4500] w-5 h-5" />
+                </div>
+                <div>
+                  <p className="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wide">Experience</p>
+                  <p className="font-bold text-gray-900 dark:text-white text-sm">12+ Years</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-[#fff0eb] dark:bg-[#1a0e0a] flex items-center justify-center">
+                  <FaIndustry className="text-[#FF4500] w-5 h-5" />
+                </div>
+                <div>
+                  <p className="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wide">Projects Delivered</p>
+                  <p className="font-bold text-gray-900 dark:text-white text-sm">100+</p>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+        </motion.div>
+      </section>
+
       <section className="bg-gray-50 dark:bg-[#0f172a] py-16 md:py-24 transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-4 grid md:grid-cols-2 gap-12">
 
@@ -205,6 +271,113 @@ const AboutUsPage = () => {
             <p className="text-gray-600 dark:text-gray-400">Respect, teamwork, and pride in Sri Lankan roots and global service.</p>
           </motion.div>
         </motion.div>
+      </section>
+
+      <section className="bg-gray-50 dark:bg-[#0f172a] py-16 md:py-24 px-4 transition-colors duration-300">
+        <div className="max-w-6xl mx-auto">
+          <motion.div
+            variants={fadeUpVariant}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-[#FF4500] uppercase tracking-widest mb-4">Our Brochures</h2>
+            <p className="text-gray-600 dark:text-gray-400 text-lg max-w-2xl mx-auto">
+              Download our service brochures to learn more about what we offer.
+            </p>
+          </motion.div>
+
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            className="grid grid-cols-1 md:grid-cols-2 gap-8"
+          >
+            {/* Electromechanical Brochure */}
+            <motion.div
+              variants={fadeUpVariant}
+              className="bg-white dark:bg-[#1e293b] rounded-2xl shadow-xl border-t-4 border-[#FF4500] overflow-hidden flex flex-col"
+            >
+              <div className="p-8 flex-grow">
+                <div className="flex items-start gap-4 mb-5">
+                  <div className="w-12 h-12 bg-[#fff0eb] dark:bg-[#1a0e0a] rounded-xl flex items-center justify-center shrink-0">
+                    <FileText className="text-[#FF4500] w-6 h-6" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white leading-tight">Electromechanical Services</h3>
+                    <p className="text-[#FF4500] text-sm font-semibold mt-1">For Processing Industries</p>
+                  </div>
+                </div>
+                <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-5">
+                  A multi-discipline engineering house delivering over 100 projects across the Middle East and South Asia. Specialising in electrical & automation, mechanical, hydraulic, and calibration & balancing solutions.
+                </p>
+                <div className="flex flex-wrap gap-2 mb-2">
+                  {['Electrical & Automation', 'Mechanical', 'Hydraulic', 'Calibration & Balancing'].map(tag => (
+                    <span key={tag} className="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 text-xs rounded-full font-medium">{tag}</span>
+                  ))}
+                </div>
+                <div className="flex flex-wrap gap-4 mt-4 text-xs text-gray-500 dark:text-gray-400 font-medium">
+                  <span>⚡ 4-Hour Response</span>
+                  <span>🕐 24/7 Support</span>
+                  <span>🌍 GCC Coverage</span>
+                </div>
+              </div>
+              <div className="px-8 pb-8">
+                <a
+                  href="/PDF/DPV%20OFFSHORE%20ELECTROMECHANICAL%20%20BROCHURE.pdf"
+                  download
+                  className="flex items-center justify-center gap-2 w-full py-3 bg-[#FF4500] hover:bg-[#E63E00] text-white font-bold rounded-full shadow-md hover:shadow-[0_0_20px_rgba(255,69,0,0.4)] transition-all duration-300"
+                >
+                  <Download className="w-5 h-5" />
+                  Download Brochure
+                </a>
+              </div>
+            </motion.div>
+
+            {/* Yacht Retrofit Brochure */}
+            <motion.div
+              variants={fadeUpVariant}
+              className="bg-white dark:bg-[#1e293b] rounded-2xl shadow-xl border-t-4 border-[#FF4500] overflow-hidden flex flex-col"
+            >
+              <div className="p-8 flex-grow">
+                <div className="flex items-start gap-4 mb-5">
+                  <div className="w-12 h-12 bg-[#fff0eb] dark:bg-[#1a0e0a] rounded-xl flex items-center justify-center shrink-0">
+                    <FileText className="text-[#FF4500] w-6 h-6" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white leading-tight">Yacht Refitting & Maintenance</h3>
+                    <p className="text-[#FF4500] text-sm font-semibold mt-1">"Secure, Transparent and Reliable Yacht Care"</p>
+                  </div>
+                </div>
+                <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-5">
+                  Top-quality yacht refitting and maintenance services from hull & painting to engine overhauls. Our experienced team ensures your yacht receives the best possible care, tailored to your specific needs.
+                </p>
+                <div className="flex flex-wrap gap-2 mb-2">
+                  {['Hull & Painting', 'Electrical Systems', 'On-Board Instrumentation', 'Engine & Propeller'].map(tag => (
+                    <span key={tag} className="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 text-xs rounded-full font-medium">{tag}</span>
+                  ))}
+                </div>
+                <div className="flex flex-wrap gap-4 mt-4 text-xs text-gray-500 dark:text-gray-400 font-medium">
+                  <span>⚓ Dubai Maritime City</span>
+                  <span>🛥️ Complete Yacht Service</span>
+                  <span>✅ ISO 9001</span>
+                </div>
+              </div>
+              <div className="px-8 pb-8">
+                <a
+                  href="/PDF/YACHT%20RETROFIT%20%20DPV%20OFFSHORE%202026.pdf"
+                  download
+                  className="flex items-center justify-center gap-2 w-full py-3 bg-[#FF4500] hover:bg-[#E63E00] text-white font-bold rounded-full shadow-md hover:shadow-[0_0_20px_rgba(255,69,0,0.4)] transition-all duration-300"
+                >
+                  <Download className="w-5 h-5" />
+                  Download Brochure
+                </a>
+              </div>
+            </motion.div>
+          </motion.div>
+        </div>
       </section>
 
     </div>
