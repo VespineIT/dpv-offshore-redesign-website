@@ -25,6 +25,14 @@ export const customerLogos = [
   '/images/customer-logo/SLMD_logo.png',
   '/images/customer-logo/Snika_marine_logo.png',
   '/images/customer-logo/zmi_logo.png',
+  '/images/customer-logo/MC_logo.png',
+  '/images/customer-logo/CD_plc_logo.png',
+  '/images/customer-logo/Montech_Logo.png',
+  '/images/customer-logo/zamil_logo.jpg',
+  '/images/customer-logo/Saudi-Aramco-logo.png',
+  '/images/customer-logo/NMDC.png',
+  '/images/customer-logo/SLSC_logo.jpg',
+  '/images/customer-logo/ofco_logo.png',
 ];
 
 export const logosWithDarkBg = [
