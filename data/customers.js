@@ -23,7 +23,6 @@ export const customerLogos = [
   '/images/customer-logo/sipam.png',
   '/images/customer-logo/sl_port_logo.png',
   '/images/customer-logo/SLMD_logo.png',
-  '/images/customer-logo/Snika_marine_logo.png',
   '/images/customer-logo/zmi_logo.png',
   '/images/customer-logo/MC_logo.png',
   '/images/customer-logo/CD_plc_logo.png',
