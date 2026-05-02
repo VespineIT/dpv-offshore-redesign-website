@@ -88,7 +88,7 @@ export const offices = [
     address: '9 Tampines Grande, Asia Green, #02-00, Tampines, Singapore 528735',
     ports: ['Jurong Port', 'Pasir Panjang Terminal'],
     contacts: [
-      { name: 'Mr. Jonathan Balagtas', position: 'Technical Director', phone: '+65 8181 4669', email: 'sgp@dvpoffshore.com' },
+      { name: 'Mr. Jonathan Balagtas', position: 'Technical Director', phone: '+65 8181 4669', email: 'sgp@dpvoffshore.com' },
     ],
     imo: '6493815',
     description: 'Representative Office serving the Asia-Pacific region.',
