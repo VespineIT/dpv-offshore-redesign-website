@@ -376,6 +376,88 @@ const AboutUsPage = () => {
                 </a>
               </div>
             </motion.div>
+
+            {/* Company Profile 2026 */}
+            <motion.div
+              variants={fadeUpVariant}
+              className="bg-white dark:bg-[#1e293b] rounded-2xl shadow-xl border-t-4 border-[#FF4500] overflow-hidden flex flex-col"
+            >
+              <div className="p-8 flex-grow">
+                <div className="flex items-start gap-4 mb-5">
+                  <div className="w-12 h-12 bg-[#fff0eb] dark:bg-[#1a0e0a] rounded-xl flex items-center justify-center shrink-0">
+                    <FileText className="text-[#FF4500] w-6 h-6" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white leading-tight">Company Profile 2026</h3>
+                    <p className="text-[#FF4500] text-sm font-semibold mt-1">DPV Offshore & Marine Services</p>
+                  </div>
+                </div>
+                <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-5">
+                  A comprehensive overview of DPV Offshore & Marine Services — our history, full range of capabilities, key achievements, and our commitment to delivering world-class marine and offshore engineering solutions.
+                </p>
+                <div className="flex flex-wrap gap-2 mb-2">
+                  {['Marine Services', 'Offshore Engineering', 'Oil & Gas', 'Power Generation'].map(tag => (
+                    <span key={tag} className="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 text-xs rounded-full font-medium">{tag}</span>
+                  ))}
+                </div>
+                <div className="flex flex-wrap gap-4 mt-4 text-xs text-gray-500 dark:text-gray-400 font-medium">
+                  <span>🏆 Founded 2018</span>
+                  <span>🌍 100+ Projects</span>
+                  <span>⚓ GCC Region</span>
+                </div>
+              </div>
+              <div className="px-8 pb-8">
+                <a
+                  href="/PDF/DPV%20OFFSHORE%20COMPANY%20PROFILE%202026.pdf"
+                  download
+                  className="flex items-center justify-center gap-2 w-full py-3 bg-[#FF4500] hover:bg-[#E63E00] text-white font-bold rounded-full shadow-md hover:shadow-[0_0_20px_rgba(255,69,0,0.4)] transition-all duration-300"
+                >
+                  <Download className="w-5 h-5" />
+                  Download Profile
+                </a>
+              </div>
+            </motion.div>
+
+            {/* Electrical & Supply 2026 */}
+            <motion.div
+              variants={fadeUpVariant}
+              className="bg-white dark:bg-[#1e293b] rounded-2xl shadow-xl border-t-4 border-[#FF4500] overflow-hidden flex flex-col"
+            >
+              <div className="p-8 flex-grow">
+                <div className="flex items-start gap-4 mb-5">
+                  <div className="w-12 h-12 bg-[#fff0eb] dark:bg-[#1a0e0a] rounded-xl flex items-center justify-center shrink-0">
+                    <FileText className="text-[#FF4500] w-6 h-6" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white leading-tight">Electrical & Supply</h3>
+                    <p className="text-[#FF4500] text-sm font-semibold mt-1">Marine & Offshore Electrical Solutions</p>
+                  </div>
+                </div>
+                <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-5">
+                  Discover our comprehensive electrical supply and procurement services for the marine and offshore industry — providing certified components, materials, and end-to-end electrical solutions for your operations.
+                </p>
+                <div className="flex flex-wrap gap-2 mb-2">
+                  {['Electrical Supply', 'Procurement', 'Marine Components', 'Offshore Equipment'].map(tag => (
+                    <span key={tag} className="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 text-xs rounded-full font-medium">{tag}</span>
+                  ))}
+                </div>
+                <div className="flex flex-wrap gap-4 mt-4 text-xs text-gray-500 dark:text-gray-400 font-medium">
+                  <span>⚡ Certified Products</span>
+                  <span>🕐 24/7 Supply</span>
+                  <span>🇦🇪 UAE-Based</span>
+                </div>
+              </div>
+              <div className="px-8 pb-8">
+                <a
+                  href="/PDF/DPV%20OFFSHORE%20ELECTRICAL%20%26%20SUPPLY%202026.pdf"
+                  download
+                  className="flex items-center justify-center gap-2 w-full py-3 bg-[#FF4500] hover:bg-[#E63E00] text-white font-bold rounded-full shadow-md hover:shadow-[0_0_20px_rgba(255,69,0,0.4)] transition-all duration-300"
+                >
+                  <Download className="w-5 h-5" />
+                  Download Brochure
+                </a>
+              </div>
+            </motion.div>
           </motion.div>
         </div>
       </section>
