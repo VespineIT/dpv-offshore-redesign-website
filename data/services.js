@@ -1,9 +1,9 @@
 import { Wrench, Cpu, Zap, PenTool, Settings, Anchor, Activity, Power, Toolbox, Cog } from 'lucide-react';
 
 export const categories = [
-  { id: 'cat_1', label: 'Ship Repair', icon: Anchor, img: '/images/ship_pic_1.png', desc: 'Comprehensive dry docking, conversions, and hull maintenance.' },
+  { id: 'cat_1', label: 'Ship Repair', icon: Anchor, img: '/images/services/ship repar maintopic.png', desc: 'Comprehensive dry docking, conversions, and hull maintenance.' },
   { id: 'cat_2', label: 'Yacht Refitting', icon: PenTool, img: '/images/ship_pic_5.png', desc: 'Premium painting, electrical, and fiberglass restorations.' },
-  { id: 'cat_3', label: 'Ship Electrical Engineering & Technology', icon: Zap, img: '/images/ship_pic_2.png', desc: 'System integration, configuration, and motor rewinding.' },
+  { id: 'cat_3', label: 'Ship Electrical Engineering & Technology', icon: Zap, img: '/images/services/Ship Electrical Engineerin.png', desc: 'System integration, configuration, and motor rewinding.' },
   {
     id: 'cat_4',
     label: 'Ship Pneumatic Technology',
@@ -20,7 +20,7 @@ export const categories = [
     id: 'cat_4a',
     label: 'Marine Automation',
     icon: Cpu,
-    img: '/images/ship_pic_2.png',
+    img: '/images/services/Marine Automation Solutions.png',
     desc: 'Advanced automation, control systems, and monitoring for modern vessels.',
     overview: { intro: 'Marine automation forms the backbone of modern vessel operations, transforming complex systems into a seamless, intelligent network. From engine monitoring to integrated control systems, every function is designed to operate with accuracy, reliability, and efficiency. We deliver automation solutions that go beyond control systems that think, respond, and adapt in real time, ensuring smooth and safe vessel performance in the most demanding environments.' },
   },
@@ -106,27 +106,27 @@ export const categories = [
 
 export const serviceCards = [
   // Ship Repair
-  { id: 101, title: 'Dry Docking', desc: 'Comprehensive ship repair and conversion services.', details: 'We offer comprehensive ship repair and conversion services with advanced technologies to meet the evolving needs of the maritime industry. Our facilities are equipped to handle a wide range of projects, from routine maintenance and repairs to complex conversions and upgrades, ensuring that vessels remain operational, efficient, and compliant with the latest standards.', img: '/images/ship_pic_1.png', category: 'cat_1' },
-  { id: 102, title: 'Dry Docking Management', desc: 'Dedicated and qualified staff for safe and economical dry docking.', details: 'We at DPV Offshore offer a dedicated and qualified staff of superintendent, chief engineers, shipyard production engineers, coating inspectors, certified steel inspectors, and electrical inspectors to ensure a safe and economical dry docking of their vessels. Our dry-docking management teams are in Colombo, Sri Lanka & Dubai, Abu Dhabi, United Arab Emirates.\n\nServices include:\n• Pre docking inspection reports\n• Docking specification\n• Yard inspections, vetting and selection criteria\n• Docking Tender preparation and assessment\n• Project risk identification and management\n• Contingency planning\n• Docking calculations and docking plans\n• Acceptance tests\n\nOEM certified spare parts supply.', img: '/images/ship_pic_2.png', category: 'cat_1' },
-  { id: 103, title: 'Ship Conversion', desc: 'Upgrading vessels to meet new operational requirements.', details: 'We specialize in converting and upgrading vessels to meet new operational requirements, enhance capabilities, or comply with updated regulations. Our services include modifications for alternative fuel systems, hybrid power installations, and advanced automation solutions.', img: '/images/ship_pic_3.png', category: 'cat_1' },
-  { id: 104, title: 'Piping', desc: 'Fabrication, installation, and repair for marine piping systems.', details: 'Our piping systems provide flow of liquids ranging from chemicals to fresh water, and all medium and pressurized air, ranging from gases to circulation of heated air to the living areas from the central heating system. We handle this in a safe manner and ensure an efficient layout of the piping systems. Prefabrication is handled in UAE requirements at Dubai Maritime City workshop and Sri Lanka requirements of prefabrications carried in Colombo, Workshop.', img: '/images/ship_pic_4.png', category: 'cat_1' },
+  { id: 101, title: 'Dry Docking', desc: 'Comprehensive ship repair and conversion services.', details: 'We offer comprehensive ship repair and conversion services with advanced technologies to meet the evolving needs of the maritime industry. Our facilities are equipped to handle a wide range of projects, from routine maintenance and repairs to complex conversions and upgrades, ensuring that vessels remain operational, efficient, and compliant with the latest standards.', img: '/images/services/Dry Docking.png', category: 'cat_1' },
+  { id: 102, title: 'Dry Docking Management', desc: 'Dedicated and qualified staff for safe and economical dry docking.', details: 'We at DPV Offshore offer a dedicated and qualified staff of superintendent, chief engineers, shipyard production engineers, coating inspectors, certified steel inspectors, and electrical inspectors to ensure a safe and economical dry docking of their vessels. Our dry-docking management teams are in Colombo, Sri Lanka & Dubai, Abu Dhabi, United Arab Emirates.\n\nServices include:\n• Pre docking inspection reports\n• Docking specification\n• Yard inspections, vetting and selection criteria\n• Docking Tender preparation and assessment\n• Project risk identification and management\n• Contingency planning\n• Docking calculations and docking plans\n• Acceptance tests\n\nOEM certified spare parts supply.', img: '/images/services/Docking.png', category: 'cat_1' },
+  { id: 103, title: 'Ship Conversion', desc: 'Upgrading vessels to meet new operational requirements.', details: 'We specialize in converting and upgrading vessels to meet new operational requirements, enhance capabilities, or comply with updated regulations. Our services include modifications for alternative fuel systems, hybrid power installations, and advanced automation solutions.', img: '/images/services/Ship Conversion.jpeg', category: 'cat_1' },
+  { id: 104, title: 'Piping', desc: 'Fabrication, installation, and repair for marine piping systems.', details: 'Our piping systems provide flow of liquids ranging from chemicals to fresh water, and all medium and pressurized air, ranging from gases to circulation of heated air to the living areas from the central heating system. We handle this in a safe manner and ensure an efficient layout of the piping systems. Prefabrication is handled in UAE requirements at Dubai Maritime City workshop and Sri Lanka requirements of prefabrications carried in Colombo, Workshop.', img: '/images/services/piping.jpeg', category: 'cat_1' },
 
   // Yacht Refitting
-  { id: 201, title: 'Hull Painting & Fiberglass Works', desc: 'Comprehensive hull maintenance and repair services.', details: 'Comprehensive hull maintenance and repair services. Expert painting and refinishing for a flawless finish. Skilled fiberglass and wood repairs, ensuring structural integrity and aesthetic appeal.', img: '/images/ship_pic_5.png', category: 'cat_2' },
-  { id: 202, title: 'Electrical Systems & Lighting', desc: 'Comprehensive electrical system services for safety and reliability.', details: 'Comprehensive electrical system services for safety and reliability. Upgrades, repairs, and new installations. Energy-efficient LED lighting solutions to enhance your yacht\'s ambiance.', img: '/images/ship_pic_6.png', category: 'cat_2' },
-  { id: 203, title: 'Onboard Instrumentation', desc: 'Installation, calibration, and repair of navigation systems.', details: 'Installation, calibration, and repair of navigation and communication systems. Ensuring precise and reliable operation. Keeping you connected and informed on the water.', img: '/images/ship_pic_7.png', category: 'cat_2' },
-  { id: 204, title: 'Anti-Osmosis Treatment', desc: 'Effective anti-osmosis treatments to protect your yacht\'s hull.', details: 'Effective anti-osmosis treatments to protect your yacht\'s hull. Preventing blistering and ensuring long-term durability. Utilising industry-leading techniques and materials.', img: '/images/ship_pic_8.png', category: 'cat_2' },
-  { id: 205, title: 'Engine, Re-Engines & Propellert', desc: 'Full range of engine services and propeller repairs.', details: 'Full range of engine services, from routine maintenance to complete overhauls. Professional re-engines solutions for optimal performance. Propeller repairs and replacements for smooth sailing.', img: '/images/ship_pic_9.png', category: 'cat_2' },
+  { id: 201, title: 'Hull Painting & Fiberglass Works', desc: 'Comprehensive hull maintenance and repair services.', details: 'Comprehensive hull maintenance and repair services. Expert painting and refinishing for a flawless finish. Skilled fiberglass and wood repairs, ensuring structural integrity and aesthetic appeal.', img: '/images/services/Hull Painting & Fiberglass Works.png', category: 'cat_2' },
+  { id: 202, title: 'Electrical Systems & Lighting', desc: 'Comprehensive electrical system services for safety and reliability.', details: 'Comprehensive electrical system services for safety and reliability. Upgrades, repairs, and new installations. Energy-efficient LED lighting solutions to enhance your yacht\'s ambiance.', img: '/images/services/Electrical Systems & Lighting.png', category: 'cat_2' },
+  { id: 203, title: 'Onboard Instrumentation', desc: 'Installation, calibration, and repair of navigation systems.', details: 'Installation, calibration, and repair of navigation and communication systems. Ensuring precise and reliable operation. Keeping you connected and informed on the water.', img: '/images/services/Onboard Instrumentation.png', category: 'cat_2' },
+  { id: 204, title: 'Anti-Osmosis Treatment', desc: 'Effective anti-osmosis treatments to protect your yacht\'s hull.', details: 'Effective anti-osmosis treatments to protect your yacht\'s hull. Preventing blistering and ensuring long-term durability. Utilising industry-leading techniques and materials.', img: '/images/services/Anti-Osmosis Treatment.png', category: 'cat_2' },
+  { id: 205, title: 'Engine, Re-Engines & Propellert', desc: 'Full range of engine services and propeller repairs.', details: 'Full range of engine services, from routine maintenance to complete overhauls. Professional re-engines solutions for optimal performance. Propeller repairs and replacements for smooth sailing.', img: '/images/services/Engine, Re-Engines & Propellert.png', category: 'cat_2' },
 
   // Ship Electrical Engineering & Technology
-  { id: 301, title: 'Ship Electrical Engineering', desc: 'Innovative technology and marine electrical systems.', details: 'Innovative technology and marine electrical systems with reliable and sustainable solutions for the most demanding conditions. Since established in 2018, DPV has grown to become a Gulf & South Asia recognized and trusted provider of marine electrical systems. We offer full-scale electrical engineering design, marine procurement, and integrated solutions for vessels in the marine industry.', img: '/images/ship_pic_1.png', category: 'cat_3' },
-  { id: 302, title: 'System Integration', desc: 'Unique expertise as system integrators for the maritime industry.', details: 'At DPV Offshore we take pride in our unique expertise as system integrators. By utilizing our unique competence as system integrators, it allows us to work with all established brands in the market and deliver advanced electrical systems for all types of vessels. With solid expertise in tailored solutions for diesel-electric, full electric, and hybrid vessels, our core competency lies in selecting the correct components to ensure optimal operations.', img: '/images/ship_pic_2.png', category: 'cat_3' },
-  { id: 303, title: 'System Configuration', desc: 'Integration of modern electrical solutions for future marine operations.', details: 'The marine industry is on the brink of a technological revolution. Innovations in marine electrical technology are changing how vessels operate. Systems include: Generator sets, Energy storage system, Main switchboard, Distribution switchboards, Motor control centre & individual starters, Transformers, Drive, Electric thruster motors, Electric propulsion system, Energy Management Systems, Main and auxiliary thrusters, Thruster control, Joystick & DP Systems.', img: '/images/ship_pic_3.png', category: 'cat_3' },
-  { id: 304, title: 'Motors & Rotors Rewinding', desc: 'Wide range of services for DC and AC machinery MOTORS.', details: 'We provide a wide range of services for both DC and AC machinery MOTORS and extensive experience in service of rotating electrical machinery. Application areas include: Industrial Process and Oil & Gas, Petrochemicals & Chemicals, Power Plants (Thermal & Hydraulic), Water Supply & Irrigation, Cruise, Yacht & Commercial Marine, Ship propulsion & Thruster.', img: '/images/ship_pic_9.png', category: 'cat_3' },
+  { id: 301, title: 'Ship Electrical Engineering', desc: 'Innovative technology and marine electrical systems.', details: 'Innovative technology and marine electrical systems with reliable and sustainable solutions for the most demanding conditions. Since established in 2018, DPV has grown to become a Gulf & South Asia recognized and trusted provider of marine electrical systems. We offer full-scale electrical engineering design, marine procurement, and integrated solutions for vessels in the marine industry.', img: '/images/services/Ship Electrical Engineerin.png', category: 'cat_3' },
+  { id: 302, title: 'System Integration', desc: 'Unique expertise as system integrators for the maritime industry.', details: 'At DPV Offshore we take pride in our unique expertise as system integrators. By utilizing our unique competence as system integrators, it allows us to work with all established brands in the market and deliver advanced electrical systems for all types of vessels. With solid expertise in tailored solutions for diesel-electric, full electric, and hybrid vessels, our core competency lies in selecting the correct components to ensure optimal operations.', img: '/images/services/System Integration.png', category: 'cat_3' },
+  { id: 303, title: 'System Configuration', desc: 'Integration of modern electrical solutions for future marine operations.', details: 'The marine industry is on the brink of a technological revolution. Innovations in marine electrical technology are changing how vessels operate. Systems include: Generator sets, Energy storage system, Main switchboard, Distribution switchboards, Motor control centre & individual starters, Transformers, Drive, Electric thruster motors, Electric propulsion system, Energy Management Systems, Main and auxiliary thrusters, Thruster control, Joystick & DP Systems.', img: '/images/services/System Configuration.png', category: 'cat_3' },
+  { id: 304, title: 'Motors & Rotors Rewinding', desc: 'Wide range of services for DC and AC machinery MOTORS.', details: 'We provide a wide range of services for both DC and AC machinery MOTORS and extensive experience in service of rotating electrical machinery. Application areas include: Industrial Process and Oil & Gas, Petrochemicals & Chemicals, Power Plants (Thermal & Hydraulic), Water Supply & Irrigation, Cruise, Yacht & Commercial Marine, Ship propulsion & Thruster.', img: '/images/services/Motors & Rotors Rewinding.png', category: 'cat_3' },
 
   // Ship Pneumatic Technology
-  { id: 401, title: 'Electric Actuation', desc: 'Motion management systems engineered for marine precision.', details: 'Electric actuation is an ideal solution for applications where, in addition to reliability, it is necessary to provide speed performance and flexibility in both the control and configuration. The range includes actuators with recirculating ball screws, in-line or parallel cylinder configurations and electric motors.', img: '/images/ship_pic_4.png', category: 'cat_4' },
-  { id: 402, title: 'Fluid Control', desc: 'Advanced valves, fittings, and air treatment components.', details: 'Wide range of brass and stainless-steel solenoid valves suitable for use with air, water, steam and other fluids. The solenoid valves are 2 or 3 ways, normally open, normally closed, and designed for general service as either direct acting or servo assisted. Connections are available in both BSP and NPT 1/8" up to 2" and working pressures from vacuum up to 100 bar.', img: '/images/ship_pic_5.png', category: 'cat_4' },
+  { id: 401, title: 'Electric Actuation', desc: 'Motion management systems engineered for marine precision.', details: 'Electric actuation is an ideal solution for applications where, in addition to reliability, it is necessary to provide speed performance and flexibility in both the control and configuration. The range includes actuators with recirculating ball screws, in-line or parallel cylinder configurations and electric motors.', img: '/images/services/Electric Actuation.png', category: 'cat_4' },
+  { id: 402, title: 'Fluid Control', desc: 'Advanced valves, fittings, and air treatment components.', details: 'Wide range of brass and stainless-steel solenoid valves suitable for use with air, water, steam and other fluids. The solenoid valves are 2 or 3 ways, normally open, normally closed, and designed for general service as either direct acting or servo assisted. Connections are available in both BSP and NPT 1/8" up to 2" and working pressures from vacuum up to 100 bar.', img: '/images/services/Fluid Control.png', category: 'cat_4' },
 
   // Marine Automation
   {
@@ -134,7 +134,7 @@ export const serviceCards = [
     title: 'Marine Automation Solutions',
     desc: 'Engineering intelligence at sea through integrated automation and control systems.',
     details: 'Marine automation forms the backbone of modern vessel operations, transforming complex systems into a seamless, intelligent network. From engine monitoring to integrated control systems, every function is designed to operate with accuracy, reliability, and efficiency.\n\nWe deliver automation solutions that go beyond control systems that think, respond, and adapt in real time, ensuring smooth and safe vessel performance in the most demanding environments.\n\nIntegrated Systems. Seamless Performance.\n\nA vessel operates as a single ecosystem where every component must work in perfect coordination.\n\nOur automation solutions connect:\n• Engine and machinery monitoring systems\n• Power management and load control\n• Alarm and safety systems\n• Cargo and process automation\n• Bridge and navigation interfaces\n\nThis integration ensures faster response, reduced human error, and optimized operational efficiency across all onboard systems.\n\nModernization That Moves You Forward\n\nWe provide advanced automation upgrades that enhance vessel capability through:\n• Improved fuel efficiency\n• Real-time diagnostics and monitoring\n• Reduced downtime and maintenance costs\n• Compliance with modern maritime standards\n\nOur solutions are designed to extend the life of your vessel while improving performance and safety.\n\nPrecision-Driven Approach\n\nEvery vessel is unique, and so is our approach. We follow a structured process to deliver reliable automation solutions:\n\nDetailed system evaluation\n• Custom design and engineering\n• Professional installation and integration\n• Testing and commissioning\n• Ongoing maintenance and technical support\n\nOur team ensures every system is delivered with accuracy, quality, and long-term reliability.\n\nShaping the Future of Marine Operations\n\nThe maritime industry is evolving toward smarter, more connected vessels.\n\nWith advancements in automation, ships are becoming more efficient, data-driven, and environmentally responsible. Intelligent systems now enable predictive maintenance, remote monitoring, and optimized energy usage.\n\nWe help you stay ahead by implementing automation solutions that are not only advanced but future ready.',
-    img: '/images/ship_pic_2.png',
+    img: '/images/services/Marine Automation Solutions.png',
     category: 'cat_4a',
   },
 
@@ -144,7 +144,7 @@ export const serviceCards = [
     title: 'Overhaul Services',
     desc: 'Restoring performance and reliability through comprehensive machinery overhaul.',
     details: 'In the demanding world of maritime operations, reliability is everything. Ships operate under extreme conditions, where even minor mechanical issues can lead to costly downtime or safety risks. That\'s why professional ship maintenance services especially overhaul, reconditioning, and remetalling are essential to ensure optimal performance, longevity, and compliance with international standards.\n\nA comprehensive overhaul involves:\n• Complete disassembly of machinery\n• Inspection and fault diagnosis\n• Replacement or repair of worn-out components\n• Reassembly and testing to ensure peak efficiency\n\nRegular overhauls not only extend the lifespan of equipment but also improve fuel efficiency, reduce emissions, and minimize unexpected breakdowns. Whether it\'s a main engine overhaul or auxiliary machinery servicing, timely intervention ensures vessels remain seaworthy and efficient.\n\n2 - Stroke & 4-Stroke Main & Aux Engines Overhauling\n\nWe approach every engine overhaul with meticulous attention to detail and a commitment to excellence. Our highly skilled technicians carefully assess the condition of each engine, identifying areas that require attention and creating a tailored overhaul plan to address specific issues. Whether it\'s routine maintenance or a complete engine rebuild, we prioritize quality craftsmanship and adhere to industry best practices to ensure that every overhaul meets the highest standards of performance and durability.\n\n• Main engine unit overhaul\n• Auxiliary engine overhaul\n• 2-stroke and 4-stroke engine troubleshooting and diagnostics\n• Skilled riding crews (CDC Holders) for repair services\n\nMAKERS; CATEPILLER, CUMMINS, MTU, VOLVO PENTA, YANMAR, DAIHATSU, BERG, NIGATTA, DEUTZ, WEICHAI, WARTHSILA, MAN B & W, SULZER, HUNDHAI',
-    img: '/images/ship_pic_6.png',
+    img: '/images/services/Overhaul Services.png',
     category: 'cat_5',
   },
   {
@@ -152,7 +152,7 @@ export const serviceCards = [
     title: 'Reconditioning Services',
     desc: 'Bringing equipment back to life with cost-effective reconditioning solutions.',
     details: 'Reconditioning services focus on restoring used or damaged components to their original working condition or as close to it as possible. Instead of replacing expensive machinery, reconditioning offers a cost-effective and sustainable alternative.\n\nKey benefits of reconditioning include:\n• Significant cost savings compared to new replacements\n• Reduced downtime with faster turnaround\n• Enhanced performance and reliability\n• Environmentally friendly approach through reuse\n\nTypical reconditioning processes may involve machining, grinding, polishing, surface treatment, and precision alignment. Components such as crankshafts, cylinder heads, and engine blocks can be expertly restored to meet strict operational standards.\n\nApplications of Reconditioning 2-stroke engines:\n• Piston Crowns\n• Piston Skirts\n• Cylinder Heads\n• Cylinder Covers\n• Exhaust Valve Spindles & Seats\n• Piston Rods\n• Exhaust Valve Housing & Cages\n• Cylinder Liners\n• Connecting rods',
-    img: '/images/ship_pic_7.png',
+    img: '/images/services/Reconditioning Service.png',
     category: 'cat_5',
   },
   {
@@ -160,7 +160,7 @@ export const serviceCards = [
     title: 'Remetalling Babbitt Bearings',
     desc: 'Precision remetalling for extended bearing life and enhanced machinery performance.',
     details: 'Babbitt bearings play a crucial role in reducing friction and supporting rotating shafts in marine engines and machinery. Over time, the soft white metal (Babbitt) lining can degrade due to heat, load, and contamination.\n\nRemetalling is a specialized process that involves:\n• Removing the old, worn-out Babbitt material\n• Cleaning and preparing the bearing shell\n• Machining and finishing to precise tolerances\n\nHigh-quality remetalling ensures:\n• Improved load-carrying capacity\n• Reduced friction and wear\n• Extended bearing life\n• Enhanced machinery performance',
-    img: '/images/ship_pic_8.png',
+    img: '/images/services/Remetalling Babbitt Bearings.png',
     category: 'cat_5',
   },
   {
@@ -168,7 +168,7 @@ export const serviceCards = [
     title: 'Auxiliary Machinery',
     desc: 'Turbochargers, compressors, pumps, purifiers, sewerage treatment plants & deck machineries.',
     details: 'Our expertise in auxiliary machinery ensures the reliable and efficient operation of all critical onboard and industrial support systems. We provide comprehensive inspection, maintenance, troubleshooting, and overhaul services for a wide range of equipment.\n\nTurbochargers:\nWe specialize in performance optimization, inspection, balancing, and complete overhauling of turbochargers to ensure maximum engine efficiency and reduced fuel consumption.\n\nCompressors:\nOur services include routine maintenance, fault diagnosis, and repair of air and gas compressors, ensuring consistent pressure supply and operational reliability.\n\nPumps:\nWe handle all types of pumps including centrifugal, reciprocating, and screw pumps. Our scope covers inspection, alignment, seal replacement, bearing maintenance, and complete refurbishment.\n\nPurifiers:\nWe offer servicing and overhauling of fuel and lube oil purifiers, ensuring optimal separation efficiency and protection of engine components.\n\nSewage Treatment Plants (STP):\nOur team ensures proper operation, maintenance, and compliance of sewage treatment systems, maintaining environmental standards and system hygiene.\n\nDeck Machinery:\nWe provide maintenance and repair services for deck equipment such as winches, windlasses, cranes, and hydraulic systems, ensuring safe and efficient cargo and mooring operations.\n\nBrands:\n• Alfa Laval\n• Kelvion\n• SWEP\n• Aalborg Industries\n• Miura Co., Ltd.\n• Hamworthy\n• Wartsila',
-    img: '/images/ship_pic_9.png',
+    img: '/images/services/Auxiliary Machinery.png',
     category: 'cat_5',
   },
   {
@@ -176,7 +176,7 @@ export const serviceCards = [
     title: 'Fuel Pumps, Injectors & Governors',
     desc: 'Specialised services for fuel injection systems and engine control components.',
     details: 'We provide specialised services for fuel injection systems and engine control components, ensuring precise fuel delivery, optimal engine performance, and operational efficiency.\n\nFuel Pumps:\nOur scope includes inspection, calibration, pressure testing, and overhauling of fuel pumps to maintain accurate fuel supply and consistent engine operation.\n\nFuel Injectors:\nWe carry out cleaning, testing, nozzle replacement, and calibration of injectors to ensure proper atomization, efficient combustion, and reduced emissions.\n\nGovernors:\nWe offer maintenance, tuning, and repair of mechanical and electronic governors to ensure stable engine speed control, load management, and system reliability.\n\nBrands:\n• Bosch\n• Woodward\n• Delphi Technologies\n• Denso\n• Yanmar (OEM pumps)',
-    img: '/images/ship_pic_1.png',
+    img: '/images/services/Fuel Pumps, Injectors & Governors.png',
     category: 'cat_5',
   },
 
@@ -186,7 +186,7 @@ export const serviceCards = [
     title: 'FPP Overhaul',
     desc: 'Detailed inspection and precision restoration for fixed pitch propellers.',
     details: 'We deliver specialized maintenance, repair, and overhaul services for marine propulsion systems, ensuring optimal hydrodynamic performance, mechanical integrity, and operational reliability. Our expertise covers Fixed Pitch Propellers (FPP), Controllable Pitch Propellers (CPP), and thruster systems, supporting a wide range of vessel types and operating conditions.\n\nBy combining advanced diagnostic techniques, precision engineering, and class-approved repair procedures, we identify and resolve performance inefficiencies, structural defects, and wear-related issues at their source. Our approach is focused on minimizing downtime, extending equipment service life, and improving overall propulsion efficiency.\n\nAll work is executed in strict accordance with Original Equipment Manufacturer specifications, classification of society requirements, and international marine standards, ensuring full compliance, safety, and consistent quality. With a strong commitment to technical excellence and fast project delivery, we help ship owners and operators maintain peak vessel performance while reducing operational costs.\n\nFixed Pitch Propeller (FPP) Overhaul\n\nOur FPP overhaul process includes detailed inspection and precision restoration to maintain propeller efficiency and structural integrity:\n• Visual and NDT inspection for crack detection and material defects\n• Blade geometry measurement, pitch verification, and correction\n• Repair of cavitation damage, erosion, and impact deformation\n• Welding procedures using class-approved materials\n• Dynamic/static balancing to ISO standards\n• Final dimensional inspection and performance verification',
-    img: '/images/ship_pic_9.png',
+    img: '/images/services/FPP Overhaul.png',
     category: 'cat_6',
   },
   {
@@ -194,7 +194,7 @@ export const serviceCards = [
     title: 'CPP Overhaul',
     desc: 'Complete CPP system overhaul covering mechanical and hydraulic subsystems.',
     details: 'We provide complete CPP system overhaul covering both mechanical and hydraulic subsystems:\n• Full dismantling of hub, blades, seals, and pitch control mechanism\n• Inspection and refurbishment of blade carriers, crank rings, and linkages\n• Hydraulic system servicing including servo pistons, seals, and oil distribution systems\n• Clearance measurement, tolerance adjustment, and alignment checks\n• Reassembly under controlled conditions with torque calibration\n• Functional testing and pitch calibration',
-    img: '/images/ship_pic_1.png',
+    img: '/images/services/CPP Overhaul.png',
     category: 'cat_6',
   },
   {
@@ -202,7 +202,7 @@ export const serviceCards = [
     title: 'Thruster Overhaul',
     desc: 'Comprehensive overhaul of bow and stern thrusters for manoeuvrability.',
     details: 'We perform comprehensive overhaul of bow and stern thrusters to maintain manoeuvrability and station-keeping capability:\n• Complete dismantling of thruster units (gearbox, propeller, shaft line)\n• Inspection of gears, bearings, seals, and shaft alignment\n• Replacement of wear components and sealing systems\n• Gear tooth contact pattern analysis and backlash adjustment\n• Lubrication system flushing and renewal\n• Reassembly, alignment verification, and operational testing\n\nBrands:\n• MAN Energy Solutions\n• Wartsila\n• Rolls-Royce Power Systems\n• ABB\n• Kongsberg Maritime\n• Mitsubishi Heavy Industries\n• Hyundai Heavy Industries\n• Yanmar\n• Volvo Penta',
-    img: '/images/ship_pic_2.png',
+    img: '/images/services/Thruster Overhaul.png',
     category: 'cat_6',
   },
   {
@@ -210,7 +210,7 @@ export const serviceCards = [
     title: 'Polishing Blades',
     desc: 'Blade polishing to enhance hydrodynamic performance and reduce resistance.',
     details: 'Our blade polishing process enhances hydrodynamic performance and reduces resistance:\n• Surface roughness reduction to ISO standards\n• Removal of fouling, corrosion, and micro-defects\n• Edge refinement and contour smoothing\n• Cavitation damage mitigation\n• Final surface finishing to improve flow characteristics\n\nBrands:\n• MAN Energy Solutions\n• Wartsila\n• Kongsberg Maritime\n• ZF\n• Rolls-Royce Power Systems',
-    img: '/images/ship_pic_3.png',
+    img: '/images/services/Polishing Blades.png',
     category: 'cat_6',
   },
 
@@ -220,7 +220,7 @@ export const serviceCards = [
     title: 'Turning & Line Boring',
     desc: 'Restoring alignment and accuracy for worn or misaligned components.',
     details: 'In today\'s fast-paced industrial and maritime sectors, downtime is costly and often disruptive. That\'s where mobile in-situ machining services make a critical difference. By bringing advanced machining technology directly to your site, complex repairs and precision engineering tasks can be performed without dismantling or transporting heavy equipment.\n\nOur mobile in-situ machining solutions are designed to deliver accuracy, efficiency, and reliability—right where you need it.\n\nTurning and line boring are essential processes for repairing worn or misaligned components such as bearing housings, engine blocks, and structural assemblies.\n\nWith portable equipment, we provide:\n• On-site turning for shafts and cylindrical components\n• Precision line boring to restore alignment\n• Accurate machining without dismantling large assemblies\n\nThese services ensure proper fit, reduce vibration, and extend the lifespan of machinery.',
-    img: '/images/ship_pic_4.png',
+    img: '/images/services/Turning & Line Boring.png',
     category: 'cat_7',
   },
   {
@@ -228,7 +228,7 @@ export const serviceCards = [
     title: 'Mobile Lathe and Spindle Work',
     desc: 'Versatile on-site lathe and spindle machining across applications.',
     details: 'Our mobile lathe and spindle machining capabilities allow us to handle a wide range of applications directly on-site.\n\nWe deliver:\n• High-precision machining for large or fixed components\n• On-site repairs for shafts, rollers, and rotating equipment\n• Reduced downtime with no need for workshop transport\n\nThis flexibility is especially valuable for marine vessels, power plants, and heavy industries.',
-    img: '/images/ship_pic_5.png',
+    img: '/images/services/Mobile Lathe and Spindle Work.png',
     category: 'cat_7',
   },
   {
@@ -236,7 +236,7 @@ export const serviceCards = [
     title: 'Milling',
     desc: 'Precision surface machining for flat surfaces, keyways, and complex geometries.',
     details: 'On-site milling services are ideal for restoring flat surfaces, keyways, and complex geometries.\n\nApplications include:\n• Surface restoration and levelling\n• Slot cutting and keyway machining\n• Structural modifications and repairs\n\nOur portable milling machines ensure accuracy even in challenging environments.',
-    img: '/images/ship_pic_6.png',
+    img: '/images/services/Milling.png',
     category: 'cat_7',
   },
   {
@@ -244,7 +244,7 @@ export const serviceCards = [
     title: 'Grinding',
     desc: 'Smooth finishes and tight tolerances through precision grinding.',
     details: 'Grinding services play a vital role in achieving fine surface finishes and precise tolerances.\n\nWe offer:\n• Surface and cylindrical grinding\n• Restoration of worn surfaces\n• Improved component performance and longevity',
-    img: '/images/ship_pic_7.png',
+    img: '/images/services/Grinding.png',
     category: 'cat_7',
   },
   {
@@ -252,7 +252,7 @@ export const serviceCards = [
     title: 'Blade Grinding for Gas Turbines',
     desc: 'Specialized blade grinding for gas turbine efficiency and performance.',
     details: 'Specialized blade grinding enhances the efficiency and performance of gas turbines by restoring aerodynamic profiles and minimizing energy loss.',
-    img: '/images/ship_pic_8.png',
+    img: '/images/services/Blade Grinding for Gas Turbines.png',
     category: 'cat_7',
   },
   {
@@ -260,7 +260,7 @@ export const serviceCards = [
     title: 'Drilling',
     desc: 'Accurate and reliable on-site drilling solutions.',
     details: 'Our mobile drilling services provide precision hole-making for a variety of industrial needs.\n\nCapabilities include:\n• Drilling, reaming, and tapping\n• Stud removal and hole correction\n• Structural and pipeline applications',
-    img: '/images/ship_pic_9.png',
+    img: '/images/services/Drilling.png',
     category: 'cat_7',
   },
   {
@@ -268,7 +268,7 @@ export const serviceCards = [
     title: 'Shaft Machining',
     desc: 'Precision shaft machining where it matters most.',
     details: 'Shafts are critical components in rotating machinery, and even minor defects can lead to major failures.',
-    img: '/images/ship_pic_1.png',
+    img: '/images/services/Shaft Machining.png',
     category: 'cat_7',
   },
   {
@@ -276,7 +276,7 @@ export const serviceCards = [
     title: 'Professional Rotor Shaft Machining On Site',
     desc: 'On-site rotor shaft machining for accurate dimensional restoration.',
     details: 'We specialize in on-site rotor shaft machining, ensuring:\n• Accurate restoration of dimensions\n• Reduced downtime\n• Enhanced operational reliability',
-    img: '/images/ship_pic_2.png',
+    img: '/images/services/Professional Rotor Shaft Machining On Site.png',
     category: 'cat_7',
   },
   {
@@ -284,7 +284,7 @@ export const serviceCards = [
     title: 'Flange Machining',
     desc: 'Ensuring leak-free connections through precision flange machining.',
     details: 'Flange surfaces must be perfectly flat and aligned to prevent leaks in piping systems.\n\nOur flange machining services include:\n• On-site facing and resurfacing\n• Groove and seal preparation\n• Compliance with industry standards',
-    img: '/images/ship_pic_3.png',
+    img: '/images/services/Flange Machining.png',
     category: 'cat_7',
   },
   {
@@ -292,7 +292,7 @@ export const serviceCards = [
     title: 'Runner Processing and Balancing Operations',
     desc: 'Precise runner processing and dynamic balancing for turbines and rotating systems.',
     details: 'For turbines and rotating systems, proper balancing is essential.\n\nWe provide:\n• Runner machining and refurbishment\n• Dynamic balancing for smooth operation\n• Reduced vibration and improved efficiency',
-    img: '/images/ship_pic_4.png',
+    img: '/images/services/Runner Processing and Balancing Operations.png',
     category: 'cat_7',
   },
   {
@@ -300,7 +300,7 @@ export const serviceCards = [
     title: 'Honing and Burnishing',
     desc: 'Superior surface finishing through honing and burnishing.',
     details: 'Honing and burnishing improve surface quality and dimensional accuracy.\n\nBenefits include:\n• Reduced friction and wear\n• Enhanced sealing performance\n• Extended component life',
-    img: '/images/ship_pic_5.png',
+    img: '/images/services/Honing and Burnishing.png',
     category: 'cat_7',
   },
   {
@@ -308,7 +308,7 @@ export const serviceCards = [
     title: 'Pipe Cutting and Weld Seam Preparation',
     desc: 'Accurate pipe cutting and proper weld preparation for safe piping systems.',
     details: 'Accurate pipe cutting and proper weld preparation are critical for safe and durable piping systems.\n\nOur services ensure:\n• Clean, precise cuts\n• Proper edge preparation for welding\n• Improved weld quality and strength',
-    img: '/images/ship_pic_6.png',
+    img: '/images/services/Pipe Cutting and Weld Seam Preparation.png',
     category: 'cat_7',
   },
 
@@ -318,7 +318,7 @@ export const serviceCards = [
     title: 'Preventive Maintenance',
     desc: 'Scheduled inspections and proactive servicing to maximize plant uptime.',
     details: 'Our preventive maintenance programs are designed to keep your power plant operating at peak performance. Through scheduled inspections, condition monitoring, and proactive servicing, we identify and resolve potential issues before they escalate into costly failures. This approach significantly reduces downtime, extends equipment lifespan, and ensures consistent operational efficiency.',
-    img: '/images/ship_pic_7.png',
+    img: '/images/services/Preventive Maintenance.png',
     category: 'cat_8',
   },
   {
@@ -326,7 +326,7 @@ export const serviceCards = [
     title: 'Retrofit and Upgrades',
     desc: 'Modernizing existing power infrastructure with the latest innovations.',
     details: 'As technology advances, older systems can become inefficient or obsolete. DPV specializes in retrofitting and upgrading existing power infrastructure with the latest innovations. From improving system efficiency to enhancing environmental compliance, our solutions help clients modernize their facilities while optimizing performance and reducing operational costs.',
-    img: '/images/ship_pic_8.png',
+    img: '/images/services/Retrofit and Upgrades.png',
     category: 'cat_8',
   },
   {
@@ -334,7 +334,7 @@ export const serviceCards = [
     title: 'Engine Services',
     desc: 'Expert servicing for large-scale power generation engines.',
     details: 'We provide expert servicing for large-scale power generation engines, ensuring continuous and reliable output. Our services include inspection, overhaul, diagnostics, and performance optimization of diesel and gas engines. With a focus on precision and reliability, we help maintain maximum power generation capacity under all operating conditions.',
-    img: '/images/ship_pic_9.png',
+    img: '/images/services/Engine Services.png',
     category: 'cat_8',
   },
   {
@@ -477,7 +477,7 @@ export const serviceCards = [
     id: 1104,
     title: 'Propulsion Spare Supply',
     desc: 'High-quality components for various propulsion systems used in marine applications.',
-    details: 'Our propulsion spare parts supply services ensure that vessels maintain efficient and reliable movement. We provide high-quality components compatible with various propulsion systems used in marine applications.\n\nOur offerings include:\n• Propeller components and shafting systems\n• Bearings, seals, and coupling parts\n• Thruster and steering gear components\n• Customised spare solutions based on vessel requirements\n\nBrands:\n• MAN B&W\n• Wartsila\n• Rolls-Royce Power Systems\n• Kongsberg Maritime\n• ABB\n• ZF',
+    details: 'Our propulsion spare parts supply services ensure that vessels maintain efficient and reliable movement. We provide high-quality components compatible with various propulsion systems used in marine applications.\n\nOur offerings include:\n• Propeller components and shafting systems\n• Bearings, seals, and coupling parts\n• Thruster and steering gear components\n• Customised spare solutions based on vessel requirements\n\nBrands:\n• MAN B&W\n• Wartsila\n• Rolls-Royce Power Systems\n• ABB\n• ZF',
     img: '/images/ship_pic_5.png',
     category: 'cat_11',
   },
