@@ -2,13 +2,13 @@ import { Wrench, Cpu, Zap, PenTool, Settings, Anchor, Activity, Power, Toolbox, 
 
 export const categories = [
   { id: 'cat_1', label: 'Ship Repair', icon: Anchor, img: '/images/services/ship repar maintopic.png', desc: 'Comprehensive dry docking, conversions, and hull maintenance.' },
-  { id: 'cat_2', label: 'Yacht Refitting', icon: PenTool, img: '/images/ship_pic_5.png', desc: 'Premium painting, electrical, and fiberglass restorations.' },
+  { id: 'cat_2', label: 'Yacht Refitting', icon: PenTool, img: '/images/services/Hull Painting & Fiberglass Works.png', desc: 'Premium painting, electrical, and fiberglass restorations.' },
   { id: 'cat_3', label: 'Ship Electrical Engineering & Technology', icon: Zap, img: '/images/services/Ship Electrical Engineerin.png', desc: 'System integration, configuration, and motor rewinding.' },
   {
     id: 'cat_4',
     label: 'Ship Pneumatic Technology',
     icon: Activity,
-    img: '/images/ship_pic_4.png',
+    img: '/images/services/Electric Actuation.png',
     desc: 'Advanced electric actuation and intelligent fluid control.',
     overview: {
       intro: 'The range of pneumatic solutions includes actuators, valves, solenoid valves, proportional technology fittings, handling vacuum and air treatment components. All combine the mechanics and electronics required for motion management and control. With optimized consumption, dimensions and functional parameters, each individual component contributes to the overall system.',
@@ -28,7 +28,7 @@ export const categories = [
     id: 'cat_5',
     label: 'Ship Mechanical Engineering & Technology',
     icon: Cog,
-    img: '/images/ship_pic_6.png',
+    img: '/images/services/Overhaul Services.png',
     desc: 'Heavy mechanical overhauls and bearing remetalling.',
     overview: {
       intro: 'In the demanding world of maritime operations, reliability is everything. Ships operate under extreme conditions, where even minor mechanical issues can lead to costly downtime or safety risks. That\'s why professional ship maintenance services especially overhaul, reconditioning, and remetalling are essential to ensure optimal performance, longevity, and compliance with international standards.',
@@ -38,7 +38,7 @@ export const categories = [
     id: 'cat_6',
     label: 'PROPULSION',
     icon: Toolbox,
-    img: '/images/ship_pic_3.png',
+    img: '/images/services/FPP Overhaul.png',
     desc: 'FPP, CPP, and thruster overhauls with precision blade polishing.',
     overview: {
       intro: 'We deliver specialized maintenance, repair, and overhaul services for marine propulsion systems, ensuring optimal hydrodynamic performance, mechanical integrity, and operational reliability. Our expertise covers Fixed Pitch Propellers (FPP), Controllable Pitch Propellers (CPP), and thruster systems, supporting a wide range of vessel types and operating conditions.',
@@ -48,7 +48,7 @@ export const categories = [
     id: 'cat_7',
     label: 'Mobile In-Situ Machining',
     icon: Wrench,
-    img: '/images/ship_pic_7.png',
+    img: '/images/services/Mobile Lathe and Spindle Work.png',
     desc: 'On-site turning, milling, grinding, and line boring.',
     overview: {
       intro: 'In today\'s fast-paced industrial and maritime sectors, downtime is costly and often disruptive. By bringing advanced machining technology directly to your site, complex repairs and precision engineering tasks can be performed without dismantling or transporting heavy equipment. Our mobile in-situ machining solutions are designed to deliver accuracy, efficiency, and reliability—right where you need it.',
@@ -58,7 +58,7 @@ export const categories = [
     id: 'cat_8',
     label: 'Power Plant Related Services',
     icon: Power,
-    img: '/images/ship_pic_8.png',
+    img: '/images/services/Preventive Maintenance.png',
     desc: 'Maintenance, retrofits, and emergency breakdown repairs.',
     overview: {
       intro: 'At DPV Offshore and Marine Services, we deliver comprehensive, high-performance solutions tailored to the demanding needs of modern power plants. Our expertise spans the full lifecycle of plant operations—ensuring efficiency, reliability, and long-term asset value. With a strong technical team and industry-driven approach, we help our clients maintain uninterrupted power generation while adapting to evolving technologies.',
@@ -68,7 +68,7 @@ export const categories = [
     id: 'cat_9',
     label: 'Electrical Services for Hydro Power Stations',
     icon: Zap,
-    img: '/images/ship_pic_4.png',
+    img: '/images/services/Transformer Solution.png',
     desc: 'Generator rewinding, hydroelectric upgrades, and transformer solutions.',
     overview: {
       intro: 'With extensive experience in marine engineering and industrial systems, we provide advanced electrical services designed to support both onboard vessels and large-scale power generation facilities. Our approach combines technical precision, reliability, and compliance with international standards to ensure optimal system performance in demanding environments.',
@@ -78,7 +78,7 @@ export const categories = [
     id: 'cat_10',
     label: 'Cranes',
     icon: Settings,
-    img: '/images/ship_pic_9.png',
+    img: '/images/services/New Crane Systems to Fit Your Needs.png',
     desc: 'Shipyard diagnostics, new systems, and life-extension retrofits.',
     overview: {
       intro: 'We provide advanced crane solutions designed to meet the demanding operational needs of ports, shipyards, and offshore environments. Our expertise covers automation, modernization, and full system integration ensuring safe, efficient, and reliable lifting operations. Whether upgrading existing equipment or delivering new turnkey systems, we help clients enhance performance while maintaining strict safety standards.',
@@ -88,7 +88,7 @@ export const categories = [
     id: 'cat_10a',
     label: 'Hydraulic Systems Integration & Repairs',
     icon: Wrench,
-    img: '/images/ship_pic_2.png',
+    img: '/images/services/Hydraulic System Maintenance.png',
     desc: 'Comprehensive hydraulic system integration, troubleshooting, and precision repairs.',
     overview: { intro: 'Hydraulic systems are at the heart of many critical marine operations. Powering deck machinery, steering systems, cranes, winches, and various control applications onboard. We provide complete hydraulic system integration, maintenance, and repair services designed to ensure smooth, safe, and efficient operation in demanding marine environments. Our focus is on reliability, precision, and minimizing downtime through expert diagnostics and high-quality workmanship.' },
   },
@@ -96,7 +96,7 @@ export const categories = [
     id: 'cat_11',
     label: 'OEM Solutions',
     icon: Cpu,
-    img: '/images/ship_pic_2.png',
+    img: '/images/services/Engine Spare Parts Supply.png',
     desc: 'Genuine spare parts for engines, cranes, and auxiliary machinery.',
     overview: {
       intro: 'At DPV Offshore and Marine Services, we provide reliable OEM solutions and high-quality spare parts supply to support uninterrupted operations across marine, offshore, and industrial sectors. Our strong sourcing network and technical expertise ensure that every component we deliver meets the highest standards of performance, durability, and compatibility. We are committed to minimizing downtime and maximizing operational efficiency through timely and dependable supply services.',
@@ -342,7 +342,7 @@ export const serviceCards = [
     title: 'Turbine Related Maintenance',
     desc: 'Specialized maintenance for gas and steam turbine systems.',
     details: 'Our team offers specialized maintenance for both gas and steam turbine systems. We handle everything from routine inspections and component servicing to major overhauls. By maintaining critical turbine components and ensuring proper alignment and balance, we enhance operational efficiency, minimize wear, and reduce the risk of unexpected breakdowns.',
-    img: '/images/ship_pic_1.png',
+    img: '/images/services/Turbine Related Maintenance.png',
     category: 'cat_8',
   },
   {
@@ -350,7 +350,7 @@ export const serviceCards = [
     title: 'Emergency Breakdown Services',
     desc: 'Rapid-response emergency services to minimize downtime from unexpected failures.',
     details: 'Unexpected failures can disrupt operations and lead to significant losses. That\'s why DPV provides rapid-response emergency services to quickly diagnose and repair breakdowns. Our experienced technicians are available to mobilize at short notice, ensuring minimal downtime and a fast return to normal operations.',
-    img: '/images/ship_pic_2.png',
+    img: '/images/services/Emergency Breakdown Services.png',
     category: 'cat_8',
   },
   {
@@ -358,7 +358,7 @@ export const serviceCards = [
     title: 'Control Systems & Automation',
     desc: 'Upgrading PLC networks and SCADA systems for modern plant management.',
     details: 'Modern power plants rely heavily on advanced control systems for efficient management. We specialize in upgrading and integrating PLC networks and SCADA systems to improve monitoring, automation, and control. Our solutions enhance real-time data visibility, optimize system performance, and enable smarter decision-making for plant operators.',
-    img: '/images/ship_pic_3.png',
+    img: '/images/services/Control Systems & Automation.png',
     category: 'cat_8',
   },
 
@@ -368,7 +368,7 @@ export const serviceCards = [
     title: 'Rewinding of the Generator Stators',
     desc: 'Rewinding and refurbishment of generator stators for extended service life.',
     details: 'With extensive experience in marine engineering and industrial systems, we provide advanced electrical services designed to support both onboard vessels and large-scale power generation facilities. Our approach combines technical precision, reliability, and compliance with international standards to ensure optimal system performance in demanding environments.\n\nWe specialize in the rewinding and refurbishment of generator stators, restoring electrical integrity and improving operational efficiency. Our process includes detailed inspection, insulation upgrading, precision coil winding, vacuum pressure impregnation (VPI), and comprehensive testing. This ensures enhanced durability, reduced downtime, and extended service life of generators operating under harsh marine and industrial conditions.\n\nBrands:\n• Caterpillar\n• Cummins\n• MAN Energy Solutions\n• Wartsila\n• Volvo Penta\n• Kohler Power\n• Yanmar\n• MTU\n• Mitsubishi Heavy Industries',
-    img: '/images/ship_pic_4.png',
+    img: '/images/services/Rewinding of the Generator Stators.png',
     category: 'cat_9',
   },
   {
@@ -376,7 +376,7 @@ export const serviceCards = [
     title: 'Increasing Power of Hydroelectric Generators',
     desc: 'Tailored solutions to increase the power output and efficiency of hydroelectric generators.',
     details: 'Our engineering team delivers tailored solutions to increase the power output and efficiency of hydroelectric generators. By analyzing load conditions, thermal limits, and system constraints, we implement upgrades such as winding modifications, cooling improvements, and loss reduction techniques. These enhancements enable higher generation capacity without compromising safety or reliability.',
-    img: '/images/ship_pic_5.png',
+    img: '/images/services/Increasing Power of Hydroelectric Generators.png',
     category: 'cat_9',
   },
   {
@@ -384,7 +384,7 @@ export const serviceCards = [
     title: 'Transformer Solutions',
     desc: 'End-to-end transformer services for safe and efficient power distribution.',
     details: 'We provide end-to-end transformer services, including diagnostics, oil analysis, rewinding, insulation repairs, and retrofitting. Our solutions are designed to improve voltage stability, minimize energy losses, and ensure safe and efficient power distribution across marine and industrial systems.',
-    img: '/images/ship_pic_6.png',
+    img: '/images/services/Transformer Solutions.png',
     category: 'cat_9',
   },
   {
@@ -392,7 +392,7 @@ export const serviceCards = [
     title: 'Integrated Marine Electrical Expertise',
     desc: 'Seamless electrical services integrated with mechanical and automation systems onboard vessels.',
     details: 'Leveraging our core strength as a ship maintenance company, we integrate electrical services with mechanical and automation systems onboard vessels. From power generation and distribution to auxiliary machinery support, we ensure seamless operation through preventive maintenance, fault diagnosis, and rapid repair services.',
-    img: '/images/ship_pic_7.png',
+    img: '/images/services/Integrated Marine Electrical Expertise.png',
     category: 'cat_9',
   },
 
@@ -402,7 +402,7 @@ export const serviceCards = [
     title: 'Automation, System Integration and Diagnostics',
     desc: 'Cutting-edge automation and system integration for port and shipyard crane applications.',
     details: 'We provide advanced crane solutions designed to meet the demanding operational needs of ports, shipyards, and offshore environments. Our expertise covers automation, modernization, and full system integration ensuring safe, efficient, and reliable lifting operations. Whether upgrading existing equipment or delivering new turnkey systems, we help clients enhance performance while maintaining strict safety standards.\n\nWe deliver cutting-edge automation and system integration solutions for cranes used in ports, shipyards, and marine operations. Our services include advanced diagnostics, real-time monitoring, and intelligent control systems that improve operational accuracy and safety. By integrating modern technologies, we enable seamless communication between crane components, reduce human error, and enhance overall productivity.',
-    img: '/images/ship_pic_7.png',
+    img: '/images/services/Automation, System Integration and Diagnostic.png',
     category: 'cat_10',
   },
   {
@@ -410,7 +410,7 @@ export const serviceCards = [
     title: 'Crane System Upgrades',
     desc: 'Upgrading existing crane systems with modern drives, control units, and safety features.',
     details: 'DPV specialises in upgrading existing crane systems with modern drives, control units, and safety features. Our upgrades are designed to improve speed, precision, and operational reliability while ensuring compliance with the latest industry standards. By modernizing outdated systems, we help extend equipment usability and significantly enhance performance without the need for full replacement.',
-    img: '/images/ship_pic_8.png',
+    img: '/images/services/Crane System Upgrades.png',
     category: 'cat_10',
   },
   {
@@ -418,7 +418,7 @@ export const serviceCards = [
     title: 'New Crane Systems to Fit Your Needs',
     desc: 'Turnkey solutions for design, supply, installation, and commissioning of new crane systems.',
     details: 'We provide turnkey solutions for the design, supply, installation, and commissioning of new crane systems. Each project is customised to meet the specific operational requirements of our clients, whether for heavy industrial lifting, port handling, or offshore applications. Our focus is on delivering robust, efficient, and safe lifting solutions that align perfectly with your workflow and long-term operational goals.',
-    img: '/images/ship_pic_9.png',
+    img: '/images/services/New Crane Systems to Fit Your Needs.png',
     category: 'cat_10',
   },
   {
@@ -426,7 +426,7 @@ export const serviceCards = [
     title: 'Retrofit Solutions to Extend Crane Service Life',
     desc: 'Cost-effective retrofit solutions to extend the service life of existing cranes.',
     details: 'Our retrofit solutions are designed to extend the service life of existing cranes in a cost-effective manner. By replacing or upgrading critical components such as motors, control panels, and safety systems, we restore performance and reliability while minimizing capital expenditure. This targeted approach allows clients to achieve modern functionality without the need for complete system replacement.',
-    img: '/images/ship_pic_1.png',
+    img: '/images/services/Retrofit Solutions to Extend Crane Service Life.png',
     category: 'cat_10',
   },
 
@@ -436,7 +436,7 @@ export const serviceCards = [
     title: 'Hydraulic System Maintenance',
     desc: 'Comprehensive maintenance to ensure hydraulic systems operate at peak efficiency.',
     details: 'Hydraulic systems are at the heart of many critical marine operations. Powering deck machinery, steering systems, cranes, winches, and various control applications onboard.\n\nWe provide complete hydraulic system integration, maintenance, and repair services designed to ensure smooth, safe, and efficient operation in demanding marine environments.\n\nOur focus is on reliability, precision, and minimizing downtime through expert diagnostics and high-quality workmanship.\n\nPreventive care is key to hydraulic performance and system longevity.\n\nWe deliver comprehensive maintenance solutions to ensure hydraulic systems operate at peak efficiency and safety standards are maintained at all times.\n\nOur Maintenance Scope Includes:\n• Hydraulic oil inspection, filtration, and replacement\n• Leak detection and line integrity checks\n• Pump, motor, and valve servicing\n• Cylinder inspection, sealing, and reconditioning\n• Hose and fitting replacement\n• Pressure testing and system calibration\n• Contamination control and flushing\n• Filter element replacement and system cleaning',
-    img: '/images/ship_pic_2.png',
+    img: '/images/services/Hydraulic System Maintenance.png',
     category: 'cat_10a',
   },
   {
@@ -444,7 +444,7 @@ export const serviceCards = [
     title: 'Hydraulic System Integration & Repairs',
     desc: 'Complete hydraulic system support from installation to troubleshooting and repair.',
     details: 'We specialize in complete hydraulic system support—from installation to troubleshooting and repair.\n\nOur Services Include:\n• Hydraulic system design and integration support\n• Installation of pumps, valves, and actuators\n• Troubleshooting of pressure loss, leakage, and performance issues\n• Overhauling of hydraulic pumps and motors\n• Servo and directional control valve repair\n• Cylinder rebuilding and rod straightening\n• Pipework modification and system upgrades\n• Emergency breakdown repair support',
-    img: '/images/ship_pic_3.png',
+    img: '/images/services/Hydraulic System Maintenance.png',
     category: 'cat_10a',
   },
 
@@ -454,7 +454,7 @@ export const serviceCards = [
     title: 'Engine Spare Parts Supply',
     desc: 'Comprehensive genuine and OEM-compatible engine spare parts supply.',
     details: 'At DPV Offshore and Marine Services, we provide reliable OEM solutions and high-quality spare parts supply to support uninterrupted operations across marine, offshore, and industrial sectors. Our strong sourcing network and technical expertise ensure that every component we deliver meets the highest standards of performance, durability, and compatibility. We are committed to minimizing downtime and maximizing operational efficiency through timely and dependable supply services.\n\nWe supply a comprehensive range of genuine and OEM-compatible engine spare parts to support all types of marine and industrial engines. Our inventory and sourcing capabilities ensure quick availability of critical components, helping maintain optimal engine performance and reliability.\n\nOur offerings include:\n• Engine components such as pistons, liners, bearings, and gaskets\n• Fuel injection system parts and turbocharger components\n• Filters, seals, and maintenance kits\n• Spare parts for both diesel and gas engines\n\nBrands:\n• MAN Energy Solutions\n• Wartsila\n• Caterpillar\n• Cummins\n• Rolls-Royce Power Systems (MTU)\n• Mitsubishi Heavy Industries\n• Volvo Penta\n• Yanmar\n• Deutz AG\n• Perkins Engines',
-    img: '/images/ship_pic_2.png',
+    img: '/images/services/Engine Spare Parts Supply.png',
     category: 'cat_11',
   },
   {
@@ -462,7 +462,7 @@ export const serviceCards = [
     title: 'Crane Spare Parts Supply',
     desc: 'High-quality spare parts for cranes used in ports, shipyards, and offshore operations.',
     details: 'DPV provides high-quality spare parts for various types of cranes used in ports, shipyards, and offshore operations. Our parts are sourced to ensure durability, safety, and seamless compatibility with your existing systems.\n\nOur offerings include:\n• Hoisting and lifting components\n• Motors, gearboxes, and drive systems\n• Control panels and electrical components\n• Safety devices and limit switches',
-    img: '/images/ship_pic_3.png',
+    img: '/images/services/Crane Spare Parts Supply.png',
     category: 'cat_11',
   },
   {
@@ -470,7 +470,7 @@ export const serviceCards = [
     title: 'Auxiliary Machinery Spare Parts Supply',
     desc: 'Wide range of spare parts for auxiliary machinery essential to vessel and plant operations.',
     details: 'We offer a wide range of spare parts for auxiliary machinery essential to vessel and plant operations. Our solutions are designed to support continuous operation and reduce the risk of unexpected failures.\n\nOur offerings include:\n• Pumps, compressors, and heat exchanger components\n• Valves, seals, and piping accessories\n• Electrical and mechanical spare parts\n• Maintenance and overhaul kits\n\nBrands:\n• Alfa Laval\n• Atlas Copco\n• Sperre\n• Hatlapa\n• Tanabe\n• Kelvion\n• SWEP\n• Aalborg Industries\n• Hamworthy\n• Wartsila\n• Carrier\n• Daikin\n• York\n• ABB\n• Siemens\n• Schneider Electric',
-    img: '/images/ship_pic_4.png',
+    img: '/images/services/Auxiliary Machinery Spare Parts Supply.png',
     category: 'cat_11',
   },
   {
@@ -478,7 +478,7 @@ export const serviceCards = [
     title: 'Propulsion Spare Supply',
     desc: 'High-quality components for various propulsion systems used in marine applications.',
     details: 'Our propulsion spare parts supply services ensure that vessels maintain efficient and reliable movement. We provide high-quality components compatible with various propulsion systems used in marine applications.\n\nOur offerings include:\n• Propeller components and shafting systems\n• Bearings, seals, and coupling parts\n• Thruster and steering gear components\n• Customised spare solutions based on vessel requirements\n\nBrands:\n• MAN B&W\n• Wartsila\n• Rolls-Royce Power Systems\n• ABB\n• ZF',
-    img: '/images/ship_pic_5.png',
+    img: '/images/services/Propulsion Spare Supply.png',
     category: 'cat_11',
   },
 ];
