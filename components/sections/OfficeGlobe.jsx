@@ -100,9 +100,17 @@ export default function OfficeGlobe() {
                     {activeLocation.city}
                   </h2>
 
-                  <p className="text-sm md:text-xl text-gray-900/90 dark:text-white/90 mb-4 md:mb-8 font-light leading-relaxed">
+                  <p className="text-sm md:text-xl text-gray-900/90 dark:text-white/90 mb-3 md:mb-5 font-light leading-relaxed">
                     {activeLocation.description}
                   </p>
+
+                  <div className="flex items-start gap-2 mb-4 md:mb-8 text-xs md:text-sm text-gray-800 dark:text-white/80">
+                    <svg className="w-4 h-4 flex-shrink-0 mt-0.5 text-[#E95623]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                    <span className="leading-snug">{activeLocation.address}</span>
+                  </div>
 
                   <div className="mb-4 md:mb-8 inline-block bg-white/20 dark:bg-white/5 backdrop-blur-xl border border-white/30 dark:border-white/10 rounded-xl md:rounded-2xl px-4 py-3 md:px-6 md:py-4 shadow-sm">
                     <p className="text-xs uppercase tracking-widest text-[#E95623] font-bold mb-1">Key Serviced Ports</p>
