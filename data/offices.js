@@ -7,8 +7,7 @@ export const offices = [
     address: 'DPV Offshore & Marine Services LLC, Office No. 879, 8th Floor, Al Ghaith Tower, Mohammed Bin Hamdan Street, Abu Dhabi, UAE',
     ports: ['Free Port', 'Khalifa Port', 'Zayed Port', 'Musaffah Port'],
     contacts: [
-      { name: 'Mr. Mohomed Roshan', position: 'Branch Manager', phone: '+971 50 112 4870', email: 'info@dpvoffshore.com' },
-      { name: 'Mr. Tharuka Vishvajith', position: 'Marine Engineer', phone: '+971 50 273 3471', email: 'info@dpvoffshore.com' },
+      { phone: '+971 56 706 0326', landline: '+971 4 580 4314', email: 'info@dpvoffshore.com' },
     ],
     imo: null,
     description: 'Strategic hub for Middle East offshore operations.',
@@ -24,7 +23,7 @@ export const offices = [
     address: 'DPV Offshore & Marine Services LLC, P.O. Box 75287, Workshop 05, W306, Dubai Maritime City, Dubai, UAE',
     ports: ['Jebel Ali', 'Port Rashid', 'Hamriya Port'],
     contacts: [
-      { name: 'Mr. Duminda Gunathilake', position: 'General Manager', phone: '+971 56 706 0326', email: 'gm@dpvoffshore.com' },
+      { phone: '+971 56 706 0326', landline: '+971 4 580 4314', email: 'info@dpvoffshore.com' },
     ],
     imo: null,
     description: 'Core workshop and marine services facility in Dubai Maritime City.',
@@ -40,7 +39,7 @@ export const offices = [
     address: 'Sharjah, UAE',
     ports: ['Khalid Port', 'Hamriyah Port', 'Khorfakkan'],
     contacts: [
-      { name: 'Ms. Kawini Koshila', position: 'Operation Executive', phone: '+971 56 435 4936', email: 'info@dpvoffshore.com' },
+      { phone: '+971 56 706 0326', landline: '+971 4 580 4314', email: 'info@dpvoffshore.com' },
     ],
     imo: null,
     description: 'Key serviced port for extended maritime operations.',
@@ -56,7 +55,7 @@ export const offices = [
     address: 'DPV Offshore & Marine Services L.L.C - Fujairah Branch, Al Theeb Building (Opposite Civil Defense Building), Mohammed Bin Zayed City, Shop 1, Fujairah, UAE',
     ports: ['Fujairah Port'],
     contacts: [
-      { name: 'Mr. Harsha Dissanayake', position: 'Mechanical Engineer', phone: '+971 50 629 4308', email: 'info@dpvoffshore.com' },
+      { phone: '+971 56 706 0326', landline: '+971 4 580 4314', email: 'info@dpvoffshore.com' },
     ],
     imo: null,
     description: 'Branch office providing dedicated support for eastern seaboard maritime operations.',
@@ -69,10 +68,10 @@ export const offices = [
     city: 'Colombo',
     country: 'Sri Lanka',
     title: 'Branch Office',
-    address: 'DPV Offshore & Marine Services LLC, No. 736, Dr. Danister De Silva Mawatha, Colombo 00900, Sri Lanka',
+    address: 'DPV Offshore & Marine Services LLC, No. 59/2, Norris Canal Road, Colombo 10, Sri Lanka',
     ports: ['Colombo', 'Galle', 'Hambantota', 'Trincomalee', 'OPL Services - SL'],
     contacts: [
-      { name: 'Mr. Duminda Gunathilake', position: 'General Manager', phone: '+94 77 774 3023', email: 'cmb@dpvoffshore.com' },
+      { phone: '+94 77 774 3023', email: 'cmb@dpvoffshore.com' },
     ],
     imo: null,
     description: 'Branch Office - Regional office.',
@@ -88,7 +87,7 @@ export const offices = [
     address: '9 Tampines Grande, Asia Green, #02-00, Tampines, Singapore 528735',
     ports: ['Jurong Port', 'Pasir Panjang Terminal'],
     contacts: [
-      { name: 'Mr. Jonathan Balagtas', position: 'Technical Director', phone: '+65 8181 4669', email: 'sgp@dpvoffshore.com' },
+      { phone: '+65 8181 4669', email: 'sgp@dpvoffshore.com' },
     ],
     imo: '6493815',
     description: 'Representative Office serving the Asia-Pacific region.',

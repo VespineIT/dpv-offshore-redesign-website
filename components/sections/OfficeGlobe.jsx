@@ -111,32 +111,33 @@ export default function OfficeGlobe() {
                     </p>
                   </div>
 
-                  <div className="flex flex-col gap-4 md:gap-6 border-t border-gray-900/10 dark:border-white/10 pt-4 md:pt-6">
+                  <div className="flex flex-col gap-1 border-t border-gray-900/10 dark:border-white/10 pt-4 md:pt-6 text-xs md:text-sm text-gray-800 dark:text-white/80 font-medium">
                     {activeLocation.contacts.map((contact, index) => (
-                      <div key={index} className="flex items-start gap-3">
-                        <svg className="w-5 h-5 md:w-6 md:h-6 text-[#E95623] mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                        </svg>
-                        <div className="flex flex-col min-w-0">
-                          <span className="text-base md:text-lg font-bold text-gray-900 dark:text-white">{contact.name}</span>
-                          <span className="text-xs font-semibold text-[#E95623] uppercase tracking-wide mb-1.5">{contact.position}</span>
-                          <div className="flex flex-col gap-1 text-xs md:text-sm text-gray-800 dark:text-white/80 font-medium">
-                            <span className="flex items-center gap-1.5">
-                              <svg className="w-3.5 h-3.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                              </svg>
-                              {contact.phone}
-                            </span>
-                            <span className="flex items-center gap-1.5">
-                              <svg className="w-3.5 h-3.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                              </svg>
-                              <a href={`mailto:${contact.email}`} className="hover:text-[#E95623] transition-colors truncate">
-                                {contact.email}
-                              </a>
-                            </span>
-                          </div>
-                        </div>
+                      <div key={index} className="flex flex-col gap-1">
+                        <span className="flex items-center gap-1.5">
+                          <svg className="w-3.5 h-3.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                          </svg>
+                          <span className="text-white font-semibold uppercase tracking-wide text-[10px] mr-1">Mobile</span>
+                          {contact.phone}
+                        </span>
+                        {contact.landline && (
+                          <span className="flex items-center gap-1.5">
+                            <svg className="w-3.5 h-3.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                            </svg>
+                            <span className="text-white font-semibold uppercase tracking-wide text-[10px] mr-1">Landline</span>
+                            {contact.landline}
+                          </span>
+                        )}
+                        <span className="flex items-center gap-1.5">
+                          <svg className="w-3.5 h-3.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                          </svg>
+                          <a href={`mailto:${contact.email}`} className="hover:text-[#E95623] transition-colors truncate">
+                            {contact.email}
+                          </a>
+                        </span>
                       </div>
                     ))}
                   </div>
