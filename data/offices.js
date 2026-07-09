@@ -68,7 +68,7 @@ export const offices = [
     city: 'Colombo',
     country: 'Sri Lanka',
     title: 'Branch Office',
-    address: 'DPV Offshore & Marine Services LLC, No. 59/2, Norris Canal Road, Colombo 10, Sri Lanka',
+    address: 'DPV Offshore and Marine Services (Pvt) Ltd, No: 59/2, Norris Canal Road, Colombo 10, Sri Lanka',
     ports: ['Colombo', 'Galle', 'Hambantota', 'Trincomalee', 'OPL Services - SL'],
     contacts: [
       { phone: '+94 77 774 3023', email: 'cmb@dpvoffshore.com' },
