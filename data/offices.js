@@ -12,7 +12,7 @@ export const offices = [
     imo: null,
     description: 'Strategic hub for Middle East offshore operations.',
     timezone: 'Asia/Dubai',
-    image: '/images/Khalifa-Port.jpg',
+    image: '/images/Khalifa-Port.webp',
     coordinates: { lat: 24.4539, lng: 54.3773 },
   },
   {
@@ -28,7 +28,7 @@ export const offices = [
     imo: null,
     description: 'Core workshop and marine services facility in Dubai Maritime City.',
     timezone: 'Asia/Dubai',
-    image: '/images/Jebel-Ali-Port.png',
+    image: '/images/Jebel-Ali-Port.webp',
     coordinates: { lat: 25.2048, lng: 55.2708 },
   },
   {
@@ -44,7 +44,7 @@ export const offices = [
     imo: null,
     description: 'Key serviced port for extended maritime operations.',
     timezone: 'Asia/Dubai',
-    image: '/images/port-khalid.jpg',
+    image: '/images/port-khalid.webp',
     coordinates: { lat: 25.3463, lng: 55.4209 },
   },
   {
@@ -60,7 +60,7 @@ export const offices = [
     imo: null,
     description: 'Branch office providing dedicated support for eastern seaboard maritime operations.',
     timezone: 'Asia/Dubai',
-    image: '/images/Fujairah-Port.jpg',
+    image: '/images/Fujairah-Port.webp',
     coordinates: { lat: 25.1288, lng: 56.3265 },
   },
   {
@@ -76,7 +76,7 @@ export const offices = [
     imo: null,
     description: 'Branch Office - Regional office.',
     timezone: 'Asia/Colombo',
-    image: '/images/Colombo-fort.jpg',
+    image: '/images/Colombo-fort.webp',
     coordinates: { lat: 6.9271, lng: 79.8612 },
   },
   {
@@ -92,7 +92,7 @@ export const offices = [
     imo: '6493815',
     description: 'Representative Office serving the Asia-Pacific region.',
     timezone: 'Asia/Singapore',
-    image: '/images/Jurong-Port.jpg',
+    image: '/images/Jurong-Port.webp',
     coordinates: { lat: 1.3521, lng: 103.8198 },
   },
 ];

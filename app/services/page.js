@@ -59,7 +59,7 @@ export default function Services() {
       <section className="relative w-full h-[40vh] min-h-[350px] md:h-[450px] flex items-center justify-center overflow-hidden rounded-b-[40px] md:rounded-b-[60px] shadow-2xl">
         <div className="absolute inset-0 z-0">
           <Image 
-            src="/images/Our_Services_hero_banner.png"
+            src="/images/Our_Services_hero_banner.webp"
             alt="Offshore Services"
             fill 
             priority

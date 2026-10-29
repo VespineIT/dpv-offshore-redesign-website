@@ -1,7 +1,5 @@
 /* globals.css */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -23,7 +21,6 @@
   --color-blueviolet: #6246e5;
   --color-orangered: #ec4a0a;
   --br-50: 50%;
-  --font-inter: Inter;
   --fs-25: 25px;
   --height-11: 11px;
   --height-26: 26px;

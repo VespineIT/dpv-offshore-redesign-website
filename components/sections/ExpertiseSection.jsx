@@ -4,11 +4,11 @@ import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 
 const expertiseList = [
-  { title: 'Products',          imageUrl: '/images/expertise_products.png' },
-  { title: 'Operations',        imageUrl: '/images/expertise_operations.png' },
-  { title: 'Technical Support', imageUrl: '/images/expertise_support.png' },
-  { title: 'Repair Orders',     imageUrl: '/images/expertise_repair.png' },
-  { title: 'Maintenance',       imageUrl: '/images/expertise_maintenance.png' },
+  { title: 'Products',          imageUrl: '/images/expertise_products.webp' },
+  { title: 'Operations',        imageUrl: '/images/expertise_operations.webp' },
+  { title: 'Technical Support', imageUrl: '/images/expertise_support.webp' },
+  { title: 'Repair Orders',     imageUrl: '/images/expertise_repair.webp' },
+  { title: 'Maintenance',       imageUrl: '/images/expertise_maintenance.webp' },
 ];
 
 const ORANGE = '#FF4500';
@@ -54,6 +54,8 @@ export default function ExpertiseShowcase() {
               <motion.img
                 src={item.imageUrl}
                 alt={item.title}
+                loading="lazy"
+                decoding="async"
                 animate={{
                   scale: isActive ? 1.05 : 1,
                   opacity: isActive ? 1 : 0.6
@@ -116,6 +118,8 @@ export default function ExpertiseShowcase() {
               <img
                 src={item.imageUrl}
                 alt={item.title}
+                loading="lazy"
+                decoding="async"
                 className="w-full h-full object-cover object-center"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[rgba(74,63,160,0.88)] via-transparent to-transparent" />
@@ -142,6 +146,8 @@ export default function ExpertiseShowcase() {
               <img
                 src={item.imageUrl}
                 alt={item.title}
+                loading="lazy"
+                decoding="async"
                 className="w-full h-[52px] object-cover object-center"
               />
             </button>

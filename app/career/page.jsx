@@ -13,7 +13,7 @@ export default function Careers() {
 
       <section className="relative w-full h-[50vh] min-h-[400px] md:h-[500px] rounded-b-[40px] md:rounded-b-[60px] overflow-hidden shadow-2xl">
         <Image
-          src="/images/career-hero.jpeg"
+          src="/images/career-hero.webp"
           alt="Offshore Marine Careers"
           fill
           priority

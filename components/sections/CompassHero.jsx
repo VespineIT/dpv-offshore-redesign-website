@@ -320,7 +320,6 @@ export default function CompassHero() {
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Sans:wght@400;600;700&display=swap');
 
         :root { --title-hover-grad: ${T.hoverGrad}; }
 
@@ -354,7 +353,7 @@ export default function CompassHero() {
 
         .ch-title-line {
           display:block;
-          font-family:'Inter',sans-serif;
+          font-family:var(--font-inter),sans-serif;
           font-size:clamp(48px,7vw,160px);
           font-weight:500;
           line-height:1.05;
@@ -395,7 +394,7 @@ export default function CompassHero() {
           border:none;
           border-radius:100px;
           color:#fff;
-          font-family:'DM Sans',sans-serif;
+          font-family:var(--font-dm-sans),sans-serif;
           font-size:12px;
           font-weight:700;
           letter-spacing:1.8px;
@@ -471,7 +470,7 @@ export default function CompassHero() {
           justifyContent:"center",
           overflow:"hidden",
           isolation:"isolate",
-          fontFamily:"'DM Sans',sans-serif",
+          fontFamily:"var(--font-dm-sans),sans-serif",
           transition:"background 0.7s ease",
         }}
       >
@@ -555,16 +554,17 @@ export default function CompassHero() {
                 }}
               />
               <img
-                src={isDark ? "/images/compass_design_dark.png" : "/images/compass_design.png"}
+                src={isDark ? "/images/compass_design_dark.webp" : "/images/compass_design.webp"}
                 alt="DPV Offshore compass"
                 draggable="false"
                 loading="eager"
+                fetchPriority="high"
                 style={{width:"100%",height:"100%",objectFit:"contain",filter:T.compassFx,userSelect:"none",transition:"filter .7s",display:"block"}}
               />
               <div aria-hidden="true" style={{position:"absolute",inset:0,display:"flex",alignItems:"center",justifyContent:"center"}}>
                 <div style={{position:"relative",width:"75%",height:"75%"}}>
-                  <img src="/images/big_needl.png"   className="ch-rotateCW"  draggable="false" alt="" style={{position:"absolute",inset:0,width:"100%",height:"100%",objectFit:"contain"}}/>
-                  <img src="/images/small_needls.png" className="ch-rotateCCW" draggable="false" alt="" style={{position:"absolute",inset:0,width:"100%",height:"100%",objectFit:"contain"}}/>
+                  <img src="/images/big_needl.webp"   className="ch-rotateCW"  draggable="false" alt="" style={{position:"absolute",inset:0,width:"100%",height:"100%",objectFit:"contain"}}/>
+                  <img src="/images/small_needls.webp" className="ch-rotateCCW" draggable="false" alt="" style={{position:"absolute",inset:0,width:"100%",height:"100%",objectFit:"contain"}}/>
                 </div>
               </div>
             </div>

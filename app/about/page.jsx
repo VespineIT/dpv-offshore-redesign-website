@@ -35,10 +35,12 @@ const AboutUsPage = () => {
             loop
             muted
             playsInline
+            preload="metadata"
+            poster="/images/jackup_barge_poster.webp"
             className="absolute inset-0 w-full h-full object-cover z-0"
           >
-            <source src="/Videos/jackup_barge .mp4" type="video/mp4" />
-            <img src="/fallback-image.jpg" alt="Offshore background" className="w-full h-full object-cover" />
+            <source src="/Videos/jackup_barge.mp4" type="video/mp4" />
+            <img src="/images/jackup_barge_poster.webp" alt="Offshore background" className="w-full h-full object-cover" />
           </video>
 
           <div className="absolute inset-0 bg-black/50 dark:bg-black/70 z-10 pointer-events-none"></div>
@@ -122,7 +124,7 @@ const AboutUsPage = () => {
           <div className="shrink-0 flex flex-col items-center">
             <div className="relative w-56 h-56 md:w-72 md:h-72 rounded-full overflow-hidden border-4 border-[#FF4500] shadow-2xl">
               <Image
-                src="/images/owner.jpeg"
+                src="/images/owner.webp"
                 alt="Mr. Duminda Gunathilake"
                 fill
                 className="object-cover object-top"

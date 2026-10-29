@@ -25,9 +25,9 @@ const AboutUsSection = () => {
         ref={sectionRef}
         className="relative w-full h-full rounded-[24px] overflow-hidden shadow-2xl"
       >
-        <video autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover z-0">
-          <source src="/Videos/jackup_barge .mp4" type="video/mp4" />
-          <img src="/fallback-image.jpg" alt="Offshore background" className="w-full h-full object-cover" />
+        <video autoPlay loop muted playsInline preload="metadata" poster="/images/jackup_barge_poster.webp" className="absolute inset-0 w-full h-full object-cover z-0">
+          <source src="/Videos/jackup_barge.mp4" type="video/mp4" />
+          <img src="/images/jackup_barge_poster.webp" alt="Offshore background" loading="lazy" className="w-full h-full object-cover" />
         </video>
 
         <div className="absolute inset-0 bg-black/40 dark:bg-black/60 z-10 pointer-events-none" />

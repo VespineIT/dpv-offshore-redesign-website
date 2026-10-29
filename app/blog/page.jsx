@@ -77,6 +77,8 @@ const BlogPage = () => {
                   <img
                     src={post.image}
                     alt={post.title}
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out"
                   />
                   <div className="absolute top-4 left-4 bg-[#FF4500] text-white text-xs font-bold uppercase tracking-wider py-1 px-3 rounded-md shadow-md">
@@ -159,6 +161,7 @@ const BlogPage = () => {
                 <img
                   src={selectedPost.image}
                   alt={selectedPost.title}
+                  decoding="async"
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent"></div>

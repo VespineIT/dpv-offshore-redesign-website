@@ -13,7 +13,16 @@ const nextConfig = {
         hostname: 'images.unsplash.com',
       },
     ],
-  }
+  },
+
+  // Browser caching for static media (30 days, revalidated in the background)
+  async headers() {
+    const cache = [{ key: 'Cache-Control', value: 'public, max-age=2592000, stale-while-revalidate=86400' }];
+    return [
+      { source: '/images/:path*', headers: cache },
+      { source: '/Videos/:path*', headers: cache },
+    ];
+  },
 };
 
 export default nextConfig;

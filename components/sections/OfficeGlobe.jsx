@@ -7,6 +7,12 @@ import { offices, tickerRegions } from '@/data/offices';
 export default function OfficeGlobe() {
   const [activeId, setActiveId] = useState('dubai');
   const [currentTime, setCurrentTime] = useState('');
+  // Only mount port images once their office has been selected
+  const [visitedIds, setVisitedIds] = useState(() => new Set(['dubai']));
+
+  useEffect(() => {
+    setVisitedIds(prev => (prev.has(activeId) ? prev : new Set(prev).add(activeId)));
+  }, [activeId]);
 
   const activeLocation = offices.find(l => l.id === activeId) || offices[0];
 
@@ -47,14 +53,16 @@ export default function OfficeGlobe() {
               className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${activeId === loc.id ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
             >
               <div className="absolute inset-0 bg-black/50 dark:bg-black/70 z-10" />
-              <Image
-                src={loc.image}
-                alt={`${loc.city} maritime port view`}
-                fill
-                className="object-cover object-center transform scale-105 group-hover:scale-110 transition-transform duration-[12000ms]"
-                priority={loc.id === 'dubai'}
-                unoptimized
-              />
+              {visitedIds.has(loc.id) && (
+                <Image
+                  src={loc.image}
+                  alt={`${loc.city} maritime port view`}
+                  fill
+                  sizes="100vw"
+                  className="object-cover object-center transform scale-105 group-hover:scale-110 transition-transform duration-[12000ms]"
+                  unoptimized
+                />
+              )}
             </div>
           ))}
 

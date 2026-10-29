@@ -52,8 +52,10 @@ export default function Footer() {
                    {/* ISO Image - Boxes Removed */}
                    <div className="pt-2">
                      <img 
-                       src="/images/iso_logo.png" 
+                       src="/images/iso_logo.webp" 
                        alt="ISO Certifications" 
+                       loading="lazy" 
+                       decoding="async"
                        className="max-h-28 w-auto object-contain" 
                      />
                    </div>
@@ -69,8 +71,10 @@ export default function Footer() {
                    {/* Ship Serve Image - Boxes Removed */}
                    <div className="pt-4">
                      <img 
-                       src="/images/ship_serv.jpg" 
+                       src="/images/ship_serv.webp" 
                        alt="ShipServ" 
+                       loading="lazy" 
+                       decoding="async"
                        className="h-10 w-auto object-contain rounded-sm" 
                      />
                    </div>
